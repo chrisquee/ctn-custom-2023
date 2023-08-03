@@ -1,9 +1,0 @@
-/*Account Page BOF */
-.page-my-account #page {
-  background-color: #ffffff; }
-  @media screen and (min-width: 992px) {
-    .page-my-account #page #main-footer {
-      width: calc(100% - 306px);
-      margin-left: 290px; } }
-
-/* Account Page EOF */

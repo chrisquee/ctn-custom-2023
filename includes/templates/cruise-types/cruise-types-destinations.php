@@ -3,7 +3,7 @@
         <div class="col-md-12 no-padding">
             
             <div class="sep-wrap clearfix">
-                <h2>Destinations</h2>
+                <h2 class="sep-title">Destinations</h2>
                 <a href="" class="sep-link"></a>
             </div>
             

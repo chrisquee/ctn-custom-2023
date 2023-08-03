@@ -2,12 +2,13 @@
 class cqShortcodes {
 	
 	private $plugin_name = 'cq-custom';
-    public $page_articles = array();
+    public $home_page_post_ids = array();
 	
 	public static function init() {
 		$self = new self();
 		add_shortcode('cq_large_cta', array($self, 'cq_large_cta_shortcode'));
 		add_shortcode('cq_title_separator', array($self, 'cq_title_separator_shortcode'));
+        add_shortcode('cq_featured_news', array($self, 'cq_featured_news_shortcode'));
         add_shortcode('cq_latest_news', array($self, 'cq_latest_news_shortcode'));
         add_shortcode('cq_latest_digital_issues', array($self, 'cq_latest_digital_issues_shortcode'));
         add_shortcode('cq_latest_issue', array($self, 'cq_latest_issue_shortcode'));
@@ -33,16 +34,16 @@ class cqShortcodes {
         add_shortcode('cq_featured_cruise_ships', array($self, 'cq_featured_ships_shortcode'));
         add_shortcode('cq_featured_cruise_ships_item', array($self, 'cq_featured_ships_item_shortcode'));
         add_shortcode('cq_udg_full_width_block', array($self, 'cq_udg_full_width_block_shortcode'));
-        add_shortcode( 'cq_speaker_list', array($self, 'cq_speakers_list_shortcode') );
+        add_shortcode('cq_speaker_list', array($self, 'cq_speakers_list_shortcode') );
         add_shortcode('cq_custom_agenda', array($self, 'cq_custom_agenda_shortcode') );
         add_shortcode('cq_custom_agenda_day', array($self, 'cq_custom_agenda_day_shortcode') );
-        add_shortcode( 'cq_standard_carousel', array($self, 'cq_standard_carousel_shortcode') );
-        add_shortcode( 'cq_grid_links', array($self, 'cq_grid_links_shortcode'));
+        add_shortcode('cq_standard_carousel', array($self, 'cq_standard_carousel_shortcode') );
+        add_shortcode('cq_grid_links', array($self, 'cq_grid_links_shortcode'));
         add_shortcode('cq_latest_jobs_row', array($self, 'cq_latest_jobs_row_shortcode') );
         add_shortcode('cq_call_to_action', array($self, 'cq_call_to_action_shortcode') );
-        add_shortcode( 'cq_grid_links_item', array($self, 'cq_grid_links_item_shortcode'));
-        add_filter( 'embed_oembed_html', array($self, 'cq_wrap_oembed'), 99, 4 );
-        add_filter( 'the_content', array($self, 'cq_wrap_iframe') );
+        add_shortcode('cq_grid_links_item', array($self, 'cq_grid_links_item_shortcode'));
+        add_filter('embed_oembed_html', array($self, 'cq_wrap_oembed'), 99, 4 );
+        add_filter('the_content', array($self, 'cq_wrap_iframe') );
   	}
     
     public function cq_large_cta_shortcode($attributes) {
@@ -123,23 +124,202 @@ class cqShortcodes {
                                 'see_more_link' => ''
                             ), $attributes);
         
-        $separator_link = $this->get_link_params($cq_sep_atts['see_more_link']);
+        if (is_array($cq_sep_atts['see_more_link'])) {
+            $separator_link = array();
+            $separator_link['a_link'] = $cq_sep_atts['see_more_link']['url'];
+            $separator_link['a_target'] = $cq_sep_atts['see_more_link']['target'] ?? '_self';
+            $separator_link['a_title'] = 'View More';
+            $separator_link['text'] = 'View More';    
+        } else {
+            $separator_link = $this->get_link_params($cq_sep_atts['see_more_link']);
+        }
         $separator_link_html = '';
         
-        if ($separator_link) {
-            $separator_link_html = '<a href="' . $separator_link['a_link'] . '" class="sep-link" ' . $separator_link['a_target'] . ' ' . $separator_link['a_title'] . '>' . esc_html($separator_link['text']) . '</a>';
+        if ($separator_link['a_link'] != '') {
+            $separator_link_html = '<a href="' . $separator_link['a_link'] . '" class="view-all" ' . $separator_link['a_target'] . ' ' . $separator_link['a_title'] . '><span class="material-symbols-outlined">add</span>' . esc_html($separator_link['text']) . '</a>';
         }
         
         $title_separator_html = '<div class="sep-wrap clearfix">
-                                    <h2>' . esc_html($cq_sep_atts['separator_title']) . '</h2>
-                                    ' . $separator_link_html . '
+                    
+                                    <h2 class="sep-title"><span class="material-symbols-outlined">arrow_outward</span>'
+                                    . esc_html($cq_sep_atts['separator_title']) . '</h2>' . $separator_link_html . '
                                  </div>';
         
         return $title_separator_html;
         
     }
     
-    public function cq_latest_news_shortcode($attributes) {
+    public function cq_featured_news_shortcode($attributes) {
+        
+        global $post;
+        
+        $atts = shortcode_atts(
+                            array(
+                                'featured_post_category' => '',
+                                'post_id' => '',
+                                'ad_space' => false,
+                                'ad_shortcode' => ''
+                            ), $attributes);
+        
+        $must_include_array = array();
+        $size = 5;
+        
+        if ($atts['post_id'] != '') {
+            
+            $must_include_array = explode(',', $atts['post_id']);
+            
+        }
+            
+        $exclude_array = array_merge($must_include_array, $this->home_page_post_ids);
+
+        $query_args = array( 'post_type' => 'post',
+                             'suppress_filters' => true,
+                             'post_status' => 'publish',
+                             'post__not_in' => $exclude_array,
+                             'posts_per_page' => 5
+                            );
+        
+        if (is_numeric($atts['featured_post_category'])) {
+			$query_args['cat'] = $atts['featured_post_category'];
+		}
+
+        $latest_posts = new WP_Query( $query_args );
+
+        $latest_post_ids = wp_list_pluck( $latest_posts->posts, 'ID' );
+
+        $all_posts_array = array_merge($must_include_array, $latest_post_ids);
+        
+        $post_list_args = array(
+			'post_type' => 'post',
+			'suppress_filters' => true,
+			'post_status' => 'publish',
+            'post__in' => $all_posts_array,
+            'orderby' => 'post__in',
+			'posts_per_page' => 5
+    	);
+    
+		$post_list = new WP_Query($post_list_args);
+        
+        $html = '';
+        
+        if ($post_list->have_posts()) {
+        
+            $html .= '<div class="featured-wrapper">';
+            $post_index = 0;
+            
+            $ad_active = false;
+            if ($atts['ad_shortcode'] != '') {
+                if (function_exists('placement_has_ads')) {
+                    $ad_active = placement_has_ads($atts['ad_shortcode']);
+                }
+
+            }
+            
+            while($post_list->have_posts()) {
+                
+                $post_list->the_post();
+                $thumb_id = get_post_thumbnail_id();
+                $post_id = get_the_ID();
+                $this->home_page_post_ids[] = $post_id;
+                
+                $category = get_the_category();
+                $category_title = $category[0]->name;
+                $category_link = get_category_link($category[0]->term_id);
+                
+                $primary_category = smart_category_top_parent_id($category[0]->term_id);
+                $primary_category_title = get_category($primary_category)->name;
+                $primary_category_link = get_category_link($primary_category);
+                
+                if ($category_title != $primary_category_title) {
+                    $category_html = '<a href="' . $primary_category_link . '">' . $primary_category_title . '</a>
+                                      <a href="' . $category_link . '" class="cat-hidden">/ ' . $category_title . '</a>';
+                } else {
+                    $category_html = '<a href="' . $primary_category_link . '">' . $primary_category_title . '</a>';
+                }
+                
+                if ($post_index == 0) {
+                    
+                    $html .= '<div class="featured-item main-item index-' . $post_index . '">
+                                
+                                <div class="item-content">
+                                    <div class="item-info">
+                                        <div class="item-title">
+                                            <h1><a href="' . get_the_permalink() . '" class="title-gradient">' . get_the_title() . '</a></h1>
+                                        </div>
+
+                                        <div class="item-category cat-link">
+                                            <span class="material-symbols-outlined">arrow_outward</span>
+                                            ' .$category_html . '
+                                        </div>
+                                    </div>
+
+                                    <div class="item-author author-text">
+                                        ' . get_the_author() . '
+                                    </div>
+                                </div>
+                                
+                                <div class="item-image">
+                                    <a href="' . get_the_permalink() . '">
+                                    ' . get_the_post_thumbnail($post_id, 'featured-box-bg-image') . '
+                                    </a>
+                                </div>
+                    
+                             </div>';
+                    
+                } else {
+                    
+                    if ($post_index == 1) {
+                       $html .= '<div class="secondary-items-wrap">';
+                    }
+                    
+                    if ($post_index >= 3 && $atts['ad_space'] == true && $ad_active == true) {
+                         $ad_html = $atts['ad_space'] == true && $atts['ad_shortcode'] != '' ? do_shortcode('[the_ad_placement id="' . $atts['ad_shortcode'] . '"]') : '';
+                         $html .= '<div class="cq_ad_space">
+                                   ' . $ad_html . '
+                                   </div>';
+                        break;
+                    }
+                    
+                    $html .= '<div class="featured-item secondary-item index-' . $post_index . '">
+                                <div class="item-info">
+                                    <div class="item-title">
+                                        <h5><a href="' . get_the_permalink() . '" class="title-gradient">' . get_the_title() . '</a></h5>
+                                    </div>
+
+                                    <div class="item-category cat-link">
+                                        <span class="material-symbols-outlined">arrow_outward</span>
+                                        ' .$category_html . '
+                                    </div>
+                                </div>
+                                
+                                <div class="item-author author-text">
+                                    ' . get_the_author() . '
+                                </div>
+                    
+                             </div>';
+                    
+                }
+                
+                $post_index++;
+                
+            }
+            
+            wp_reset_postdata();
+            
+            if ($post_index > 0) {
+                $html .= '</div>';
+            }
+                    
+            
+            $html .= '</div>';
+            
+        }
+        
+        return $html;
+        
+    }
+    
+    /*public function cq_latest_news_shortcode($attributes) {
         
         global $post;
         
@@ -158,7 +338,7 @@ class cqShortcodes {
 			'suppress_filters' => true,
 			'post_status' => 'publish',
 			'showposts' => 12,
-            'post__not_in' => $this->page_articles,
+            'post__not_in' => $this->home_page_post_ids,
     	);
         
         if ($atts['category_not'] != '') {
@@ -213,9 +393,9 @@ class cqShortcodes {
         $last_row = end($row_keys);
         
         foreach ($post_list->posts as $key => $pst) {
-            if (!in_array($pst->ID, $this->page_articles) && $post_count < $number_posts) {
+            if (!in_array($pst->ID, $this->home_page_post_ids) && $post_count < $number_posts) {
                 if (($atts['ad_space'] != true) || ($atts['ad_space'] == true && $post_count < ($number_posts - 1) )) {
-                    $this->page_articles[] = $pst->ID;
+                    $this->home_page_post_ids[] = $pst->ID;
                 }
                 $post_count++;
             } else {
@@ -308,6 +488,108 @@ class cqShortcodes {
 
         $html .= '</div>';
         
+        
+        wp_reset_postdata();
+        
+        return $html;
+        
+    }*/
+    
+    public function cq_latest_news_shortcode($attributes) {
+        
+        global $post;
+        
+        $atts = shortcode_atts(
+                            array(
+                                'latest_post_category' => '',
+                                'desktop_display' => 'full_width',
+                                'mobile_display' => 'with_image',
+                                'load_more' => false
+                            ), $attributes);
+        
+        $show_posts = $atts['desktop_display'] == 'cards' ? 3 : 2;
+        
+        $post_list_args = array(
+			'post_type' => 'post',
+			'suppress_filters' => true,
+			'post_status' => 'publish',
+            'post__not_in' => $this->home_page_post_ids,
+			'showposts' => $show_posts
+    	);
+		
+		if ($atts['latest_post_category'] != '') {
+			$post_list_args['cat'] = $atts['latest_post_category'];
+		}
+	   
+        $desktop_class = esc_attr($atts['desktop_display']);
+        $mobile_class = esc_attr($atts['mobile_display']);
+    
+		$post_list = new WP_Query($post_list_args);
+            
+        if ($post_list->have_posts()) {
+
+            $html = '<div class="latest-wrapper ' . $desktop_class . ' ' . $mobile_class . '">';
+            
+            while($post_list->have_posts()) {
+                $post_list->the_post();
+                
+                $thumb_id = get_post_thumbnail_id();
+                $post_id = get_the_ID();
+                $this->home_page_post_ids[] = $post_id;
+                
+                $category = get_the_category();
+                $category_title = $category[0]->name;
+                $category_link = get_category_link($category[0]->term_id);
+                
+                $primary_category = smart_category_top_parent_id($category[0]->term_id);
+                $primary_category_title = get_category($primary_category)->name;
+                $primary_category_link = get_category_link($primary_category);
+                $excerpt = preg_replace("~(?:\[/?)[^/\]]+/?\]~s", '', get_the_content());
+                
+                if ($category_title != $primary_category_title) {
+                    $category_html = '<a href="' . $primary_category_link . '">' . $primary_category_title . '</a>
+                                      <a href="' . $category_link . '" class="cat-hidden">/ ' . $category_title . '</a>';
+                } else {
+                    $category_html = '<a href="' . $primary_category_link . '">' . $primary_category_title . '</a>';
+                }
+
+
+                $html .= '<article id="post-' . get_the_ID() . '" class="latest-item">
+                              <div class="item-image">
+                                  <a href="' . esc_url( get_permalink() ) .'" title="' . get_the_title() . '" class="latest-img-overlay">
+                                      ' . get_the_post_thumbnail( get_the_ID(), 'featured-box-bg-image' ) . '
+                                  </a>
+                              </div>
+                              <div class="item-content">
+                                <div class="item-info">
+                                    <div class="item-title">
+                                        <h3><a href="' . get_the_permalink() . '" class="title-gradient">' . get_the_title() . '</a></h3>
+                                    </div>
+
+                                    <div class="item-category cat-link">
+                                        <span class="material-symbols-outlined">arrow_outward</span>
+                                        ' .$category_html . '
+                                    </div>
+                                </div>
+                                <p>' . wp_trim_words( $excerpt, 40, '...') . '</p>
+                                <div class="item-author author-text">
+                                    ' . get_the_author() . '
+                                </div>
+                              </div>
+                          </article>';
+
+            }
+            
+            
+            $html .= '</div>';
+            
+            if ($atts['load_more'] == true) {
+                
+                $html .= '<div class="load-more-wrapper"><a href="#" class="load-more" data-cat="' . esc_attr($atts['latest_post_category']) . '" data-page="1" data-perpage="' . $show_posts . '"><span class="material-symbols-outlined">add</span> LOAD MORE</a></div>';
+                
+            }
+            
+        }
         
         wp_reset_postdata();
         
@@ -426,7 +708,7 @@ class cqShortcodes {
 			'suppress_filters' => true,
 			'post_status' => 'publish',
 			'showposts' => $items,
-            'post__not_in' => $this->page_articles
+            'post__not_in' => $this->home_page_post_ids
     	);
 		
 		if ($atts['publication'] != '') {
@@ -453,7 +735,7 @@ class cqShortcodes {
                 $issue_list->the_post();
                 $thumb_id = get_post_thumbnail_id();
                 $issue_id = get_the_ID();
-                $this->page_articles[] = $issue_id;
+                $this->home_page_post_ids[] = $issue_id;
                 $external_link = get_post_meta($issue_id, 'di_external_link', true);
                 $link = strpos($external_link, 'http', 0) !== false ? $external_link : get_permalink($issue_id);
                 $target = strpos($link, site_url(), 0) !== false ? '_self' : '_blank';
@@ -524,7 +806,7 @@ class cqShortcodes {
                     $issue_list->the_post();
                     $thumb_id = get_post_thumbnail_id();
                     $issue_id = get_the_ID();
-                    $this->page_articles[] = $issue_id;
+                    $this->home_page_post_ids[] = $issue_id;
                     $external_link = get_post_meta($issue_id, 'di_external_link', true);
                     $link = strpos($external_link, 'http', 0) !== false ? $external_link : get_permalink($issue_id);
                     $target = strpos($link, site_url(), 0) !== false ? '_self' : '_blank';
@@ -584,7 +866,7 @@ class cqShortcodes {
     public function cq_latest_post_row_shortcode( $attributes ) {
         
         $home_page_post_ids = array();
-        $home_page_post_ids = $this->page_articles;
+        $home_page_post_ids = $this->home_page_post_ids;
 
         $atts = shortcode_atts(array(
             'to_show' => '1',
@@ -624,7 +906,7 @@ class cqShortcodes {
 
                 $id = get_the_ID();
                 $category = $this->get_cat_name_link($id);
-                $this->page_articles[] = $id;
+                $this->home_page_post_ids[] = $id;
                 $mobile_view = $post_index == 0 ? '' : 'mobile_view';
 
                 $home_page_post_ids[] = $id;
@@ -1501,13 +1783,16 @@ class cqShortcodes {
     }
     
     function cq_wrap_iframe( $content ) {
-        // Match any iframes or embeds
-        $pattern = '~<iframe.*</iframe>|<embed.*</embed>~';
-        preg_match_all( $pattern, $content, $matches );
-        foreach ( $matches[0] as $match ) {
-            if ( false !== strpos( $match, "://youtube.com") || false !== strpos( $match, "://youtu.be" ) ) {
-                $wrappedframe = '<div class="video-embed">' . $match . '</div>';
-                $content = str_replace($match, $wrappedframe, $content);
+        
+        if ($content) {
+            // Match any iframes or embeds
+            $pattern = '~<iframe.*</iframe>|<embed.*</embed>~';
+            preg_match_all( $pattern, $content, $matches );
+            foreach ( $matches[0] as $match ) {
+                if ( false !== strpos( $match, "://youtube.com") || false !== strpos( $match, "://youtu.be" ) ) {
+                    $wrappedframe = '<div class="video-embed">' . $match . '</div>';
+                    $content = str_replace($match, $wrappedframe, $content);
+                }
             }
         }
         return $content;
@@ -1883,7 +2168,7 @@ class cqShortcodes {
     public function cq_latest_jobs_row_shortcode( $attributes ) {
         
         $job_page_post_ids = array();
-        $job_page_post_ids = $this->page_articles;
+        $job_page_post_ids = $this->home_page_post_ids;
        
         $atts = shortcode_atts(array(
             'to_show' => '3',
@@ -1952,7 +2237,7 @@ class cqShortcodes {
                
                 $job_id = get_the_ID();
                 $category = $this->get_cat_name_link($job_id);
-                $this->page_articles[] = $job_id;
+                $this->home_page_post_ids[] = $job_id;
                 $mobile_view = $post_index == 0 ? '' : 'mobile_view';
                 $job_page_post_ids[] = $job_id;
                 $job_meta = get_post_meta( $job_id );

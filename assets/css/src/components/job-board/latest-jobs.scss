@@ -1,0 +1,101 @@
+/* BOF of Latest Jobs */
+.latest-jobpost .cq_vertical .item_image a img{
+    object-fit: contain;
+    max-height: 100px;
+    padding: 10px;
+    min-height: 50px;
+    width: auto;
+    min-width: 70px;
+    transform: rotate(-20deg) translateY(-50%);
+    filter: grayscale(1);
+    opacity: 0.2;
+    transform-origin: top right;
+}
+.item-spacing {
+    height: 50px;
+}
+.latest-jobpost .cq_vertical .item_content .cat-link{
+    word-break: break-all;
+}
+.latest-jobpost {
+    height: 100%;
+}
+.latest-jobpost.vertical {
+    grid-template-rows: 1fr 1fr;
+}
+.latest-jobpost .cq_vertical {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+}
+.latest-jobpost .item_wrap {
+    overflow: hidden;
+}
+.latest-jobpost .cq_vertical .item_image {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.fullwidthaddtoaction {
+    position: relative;
+    margin-bottom: 15px !important;
+}
+.fullwidthaddtoaction * {
+    position: relative;
+    z-index: 99;
+}
+.fullwidthaddtoaction > div:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background: -webkit-linear-gradient(bottom, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.1) 55%);
+    background: -o-linear-gradient(bottom, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.1) 55%);
+    background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.1) 55%);
+    opacity: 0.7;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+    width: 100%;
+    height: 100%;
+}
+.latest-jobpost .cq_vertical {
+    grid-template-rows: auto;
+    position: relative;
+}
+.latest-jobpost .cq_vertical .item_content {
+ 
+}
+.latest-jobpost .cq_vertical .item_content h3 {
+    margin: 0 0 0.5rem;
+}
+
+.fullwidthaddtoaction,.fullwidthaddtoaction > div{
+    height: 98.7%;
+}
+.fullwidthaddtoaction > div {
+    display: flex;
+    flex-direction: column;
+    align-items: self-start;
+    justify-content: end;
+    padding: 1rem;
+}
+.fullwidthaddtoaction a.button {
+    margin: 1rem 0 0;
+}
+.gridtemplaterow3 {
+    grid-template-rows: 1fr 1fr 1fr !important;
+}
+.gridtemplaterow2 {
+    grid-template-rows: 1fr 1fr !important;
+}
+.gridtemplaterow1 {
+    grid-template-rows: 1fr !important;
+}
+.gridtemplaterow2 .cq_vertical{
+    justify-content: start !important;
+}
+/* EOF of Latest Jobs */

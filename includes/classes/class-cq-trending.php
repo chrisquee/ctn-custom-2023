@@ -6,10 +6,10 @@ class cqTrending {
     
     public static function init() {
 		$self = new self();
-		add_action('wp_head', array($self, 'base_track_popular_posts'));
+		add_action( 'wp_head', array($self, 'base_track_popular_posts'));
         add_filter( 'cron_schedules', array($self, 'add_new_intervals'));
-        add_action('wp_head', array($self, 'cq_set_cron'));
-        add_action('trending_cleanup', array($self, 'cq_clear_trending_data'));
+        add_action( 'wp_head', array($self, 'cq_set_cron'));
+        add_action( 'trending_cleanup', array($self, 'cq_clear_trending_data'));
         add_shortcode( 'cq_popular_posts', array($self, 'cq_popular_posts') );
   	}
     
@@ -37,31 +37,27 @@ class cqTrending {
           wp_reset_postdata();
     }
 
-  function base_get_popular_posts( $size = 4 , $must_include = '', $ad_space, $ad_shortcode ) {
+  function base_get_popular_posts( $ad_space, $ad_shortcode, $size = 3 , $must_include = '' ) {
 
       $must_include_array = explode(',', $must_include);
       $limit = (sizeof($must_include_array) > $size ? $size : sizeof($must_include_array));
       $total_size = $size;
 
       if ($must_include != '') {
-          $query_args = array( 'post__in' => $must_include_array, 'posts_per_page' => $limit, 'post_type' => array('post', 'page'));
+          $query_args = array( 'post__in' => $must_include_array, 'orderby' => 'post__in', 'posts_per_page' => $limit);
           $must_include_posts = new WP_Query( $query_args );
-          $size = (int)$size - (int)$limit;
+          $size = $size - $limit;
       }
-      
-      $pop_size = $size;
+
+      $pop_size = $size+5;
       // Query arguments
       $popular_args = array(
           'posts_per_page' => $pop_size,
           'meta_key' => '_base_popular_posts_count',
           'post__not_in' => $must_include_array,
           'orderby' => 'meta_value_num',
-          'post_type' => array('post'),
           'meta_type' => 'NUMERIC',
-          'order' => 'DESC',
-          'date_query' => array(
-            'after' => date('Y-m-d', strtotime('-2 years')) 
-           )
+          'order' => 'DESC'
       );
 
       // The query
@@ -84,27 +80,29 @@ class cqTrending {
                     break;
                   }
                   
-                  if ($trend_counter == 1 || $trend_counter == 2 ) {
+                  /*if ($trend_counter == 1 || $trend_counter == 2 ) {
                       $cols = 2;
                   } else {
                       $cols = 1;
-                  }
+                  }*/
                   
-                  $grid_counter = $grid_counter == 5 ? 1 : $grid_counter;
+                  $cols = 2;
+                  
+                  $grid_counter = $grid_counter == 3 ? 1 : $grid_counter;
                   
                   $category = $shortcode->get_cat_name_link(get_the_id());
                   
                   $col_class = 'col_' . $cols;
                   $fallback_class = 'col-md-' . $cols*3;
                   $fallback_class = '';
-                  $mobile_view = $trend_counter == 1 ? '' : 'mobile_view';
+                  $mobile_view = $trend_counter == 1 ? '' : '';
                   
                   $count_class = 'tritem-' . $trend_counter; 
                   //$popular_post_html .= '<li class="col-md-12 trending ' . $count_class . '"><div class="trending-inner"><p><a href="' . get_permalink( get_the_ID() ) . '">' . get_the_title() . '</a></p>' . understrap_posted_on_mini() . '</div></li>';
                   
-                  if ($total_size == $trend_counter && $ad_space == true) {
+                  if ($total_size == $trend_counter && $ad_space == true && $ad_shortcode != '') {
                       $ad_html = $ad_space == true && $ad_shortcode != '' ? do_shortcode('[the_ad_placement id="' . $ad_shortcode . '"]') : '';
-                      $popular_post_html .= '<li class="cq_ad_space item_wrap ' . $col_class . ' ' . $fallback_class . ' trending-' . $grid_counter . '" style="background-color: #dadada;">
+                      $popular_post_html .= '<li class="cq_ad_space item_wrap ' . $col_class . ' ' . $fallback_class . ' trending-' . $grid_counter . '">
                                                 ' . $ad_html . '
                                                 <div class="ad_footer"><span>ADVERTISEMENT</span></div>
                                             </li>';
@@ -112,20 +110,14 @@ class cqTrending {
                       continue;
                   }
                   
-                  $cat_html = '';
-                  
-                  if ($category['cat_a_title'] != '') {
-                    $cat_html = '<a class="cat-link" href="' . $category['cat_a_link'] . '" target="' . $category['cat_a_target'] . '" title="' . $category['cat_a_title'] . '">' . $category['category'] . '</a>';
-                  }
-                  
                   $popular_post_html .= '<li class="cq_overlay item_wrap ' . $col_class . ' ' . $fallback_class . ' trending-' . $grid_counter . ' ' . $mobile_view . '" style="background-image: url(' . get_the_post_thumbnail_url(get_the_id(), 'large') . ')">
                                             <a href="' . get_the_permalink(get_the_id()) . '">
                                                 ' . get_the_post_thumbnail(get_the_id(), 'featured-box-bg-image') . '
                                             </a>
                                             <div class="item_content">
-                                                ' . $cat_html . '
-                                                <time datetime="' . get_the_date( 'c') . '">' . get_the_date( 'j F Y' ) . '</time>
-                                                <h3><a href="' . get_the_permalink() . '">' . get_the_title() . '</a></h3>
+                                                <a class="cat-link" href="' . $category['cat_a_link'] . '" target="' . $category['cat_a_target'] . '" title="' . $category['cat_a_title'] . '">' . $category['category'] . '</a>
+                                                <time datetime="' . get_the_date( 'c') . '"><span class="material-symbols-outlined">schedule</span>' . get_the_date( 'j F Y' ) . '</time>
+                                                <h5><a href="' . get_the_permalink() . '">' . get_the_title() . '</a></h5>
                                             </div>
                                          </li>';
                   $trend_counter++;
@@ -140,13 +132,15 @@ class cqTrending {
           while ( $popular_posts->have_posts() ) {
               $popular_posts->the_post();
               $count_class = 'tritem-' . $trend_counter;
-              $grid_counter = $grid_counter == 5 ? 1 : $grid_counter;
+              $grid_counter = $grid_counter == 4 ? 1 : $grid_counter;
               //$popular_post_html .= '<li class="col-md-12 trending ' . $count_class . '"><div class="trending-inner"><p><a href="' . get_permalink( get_the_ID() ) . '">' . get_the_title() . '</a></p>' . understrap_posted_on_mini() . '</div></li>';
-              if ($trend_counter == 1 || $trend_counter == 2 ) {
+              /*if ($trend_counter == 1 || $trend_counter == 2 ) {
                  $cols = 2;
               } else {
                  $cols = 1;
-              }
+              }*/
+              
+              $cols = 2;
               
               if ($trend_counter > $total_size) {
                   break;
@@ -161,12 +155,12 @@ class cqTrending {
               $col_class = 'col_' . $cols;
               $fallback_class = 'col-md-' . $cols*3;
               $fallback_class = '';
-              $mobile_view = $trend_counter == 1 ? '' : 'mobile_view';
+              $mobile_view = $trend_counter == 1 ? '' : '';
 
               $count_class = 'tritem-' . $trend_counter; 
               //$popular_post_html .= '<li class="col-md-12 trending ' . $count_class . '"><div class="trending-inner"><p><a href="' . get_permalink( get_the_ID() ) . '">' . get_the_title() . '</a></p>' . understrap_posted_on_mini() . '</div></li>';
               
-              if ($total_size == $trend_counter && $ad_space == true) {
+              if ($total_size == $trend_counter && $ad_space == true && $ad_shortcode != '') {
                   $ad_html = $ad_space == true && $ad_shortcode != '' ? do_shortcode('[the_ad_placement id="' . $ad_shortcode . '"]') : '';
                   $popular_post_html .= '<li class="cq_ad_space item_wrap ' . $col_class . ' ' . $fallback_class . ' trending-' . $grid_counter . '" style="background-color: #dadada;">
                                             ' . $ad_html . '
@@ -176,21 +170,14 @@ class cqTrending {
                   continue;
                }
               
-              $cat_html = '';
-                  
-              if ($category['cat_a_title'] != '') {
-                $cat_html = '<a class="cat-link" href="' . $category['cat_a_link'] . '" target="' . $category['cat_a_target'] . '" title="' . $category['cat_a_title'] . '">' . $category['category'] . '</a>';
-              }
-              
               $popular_post_html .= '<li class="cq_overlay item_wrap ' . $col_class . ' ' . $fallback_class . ' trending-' . $grid_counter . ' ' . $mobile_view . '" style="background-image: url(' . get_the_post_thumbnail_url(get_the_id(), 'large') . ')">
-                                        <a href="' . get_the_permalink(get_the_id()) . '" class="destination-link" title="' . get_the_title() . '"></a>
                                         <a href="' . get_the_permalink(get_the_id()) . '">
                                             ' . get_the_post_thumbnail(get_the_id(), 'featured-box-bg-image') . '
                                         </a>
                                         <div class="item_content">
-                                            ' . $cat_html . '
-                                            <time datetime="' . get_the_date( 'c') . '">' . get_the_date( 'j F Y' ) . '</time>
-                                            <h3><a href="' . get_the_permalink() . '">' . get_the_title() . '</a></h3>
+                                            <a class="cat-link" href="' . $category['cat_a_link'] . '" target="' . $category['cat_a_target'] . '" title="' . $category['cat_a_title'] . '">' . $category['category'] . '</a>
+                                            <time datetime="' . get_the_date( 'c') . '"><span class="material-symbols-outlined">schedule</span>' . get_the_date( 'j F Y' ) . '</time>
+                                            <h5><a href="' . get_the_permalink() . '">' . get_the_title() . '</a></h5>
                                         </div>
                                      </li>';
               
@@ -308,10 +295,23 @@ class cqTrending {
         $extra_class = $cq_popular_post_atts['el_class'];
         $ad_space = $cq_popular_post_atts['ad_space'];
         $ad_shortcode = $cq_popular_post_atts['ad_shortcode'];
+        
+        $ad_active = false;
+        if ($cq_popular_post_atts['ad_shortcode'] != '') {
+            if (function_exists('placement_has_ads')) {
+                $ad_active = placement_has_ads($cq_popular_post_atts['ad_shortcode']);
+                
+                if ($ad_active == false) {
+                    $ad_shortcode = '';
+                }
+                
+            }
+            
+        }
 
         $popular_post_content = '<ul class="trending-posts ' . esc_attr($theme_class) . ' ' . esc_attr($extra_class) . '">';
 
-        $popular_post_content .= $this->base_get_popular_posts( $size, $must_include, $ad_space, $ad_shortcode );
+        $popular_post_content .= $this->base_get_popular_posts( $ad_space, $ad_shortcode, $size, $must_include );
 
         $popular_post_content .= '			</ul>';
 

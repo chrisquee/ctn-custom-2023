@@ -4,8 +4,8 @@ function cq_add_stylesheet() {
 	
 	global $wp, $post;
 	
-    wp_enqueue_style( 'cq-custom-css', plugins_url( '/assets/css/cq-css.css', dirname(__FILE__, 2) ), array(), time() );
-	wp_enqueue_script( 'cq-custom-js', plugins_url( '/assets/js/cq-app.js', dirname(__FILE__, 2) ), array(), time(), true );
+    wp_enqueue_style( 'cq-custom-css', plugins_url( '/assets/css/main.min.css', dirname(__FILE__, 2) ), array(), time() );
+	wp_enqueue_script( 'cq-custom-js', plugins_url( '/assets/js/main.min.js', dirname(__FILE__, 2) ), array(), time(), true );
 	
 	$js_params = array(
       		'ajaxurl' => admin_url( 'admin-ajax.php' ),

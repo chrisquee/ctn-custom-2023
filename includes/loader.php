@@ -2,7 +2,7 @@
 
 require_once('classes/class-cq-login.php');
 require_once('classes/class-cq-register.php');
-require_once('classes/class-cq-search.php');
+//require_once('classes/class-cq-search.php');
 require_once('classes/class-cq-cache.php');
 require_once('classes/class-cq-vc-extend.php');
 require_once('classes/class-cq-events-post-type.php');

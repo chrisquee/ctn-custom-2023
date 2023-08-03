@@ -1,5 +1,9 @@
 import './components/legacy';
+import './components/login';
+import './components/user-verify';
 import './components/newsletter';
 import './components/print-editions';
 import './components/latest-news';
-import './components/business-directory';
+//import './components/business-directory';
+import './components/chosen';
+import './components/jquery-validate';

@@ -8,6 +8,7 @@ class cqVcExtend {
 		add_action( 'vc_before_init', array($self, 'cq_large_cta') );
         add_action( 'vc_before_init', array($self, 'cq_add_container_row') );
 		add_action( 'vc_before_init', array($self, 'cq_title_separator') );
+        add_action( 'vc_before_init', array($self, 'cq_featured_news') );
         add_action( 'vc_before_init', array($self, 'cq_latest_news') );
         add_action( 'vc_before_init', array($self, 'cq_latest_digital_issues') );
         add_action( 'vc_before_init', array($self, 'cq_latest_issue') );
@@ -167,6 +168,80 @@ class cqVcExtend {
             	),
 			)
 		) );
+    }
+    
+    public function cq_featured_news() {
+        
+        $output_categories = array('All' => '');
+        $categories = get_categories();
+
+        foreach($categories as $category) { 
+            $cat_name = $category->parent == 0 ? html_entity_decode($category->name) : html_entity_decode(get_cat_name($category->parent)) . ' - ' . html_entity_decode($category->name);
+            $output_categories[] = array($category->term_id, $cat_name);
+        }
+        
+        
+        $output_ad_placements = array('Select Placement' => '');
+        $placements = get_option( 'advads-ads-placements' );
+        
+        if (is_array($placements)) {
+            
+            foreach ($placements as $key => $value) {
+                $output_ad_placements[$value['name']] = $key;
+            }
+            
+        }
+        
+        vc_map( array(
+			"name" => __( "CQ Featured News", "CQ_Custom" ),
+			"base" => "cq_featured_news",
+			"category" => __( 'by CQ', 'CQ_Custom' ),
+			"params" => array(
+				// add params same as with any other content element
+				array(
+                	"type" => "dropdown",
+                	"class" => "",
+                	"heading" => __( "Category", 'CQ_Custom' ),
+                	"param_name" => "featured_post_category",
+                	"value" => $output_categories,
+                	"description" => __( "Choose the category the articles will be selected from", 'CQ_Custom' )
+            	),
+                array(
+                    'type'          => 'autocomplete',
+                    'class'         => '',
+                    'heading'       => esc_html__( 'Must Include', 'CQ_Custom' ),
+                    'param_name'    => 'post_id',
+                    "admin_label" => true,
+                    "description" => __( "Choose some articles that must be displayed", 'CQ_Custom' ),
+                    'settings' => array('multiple' => true, 'sortable' => true, 'unique_values' => true),
+                ),
+                array(
+                    "type"          => "checkbox",
+                    "admin_label"   => true,
+                    "weight"        => 10,
+                    "heading"       => __( "Include Ad Space", "CQ_Custom" ),
+                    "description"   => __("description", "CQ_Custom"),
+                    "value"         => '',
+                    "param_name"    => "ad_space",
+                ),
+                array(
+					"type" => "dropdown",
+					"class" => "",
+					"heading" => __( "Ad Content", 'CQ_Custom' ),
+					"param_name" => "ad_shortcode",
+					"value" => $output_ad_placements,
+                    "label" => "Ad Placement",
+                    "admin_label" => true,
+					"description" => __( "Choose the ad placement to use.", 'CQ_Custom' ),
+                    "dependency"    => array(
+                        'element'   => 'ad_space',
+                        'value'     => 'true'
+                    ),
+				),
+			)
+		) );
+        
+        
     }
     
     public function cq_latest_news() {
