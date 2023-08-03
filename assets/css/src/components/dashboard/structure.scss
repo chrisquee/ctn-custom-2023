@@ -1,0 +1,213 @@
+/*Dashboard Styles */
+nav.sidebar {
+    min-height: calc(100vh - 70px);
+    background: $gray-05;
+    font-weight: 500;
+    padding: 2rem 0 0;
+    width: 250px;
+    z-index: 11;
+    transition: width 0.25s ease, background 0.25s ease;
+    -webkit-transition: width 0.25s ease, background 0.25s ease;
+    -moz-transition: width 0.25s ease, background 0.25s ease;
+    -ms-transition: width 0.25s ease, background 0.25s ease;
+	box-shadow: 2px 3px 5px rgba(0,0,0,0.1);
+}
+.main-panel {
+    transition: width 0.25s ease, margin 0.25s ease;
+    width: calc(100% - 250px);
+    min-height: calc(100vh - 70px);
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+}
+#primary.seller-dashboard {
+	display: flex;
+}
+.seller-dashboard nav.sidebar ul {
+	background-color: transparent !important;
+}
+.seller-dashboard nav.sidebar ul li {
+	display: block !important;
+	text-align: left;
+    font-family: $font-family-monospace;
+}
+.seller-dashboard nav.sidebar ul li a {
+	width: 100%;
+	text-transform: none !important;
+	padding: 0.75rem 1rem !important;
+}
+.seller-dashboard nav.sidebar ul li a i {
+	float: right;
+}
+.seller-dashboard .dashboard-content {
+	width: 100%;
+	flex-grow: 1;
+	padding-left: 1rem !important;
+	padding-right: 1rem !important;
+}
+.seller-dashboard nav.sidebar ul li .child_menu {
+	margin: 0;
+    padding: 1rem;
+    background-color: rgba(255,255,255,0.6) !important;
+}
+.seller-dashboard .dashboard-content .delete-confirm {
+    background-color: red;
+}
+.seller-dashboard .dashboard-content table.table-hover {
+    min-width: 800px;
+}
+.seller-dashboard .offer-actions {
+    padding: 15px 0;
+    border: 1px solid #ccc;
+    background-color: #eaeaee;
+}
+.offer-actions.row {
+    margin-bottom: 50px;
+}
+.seller-dashboard .offer-actions label {
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+.seller-dashboard .offer-actions .button-wrap {
+    display: inline-block;
+}
+.seller-dashboard .offer-actions .counter-confirm {
+    background-color: #32CD32;
+}
+.seller-dashboard .button-wrap #counter-offer {
+    border-radius: 0 3px 3px 0;
+}
+.seller-dashboard button .fa.fa-trash-o {
+    width: 14px;
+    text-align: center;
+}
+@media screen and (max-width: 767px) {
+	#primary.seller-dashboard {
+		position: relative;
+	}
+	.seller-dashboard nav.sidebar {
+		position: absolute;
+		left: -250px;
+		transition: all ease-in-out 0.6s;
+	}
+	.seller-dashboard nav.sidebar {
+		position: absolute;
+		left: -250px;	
+	}
+	.seller-dashboard nav.sidebar.mobile-active {
+		transform: translateX(250px);
+	}
+	.seller-dashboard .main-panel {
+		width: 100% !important;
+	}
+	.menu-open {
+		position: absolute;
+		right: 0px;
+		top: 3.5rem;;
+		display: inline-block;
+		width:auto;
+		padding: 0.75rem;
+		background-color: #dbdbdb;
+		color: #000;
+		transform:rotate(90deg);
+        transform-origin: bottom right;
+		font-weight: bold;
+		box-shadow: 2px 3px 5px rgba(0,0,0,0.1);
+		cursor: pointer;
+	}
+    .seller-dashboard .offer-actions .button-wrap {
+        display: block;
+        padding: 1rem 0;
+    }
+}
+@media screen and (min-width: 768px) {
+	.menu-open {
+		display: none;
+	}
+}
+
+ul#account_menu {
+	padding: 0;
+	margin: 0;
+	display: block;
+	overflow: auto;
+	text-align: center;
+	width: 100%;
+	list-style-type: none;
+	background-color: #ffffff;
+	white-space: nowrap;
+	-webkit-overflow-scrolling: touch;
+}
+ul#account_menu li {
+	display: inline-block;
+}
+ul#account_menu li a {
+	font-size: 0.875rem !important;
+	text-transform: uppercase;
+	padding: 0.75rem 1.5rem;
+	color: $gray-60;
+	display: block;
+	font-weight: 400;
+	letter-spacing: 1px;
+}
+ul#account_menu li a:hover {
+	text-decoration: none;
+}
+ul#account_menu li > a > i {
+	margin-left: 0.5rem;
+}
+ul#account_menu li.acc-active > a {
+	font-weight: bold;
+    color: #000;
+}
+
+header {
+    
+    &.dashboard-header {
+        text-align: center;
+        padding: 1rem 0px;
+        background-color: $gray-05;
+        
+        h1 {
+	        color: #3D4657;
+        }
+    }
+}
+
+.dashboard-content {
+    h1,
+    h2,
+    h3,
+    h4 {
+        margin: 0 0 1.5rem;
+    }
+    
+    &.container {
+	    padding-top: 0;
+	    padding-bottom: 2rem;
+    }
+    
+    .messages p.updated {
+	    margin-bottom: 0px !important;
+    }
+    
+    .result_empty h3 {
+        padding: 0;
+        margin: 0;
+    }
+    
+    .result_empty {
+        padding: 1rem;
+        border: 1px solid #e8e8e8;
+        border-radius: 5px;
+        background-color: #f2f2f2;
+        text-align: center;
+    }
+}
+
+table {
+    &.business-listings {
+        text-align: left;
+    }
+}

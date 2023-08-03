@@ -1,0 +1,13 @@
+/*Account Page BOF */
+.page-my-account #page {
+    background-color: #ffffff;
+    
+    #main-footer {
+        
+        @media screen and (min-width: 992px) {
+            width: calc(100% - 306px);
+            margin-left: 290px;
+        }
+    }
+}
+/* Account Page EOF */

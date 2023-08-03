@@ -1,0 +1,333 @@
+
+.digital-issue-container {
+    margin-bottom: 2rem;
+    
+    @media screen and (min-width: 481px) {
+        gap: 0rem;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(205px,1fr));
+    }
+    .digital-issue-item {
+
+        .digital-issue-img {
+            margin-bottom: 1.25rem;
+
+            img {
+                border-radius: 0.5rem;
+            }
+        }
+    }
+
+    .digital-issue-footer {
+        padding: 0 0 1.5rem;
+        text-align: left;
+        margin: 0;
+
+        .view-all-issues-link {
+            color: #5C5D6C;
+            text-decoration: none;
+            font-style: italic;
+            font-size: 0.75rem;
+        }
+
+        h2 {
+            line-height: 1.75rem;
+            
+            a {
+                color: inherit;
+                text-decoration: none;
+            }
+        }
+
+        h3 {
+            margin: 0rem 0rem 0.75rem;
+            font-size: 0.875rem;
+            line-height: 1.125rem;
+            align-items: flex-start;
+
+            span {
+                font-size: 1rem;
+                font-weight: bold;
+                margin-right: 0.25rem;
+            }
+        }
+    }
+}
+
+.di-links-container {
+    display: flex;
+    justify-content:space-between;
+    margin-bottom: 20px;
+}
+
+hr {
+    border: solid 0.5px #848596;
+    margin: 0rem 0rem 1.5rem;
+}
+
+.collapsed-category,
+.col-last-issue {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 0.875rem;
+}
+
+.col-last-issue {
+    line-height: 18px;
+    letter-spacing: 0.02em;
+    color: #848596;
+    gap: 0.563rem
+
+    span {
+        font-size: 1.25rem;
+    }
+}
+
+.collapsed-heading {
+    margin: 0rem 0rem 1rem;
+    font-size: 1.5rem;
+    line-height: 1.75rem;
+}
+
+.collapsed-category {
+    line-height: 14px;
+    letter-spacing: 0.005em;
+    margin: 0rem 0rem 0.5rem;
+
+    span {
+        font-size: 1rem;
+        margin-right: 4px;
+        font-weight: bold;
+    }
+}
+
+.load-more-header {
+    justify-content: center;
+
+    span {
+        margin-right: 0.5rem;
+        font-weight: bold;
+    }
+}
+
+.load-more-header,
+.view-all-header {
+    align-items: center;
+    cursor: pointer;
+}
+
+.mobile-view,
+.view-all-issues-link,
+.di-img-container {
+    display: none;
+}
+
+.digital-issue-footer h3,
+.load-more-header,
+.view-all-header,
+.collapsed-category,
+.col-last-issue {
+    display: flex;
+}
+
+.view-all-issues-link, 
+.digital-issue-footer h3,
+.load-more-header, 
+.collapsed-category,
+.col-last-issue {
+    font-family: $font-family-monospace;
+}
+
+.view-all-issues-link,
+.load-more-header,
+.collapsed-category {
+    text-transform: uppercase;
+}
+
+.digital-issue-footer h3,
+.load-more-header,
+.view-all-header,
+.collapsed-category {
+    color: var(--category-colour);
+}
+
+.digital-issue-footer h2,
+.col-last-issue {
+    text-transform: capitalize;
+}
+
+.digital-issue-footer h2,
+.load-more-header {
+    margin: 0rem;
+    font-size: 1.5rem;
+}
+
+@media only screen and (min-width: 480px) {
+    .load-more-header { 
+        display: none;
+    }
+
+    .show-on-mobile {
+        display: none;
+    }
+
+    .digital-issue-container {
+        gap: 1.5rem;
+
+        .mobile-view {
+            display: block;
+        }
+        
+        .digital-issue-item {
+            .digital-issue-footer {
+    
+                h2 {
+                    margin: 0rem 0rem 0.75rem; 
+                }
+    
+                h3 {
+                    text-transform: uppercase;
+                }
+    
+                .view-all-issues-link {
+                    display: block;
+                }
+            }
+        }
+    }
+}
+
+
+/* BOF Digital Issue Single Large */
+/*@media screen and (min-width: 768px) {
+    .latest-wrapper .cq_to_side > a {
+        grid-column: span 7;
+    }
+}
+@media screen and (max-width: 767px) {
+    .digital-issue-large .digital-issue-item .item_content {
+        padding: 0 15px 15px;
+        background-color: #fff;
+    }
+}*/
+/* EOF Digital Issue Single Large */
+
+.latest-issue {
+    
+    &.digital-issue-large {
+        
+        .digital-issue-item {
+            padding: 1rem;
+            border: 1px solid $gray-20;
+            border-radius: 1rem;
+            background-color: $gray-05;
+            
+            @media screen and (min-width: 540px) {
+                display: grid;
+                grid-gap: 30px;
+                grid-template-columns: repeat(12, 1fr);
+            }
+            
+            .digital-issue-img {
+                grid-column: span 4;
+                
+                a {
+                    display: block;
+                    line-height: 0;
+                    
+                    img {
+                        border-radius: 0.5rem;
+                    }
+                }
+                
+            }
+            
+            .item_content {
+                grid-column: span 8;
+                display: flex;
+                align-items: center;
+                flex-wrap: wrap;
+                padding: 1rem 0 0;
+                
+                h3 {
+                    margin: 0 0 1rem;
+                    
+                    a {
+                        color: $black;
+                    }
+                }
+                
+                p {
+                    font-size: 0.875rem;
+                    color: $gray-70;
+                    margin: 0 0 0.75rem;
+                    line-height: 1.375rem;
+                }
+                
+                .directory-header-button-container {
+                    
+                    @media screen and (max-width: 767px) {
+                        > a:not(:last-of-type) {
+                            margin-bottom: 1rem;
+                        }
+                    }
+                }
+            }
+        }
+        
+    }
+}
+
+/*BOF Digital Issue Archives */
+.post-type-archive-cq_digital_issue .latest-issue, .tax-cq_publications .latest-issue {
+  margin-bottom: 2rem;
+}
+.archive-row {
+    
+    .digital-issue-item {
+        position: relative;
+        overflow: hidden;
+        border-radius: 0.5rem;
+        
+        @media screen and (max-width: 767px) {
+            margin-bottom: 2rem;
+        }
+        
+        &:hover {
+            
+            .digital-issue-img img {
+               opacity: 0.3;
+            }
+            
+            a.di-read {
+                transform: translateY(0);
+            }
+        }
+        
+        .digital-issue-img {
+            background-color: #000000;
+            
+            img {
+                transition: all 0.5s ease-in-out;
+            }
+        }
+        
+        a.di-read {
+            margin: 0;
+            display: block;
+            text-align: center;
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 0;
+            transform: translateY(100%);
+            transition: all 0.5s ease-in-out;
+            
+            @media screen and (max-width: 767px) {
+                transform: translateY(0);
+            }
+        }
+    }
+}
+/*EOF Digital Issue Archives */

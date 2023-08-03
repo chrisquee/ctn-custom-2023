@@ -1,0 +1,116 @@
+.job-board-description {
+    max-width: 100% !important; 
+    line-height: 1.75rem;
+    
+    a {
+        text-decoration: underline;
+    }
+}
+
+.job-listing-content {
+    
+    .company {
+        font-size: 1.2rem;
+    }
+    
+    .meta {
+        color: #5892a0; 
+    }
+    
+    .job-posted {
+        top: 30px;
+    }
+    
+    
+}
+
+.job-footer {
+    padding: 15px 0 0;
+    text-align: right;
+    
+    a {
+        color: #bb5b34;
+    }
+}
+
+.jobs-filter {
+    padding: 0rem !important;
+    margin-bottom: 3.125rem;
+    
+    .input-group {
+        padding: 1rem 0;
+    }
+}
+
+.jobs-list {
+    margin-top: 45px;
+}
+
+.jobs-none {
+    background-color: #f2f2f2;
+    text-align: center;
+}
+
+.filter-wrapper {
+    background-color: $gray-05;
+    padding: 1rem;
+    border: 1px solid $gray-20;
+    border-radius: 0.5rem;
+    
+    @media screen and (min-width: 768px) {
+        padding: 0.5rem 1.5rem;
+    }
+    
+    form {
+        
+        @media screen and (min-width: 768px) {
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+        }
+        
+        input, 
+        select {
+            margin-bottom: 1rem;
+            padding: 0.75rem;
+            
+            @media screen and (min-width: 768px) {
+                margin: 0;   
+            }
+        }
+        
+        button {
+            white-space: nowrap;
+            width: 100%;
+            padding-top: 0.5rem;
+            padding-bottom: 0.5rem;
+            margin: 1rem 0;
+        }
+    }
+}
+
+.job-filter-btn {
+    color: #FFFFFF;
+    letter-spacing: 0.02em;
+    line-height: 1.125rem;
+    background: #D34E2E;
+    border-radius: 62.5rem;
+    font-family: JetBrains Mono;
+    margin: 0rem;
+}
+.job-filter-btn:hover {
+    cursor: pointer;
+}
+@media screen and (min-width: 768px) {
+    .filter-form {
+        gap: 0.625rem !important; 
+        align-items: center;
+    }
+}
+
+.post-type-archive-jobs {
+    
+    .listing-container {
+        margin-bottom: 1.5rem;
+    }
+}

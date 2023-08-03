@@ -1,0 +1,98 @@
+/* BOF CQ Large CTA */
+.cq-cta-wrap {
+    min-height: 400px;
+    max-height: 70vh;
+    border-radius: 1rem;
+    padding: 1.5rem;
+    background-size: cover;
+    background-position: center center;
+    position: relative;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+
+    .cq-cta-content {
+        color: #FFFFFF;
+        
+        &.to-right {
+            margin-left: auto;
+        }
+        
+        &.to-left {
+            margin-right: auto;
+        }
+        
+        &.to-center {
+            margin: auto;
+        }
+        
+        .cta-button-container {
+            padding-top: 1rem;
+            
+            a {
+                @media screen and (max-width: 480px) {
+                    display: block;
+                }
+                
+                &:last-of-type {
+                    margin-left: 1rem;
+                    
+                    @media screen and (max-width: 480px) {
+                        margin: 1rem 0;
+                    }
+                }
+            }
+        }
+    }
+    
+    &.text-light {
+        
+        &::before {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(315deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.05) 100%);
+            content: "";
+            display: block;
+        }
+        
+        .cq-cta-content {
+            z-index: 1;
+            
+            h1,
+            h2,
+            h3,
+            p {
+               color: #ffffff; 
+            }
+        }
+    }
+    
+    &.text-dark {
+        
+        &::before {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(315deg, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 100%);
+            content: "";
+            display: block;
+        }
+        
+        .cq-cta-content {
+            
+            h1,
+            h2,
+            h3,
+            p {
+               color: #000000; 
+            }
+        }
+    }
+    
+}
+/* EOF CQ Large CTA */

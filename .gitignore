@@ -1,0 +1,7 @@
+# ignore ALL files in ANY directory named _notes
+_notes/
+/_notes
+.DS_Store
+/node_modules
+node_modules/
+node_modules

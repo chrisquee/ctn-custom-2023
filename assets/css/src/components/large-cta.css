@@ -1,0 +1,62 @@
+/* BOF CQ Large CTA */
+.cq-cta-wrap {
+  min-height: 400px;
+  max-height: 70vh;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  background-size: cover;
+  background-position: center center;
+  position: relative;
+  display: flex;
+  align-items: center;
+  overflow: hidden; }
+  .cq-cta-wrap .cq-cta-content {
+    color: #FFFFFF; }
+    .cq-cta-wrap .cq-cta-content.to-right {
+      margin-left: auto; }
+    .cq-cta-wrap .cq-cta-content.to-left {
+      margin-right: auto; }
+    .cq-cta-wrap .cq-cta-content.to-center {
+      margin: auto; }
+    .cq-cta-wrap .cq-cta-content .cta-button-container {
+      padding-top: 1rem; }
+      @media screen and (max-width: 480px) {
+        .cq-cta-wrap .cq-cta-content .cta-button-container a {
+          display: block; } }
+      .cq-cta-wrap .cq-cta-content .cta-button-container a:last-of-type {
+        margin-left: 1rem; }
+        @media screen and (max-width: 480px) {
+          .cq-cta-wrap .cq-cta-content .cta-button-container a:last-of-type {
+            margin: 1rem 0; } }
+  .cq-cta-wrap.text-light::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(315deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.05) 100%);
+    content: "";
+    display: block; }
+  .cq-cta-wrap.text-light .cq-cta-content {
+    z-index: 1; }
+    .cq-cta-wrap.text-light .cq-cta-content h1,
+    .cq-cta-wrap.text-light .cq-cta-content h2,
+    .cq-cta-wrap.text-light .cq-cta-content h3,
+    .cq-cta-wrap.text-light .cq-cta-content p {
+      color: #ffffff; }
+  .cq-cta-wrap.text-dark::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(315deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 100%);
+    content: "";
+    display: block; }
+  .cq-cta-wrap.text-dark .cq-cta-content h1,
+  .cq-cta-wrap.text-dark .cq-cta-content h2,
+  .cq-cta-wrap.text-dark .cq-cta-content h3,
+  .cq-cta-wrap.text-dark .cq-cta-content p {
+    color: #000000; }
+
+/* EOF CQ Large CTA */

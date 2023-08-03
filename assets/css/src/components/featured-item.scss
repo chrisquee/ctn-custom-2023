@@ -1,0 +1,93 @@
+/* Featured Item CSS */
+.featured-wrapper {
+    
+    @media screen and (min-width: 768px) {
+        display: flex;
+    }
+
+    .featured-item {
+        
+        &.main-item {
+            display: flex;
+            flex-flow: column-reverse;
+            margin-bottom: 2rem;
+            
+            .item-title {
+                margin-bottom: 1rem;
+
+                h1 {
+                    margin: 0;
+                }
+            }
+            
+            .item-image {
+                width: 100%;
+                
+                a {
+                    display: block;
+                    line-height: 0;
+                }
+
+                img {
+                    border-radius: 0.5rem;
+                    margin-bottom: 1rem;
+                    
+                    @media screen and (min-width: 768px) {
+                        margin-bottom: 0;
+                    }
+                }
+            }
+
+            .author-text {
+                margin-bottom: 0.75rem;
+            }
+        }
+        
+        @media screen and (min-width: 768px) {
+            
+            &.main-item {
+                margin-right: 2.5rem;
+                max-width: 535px;
+                flex-flow: column;
+            }
+        }
+        
+        .item-info {
+            display: flex;
+            flex-flow: column-reverse;
+
+            @media screen and (min-width: 768px) {
+                 flex-flow: column;
+            }
+        }
+        
+        &.secondary-item {
+            border-top: 1px solid $gray-20;
+            padding-top: 1rem;
+            margin-bottom: 1rem;
+            
+            @media screen and (min-width: 768px) {
+                padding-bottom: 1rem;
+                padding-top: 0;
+                border-top: none;
+                border-bottom: 1px solid $gray-20;
+
+                &:last-of-type {
+                    border-bottom: none;
+                }
+            }
+            
+            .item-title {
+                margin-bottom: 0.5rem;
+                
+                h5 {
+                    margin: 0;
+                }
+            }
+        }
+    }
+    
+    .secondary-items-wrap {
+        
+    }
+}

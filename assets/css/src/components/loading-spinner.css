@@ -1,0 +1,24 @@
+/* BOF Spinner */
+@keyframes spin {
+  100% {
+    transform: rotate(360deg); } }
+@-webkit-keyframes spin {
+  100% {
+    -webkit-transform: rotate(360deg); } }
+.loading-spinner-container {
+  position: absolute;
+  top: 30%;
+  left: 0;
+  right: 0;
+  transform: translateY(-50px); }
+
+.loading-spinner {
+  margin: 0 auto;
+  box-sizing: border-box;
+  width: 48px;
+  height: 48px;
+  border-radius: 100%;
+  border: 10px solid #f9714f;
+  border-top-color: #d34e2e;
+  animation: spin 1s infinite linear;
+  -webkit-animation: spin 1s infinite linear; }

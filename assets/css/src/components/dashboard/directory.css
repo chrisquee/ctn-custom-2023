@@ -1,0 +1,53 @@
+.company-wrap, .services-wrap, .approvals-wrap, .contact-wrap, .upgrade-section, .component-wrap, .airframe-wrap, .specialist-wrap, .engine-wrap, .airport-wrap, .airlines-wrap, .categories-wrap, .category-image-wrap {
+  padding: 1.5rem 1rem;
+  background-color: rgba(0, 0, 0, 0.05);
+  border-radius: 5px;
+  margin-bottom: 30px; }
+  .company-wrap h4, .services-wrap h4, .approvals-wrap h4, .contact-wrap h4, .upgrade-section h4, .component-wrap h4, .airframe-wrap h4, .specialist-wrap h4, .engine-wrap h4, .airport-wrap h4, .airlines-wrap h4, .categories-wrap h4, .category-image-wrap h4 {
+    margin: 0 0 1.5rem; }
+
+.upgrade-section .row-eq-height {
+  align-items: center; }
+  .upgrade-section .row-eq-height .col-md-9 {
+    position: relative;
+    font-size: 0.875rem;
+    display: flex;
+    align-items: center; }
+
+.services-wrap, .approvals-wrap, .component-wrap, .airframe-wrap, .engine-wrap, .specialist-wrap, .airport-wrap, .airlines-wrap {
+  display: none; }
+
+.row.contact-add {
+  margin-bottom: 60px; }
+
+.chosen-container {
+  min-width: 300px; }
+
+.category-image-wrap button {
+  margin: 1rem 0; }
+.category-image-wrap label {
+  width: 100%; }
+
+.cq-upload {
+  display: block;
+  width: 100%; }
+
+.cq-remove {
+  margin: 1rem 0 !important; }
+
+.form-control.error {
+  border-color: red; }
+
+label.error {
+  color: red; }
+
+.logo-thumbnail img, .featured-thumbnail img {
+  width: auto; }
+
+.service-wrap label {
+  font-weight: 500; }
+.service-wrap input[type=radio],
+.service-wrap input[type=checkbox] {
+  margin: 0 0.5rem 0 0;
+  position: static;
+  opacity: 1; }

@@ -1,0 +1,136 @@
+@import "dashboard/my-account";
+@import "dashboard/dashboard-pagination";
+@import "dashboard/structure";
+@import "dashboard/user-details";
+@import "dashboard/directory";
+@import "dashboard/log-in";
+
+
+.company-page-link {
+    color: #5892a0;
+}
+#lot-submit input[type="button"] {
+	width: auto;
+}
+#lot-submit .gal-images img {
+	width: 160px;
+	height: 160px;
+	padding: 5px;
+	object-fit: cover;
+}
+.page-template .media-sidebar {
+	display: none;
+}
+.page-template ul.attachments, .page-template .attachments-browser .media-toolbar {
+	right: 0 !important;
+}
+.page-template button#menu-item-upload {
+	color: #000;
+}
+#menu-item-browse {
+	color: #000 !important;
+}
+div.mce-menubar {
+    display: none;
+}
+
+.wp-editor-tabs {
+	display: none;
+}
+.form-group.image-select {
+	background-color: #eaeaee;
+	padding: 1rem;
+	margin-bottom: 1.5rem;
+	border-radius: 5px;
+}
+.form-group.image-select label {
+	font-weight: 700;
+}
+.gal-images .gal_img_wrap {
+	position: relative;
+	display: inline-block;
+}
+.gal-images .gal_img_wrap span.delete {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	background: red;
+	width: 24px;
+	height: 24px;
+	border-radius: 3px;
+}
+.gal-images .gal_img_wrap span.delete:after {
+	font-family: 'FontAwesome';
+	content: "\f014";
+	font-size: 1rem;
+	color: #fff;
+	line-height: 24px;
+	width: 24px;
+	text-align: center;
+	display: block;
+}
+.exopite-sof-field {
+	padding: 1rem 0;
+}
+.exopite-sof-field h4 {
+	font-size: 1rem;
+	margin-bottom: 0;
+	display: inline-block;
+	width: 25%;
+	vertical-align: top;
+	padding: 0.5rem 0;
+}
+@media screen and (max-width: 767px) {
+	.exopite-sof-field h4, .exopite-sof-fieldset {
+		width: 100% !important;
+	}
+}
+.exopite-sof-fieldset {
+    display: inline-block;
+    width: 70%;
+}
+.exopite-sof-fieldset input, .exopite-sof-fieldset .select-wrap {
+	display: inline-block !important;
+	width: auto !important;
+	min-width: 40%;
+}
+.exopite-sof-text-desc {
+    font-size: 0.75rem;
+}
+.comment_content {
+    padding: 1rem;
+    background-color: rgb(255, 255, 255);
+    border-radius: 5px;
+    margin: 0.25rem 0 1.5rem;
+}
+
+.status_update #comment_text {
+    margin-bottom: 1rem;
+}
+.input-prepend, .input-append {
+    padding: 0.45rem;
+    margin-bottom: 0;
+    font-size: 1rem;
+    font-weight: normal;
+    line-height: 1;
+    color: #55595c;
+    text-align: center;
+    background-color: #eceeef;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    white-space: nowrap;
+	position: relative;
+}
+.input-prepend {
+	margin-right: -5px;
+}
+.input-append {
+	margin-left: -5px;
+}
+.brands-section .vc_general.vc_cta3 {
+	border: none !important;
+	box-shadow: 2px 2px 9px 0px rgba(0,0,0,0.2);
+}
+.brands-section .vc_general.vc_cta3 h2 {
+	margin: 0;
+	line-height: 50px;
+}

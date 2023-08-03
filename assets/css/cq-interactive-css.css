@@ -1,0 +1,66 @@
+#interactive_image_canvas {
+    position: relative;
+    height: auto;
+    min-height: 200px;
+    width: 100%;
+}
+.interactive-img {
+    width: auto;
+    max-width: 100%;
+    height: auto;
+}
+ol#hotspots {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  margin: 0;
+  list-style: none;
+  counter-reset: item;
+}
+ol#hotspots li.hotspot {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  background-color: red;
+  border-radius: 30px;
+  border: 1px solid #fff;
+  -webkit-box-shadow: 0px 0px 0px 2px red;
+  box-shadow: 0px 0px 0px 2px red;
+  counter-increment: item;
+  position: relative;
+}
+ol#hotspots li:before {
+  position: absolute;
+  content: counter(item);
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  margin: 0;
+  color: white;
+  text-align: center;
+  display: inline-block;
+  padding: 0;
+  line-height: 20px;
+  font-size: 0.875rem;
+}
+.rwmb-meta-box div.coordinates-group {
+    counter-reset: hotspot;
+}
+.rwmb-meta-box div.coordinates-group .rwmb-group-clone {
+    padding-top: 45px;
+}
+.rwmb-meta-box div.coordinates-group .rwmb-group-clone::before {
+    counter-increment: hotspot;
+    content: "Hotspot " counter(hotspot);
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: auto;
+    padding: 0;
+    font-size: 1.2rem;
+    font-weight: bold;
+}

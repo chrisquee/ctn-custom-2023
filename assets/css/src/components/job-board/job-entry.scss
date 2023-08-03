@@ -1,0 +1,34 @@
+.back {
+    padding: 15px 0;
+    margin-bottom: 2rem;
+}
+.back-to-job-board {
+    color: #D34E2E;
+    font-family: 'JetBrains Mono';
+    text-transform: uppercase;
+    display: flex;
+
+    span {
+        font-size: 20px;
+        margin-right: 4px;
+    }
+}
+.job-apply h3 {
+    margin: 0px 0px 15px;
+}
+.job-apply p {
+    margin: 0px 0px 12px;
+}
+.job-contacts {
+    padding: 0px 0px 30px;
+}
+.job-contacts p {
+    margin: 0;
+}
+.job-contacts a:hover {
+    text-decoration: underline;
+}
+.social-share-job {
+    padding: 10px 0px 40px;
+}
+

@@ -1,0 +1,257 @@
+/*Login form BOF */
+form#login a {
+    text-decoration: none;
+}
+
+form#login span.close {
+    color: #DCDCDC;
+    position: absolute;
+    right: 15px;
+    top: 15px;
+}
+
+form#login a.lost{
+    color: #343232;
+    float: left;
+    margin: 10px 0 0 0;
+}
+form#login a.get-account{
+    color: #343232;
+    display: block;
+	text-align: center;
+    margin: 10px 0 0 0;
+}
+
+form#login p.status, form#message p.status {
+    text-align: center;
+    margin: -25px 0 20px 0;
+    display: none;
+}
+a.login_button{
+    font-family: 'Poppins', sans-serif;
+    padding: 5px 7px 5px 7px;
+    background-color: #FFF;
+    border-radius: 3px;
+    border: 1px solid #DCDCDC;
+    color: #333;
+    text-decoration: none;
+    font-size: 11px;
+}
+
+.login_overlay{
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0,0,0, 0.925);
+    position: fixed;
+    z-index: 9989;
+}
+
+.th-search a {
+    display: inline-block;
+    padding-left: 1rem;
+    color: #5892a0;
+    display: inline-block;
+    padding-left: 1rem;
+    color: #5892a0;
+/*    border: 1px solid #5892a0;*/
+    border-radius: 30px;
+/*    padding: 0.2rem 0.75rem;*/
+    line-height: 1rem;
+    font-size: 0.875rem;
+    margin-left: 0.5rem;
+}
+form#login {
+    display: none;
+    background-color: #fff;
+    border-radius: 1rem;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.2);
+    position: fixed;
+    top: 50%;
+    padding: 2.5rem 1.5rem;
+    width: 350px;
+	max-width: 100%;
+    z-index: 9999;
+    left: 50%;
+	transform:translate(-50%,-50%);
+    color: #000;
+    font-size: 0.75rem;
+	overflow: auto;
+	max-height: 95%;
+    
+    a {
+        font-size: 0.875rem;
+        color: $gray-60;
+        
+        &.lost {
+            display: block;
+            width: 100%;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+    }
+}
+
+form#login h1 {
+    color: #000;
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-align: center;
+    line-height: 1;
+    margin: 0 0 2rem 0;
+}
+.message-logged-out p, .message-logged-out .button {
+	display: block;
+	text-align: center;
+}
+.message-logged-out p {
+	margin-bottom: 2rem;
+}
+form.login_form, 
+form.register_form, 
+form.lost_pw_form {
+    
+    label {
+	    display: block;
+        font-size: 0.875rem;
+        font-weight: bold;
+    }
+}
+.user-field-wrapper.terms label {
+	display: inline-block;
+}
+form#login input#username,
+form#login input#password, 
+form.login_form input, 
+form.register_form input, 
+form.lost_pw_form input {
+    margin: 0.5rem 0 1.25rem 0;
+}
+form.register_form input[type=checkbox] {
+    display: inline-block;
+    width: auto;
+}
+.row.register-form, .row.login-form, .row.lost-password-form {
+    margin-bottom: 4rem;
+}
+form.register_form input.submit_button, 
+form.lost_pw_form input.submit_button, 
+form.cq-user-form input.submit_button, 
+a.submit_button {
+	width: auto !important;
+}
+.login-form {
+    margin-bottom: 4rem;
+    
+    form.login_form {
+
+    }
+    
+    a {
+        font-size: 0.875rem;
+        color: $gray-60;
+    }
+}
+#lostpasswordform {
+    margin-bottom: 4rem;
+}
+form#login input.submit_button, 
+form.login_form input.submit_button {
+	display: block;
+	width: 100%;
+}
+p.no-profile {
+	display: block;
+	text-align: center;
+	font-size: 1rem;
+}
+a#complete_profile {
+	display: block;
+    text-align: center;
+    margin-top: 2rem;
+}
+.submit_lot_form {
+	margin-top: 50px;
+}
+/*Login form EOF */
+
+/* Register Form BOF */
+.register-form {
+
+    .form-wrap {
+        padding: 1.5rem;
+        border: 1px solid $gray-20;
+        background-color: $gray-05;
+        margin-bottom: 4rem;
+        border-radius: 1rem;
+        
+        h4 {
+            margin: 0 0 2rem;
+        }
+    }
+}
+
+.is-member {
+    padding: 1.5rem;
+    border: 1px solid $gray-20;
+    background-color: $gray-05;
+    margin-bottom: 4rem;
+    border-radius: 1rem;
+
+    h4 {
+        margin: 0 0 2rem;
+    }
+}
+        
+.error-msg-link {
+    padding: 0 0.3rem 0.1rem;
+    border: 1px solid #9d4b45;
+    border-radius: 3px;
+    white-space: nowrap;
+    background-color: #9d4b45;
+    color: white;
+}
+.error-msg-link:active, .error-msg-link:hover, .error-msg-link:focus {
+    text-decoration: none;
+}
+.user-field-wrapper.terms label {
+  display: inline-block;
+  color: #000;
+  font-size: 0.875rem !important;
+  line-height: 1.375rem !important;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+/* Register Form EOF */
+
+/* Subscribe form overrides */
+.cf7mls_progress_bar li::before {
+    content: counter(step);
+    counter-increment: step;
+    width: 25px;
+    line-height: 25px;
+    display: block;
+    font-size: 14px;
+    color: #fff;
+    background: #5892a0 !important;
+    border-radius: 3px;
+    margin: 0 auto 5px auto;
+    text-align: center;
+}
+.cf7mls_progress_bar li.active::before, .cf7mls_progress_bar li.active::after {
+    background: #bb5b34 !important;
+    color: white;
+}
+.mag-select {
+    padding: 0.75rem 0;
+    padding-bottom: 0.75rem;
+}
+.field-section, .cf7mls_progress_bar {
+    padding-bottom: 1.5rem;
+}
+.fieldset-cf7mls-wrapper .fieldset-cf7mls {
+    -webkit-transition: all 800ms ease-in-out !important;
+    -moz-transition: all 800ms ease-in-out !important;
+    -o-transition: all 800ms ease-in-out !important;
+    transition: all 800ms ease-in-out !important;
+}
+/* EOF subscribe form overrides */

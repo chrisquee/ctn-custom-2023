@@ -1,0 +1,76 @@
+.user-heading h3 {
+	font-weight: 800;
+}
+.user-field-wrapper {
+	padding-bottom: 1.5rem;
+}
+.user-field-wrapper, 
+.form-group {
+    
+    label {
+        display: inline-block;
+	    font-size: 0.875rem;
+	    margin-bottom: 0.25rem;
+        font-weight: 800;
+    }
+    
+    input {
+        display: block;
+	    margin: 0;
+    }
+    
+    input[type=checkbox],
+    input[type=radio] {
+        display: inline-block;
+    }
+}
+
+#user_pass.regular-text {
+	margin-bottom: 0.5rem;
+}
+.message.error {
+	display: block !important;
+}
+.message-name {
+	padding-bottom: 1.5rem;
+}
+.new-message {
+	background-color: #10162d;
+    color: #cbf94f;
+    padding: 0.2rem 0.3rem;
+    font-size: 0.75rem;
+    border-radius: 3px;
+    vertical-align: middle;
+}
+
+.submit-section {
+	background-color: $gray-05;
+	border-radius: 8px;
+	padding: 1rem;
+	padding-bottom: 32px;
+	margin-bottom: 1.5rem;
+}
+.submit-section #logo-img {
+    max-width: 150px;
+    margin-top: 0.5rem;
+}
+.submit-section #logo-upload {
+    margin-top: 0.5rem;
+}
+
+.submit-section #logo-img {
+    max-width: 150px;
+    margin-top: 0.5rem;
+}
+.submit-section #logo-upload {
+    margin-top: 0.5rem;
+}
+.form-group {
+    display: block;
+    margin-bottom: 1.5rem;
+    
+    label {
+        display: block;
+        margin-bottom: 0.5rem;
+    }
+}

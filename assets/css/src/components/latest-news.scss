@@ -1,0 +1,159 @@
+/* Latest News CSS */
+.latest-wrapper {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-template-rows: repeat(1, 1fr);
+    grid-gap: 1.5rem;
+    margin-bottom: 2.5rem;
+
+    &.full_width {
+        
+        @media screen and (min-width: 768px) {
+            
+            grid-template-columns: repeat(auto-fill, minmax(650px, 1fr));
+            grid-gap: 2.5rem;
+            
+            .latest-item {
+                display: flex;
+            }
+        } 
+    }
+    
+    &.no_image {
+        
+        img {
+            display: none;
+            
+            @media screen and (min-width: 540px) {
+               display: block; 
+            }
+        }
+    }
+    
+    .latest-item {
+        
+        .item-image {
+            
+            width: 100%;
+            margin-bottom: 1rem;
+            
+            @media screen and (min-width: 768px) {
+                max-width: 296px;
+                margin-right: 1.5rem;
+                margin-bottom: 0;
+            }
+            
+            a {
+                display: block;
+                line-height: 0;
+            }
+            
+            img {
+                border-radius: 0.5rem;
+                max-height: 133px;
+                object-fit: cover;
+                
+                @media screen and (min-width: 540px) {
+                    max-height: none;
+                    min-height: 200px;
+                }
+            } 
+        }
+        
+        .item-info {
+            display: flex;
+            flex-direction: column-reverse;
+            
+            @media screen and (min-width: 768px) {
+                flex-direction: column;
+            }
+            
+            .cat-link {
+                @media screen and (max-width: 767px) {
+                    margin-bottom: 0.5rem;
+                }
+            }
+        }
+        
+        .item-title {
+            margin-bottom: 0.5rem;
+            
+            h3 {
+                margin: 0;
+                
+                @media screen and (max-width: 767px) {
+                    font-size: 1.125rem;
+                    line-height: 1.375rem;
+                }
+            }
+        }
+        
+        p {
+            display: none;
+            font-size: 0.875rem;
+            color: $gray-80;
+            margin: 0 0 0.75rem;
+            line-height: 1.375rem;
+            
+            @media screen and (min-width: 768px) {
+                display: block;
+            }
+        }
+        
+    }
+    
+    &.cards {
+        
+        .latest-item {
+            
+            .item-image {
+                margin-bottom: 1rem !important;
+                
+                @media screen and (min-width: 768px) {
+                    max-width: 100%;
+                    margin-right: 0;
+                    margin-bottom: 0;
+                }
+            }
+            
+            .item-info {
+                display: flex;
+                flex-direction: column-reverse;
+            }
+            
+            h3 {
+                font-size: 1.5rem;
+                line-height: 1.75rem;
+                margin: 0;
+            }
+            
+            p {
+                display: none;
+            }
+        }
+        
+    }
+}
+
+.load-more-wrapper {
+    text-align: center;
+    display: flex;
+    padding: 1.5rem;
+    border-top: 1px solid $gray-20;
+    
+    .load-more {
+        font-family: $font-family-monospace;
+        color: var(--category-colour);
+        display: flex;
+        align-items: center;
+        margin: 0 auto;
+        width: auto;
+        font-weight: bold;
+        font-size: 1.5rem;
+        
+        span {
+            margin-right: 0.5rem;
+            font-size: 2rem;
+        }
+    }
+}

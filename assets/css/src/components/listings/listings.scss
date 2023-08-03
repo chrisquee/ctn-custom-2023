@@ -1,0 +1,119 @@
+.listing-container {
+    padding: 1.875rem !important;
+    position: relative;
+    background: #F9F9FA;
+    border: 1px solid #DCDCE3;
+    border-radius: 1rem;
+}
+.listing-content .category {
+    margin: 0rem 0rem 5px;
+    font-size: 0.875rem;
+    color: #D34E2E;
+    font-family: 'JetBrains Mono';
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+}
+.listing-content .entry-title {
+    margin: 0rem 0rem 1.25rem;
+}
+.location {
+    margin-right: 1.5625rem;
+}
+.listing-content .listing-icon-info {
+    color: #848596;
+    display: flex;
+    font-family: 'JetBrains Mono';
+    flex-direction: column;
+    margin-bottom: 1rem;
+
+    .meta {
+        display: flex;
+        align-items: center;
+        margin: 0rem;
+        gap: 4px;
+    }
+}
+.listing-content .category span {
+    font-weight: 600;
+    font-size: 1rem;
+    margin-right: 4px;
+}
+.listing-content .logo-container {
+    position: absolute; 
+    top: 3rem; 
+    right: 1.875rem;
+    width: auto;
+    max-width: 30%;
+}
+.logo-container img {
+    max-width: 300px;
+    max-height: 90px;
+    object-fit: contain;
+    mix-blend-mode: multiply;
+    width: 100%
+}
+.listing-description {
+    margin: 0rem 0rem 1rem;
+}
+.listing-footer a {
+    color: #D34E2E;
+    background: white;
+    display: flex;
+    border: 2px solid #D34E2E;
+    border-radius: 62.5rem;
+    padding: 0.625rem;
+    font-family: "JetBrains Mono";
+    justify-content: center;
+    text-transform: uppercase;
+}
+.listing-footer a:hover {
+    background: #D34E2E;
+    color: white;
+    transition-duration: 0.5s;
+}
+.listing-footer span {
+    font-size: 1.25rem; 
+    margin-right: 5px;
+}
+.no-results {
+    text-align: center;
+    font-family: $font-family-sans-serif;
+    padding: 1.875rem !important;
+    position: relative;
+    background: $gray-05;
+    border: 1px solid $gray-20;
+    border-radius: 1rem;
+    
+    h3 {
+        margin: 20px 0px;
+    }
+    p {
+        color:#6F7181;
+    }
+}
+.listing-content .logo-container {
+    display: none;
+}
+.listings-wrapper {
+    display: grid;
+    gap: 1.25rem;
+}
+@media screen and (min-width: 768px) {
+    .listing-content .listing-icon-info {
+        flex-direction: unset;
+    }
+    .listing-footer {
+        padding: 0rem; 
+        margin-left: auto;
+        width: 12.5rem;
+    }
+    .listing-content .logo-container {
+        display: block;
+    }
+}
+@media screen and (min-width: 1280px) {
+    .listings-wrapper {
+        gap: 1.875rem;
+    }
+}
