@@ -17,7 +17,7 @@
 
             <?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
             
-            <?php echo wpautop(the_excerpt()); ?>
+            <?php echo wpautop(get_the_excerpt()); ?>
 
         </div>
     </div>

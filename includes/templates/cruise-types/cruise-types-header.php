@@ -1,6 +1,6 @@
 
 <header class="entry-header container">
-    <div class="row-fluid row-eq-height">
+    <div class="row row-eq-height">
 
         <div class="col-md-7 article-image">
             <div class="post-image">

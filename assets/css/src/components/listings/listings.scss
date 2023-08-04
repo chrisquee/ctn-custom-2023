@@ -2,13 +2,13 @@
     padding: 1.875rem !important;
     position: relative;
     background: #F9F9FA;
-    border: 1px solid #DCDCE3;
+    border: 1px solid $gray-20;
     border-radius: 1rem;
 }
 .listing-content .category {
     margin: 0rem 0rem 5px;
     font-size: 0.875rem;
-    color: #D34E2E;
+    color: $brand-colour;
     font-family: 'JetBrains Mono';
     text-transform: uppercase;
     display: flex;
@@ -57,18 +57,18 @@
     margin: 0rem 0rem 1rem;
 }
 .listing-footer a {
-    color: #D34E2E;
+    color: $brand-colour;
     background: white;
     display: flex;
-    border: 2px solid #D34E2E;
+    border: 2px solid $brand-colour;
     border-radius: 62.5rem;
     padding: 0.625rem;
-    font-family: "JetBrains Mono";
+    font-family: $font-family-monospace;
     justify-content: center;
     text-transform: uppercase;
 }
 .listing-footer a:hover {
-    background: #D34E2E;
+    background: $brand-colour;
     color: white;
     transition-duration: 0.5s;
 }

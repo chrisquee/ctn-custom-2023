@@ -2,19 +2,40 @@
 global $job;
 do_action('get_job_data');
 ?>
-<div class="job-listing col_12">
-    <div class="job-listing-content">
+<div class="listing-container">
+
+    <div class="listing-content">
+
+        <p class="category">
+            <span class="material-symbols-outlined">apartment</span>
+            <?php echo $job->job_company; ?>
+        </p>
+
         <?php the_title( '<h3 class="entry-title">', '</h3>' ); ?>
-        <p class="company"><?php echo $job->job_company; ?></p>
-        <p class="meta"><?php echo $job->job_location; ?> | <?php echo $job->job_scope; ?></p>
-        
-        <p class="intro"><?php echo $job->job_description; ?></p>
-        
-        <div class="job-footer">
-            <a class="job-more" href="<?php echo the_permalink(); ?>">FIND OUT MORE</a>
+
+        <div class="logo-container">
+            <?php echo wp_get_attachment_image( $job->job_logo, 'logo-no-crop' ); ?>
         </div>
-        <div class="entry-meta job-posted">
-                <?php echo human_time_diff(get_the_time ( 'U' ), current_time( 'timestamp' )); ?> ago
-        </div><!-- .entry-meta -->
+
+        <div class="listing-icon-info">
+        <p class="meta">
+            <span class="material-symbols-outlined">location_on</span>
+            <span class="location"><?php echo $job->job_location; ?></span>
+        </p>
+        <p class="meta">
+            <span class="material-symbols-outlined">work</span>
+            <?php echo $job->job_scope; ?>
+        </p>
+        </div>
+
+        <p class="listing-description"><?php echo wp_trim_words( $job->job_description, 45, '...'); ?></p>
+
+        <div class="listing-footer">
+            <a href="<?php echo the_permalink(); ?>">
+                <span class="material-symbols-outlined">arrow_forward</span>Find out more
+            </a>
+        </div>
+        <!-- <div class="entry-meta">
+        </div>.entry-meta -->
     </div>
 </div>

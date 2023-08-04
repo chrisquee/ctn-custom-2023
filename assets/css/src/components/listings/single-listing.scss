@@ -4,8 +4,8 @@
     font-size: 40px;
 }
 .listing-category {
-    color:#D34E2E;
-    font-family: JetBrains Mono;    
+    color: $brand-colour;
+    font-family: $font-family-monospace;    
     font-size: 1.25rem;
     display: flex;
     align-items: center;
@@ -16,16 +16,16 @@
     flex-wrap: wrap;
     gap: 15px;
     color: #848596;
-    font-family: 'JetBrains Mono'; 
+    font-family: $font-family-monospace; 
 
     p {
         font-size: 0.875rem;
         display: flex; 
         align-items: center; 
         gap: 5px;
-        border: solid 1px #DCDCE3;
+        border: solid 1px $gray-20;
         border-radius: 10px;
-        padding: 2px 8px;
+        padding: 0.25rem 1rem 0.25rem 0.5rem;
         background: #F9F9FA;
         margin: 0px;
     }

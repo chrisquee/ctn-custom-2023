@@ -697,21 +697,22 @@ class cqShortcodes {
         $atts = shortcode_atts(
                             array(
                                 'to_show' => '3',
-                                'publication' => '',
+                                'publication' => 'All',
+                                'collapse_digital_issues' => 'false'
                             ), $attributes);
         
         $items = $atts['to_show'];
 		$list_count = 1;
+        $digital_issue_html = '';
 		
 		$issue_list_args = array(
 			'post_type' => 'cq_digital_issue',
 			'suppress_filters' => true,
 			'post_status' => 'publish',
-			'showposts' => $items,
-            'post__not_in' => $this->home_page_post_ids
+			'showposts' => $items
     	);
 		
-		if ($atts['publication'] != '') {
+		if ($atts['publication'] != 'All' && $atts['publication'] != '') {
 			$tax_query = array(
 				array(
            			'taxonomy' => 'cq_publications',
@@ -728,39 +729,72 @@ class cqShortcodes {
 		$issue_list = new WP_Query($issue_list_args);
         
         if ($issue_list->have_posts()) {
-            
-            $digital_issue_html = '<div class="owl-carousel owl-theme">';
+
+            $digital_issue_html = '<div class="digital-issue-container">';
+            $digital_issue_count = 0;
             
             while($issue_list->have_posts()) {
                 $issue_list->the_post();
                 $thumb_id = get_post_thumbnail_id();
                 $issue_id = get_the_ID();
-                $this->home_page_post_ids[] = $issue_id;
-                $external_link = get_post_meta($issue_id, 'di_external_link', true);
-                $link = strpos($external_link, 'http', 0) !== false ? $external_link : get_permalink($issue_id);
-                $target = strpos($link, site_url(), 0) !== false ? '_self' : '_blank';
 
-                $digital_issue_html .= '<div class="digital-issue-item">
+                $publications = get_the_terms($issue_id, 'cq_publications');
+                $print_title = $publications[0]->name;
+                
+                $display_title = get_post_meta($issue_id, 'di_display_title', true);
+                $display_title_value = $display_title !== false && $display_title != '' ? $display_title : get_the_title();
+
+                $collapse_digital_issues = $atts['collapse_digital_issues'];
+                $add_class = $digital_issue_count == 0 && $collapse_digital_issues == "false" ? " " : "mobile-view";
+
+                $digital_issue_html .= '<div class="digital-issue-item ' . $add_class . '">
                                             <div class="digital-issue-img">
-                                                <a href="' . esc_url( get_permalink($issue_id) ) . '" target="' . esc_attr($target) . '">
-                                                ' . get_the_post_thumbnail($issue_id, 'full', array( 'class' => 'img-responsive' )) . '</a>
+                                                <a href="' . esc_url( get_permalink($issue_id) ) . '">
+                                                ' . get_the_post_thumbnail($issue_id, 'medium', array( 'class' => 'img-responsive' )) . '</a>
                                             </div>
                                             <div class="digital-issue-footer">
-                                               <a href="' . esc_url( $link ) . '" target="' . esc_attr($target) . '">READ NOW</a>
+                                                <h3><span class="material-symbols-outlined">arrow_outward</span>' . $print_title . '</h3>
+                                                <h2><a href="' . esc_url( get_permalink($issue_id) ) . '">' . $display_title_value . '</a></h2>
+                                                <a class="view-all-issues-link" href="' . esc_url( get_term_link($publications[0]->term_id) ) . '">View all issues</a>
+
                                             </div>
                                         </div>';
 
 
+                if($collapse_digital_issues == "true") {
+                    $digital_issue_html .= '<div class="digital-issue-item show-on-mobile">
+                                                <h3 class="collapsed-category">
+                                                <span class="material-symbols-outlined">arrow_outward</span>' . $print_title . '</h3>
+                                                <h2 class="collapsed-heading">' . $display_title_value . '</h2>
+
+                                                <div class="di-links-container">
+                                                    <a class="col-last-issue last-issue">Last Issue
+                                                        <span class="material-symbols-outlined">arrow_drop_down</span>
+                                                    </a>
+                                                    <a class="col-last-issue" href="' . esc_url( get_permalink($issue_id) ) . '">View all</a>
+                                                </div>
+                                                <div class="digital-issue-img di-img-container">
+                                                        <a href="' . esc_url( get_permalink($issue_id) ) . '">
+                                                        ' . get_the_post_thumbnail($issue_id, 'medium', array( 'class' => 'img-responsive' )) . '</a>
+                                                    </div>
+                                                <hr>
+                                            </div>';                                      
+                }
+                
+                $digital_issue_count ++;
+            }
+            
+            wp_reset_postdata();
+
+            if($collapse_digital_issues == "false") {
+                $digital_issue_html .='<h2 class="load-more-header"><span class="material-symbols-outlined">add</span>Load More</h2>';
             }
             
             $digital_issue_html .= '</div>';
-            
+    
         }
-        
-        wp_reset_postdata();
-        
+
         return $digital_issue_html;
-        
     }
     
     public function cq_latest_issue_shortcode($attributes) {
@@ -1427,7 +1461,7 @@ class cqShortcodes {
                     
                 case 'large':
                     
-                    $open_html = '<div class="row-fluid row-eq-height">';
+                    $open_html = '<div class="row-eq-height">';
 
                     $image_html = '<div class="col-md-7 article-image">
                                       <div class="post-image">

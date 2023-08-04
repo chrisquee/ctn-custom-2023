@@ -9,7 +9,7 @@ if ($points) { ?>
         <div class="col-md-12 no-padding">
             
             <div class="sep-wrap clearfix">
-                <h2>Pre and post cruise ideas</h2>
+                <h2 class="sep-title">Pre and post cruise ideas</h2>
                 <a href="" class="sep-link"></a>
             </div>
             

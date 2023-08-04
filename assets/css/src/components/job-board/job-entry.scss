@@ -3,8 +3,8 @@
     margin-bottom: 2rem;
 }
 .back-to-job-board {
-    color: #D34E2E;
-    font-family: 'JetBrains Mono';
+    color: $brand-colour;
+    font-family: $font-family-monospace;
     text-transform: uppercase;
     display: flex;
 
@@ -24,6 +24,13 @@
 }
 .job-contacts p {
     margin: 0;
+    display: flex;
+    align-items: center;
+    color: $brand-colour;
+    
+    span {
+        margin-right: 0.5rem;
+    }
 }
 .job-contacts a:hover {
     text-decoration: underline;

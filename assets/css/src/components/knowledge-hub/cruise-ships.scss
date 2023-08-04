@@ -1,0 +1,227 @@
+/* BOF Cruise SHips */
+@media screen and (min-width: 768px) {
+    .ship-sidebar {
+        padding: 0 0 0 15px !important;
+    }
+}
+@media screen and (max-width: 767px) {
+    .ship-sidebar {
+        padding: 0 !important;
+    }
+}
+@media screen and (max-width:991px) {
+    #ship-menu {
+        position: fixed;
+        top: 100px;
+        z-index: 9;
+        left: 100%;
+        right: -200px;
+        min-width: 200px;
+        border-radius: 5px;
+        transition: all 0.7s ease;
+    }
+    #ship-menu .mobile-label {
+        position: absolute;
+        right: 50%;
+        display: block;
+        transform: rotate(270deg) translateY(-100%);
+        color: white;
+        background-color: #a1234a;
+        padding: 0.5rem 1rem;
+        white-space: nowrap;
+        transform-origin: top right;
+        top: 0;
+        border-radius: 5px 5px 0 0;
+        font-size: 0.75rem;
+        -webkit-box-shadow: 3px 3px 8px 3px rgba(0,0,0,0.2);
+        box-shadow: 3px 3px 8px 3px rgba(0,0,0,0.2);
+        cursor: pointer;
+        transition: all 0.5s ease-in-out;
+    }
+    #ship-menu.open {
+        padding: 0;
+        transform: translateX(-215px);
+         -webkit-box-shadow: 3px 3px 8px 3px rgba(0,0,0,0.2); 
+        box-shadow: 3px 3px 8px 3px rgba(0,0,0,0.2);
+    }
+    #ship-menu .mobile-label.open {
+        right: 100%;
+        left: auto;
+    }
+    #ship-menu .mobile-label > span {
+        padding-left: 0.5rem;
+    }
+    ul.ship-quick-menu {
+        display: block;
+        width: 100%;
+        border: 1px solid #a1234a;
+        background-color: #ffffff;
+        border-radius: 0 5px 5px 5px;
+        padding: 0;
+        margin: 0;
+        overflow: hidden;
+    }
+    ul.ship-quick-menu li {
+        display: block;
+    }
+    ul.ship-quick-menu li.label {
+        display: none;
+    }
+    ul.ship-quick-menu li a {
+        padding: 0.5rem 1rem;
+        color: #a1234a;
+        display: block;
+        font-size: 1rem;
+        text-decoration: none;
+    }
+}
+@media screen and (min-width:992px) {
+    #ship-menu {
+        position: sticky;
+        top: 60px;
+        z-index: 9;
+        transition: all 0.5s ease-in-out;
+    }
+    #ship-menu .mobile-label {
+        display: none;  
+    }
+    #ship-menu.stuck ul.ship-quick-menu {
+         -webkit-box-shadow: 3px 3px 8px 3px rgba(0,0,0,0.2); 
+        box-shadow: 3px 3px 8px 3px rgba(0,0,0,0.2);
+    }
+    ul.ship-quick-menu {
+        display: inline-block;
+        width: auto;
+        border: 1px solid #a1234a;
+        background-color: #ffffff;
+        border-radius: 50px;
+        padding: 0;
+        margin: 0;
+        overflow: hidden;
+        transition: all 0.5s ease-in-out;
+        font-size: 0;
+        list-style-type: none;
+    }
+    ul.ship-quick-menu li {
+        display: inline-block;
+        border-right: 1px solid #a1234a;
+        list-style: none;
+    }
+    ul.ship-quick-menu li:last-child {
+        border: none;
+    }
+    ul.ship-quick-menu li.label {
+        padding: 0.5rem;
+        background-color: #a1234a;
+        color: #ffffff;
+        font-size: 0.7rem;
+    }
+    ul.ship-quick-menu li a {
+        padding: 0.5rem;
+        color: #a1234a;
+        display: block;
+        font-size: 0.7rem;
+        text-decoration: none;
+    }
+    .site-boxed ul.ship-quick-menu li a {
+        padding: 0.5rem;
+    }
+}
+.single-cruise-ship section {
+    padding-top: 30px;
+}
+.cruise-ship-meta-wrap {
+    padding-bottom: 50px;
+    border-top: 1px solid #e3e3e3;
+}
+.cruise-ship-meta-wrap h3 {
+    padding: 1rem 0;
+}
+.cruise-ship-meta-wrap h4 {
+    font-weight: bold;
+}
+.cruise-ship-meta-wrap .meta-content {
+    position: relative;
+    padding-top: 1rem;
+    padding-bottom: 30px;
+    overflow: hidden;
+}
+.cruise-ship-meta-wrap .meta-content::after {
+  display: block;
+  position: absolute;
+  background: linear-gradient(0deg, rgba(249, 249, 249,1) 20%, rgba(249, 249, 249,0) 100%);
+  height: 60px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  content: '';
+}
+.cruise-ship-meta-wrap .meta-facilities {
+    padding-top: 30px;
+}
+.more-link, .more-cruise-lines {
+    color: #fff;
+    background-color: #a1234a;
+    font-size: 0.75rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 5px;
+    text-decoration: none;
+}
+.more-cruise-lines {
+    display: inline-block;
+}
+.more-cruise-lines.open {
+    margin-top: 30px;
+}
+.more-link:active, .more-link:hover, .more-link:focus {
+    text-decoration: none !important;
+    outline: none;
+}
+.more-link span {
+   padding-left: 0.5rem;
+}
+ul.accomodation-facilities {
+    display: block;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+.accomodation-facilities li {
+    display: inline-block;
+    line-height: 1.5rem;
+    font-size: 0.75rem;
+    padding: 0 1rem;
+    margin-bottom: 0.5rem;
+    margin-right: 0.5rem;
+    border: 1px solid #a1234a;
+    color: #a1234a;
+    border-radius: 50px;
+}
+#ship-facts .cruise-ship-facts {
+    padding: 1rem !important;
+    border-radius: 10px;
+    background-color: #eceeef;
+    margin-bottom: 30px;
+}
+#ship-facts .cruise-ship-facts table tr > td {
+    padding-left: 0;
+    padding-right: 0;
+}
+#ship-facts .cruise-ship-facts table tr > td:last-child {
+    text-align: right;
+}
+.cruise-ship-line {
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: #fff;
+}
+.cruise-ship-line .ship-line-logo {
+    padding: 2rem;
+}
+.ship-line-content {
+    padding: 1rem;
+}
+.ship-line-content h3 {
+    padding-bottom: 2rem;
+}
+/* EOF Ships */

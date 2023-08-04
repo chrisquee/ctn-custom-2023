@@ -6,12 +6,24 @@ class cqshipObject {
     public $ship_title = '';
     public $ship_url = '';
     public $ship_facts = array();
-    public $ship_accomodation = array();
+    public $ship_teaser = '';
+    public $ship_accommodation = array();
+    public $ship_accommodation_intro = '';
+    public $ship_enrichment = array();
+    public $ship_enrichment_intro = '';
     public $ship_intro = '';
+    public $ship_description = '';
     public $ship_page_link = '';
     public $ship_cruise_line = '';
     public $ship_cruise_line_link = '';
     public $ship_cruise_types = array();
+    public $ship_health_fitness = '';
+    public $ship_health_fitness_intro = '';
+    public $ship_dining = '';
+    public $ship_entertainment = '';
+    public $ship_entertainment_intro = '';
+    public $ship_deckplans = array();
+    public $ship_health_dining_intro = '';
     
     public function __construct($ship_id = null){
         

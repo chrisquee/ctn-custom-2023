@@ -21,7 +21,7 @@
         <div class="col-md-12 no-padding">
             
             <div class="sep-wrap clearfix">
-                <h2>Operators</h2>
+                <h2 class="sep-title">Operators</h2>
                 <a href="/cruise-lines/" class="sep-link">See All</a>
             </div>
             <?php

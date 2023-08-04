@@ -1,5 +1,5 @@
 <?php 
-$about_class = "col-md-8";
+$about_class = "col-md-12";
 
 ob_start();
 
@@ -22,7 +22,7 @@ if ($sidebar == '<div class="ad-widget"></div>' || !is_active_sidebar('udg-ads')
             //print_r( $terms ); ?>
             
             <div class="sep-wrap clearfix">
-                <h2><?php echo $cruise_type->name; ?></h2>
+                <h2 class="sep-title"><?php echo $cruise_type->name; ?></h2>
                 <a href="" class="sep-link"></a>
             </div>
             

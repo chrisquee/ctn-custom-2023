@@ -7,3 +7,5 @@ import './components/latest-news';
 //import './components/business-directory';
 import './components/chosen';
 import './components/jquery-validate';
+import './components/cruise-ships';
+import './components/dashboard';
