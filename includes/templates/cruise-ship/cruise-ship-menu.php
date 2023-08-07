@@ -2,7 +2,7 @@
     <span class="mobile-label">Quick Links <span class="fa fa-bars"></span></span>
     <div class="row">
         <div class="col-md-12 no-padding">
-            <div id="cruise-ship-menu" class="container-fluid no-padding cruise-ship-menu">
+            <div id="cruise-ship-menu" class="no-padding cruise-ship-menu">
                 <ul class="ship-quick-menu">
                     <li class="label">Quick Links</li>
                     <?php if ($ship->ship_accommodation) { ?>

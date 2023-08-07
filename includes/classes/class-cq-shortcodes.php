@@ -1461,7 +1461,7 @@ class cqShortcodes {
                     
                 case 'large':
                     
-                    $open_html = '<div class="row-eq-height">';
+                    $open_html = '<div class="row-eq-height single-cruise-type-wrapper ' . $orientation . '">';
 
                     $image_html = '<div class="col-md-7 article-image">
                                       <div class="post-image">
@@ -1471,7 +1471,7 @@ class cqShortcodes {
                                       </div>
                                   </div>';
 
-                    $content_html = '<div class="col-md-5 article-title destination-title">'
+                    $content_html = '<div class="article-title destination-title">'
 
                         . get_udg_sponsor() .
 
@@ -1537,7 +1537,7 @@ class cqShortcodes {
             
             $link = vc_build_link($button_link);     
                     
-            $open_html = '<div class="row-fluid row-eq-height">';
+            $open_html = '<div class="row-fluid udg_full_width_block row-eq-height ' . $orientation . '">';
 
             $image_html = '<div class="col-md-7 article-image">
                               <div class="post-image">
@@ -1547,7 +1547,7 @@ class cqShortcodes {
                               </div>
                           </div>';
 
-            $content_html = '<div class="col-md-5 article-title destination-title">'
+            $content_html = '<div class="article-title destination-title">'
 
                 . get_udg_sponsor() .
 

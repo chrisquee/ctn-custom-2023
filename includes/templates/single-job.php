@@ -17,11 +17,7 @@ do_action('get_job_data');
 
 
 <div class="wrapper" id="single-wrapper">
-
     
-        
-
-
        <?php while ( have_posts() ) : the_post(); ?>
 		<article id="post-<?php the_ID(); ?>" <?php post_class('row-fluid'); ?>>
 			

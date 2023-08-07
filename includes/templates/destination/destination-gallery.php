@@ -1,5 +1,5 @@
 <?php if (!empty($destination->destination_meta['destination-gallery'])) { ?>
-<div class="container destination-gallery">
+<section class="destination-gallery">
     <div class="row">
         <div class="col-md-12 no-padding">
             <?php 
@@ -30,5 +30,5 @@
             </div>
         </div>
     </div>
-</div>
+</section>
 <?php } ?>

@@ -1,0 +1,20 @@
+.cruise-line-header,
+.cruise-type-header,
+.cruise-ship-header {
+    
+    .article-image {
+        
+        img {
+            object-fit: cover;
+            border-radius: 1rem;
+        }
+    }
+    
+    .destination-title {
+        
+        @media screen and (min-width: 768px) {
+            margin-left: 1rem;
+        }
+    }
+}
+

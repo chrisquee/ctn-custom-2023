@@ -7,8 +7,8 @@ $feature_description = rwmb_meta('feature_description');
 if (!empty($image) && $feature_heading != '' && $feature_description != '') {
 
 ?>
-<div class="container destination-feature">
-    <div class="row-fluid row-eq-height">
+<section class="destination-feature">
+    <div class="destination-feature-block row-eq-height left">
 
         <div class="col-md-7 article-image">
             <div class="post-image">
@@ -23,9 +23,9 @@ if (!empty($image) && $feature_heading != '' && $feature_description != '') {
 
             <h3><?php echo esc_html(rwmb_meta('feature_heading')); ?></h3>
             
-            <?php echo esc_html(rwmb_meta('feature_description')); ?>
+            <?php echo wpautop(rwmb_meta('feature_description')); ?>
 
         </div>
     </div>
-</div>
+</section>
 <?php } ?>

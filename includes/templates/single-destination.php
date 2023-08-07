@@ -16,17 +16,15 @@ do_action('get_destination_data');
 
 
 
-<div class="wrapper" id="single-wrapper">
+<div class="wrapper" id="main-content-wrapper">
 
        <?php while ( have_posts() ) : the_post(); ?>
-		<article id="post-<?php the_ID(); ?>" <?php post_class('row-fluid'); ?>>
+		<article id="post-<?php the_ID(); ?>" <?php post_class('destination'); ?>>
 			
-			<div class="container-fluid article-header">
 			    <?php include('destination/destination-header.php'); ?>
 		
                 <?php include('destination/destination-content.php'); ?>
-			
-            </div>
+            
 		</article><!-- #post-## -->
              
         <?php include('destination/destination-related.php'); ?>

@@ -3,7 +3,7 @@ $points = rwmb_meta( 'points_of_interest' );
             
 if ($points) { ?>
 
-<div class="container destination-what-we-love">
+<section class="destination-what-we-love">
     <div class="row">
         <div class="col-md-12 no-padding">
             
@@ -36,5 +36,5 @@ if ($points) { ?>
             ?>
         </div>
     </div>
-</div>
+</section>
 <?php } ?>

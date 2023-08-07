@@ -3,7 +3,7 @@
 $pairs = rwmb_meta( 'need_to_know' );
 
 if ($pairs) { ?>
-<div class="container destination-need-to-know">
+<section class="destination-need-to-know">
     <div class="row">
         <div class="col-md-12 no-padding">
             
@@ -23,5 +23,5 @@ if ($pairs) { ?>
             ?>
         </div>
     </div>
-</div>
+</section>
 <?php } ?>

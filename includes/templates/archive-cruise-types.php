@@ -6,9 +6,9 @@ $cruise_type = get_queried_object();
 $children = get_term_children( $cruise_type->term_id, 'cruise-type' );
 ?>
 
-<div id="primary" class="col-md-12  content-area no-padding">
+<div id="main-content-wrapper">
 
-    <article <?php post_class( 'row'); ?>>
+    <article <?php post_class( 'cruise-type'); ?>>
 
     <?php include('cruise-types/cruise-types-header.php'); ?>
 
@@ -17,6 +17,7 @@ $children = get_term_children( $cruise_type->term_id, 'cruise-type' );
         include('cruise-types/cruise-types-regions.php');
 
         } else {
+    
             include('cruise-types/cruise-types-about.php');
             include('cruise-types/cruise-types-what-we-love.php');
             include('cruise-types/cruise-types-feature.php');

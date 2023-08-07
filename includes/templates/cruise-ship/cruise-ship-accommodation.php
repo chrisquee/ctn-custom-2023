@@ -7,7 +7,7 @@ if (isset($ship->ship_accommodation) && !empty($ship->ship_accommodation)) { ?>
 <section id="ship-accommodation">
     <div class="row">
         <div class="col-md-12 no-padding">
-            <div class="container-fluid no-padding cruise-line-accomodation">
+            <div class="no-padding cruise-line-accomodation">
                 
                 <h2>Accommodation</h2>
                 

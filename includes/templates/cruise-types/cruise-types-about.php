@@ -3,7 +3,7 @@ $about = get_term_meta($cruise_type->term_id, 'cruise-type-about', true);
 
 if ($about != '') { ?>
 
-<div class="cruise-type-regions">
+<section class="cruise-type-regions">
         <div class="col-md-12 no-padding">
             
             <div class="sep-wrap clearfix">
@@ -15,6 +15,6 @@ if ($about != '') { ?>
             </div>
             
         </div>
-</div>
+</section>
 <?php
 }

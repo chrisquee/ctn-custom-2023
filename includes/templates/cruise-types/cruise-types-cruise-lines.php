@@ -16,7 +16,7 @@
     if (!empty($cruise_lines)) {
 ?>
 
-<div class="container cruise-type-lines">
+<section class="cruise-type-lines">
     <div class="row">
         <div class="col-md-12 no-padding">
             
@@ -60,5 +60,5 @@
             ?>
         </div>
     </div>
-</div>
+</section>
 <?php }

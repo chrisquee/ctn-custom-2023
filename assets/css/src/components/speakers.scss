@@ -1,0 +1,72 @@
+/* BOF Speakers custom post type */
+.speaker-item {
+    background-color: #ffffff;
+    border-radius: 15px;
+    overflow: hidden;
+}
+.speaker-content {
+	text-align: center;
+}
+.speaker-content.speaker-pic {
+	overflow: hidden;
+}
+.speaker-content a {
+	display: block;
+}
+.speaker-content.speaker-pic img {
+	transition: all 0.9s ease-in-out;
+    height: 250px;
+    object-fit: cover;
+}
+.speaker-content.speaker-pic img:hover {
+	transform: scale(1.05);
+}
+.speaker-content.speaker-name {
+	display: block;
+	padding: 1rem;
+	
+}
+.speaker-content.speaker-name h4 {
+	display: block;
+    font-size: 1.2rem;
+	font-weight: 600;
+	padding: 0;
+	margin: 0;
+	text-align: center;
+}
+.speaker-content p {
+	text-align: center;
+    font-size: 0.75rem;
+}
+.speaker-content.speaker-job {
+	display: block;
+	padding: 0 1rem 1rem 1rem;
+	
+}
+.single-cq_speakers .entry-content {
+    padding-top: 60px;
+}
+.single-cq_speakers .entry-content.description p:first-child {
+  font-weight: normal;
+}
+.cq_speakers-template-default .entry-content {
+	margin-bottom: 75px;
+}
+.session-description {
+	padding-bottom: 1.5rem;
+}
+.session-description .session-logo {
+	text-align: center;
+}
+.session-description .session-logo img{
+	max-width: 200px;
+	margin: 0 auto;
+	padding-bottom: 1.5rem;
+}
+.main-session-desc {
+	padding-bottom: 50px;
+}
+.owl-carousel.speaker-list .owl-stage {
+    align-items: normal !important;
+}
+/* EOF Speakers custom post type */

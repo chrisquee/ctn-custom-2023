@@ -11,7 +11,7 @@ if ($ship->ship_facts) {
 <section id="ship-facts">
     <div class="row">
         <div class="col-md-12 no-padding">
-            <div class="container-fluid no-padding cruise-ship-facts">
+            <div class="no-padding cruise-ship-facts">
                 <h3>Ship Facts</h3>
                 
                 <table class="table">

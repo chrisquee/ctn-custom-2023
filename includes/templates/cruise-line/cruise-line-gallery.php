@@ -2,7 +2,7 @@
 $gallery = get_post_meta(get_the_id(), 'destination-gallery');
 
 if ($gallery) { ?>
-<div class="container destination-gallery">
+<section class="container destination-gallery">
     <div class="row">
         <div class="col-md-12 no-padding">
             <?php 
@@ -35,5 +35,5 @@ if ($gallery) { ?>
             </div>
         </div>
     </div>
-</div>
+</section>
 <?php } ?>

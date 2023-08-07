@@ -27,12 +27,12 @@ $related = get_posts($args);
 
 if ( !empty($related) ) : ?>
 
-<div class="container destination-related">
+<div class="destination-related">
     <div class="row">
         <div class="col-md-12 no-padding">
             
             <div class="sep-wrap clearfix">
-                <h2>Other Destinations</h2>
+                <h2 class="sep-title">Other Destinations</h2>
                 <a href="" class="sep-link"></a>
             </div>
             

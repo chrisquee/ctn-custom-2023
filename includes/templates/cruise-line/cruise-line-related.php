@@ -10,12 +10,12 @@ $related = get_posts($args);
 
 if ( !empty($related) ) : ?>
 
-<div class="container destination-related">
+<section class="destination-related">
     <div class="row">
         <div class="col-md-12 no-padding">
             
             <div class="sep-wrap clearfix">
-                <h2><?php echo get_the_title(); ?> Destinations</h2>
+                <h2 class="sep-title"><?php echo get_the_title(); ?> Destinations</h2>
                 <a href="" class="sep-link"></a>
             </div>
             
@@ -37,5 +37,5 @@ if ( !empty($related) ) : ?>
                 </div>
         </div>
     </div>
-</div>
+</section>
 <?php endif; ?>

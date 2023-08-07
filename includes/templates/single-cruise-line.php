@@ -3,12 +3,11 @@ get_header();
 
 ?>
 
-<div class="wrapper" id="single-wrapper">
+<div id="main-content-wrapper">
 
        <?php while ( have_posts() ) : the_post(); ?>
 		<article id="post-<?php the_ID(); ?>" <?php post_class('row-fluid'); ?>>
 			
-			<div class="container-fluid article-header">
 			    <?php include('cruise-line/cruise-line-header.php'); ?>
 		
                 <?php include('cruise-line/cruise-line-content.php'); ?>
@@ -20,8 +19,7 @@ get_header();
                 <?php include('cruise-line/cruise-line-related.php'); ?>
             
                 <?php include('cruise-line/cruise-line-ships.php'); ?>
-			
-            </div>
+            
 		</article><!-- #post-## -->
              
         <?php //include('destination/destination-related.php'); ?>

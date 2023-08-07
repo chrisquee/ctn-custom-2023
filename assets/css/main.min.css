@@ -460,6 +460,26 @@ ins, ins iframe {
   box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1), 0px 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
 
+.row-eq-height {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  flex-wrap: wrap;
+}
+@media screen and (min-width: 768px) {
+  .row-eq-height {
+    flex-wrap: nowrap;
+  }
+}
+.row-eq-height .post-image,
+.row-eq-height .article image a,
+.row-eq-height .article-image a img {
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
 .sep-wrap {
   display: flex;
   margin-bottom: 2rem;
@@ -508,7 +528,7 @@ ins, ins iframe {
   transform: rotate(90deg);
 }
 .sep-wrap .sep-link {
-  margin: auto;
+  margin-left: auto;
 }
 .sep-wrap .view-all {
   display: flex;
@@ -531,7 +551,8 @@ ins, ins iframe {
   top: 100%;
 }
 
-.item_content h5 {
+.item_content h5,
+.item_content h3 {
   margin: 0;
 }
 
@@ -3045,6 +3066,338 @@ div[class^=abnde-] img {
 }
 
 /* EOF Ad Space Styles */
+/* BOF Agenda Tabs */
+/* tabs */
+.agenda-container .tab-wrap {
+  transition: 0.3s box-shadow ease;
+  border-radius: 6px;
+  max-width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+  list-style: none;
+  /*  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);*/
+}
+
+.agenda-container .tab-wrap input {
+  display: none;
+}
+
+.agenda-container .tab-wrap:hover {
+  /*  box-shadow: 0 12px 23px rgba(0, 0, 0, 0.23), 0 10px 10px rgba(0, 0, 0, 0.19);*/
+}
+
+.agenda-container input.tab {
+  display: none !important;
+}
+
+.agenda-container .tab:checked + label {
+  color: #000;
+}
+
+.agenda-container .tab-mobile:checked + label, .mob-active {
+  color: #000 !important;
+}
+
+.agenda-container .tab:checked:nth-of-type(1) ~ .tab__content:nth-of-type(1) {
+  opacity: 1;
+  transition: 0.5s opacity ease-in, 0.8s transform ease;
+  position: relative;
+  top: 0;
+  z-index: 10;
+  transform: translateY(0px);
+}
+
+.agenda-container .tab:checked:nth-of-type(2) ~ .tab__content:nth-of-type(2) {
+  opacity: 1;
+  transition: 0.5s opacity ease-in, 0.8s transform ease;
+  position: relative;
+  top: 0;
+  z-index: 10;
+  transform: translateY(0px);
+}
+
+.agenda-container .tab:checked:nth-of-type(3) ~ .tab__content:nth-of-type(3) {
+  opacity: 1;
+  transition: 0.5s opacity ease-in, 0.8s transform ease;
+  position: relative;
+  top: 0;
+  z-index: 10;
+  transform: translateY(0px);
+}
+
+.agenda-container .tab:checked:nth-of-type(4) ~ .tab__content:nth-of-type(4) {
+  opacity: 1;
+  transition: 0.5s opacity ease-in, 0.8s transform ease;
+  position: relative;
+  top: 0;
+  z-index: 100;
+  transform: translateY(0px);
+}
+
+.agenda-container .tab:checked:nth-of-type(5) ~ .tab__content:nth-of-type(5) {
+  opacity: 1;
+  transition: 0.5s opacity ease-in, 0.8s transform ease;
+  position: relative;
+  top: 0;
+  z-index: 10;
+  transform: translateY(0px);
+}
+
+.agenda-container .tab:first-of-type:not(:last-of-type) + label {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.agenda-container .tab:not(:first-of-type):not(:last-of-type) + label {
+  border-radius: 0;
+}
+
+.agenda-container .tab:last-of-type:not(:first-of-type) + label {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.agenda-container .tab:checked + label {
+  background-color: #2d348c;
+  color: #ffffff;
+  box-shadow: 0 -1px 0 #fff inset;
+  cursor: default;
+}
+
+.agenda-container .tab:checked + label:hover {
+  box-shadow: 0 -1px 0 #fff inset;
+}
+
+.agenda-container .tab + label {
+  position: relative;
+  background-color: #f2f2f2;
+  cursor: pointer;
+  display: block;
+  text-decoration: none;
+  color: #000000;
+  text-align: center;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  text-align: center;
+  font-weight: bold;
+  transition: 0.3s all ease;
+  font-size: 1.2rem;
+  height: auto;
+  box-sizing: border-box;
+  padding: 20px 0;
+  width: 50%;
+  margin: 0;
+}
+
+.agenda-container .tab-mobile + label {
+  display: block;
+  width: 100%;
+  margin: 0;
+  text-align: left;
+  border-bottom: 1px solid #eaeaea;
+}
+
+.agenda-container .tab + label > span.fa {
+  margin-right: 0.5rem;
+}
+
+.agenda-container span.tab-divider {
+  width: 100%;
+  height: 1px;
+  background-color: #eaeaea;
+}
+
+.agenda-container .tab-header {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.agenda-container .tab__content {
+  padding: 2.5rem 0;
+  background-color: transparent;
+  position: absolute;
+  width: 100%;
+  z-index: -1;
+  opacity: 0;
+  left: 0;
+  transform: translateY(-3px);
+  border-radius: 6px;
+}
+
+.agenda-container .tab__content .date h3 {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.agenda-container .agenda-times {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+}
+
+.agenda-container .agenda-times .agenda-time {
+  margin-bottom: 20px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.agenda-container .agenda-times .agenda-time .agenda-time-header {
+  display: block;
+  border-bottom: 1px solid #cccccc;
+  background-color: #f2f2f2;
+  position: relative;
+  overflow: hidden;
+}
+
+.agenda-time-header::after {
+  content: "\f017";
+  font-family: fontAwesome;
+  position: absolute;
+  right: 0;
+  font-size: 150px;
+  color: #e8e8e8;
+  transform: rotate(-45deg) translateY(-60%);
+  line-height: 150px;
+  top: 50%;
+}
+
+.agenda-container .agenda-times .agenda-time .agenda-time-header p {
+  padding: 1rem 2rem;
+  font-weight: bold;
+  border-bottom: 3px solid #a1234a;
+  display: inline-block;
+  margin: 0 0 -1px 0;
+}
+
+.agenda-container .agenda-times .agenda-time .agenda-time-content {
+  background-color: #ffffff;
+  padding: 1rem;
+}
+
+.agenda-container .synopsis .synopsis-wrap.meta-content {
+  overflow: hidden;
+  position: relative;
+}
+
+.synopsis-wrap.meta-content::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgb(255, 255, 255) 50%, rgb(255, 255, 255) 100%);
+  width: 100px;
+  height: 20px;
+}
+
+.synopsis-wrap.meta-content p {
+  line-height: 1.5rem;
+  margin-bottom: 1.5rem;
+  font-weight: normal !important;
+}
+
+.agenda-content .speakers .speaker {
+  font-weight: normal !important;
+}
+
+.agenda-time .synopsis a.more-link {
+  color: white;
+  text-decoration: none;
+}
+
+/* EOF Agenda Tabs */
+/* BOF Speakers custom post type */
+.speaker-item {
+  background-color: #ffffff;
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+.speaker-content {
+  text-align: center;
+}
+
+.speaker-content.speaker-pic {
+  overflow: hidden;
+}
+
+.speaker-content a {
+  display: block;
+}
+
+.speaker-content.speaker-pic img {
+  transition: all 0.9s ease-in-out;
+  height: 250px;
+  object-fit: cover;
+}
+
+.speaker-content.speaker-pic img:hover {
+  transform: scale(1.05);
+}
+
+.speaker-content.speaker-name {
+  display: block;
+  padding: 1rem;
+}
+
+.speaker-content.speaker-name h4 {
+  display: block;
+  font-size: 1.2rem;
+  font-weight: 600;
+  padding: 0;
+  margin: 0;
+  text-align: center;
+}
+
+.speaker-content p {
+  text-align: center;
+  font-size: 0.75rem;
+}
+
+.speaker-content.speaker-job {
+  display: block;
+  padding: 0 1rem 1rem 1rem;
+}
+
+.single-cq_speakers .entry-content {
+  padding-top: 60px;
+}
+
+.single-cq_speakers .entry-content.description p:first-child {
+  font-weight: normal;
+}
+
+.cq_speakers-template-default .entry-content {
+  margin-bottom: 75px;
+}
+
+.session-description {
+  padding-bottom: 1.5rem;
+}
+
+.session-description .session-logo {
+  text-align: center;
+}
+
+.session-description .session-logo img {
+  max-width: 200px;
+  margin: 0 auto;
+  padding-bottom: 1.5rem;
+}
+
+.main-session-desc {
+  padding-bottom: 50px;
+}
+
+.owl-carousel.speaker-list .owl-stage {
+  align-items: normal !important;
+}
+
+/* EOF Speakers custom post type */
 /* BOF Spinner */
 @keyframes spin {
   100% {
@@ -4507,65 +4860,99 @@ figure.interactive-link .interactive-img .interactive-img-title {
 
 /* EOF Interactive image styles */
 /* BOF Destinations */
-.destination-title h1 {
-  display: block;
-  width: 100%;
-  padding: 15px 0 !important;
-  line-height: 1 !important;
+.destination img,
+.article-image img {
+  border-radius: 1rem;
 }
 
 .destination-title.no-image {
   padding: 30px;
   background-color: #fff;
 }
-
+.destination-title h1 {
+  display: block;
+  width: 100%;
+  padding: 15px 0 !important;
+  line-height: 1 !important;
+  margin: 0;
+}
 .destination-title p.section-name {
   display: block;
   margin: 0;
   padding: 30px 0 0;
   width: 100%;
 }
-
-.cruise-type-regions, .destination-about {
-  padding-top: 60px;
+.destination-title img {
+  width: auto !important;
+  max-height: 75px;
 }
 
-.destination-about, .destination-need-to-know, .destination-gallery, .destination-what-we-love, .destination-feature, .destination-cruise-lines, .cruise-type-news, .cruise-type-regions, .destination-related, .cruise-type-lines {
-  padding-bottom: 60px;
+.cruise-type-regions,
+.destination-about {
+  padding-top: 2rem;
 }
 
-.know-wrapper, .selling-wrapper {
+.destination-about,
+.destination-need-to-know,
+.destination-gallery,
+.destination-what-we-love,
+.destination-feature,
+.destination-cruise-lines,
+.cruise-type-news,
+.cruise-type-regions,
+.destination-related,
+.cruise-type-lines {
+  margin-bottom: 2rem;
+}
+
+.know-wrapper,
+.selling-wrapper {
   display: grid;
   grid-template-rows: repeat(1, 1fr);
   grid-gap: 30px;
+}
+@media screen and (min-width: 992px) {
+  .know-wrapper,
+  .selling-wrapper {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media screen and (max-width: 991px) {
+  .know-wrapper,
+  .selling-wrapper {
+    grid-template-columns: auto auto;
+  }
+}
+@media screen and (max-width: 570px) {
+  .know-wrapper,
+  .selling-wrapper {
+    grid-template-columns: auto;
+  }
 }
 
 .region-about {
   padding: 15px 0 30px;
 }
 
-@media screen and (min-width: 992px) {
-  .know-wrapper, .selling-wrapper {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-@media screen and (max-width: 991px) {
-  .know-wrapper, .selling-wrapper {
-    grid-template-columns: auto auto;
-  }
-}
-@media screen and (max-width: 570px) {
-  .know-wrapper, .selling-wrapper {
-    grid-template-columns: auto;
-  }
-}
-.know-item, .selling-item {
+.know-item,
+.selling-item,
+.point-item {
   padding: 30px;
-  background-color: #fff;
+  background-color: #F9F9FA;
+  border: 1px solid #DCDCE3;
+  border-radius: 1rem;
+}
+.know-item h4, .know-item h3,
+.selling-item h4,
+.selling-item h3,
+.point-item h4,
+.point-item h3 {
+  margin: 0;
 }
 
-.know-item h4, .point-item h4, .selling-item h4 {
-  font-family: "Merriweather", serif;
+.destination-carousel h3,
+.region-carousel h3 {
+  margin: 0;
 }
 
 @media screen and (min-width: 768px) {
@@ -4579,15 +4966,6 @@ figure.interactive-link .interactive-img .interactive-img-title {
     grid-row: 1/3;
   }
 }
-@media screen and (max-width: 767px) {
-  .point-item {
-    margin-bottom: 30px;
-  }
-}
-.point-item {
-  background-color: #fff;
-}
-
 .point-item .point-img img {
   max-height: 300px;
   object-fit: cover;
@@ -4665,7 +5043,7 @@ figure.interactive-link .interactive-img .interactive-img-title {
 }
 
 .cruise-line-about {
-  padding: 30px 0 30px 0 !important;
+  padding: 0px !important;
 }
 
 .udg-sponsor-wrap {
@@ -4946,8 +5324,9 @@ ul.accomodation-facilities {
 #ship-facts .cruise-ship-facts {
   padding: 1rem !important;
   border-radius: 10px;
-  background-color: #eceeef;
-  margin-bottom: 30px;
+  background-color: #F9F9FA;
+  border: 1px solid #DCDCE3;
+  margin-bottom: 2rem;
 }
 
 #ship-facts .cruise-ship-facts table tr > td {
@@ -4962,19 +5341,129 @@ ul.accomodation-facilities {
 .cruise-ship-line {
   border-radius: 10px;
   overflow: hidden;
-  background-color: #fff;
+  background-color: #F9F9FA;
+  border: 1px solid #DCDCE3;
 }
-
-.cruise-ship-line .ship-line-logo {
-  padding: 2rem;
+.cruise-ship-line img {
+  mix-blend-mode: multiply;
 }
-
-.ship-line-content {
+.cruise-ship-line .ship-line-content {
   padding: 1rem;
 }
-
-.ship-line-content h3 {
+.cruise-ship-line .ship-line-content h3 {
+  color: black;
+  margin: 0;
   padding-bottom: 2rem;
 }
 
 /* EOF Ships */
+@media screen and (min-width: 768px) {
+  .single-cruise-type-wrapper.row-eq-height.left .destination-title,
+  .udg_full_width_block.row-eq-height.left .destination-title,
+  .destination-feature-block.row-eq-height.left .destination-title {
+    margin-left: 1rem;
+  }
+}
+.single-cruise-type-wrapper.row-eq-height.right,
+.udg_full_width_block.row-eq-height.right,
+.destination-feature-block.row-eq-height.right {
+  flex-direction: column-reverse;
+}
+@media screen and (min-width: 768px) {
+  .single-cruise-type-wrapper.row-eq-height.right,
+  .udg_full_width_block.row-eq-height.right,
+  .destination-feature-block.row-eq-height.right {
+    flex-direction: row;
+  }
+}
+.single-cruise-type-wrapper.row-eq-height.right .destination-title,
+.udg_full_width_block.row-eq-height.right .destination-title,
+.destination-feature-block.row-eq-height.right .destination-title {
+  flex-direction: column-reverse;
+}
+@media screen and (min-width: 768px) {
+  .single-cruise-type-wrapper.row-eq-height.right .destination-title,
+  .udg_full_width_block.row-eq-height.right .destination-title,
+  .destination-feature-block.row-eq-height.right .destination-title {
+    margin-right: 1rem;
+  }
+}
+.single-cruise-type-wrapper .post-image img,
+.udg_full_width_block .post-image img,
+.destination-feature-block .post-image img {
+  border-radius: 1rem;
+  object-fit: cover;
+}
+.single-cruise-type-wrapper .destination-title h1,
+.udg_full_width_block .destination-title h1,
+.destination-feature-block .destination-title h1 {
+  margin: 0;
+}
+
+.cruise-line-header .article-image img,
+.cruise-type-header .article-image img,
+.cruise-ship-header .article-image img {
+  object-fit: cover;
+  border-radius: 1rem;
+}
+@media screen and (min-width: 768px) {
+  .cruise-line-header .destination-title,
+  .cruise-type-header .destination-title,
+  .cruise-ship-header .destination-title {
+    margin-left: 1rem;
+  }
+}
+
+.cruise-line header .article-image img,
+.cruise-ship header .article-image img,
+.cruise-type header .article-image img,
+.destination header .article-image img {
+  border-radius: 1rem;
+}
+@media screen and (min-width: 768px) {
+  .cruise-line header .destination-title,
+  .cruise-ship header .destination-title,
+  .cruise-type header .destination-title,
+  .destination header .destination-title {
+    margin-left: 1rem;
+  }
+}
+.cruise-line header .destination-title.no-image,
+.cruise-ship header .destination-title.no-image,
+.cruise-type header .destination-title.no-image,
+.destination header .destination-title.no-image {
+  padding: 30px;
+  background-color: #fff;
+}
+.cruise-line header .destination-title h1,
+.cruise-ship header .destination-title h1,
+.cruise-type header .destination-title h1,
+.destination header .destination-title h1 {
+  display: block;
+  width: 100%;
+  padding: 15px 0 !important;
+  line-height: 1 !important;
+  margin: 0;
+}
+.cruise-line header .destination-title p.section-name,
+.cruise-ship header .destination-title p.section-name,
+.cruise-type header .destination-title p.section-name,
+.destination header .destination-title p.section-name {
+  display: block;
+  margin: 0;
+  padding: 30px 0 0;
+  width: 100%;
+}
+.cruise-line header .destination-title img,
+.cruise-ship header .destination-title img,
+.cruise-type header .destination-title img,
+.destination header .destination-title img {
+  width: auto !important;
+  max-height: 75px;
+}
+.cruise-line > section,
+.cruise-ship > section,
+.cruise-type > section,
+.destination > section {
+  margin-bottom: 2rem;
+}

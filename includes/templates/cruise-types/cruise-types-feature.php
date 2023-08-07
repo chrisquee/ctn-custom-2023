@@ -9,7 +9,7 @@ if ( $feature_heading != '' && $feature_description != '') {
     $desc_class = !empty($image) ? 'col-md-5' : 'col-md-12 no-image';
 
 ?>
-<div class="container destination-feature">
+<section class="destination-feature">
     <div class="row-fluid row-eq-height">
         
         <?php if (!empty($image)) { ?>
@@ -31,5 +31,5 @@ if ( $feature_heading != '' && $feature_description != '') {
 
         </div>
     </div>
-</div>
+</section>
 <?php } ?>

@@ -1,0 +1,54 @@
+.cruise-line,
+.cruise-ship,
+.cruise-type,
+.destination {
+    
+    header {
+        
+        .article-image {
+    
+            img {
+                border-radius: 1rem;
+            }
+        }
+        .destination-title {
+            
+            @media screen and (min-width: 768px) {
+                margin-left: 1rem;
+            }
+
+            &.no-image {
+              padding: 30px;
+              background-color: #fff;
+            }
+
+            h1 {
+                display: block;
+                width: 100%;
+                padding: 15px 0 !important;
+                line-height: 1 !important;
+                margin: 0;
+            }
+
+            p {
+                &.section-name {
+                    display: block;
+                    margin: 0;
+                    padding: 30px 0 0;
+                    width: 100%;
+                }
+            }
+
+            img {
+                width: auto !important;
+                max-height: 75px;
+            }
+        }
+    }
+    
+    > section {
+        margin-bottom: 2rem;
+    }
+    
+}
+

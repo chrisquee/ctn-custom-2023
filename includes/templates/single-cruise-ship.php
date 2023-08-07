@@ -6,40 +6,36 @@ do_action('get_ship_data');
 
 ?>
 
-<div class="wrapper" id="single-wrapper">
+<div id="main-content-wrapper">
 
        <?php while ( have_posts() ) : the_post(); ?>
 		<article id="post-<?php the_ID(); ?>" <?php post_class('row-fluid'); ?>>
 			
-			<div class="container-fluid article-header">
 			    <?php include('cruise-ship/cruise-ship-header.php'); ?>
 		        
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-8 no-padding">
-                            <?php include('cruise-ship/cruise-ship-content.php'); ?>
+                <div class="row">
+                    <div class="col-md-8 no-padding">
+                        <?php include('cruise-ship/cruise-ship-content.php'); ?>
 
-                            <?php include('cruise-ship/cruise-ship-menu.php'); ?>
+                        <?php include('cruise-ship/cruise-ship-menu.php'); ?>
 
-                            <?php include('cruise-ship/cruise-ship-accommodation.php'); ?>
+                        <?php include('cruise-ship/cruise-ship-accommodation.php'); ?>
 
-                            <?php include('cruise-ship/cruise-ship-entertainment.php'); ?>
+                        <?php include('cruise-ship/cruise-ship-entertainment.php'); ?>
 
-                            <?php include('cruise-ship/cruise-ship-dining.php'); ?>
+                        <?php include('cruise-ship/cruise-ship-dining.php'); ?>
 
-                            <?php include('cruise-ship/cruise-ship-enrichment.php'); ?>
+                        <?php include('cruise-ship/cruise-ship-enrichment.php'); ?>
 
-                            <?php include('cruise-ship/cruise-ship-health-fitness.php'); ?>
-                            
-                            <?php include('cruise-ship/cruise-ship-deckplans.php'); ?>
-                        </div>
-                        <div class="col-md-4 ship-sidebar">
-                            <?php include('cruise-ship/cruise-ship-line.php'); ?>
-                            <?php include('cruise-ship/cruise-ship-facts.php'); ?>
-                        </div>
+                        <?php include('cruise-ship/cruise-ship-health-fitness.php'); ?>
+
+                        <?php include('cruise-ship/cruise-ship-deckplans.php'); ?>
+                    </div>
+                    <div class="col-md-4 ship-sidebar">
+                        <?php include('cruise-ship/cruise-ship-line.php'); ?>
+                        <?php include('cruise-ship/cruise-ship-facts.php'); ?>
                     </div>
                 </div>
-            </div>
 		</article><!-- #post-## -->
              
         <?php //include('destination/destination-related.php'); ?>

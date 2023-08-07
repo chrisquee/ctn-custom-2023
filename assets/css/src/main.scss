@@ -344,6 +344,8 @@ p.account-unverified a {
 @import "components/chosen";
 @import 'components/video';
 @import 'components/ads';
+@import 'components/agenda';
+@import 'components/speakers';
 @import 'components/loading-spinner';
 @import 'components/trending-articles';
 @import 'components/listings/listings';
@@ -358,4 +360,7 @@ p.account-unverified a {
 @import 'components/interactive-image';
 @import 'components/knowledge-hub/destinations';
 @import 'components/knowledge-hub/cruise-ships';
+@import 'components/knowledge-hub/single-region-shortcode';
+@import 'components/knowledge-hub/headers';
+@import 'components/knowledge-hub/layout';
 

@@ -1,0 +1,49 @@
+.single-cruise-type-wrapper,
+.udg_full_width_block,
+.destination-feature-block {
+    
+    &.row-eq-height {
+        
+        &.left {
+            
+            .destination-title {
+                
+                @media screen and (min-width: 768px) {
+                    margin-left: 1rem;
+                }
+            }
+        }
+        
+        &.right {
+            flex-direction: column-reverse;
+            
+            @media screen and (min-width: 768px) {
+                flex-direction: row;
+            }
+            
+            .destination-title {
+                flex-direction: column-reverse;
+                
+                @media screen and (min-width: 768px) {
+                    margin-right: 1rem;
+                }
+            }
+        }
+    }
+    
+    .post-image {
+        
+        img {
+            border-radius: 1rem;
+            object-fit: cover;
+        }
+    }
+    
+    .destination-title {
+        
+        h1 {
+            margin: 0;
+        }
+    }
+}
+
