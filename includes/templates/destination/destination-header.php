@@ -1,4 +1,4 @@
-<header class="entry-header container">
+<header class="entry-header">
     <div class="row-eq-height">
 
         <div class="col-md-7 article-image">
@@ -22,10 +22,8 @@
         </div>
     </div>
 </header><!-- .entry-header -->
-<div class="container">
-	<div class="row article-links">
-		<div class="col-md-10     no-padding hidden-sm-down">
-			<?php custom_breadcrumbs(); ?>
-		</div>
-	</div>
-</div>
+<section class="article-links">
+    <div class="no-padding hidden-sm-down">
+        <?php custom_breadcrumbs(); ?>
+    </div>
+</section>

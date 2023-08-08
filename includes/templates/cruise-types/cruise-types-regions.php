@@ -11,7 +11,7 @@ if ($sidebar == '<div class="ad-widget"></div>' || !is_active_sidebar('udg-ads')
     $about_class = "col-md-12";
 } ?>
 
-<div class="container cruise-type-regions">
+<section class="cruise-type-regions">
     <div class="row">
         <div class="<?php echo $about_class; ?> no-padding">
             
@@ -70,4 +70,4 @@ if ($sidebar == '<div class="ad-widget"></div>' || !is_active_sidebar('udg-ads')
         </div>
         <?php } ?>
     </div>
-</div>
+</section>

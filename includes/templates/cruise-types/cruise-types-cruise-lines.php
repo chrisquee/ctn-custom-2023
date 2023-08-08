@@ -22,14 +22,14 @@
             
             <div class="sep-wrap clearfix">
                 <h2 class="sep-title">Operators</h2>
-                <a href="/cruise-lines/" class="sep-link">See All</a>
+                <a href="/cruise-lines/" class="sep-link view-all"><span class="material-symbols-outlined">add</span>See All</a>
             </div>
             <?php
               echo '<div class="cruise-lines-wrapper top">';
               $cruise_line_count = 0;
               foreach ( $cruise_lines as $line ) {
                   
-                  if ($cruise_line_count == 15) {
+                  if ($cruise_line_count == 16) {
                       echo '</div>
                             <div class="cruise-lines-see-more">    
                                 <div class="cruise-lines-wrapper">';

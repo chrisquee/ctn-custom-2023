@@ -127,39 +127,44 @@
         padding: 0.5rem;
     }
 }
-.single-cruise-ship section {
-    padding-top: 30px;
-}
+
 .cruise-ship-meta-wrap {
     padding-bottom: 50px;
     border-top: 1px solid #e3e3e3;
+    
+    h3 {
+        padding: 1rem 0;
+    }
+    
+    h4 {
+        font-weight: bold;
+    }
+    
+    .meta-content {
+        position: relative;
+        padding-top: 1rem;
+        padding-bottom: 30px;
+        overflow: hidden;
+        
+        &::after {
+            display: block;
+            position: absolute;
+            background: linear-gradient(0deg, rgba(255, 255, 255,1) 20%, rgba(255, 255, 255,0) 100%);
+            height: 60px;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            content: '';
+        }
+    }
+    
+    .meta-facilities {
+        padding-top: 2rem;
+    }
 }
-.cruise-ship-meta-wrap h3 {
-    padding: 1rem 0;
-}
-.cruise-ship-meta-wrap h4 {
-    font-weight: bold;
-}
-.cruise-ship-meta-wrap .meta-content {
-    position: relative;
-    padding-top: 1rem;
-    padding-bottom: 30px;
-    overflow: hidden;
-}
-.cruise-ship-meta-wrap .meta-content::after {
-  display: block;
-  position: absolute;
-  background: linear-gradient(0deg, rgba(249, 249, 249,1) 20%, rgba(249, 249, 249,0) 100%);
-  height: 60px;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  content: '';
-}
-.cruise-ship-meta-wrap .meta-facilities {
-    padding-top: 30px;
-}
-.more-link, .more-cruise-lines {
+
+.more-link, 
+.more-cruise-lines {
     color: #fff;
     background-color: #a1234a;
     font-size: 0.75rem;
@@ -167,50 +172,69 @@
     border-radius: 5px;
     text-decoration: none;
 }
+
 .more-cruise-lines {
     display: inline-block;
+    
+    &.open {
+        margin-top: 30px;
+    }
 }
-.more-cruise-lines.open {
-    margin-top: 30px;
-}
-.more-link:active, .more-link:hover, .more-link:focus {
+
+.more-link:active, 
+.more-link:hover, 
+.more-link:focus {
     text-decoration: none !important;
     outline: none;
 }
 .more-link span {
    padding-left: 0.5rem;
 }
+
 ul.accomodation-facilities {
     display: block;
     list-style-type: none;
     padding: 0;
     margin: 0;
+    
+    li {
+        display: inline-block;
+        line-height: 1.5rem;
+        font-size: 0.75rem;
+        padding: 0 1rem;
+        margin-bottom: 0.5rem;
+        margin-right: 0.5rem;
+        border: 1px solid #a1234a;
+        color: #a1234a;
+        border-radius: 50px;
+    }
 }
-.accomodation-facilities li {
-    display: inline-block;
-    line-height: 1.5rem;
-    font-size: 0.75rem;
-    padding: 0 1rem;
-    margin-bottom: 0.5rem;
-    margin-right: 0.5rem;
-    border: 1px solid #a1234a;
-    color: #a1234a;
-    border-radius: 50px;
+
+#ship-facts {
+    
+    .cruise-ship-facts {
+        padding: 1rem !important;
+        border-radius: 10px;
+        background-color: $gray-05;
+        border: 1px solid $gray-20;
+        margin-bottom: 2rem;
+        
+        table {
+            tr {
+                
+                > td {
+                    padding-left: 0;
+                    padding-right: 0;
+                    
+                    &:last-child {
+                        text-align: right;
+                    }
+                }
+            }
+        }
+    }
 }
-#ship-facts .cruise-ship-facts {
-    padding: 1rem !important;
-    border-radius: 10px;
-    background-color: $gray-05;
-    border: 1px solid $gray-20;
-    margin-bottom: 2rem;
-}
-#ship-facts .cruise-ship-facts table tr > td {
-    padding-left: 0;
-    padding-right: 0;
-}
-#ship-facts .cruise-ship-facts table tr > td:last-child {
-    text-align: right;
-}
+
 .cruise-ship-line {
     border-radius: 10px;
     overflow: hidden;

@@ -3,119 +3,76 @@
 $news_category = get_term_meta($cruise_type->term_id, 'cruise-type-news-category', true);
 
 $args = array('post_type' => 'post',
-              'numberposts' => 7,
+              'posts_per_page' => 5,
               'category' => $news_category
             );
-                  
-$news_items = get_posts($args);
 
 $html = '';
-
-if (!empty($news_items)) {
-    
-    $html .= '<div class="container cruise-type-news">
-                <div class="row">
-                    <div class="col-md-12 no-padding">
-                        <div class="sep-wrap clearfix">
-                            <h2 class="sep-title">Related News</h2>
-                            <a href="" class="sep-link"></a>
-                        </div>';
-    
-    $layout_array = array(1 => array('cols' => 3,
-                                     'types' => array( 1 => 'standard', 2 => 'standard', 3 => 'standard')
-                                    ),
-                          2 => array('cols' => 4,
-                                     'types' => array( 1 => 'standard', 2 => 'standard', 3 => 'standard', 4 => 'standard')
-                                    ),
-                        );
-                        
-    $html .= '<div class="row latest-wrapper cruise-type-row archive-top-articles">';
-    $post_index = 0;
-
-    $data = new cqShortcodes();
-
-    foreach ($layout_array as $row_key => $row) {
-        
-        global $post;
-
-        $col_class = 'col_' . 12/$row['cols'];
-        $fallback_class = 'col-md-' . 12/$row['cols'];
-        $fallback_class = '';
-
-        $item_keys = array_keys($row['types']);
-        $last_item = end($item_keys);
-
-        foreach ($row['types'] as $type_key => $type) {
+                  
+$post_list = new WP_Query($args);
             
-            if (isset($news_items[$post_index])) {
-            
-                $post = $news_items[$post_index];
+if ($post_list->have_posts()) {
 
-                setup_postdata($post);
+    $desktop_class = 'cards';
+    $mobile_class = 'with_image';
 
-                $category = $data->get_cat_name_link(get_the_id());
-                $mobile_view = $post_index == 0 ? '' : 'mobile_view';
+    $html .= '<div class="sep-wrap clearfix">
+                    <h2 class="sep-title">Related News</h2>
+                </div>';
 
+    $html .= '<div class="latest-wrapper ' . $desktop_class . ' ' . $mobile_class . '">';
 
-                if ($type == 'overlay') {
-                    $html .= '<div class="cq_overlay item_wrap ' . $col_class . ' ' . $fallback_class . ' ' . $mobile_view . '" style="background-image: url(' . get_the_post_thumbnail_url(get_the_id(), 'large') . ')">
-                                <a href="' . get_the_permalink(get_the_id()) . '">
-                                    ' . get_the_post_thumbnail(get_the_id(), 'featured-box-bg-image') . '
-                                </a>
-                                <div class="item_content">
-                                    <a class="cat-link" href="' . $category['cat_a_link'] . '" target="' . $category['cat_a_target'] . '" title="' . $category['cat_a_title'] . '">' . $category['category'] . '</a>
-                                    <time datetime="' . get_the_date( 'c', get_the_id() ) . '">' . get_the_date( 'j F Y', get_the_id() ) . '</time>
-                                    <h3><a href="' . get_the_permalink(get_the_id()) . '">' . get_the_title() . '</a></h3>
-                                </div>
-                              </div>';
+    while($post_list->have_posts()) {
+        $post_list->the_post();
 
+        $thumb_id = get_post_thumbnail_id();
+        $post_id = get_the_ID();
 
-                } else if ($type == 'standard' || $type == 'standard_no_img') {
-                    $html .= '<div class="cq_standard item_wrap ' . $col_class . ' ' . $fallback_class . ' ' . $mobile_view . '">';
+        $category = get_the_category();
+        $category_title = $category[0]->name;
+        $category_link = get_category_link($category[0]->term_id);
 
-                    if ($type == 'standard') {
-                        $html .= '  <a href="' . get_the_permalink(get_the_id()) . '">
-                                    ' . get_the_post_thumbnail(get_the_id(), 'featured-box-bg-image') . '
-                                    </a>';
-                    }
+        $primary_category = smart_category_top_parent_id($category[0]->term_id);
+        $primary_category_title = get_category($primary_category)->name;
+        $primary_category_link = get_category_link($primary_category);
+        $excerpt = preg_replace("~(?:\[/?)[^/\]]+/?\]~s", '', get_the_content());
 
-                    $html .=   '<div class="item_content">
-                                    <a class="cat-link" href="' . $category['cat_a_link'] . '" target="' . $category['cat_a_target'] . '" title="' . $category['cat_a_title'] . '">' . $category['category'] . '</a>
-                                    <time datetime="' . get_the_date( 'c', get_the_id() ) . '">' . get_the_date( 'j F Y', get_the_id() ) . '</time>
-                                    <h3><a href="' . get_the_permalink(get_the_id()) . '">' . get_the_title() . '</a></h3>
-                                </div>
-                                <a href="' . get_the_permalink(get_the_id()) . '" class="read-more">READ MORE</a>
-                              </div>';
-                } else if ($type == 'to_side') {
-                    $html .= '<div class="cq_to_side item_wrap ' . $col_class . ' ' . $fallback_class . ' ' . $mobile_view . '">
-                                <a href="' . get_the_permalink(get_the_id()) . '" class="side-img">
-                                    ' . get_the_post_thumbnail(get_the_id(), 'featured-box-bg-image') . '
-                                </a>
-                                <div class="item_content">
-                                    <div class="item_content_wrap">
-                                        <a class="cat-link" href="' . $category['cat_a_link'] . '" target="' . $category['cat_a_target'] . '" title="' . $category['cat_a_title'] . '">' . $category['category'] . '</a>
-                                        <time datetime="' . get_the_date( 'c', get_the_id() ) . '">' . get_the_date( 'j F Y', get_the_id() ) . '</time>
-                                        <h3><a href="' . get_the_permalink(get_the_id()) . '">' . get_the_title() . '</a></h3>
-                                        <p>' . get_the_excerpt( get_the_id() ) . '</p>
-                                        <a href="' . get_the_permalink(get_the_id()) . '" class="read-more">READ MORE</a>
-                                    </div>
-                                </div>
-                              </div>';
-                }
-
-                wp_reset_postdata();
-
-                $post_index++;
-
-            }
+        if ($category_title != $primary_category_title) {
+            $category_html = '<a href="' . $primary_category_link . '">' . $primary_category_title . '</a>
+                              <a href="' . $category_link . '" class="cat-hidden">/ ' . $category_title . '</a>';
+        } else {
+            $category_html = '<a href="' . $primary_category_link . '">' . $primary_category_title . '</a>';
         }
+
+
+        $html .= '<article id="post-' . get_the_ID() . '" class="latest-item">
+                      <div class="item-image">
+                          <a href="' . esc_url( get_permalink() ) .'" title="' . get_the_title() . '" class="latest-img-overlay">
+                              ' . get_the_post_thumbnail( get_the_ID(), 'featured-box-bg-image' ) . '
+                          </a>
+                      </div>
+                      <div class="item-content">
+                        <div class="item-info">
+                            <div class="item-title">
+                                <h3><a href="' . get_the_permalink() . '" class="title-gradient">' . get_the_title() . '</a></h3>
+                            </div>
+
+                            <div class="item-category cat-link">
+                                <span class="material-symbols-outlined">arrow_outward</span>
+                                ' .$category_html . '
+                            </div>
+                        </div>
+                        <p>' . wp_trim_words( $excerpt, 40, '...') . '</p>
+                        <div class="item-author author-text">
+                            ' . get_the_author() . '
+                        </div>
+                      </div>
+                  </article>';
+
     }
-    
-    $html .= '          </div>
-                    </div>
-                </div>
-            </div>';
-    
+
+    $html .= '</div>';
+
 }
 
- echo $html;
+echo $html;

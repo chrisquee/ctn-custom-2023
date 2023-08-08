@@ -633,7 +633,7 @@ class cqShortcodes {
             $html .= '<div class="cq_overlay item_wrap" style="background-image: url(' . $image_data[0] . ')">
                         <a href="' . esc_url(get_term_link( $category )) . '" class="destination-link" title="' . esc_html($category->name) . '"></a>
                         <div class="item_content">
-                            <h3><a href="' . esc_url(get_term_link( $category )) . '">' . esc_html($category->name) . '</a></h3>
+                            <h4><a href="' . esc_url(get_term_link( $category )) . '">' . esc_html($category->name) . '</a></h4>
                         </div>
                       </div>';
         }
@@ -856,8 +856,8 @@ class cqShortcodes {
                                                         <h3><a href="' . esc_url( $link ) . '" target="' . esc_attr($target) . '">' . get_the_title() . '</a></h3>
                                                         ' . get_the_excerpt() . '
                                                         <div class="directory-header-button-container">
-                                                            <a href="' . esc_url( $link ) . '" target="' . esc_attr($target) . '" class="button button-blue button_1">READ NOW</a>
-                                                            <a href="' . esc_url( site_url('/digital-issues/') ) . '" target="' . esc_attr($target) . '" class="button button-blue button_2">ALL ISSUES</a>
+                                                            <a href="' . esc_url( $link ) . '" target="' . esc_attr($target) . '" class="button button-brand button-fill">READ NOW</a>
+                                                            <a href="' . esc_url( site_url('/digital-issues/') ) . '" target="' . esc_attr($target) . '" class="button button-brand button-outline">ALL ISSUES</a>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -898,9 +898,6 @@ class cqShortcodes {
     }
     
     public function cq_latest_post_row_shortcode( $attributes ) {
-        
-        $home_page_post_ids = array();
-        $home_page_post_ids = $this->home_page_post_ids;
 
         $atts = shortcode_atts(array(
             'to_show' => '1',
@@ -911,14 +908,14 @@ class cqShortcodes {
         $fallback_class = 'col-md-' . 12/$atts['to_show'];
         $fallback_class = '';
         
-        $vertical_class = $atts['style'] == 'vertical' ? 'vertical' : '';
+        $vertical_class = $atts['style'] == 'vertical' ? 'vertical' : 'cards with_image';
         $gap_class = $atts['to_show'] == '1' ? 'no_gap' : '';
         $post_index = 0;
 
-        $cq_latest_post_row_content = '<div class="row latest-post-row ' .$vertical_class . ' ' . $gap_class . '">';
+        $cq_latest_post_row_content = '<div class="latest-wrapper ' .$vertical_class . ' ' . $gap_class . '">';
 
         if ($atts['latest_post_category'] != '') {
-            $query_args = array('cat' => $atts['latest_post_category'], 'post__not_in' => $home_page_post_ids, 'order' => 'DESC', 'ignore_sticky_posts' => 1, 'posts_per_page' => $atts['to_show']);
+            $query_args = array('cat' => $atts['latest_post_category'], 'post__not_in' => $this->home_page_post_ids, 'order' => 'DESC', 'ignore_sticky_posts' => 1, 'posts_per_page' => $atts['to_show']);
         } else {
             $sticky = get_option( 'sticky_posts' );
             $sticky = array_slice( $sticky, 0, 1 );
@@ -928,7 +925,7 @@ class cqShortcodes {
             );
             $query_sticky = new WP_Query($query_sticky);
 
-            $query_args = array('post__not_in' => $home_page_post_ids, 'order' => 'DESC', 'ignore_sticky_posts' => 1, 'posts_per_page' => $atts['to_show'] );
+            $query_args = array('post__not_in' => $this->home_page_post_ids, 'order' => 'DESC', 'ignore_sticky_posts' => 1, 'posts_per_page' => $atts['to_show'] );
         }
 
         $post_query = new WP_query($query_args);
@@ -940,54 +937,61 @@ class cqShortcodes {
 
                 $id = get_the_ID();
                 $category = $this->get_cat_name_link($id);
-                $this->home_page_post_ids[] = $id;
                 $mobile_view = $post_index == 0 ? '' : 'mobile_view';
 
-                $home_page_post_ids[] = $id;
+                $this->home_page_post_ids[] = $id;
                 
                 switch ($atts['style']) {
                 
                     case 'overlay' :
 
-                        $cq_latest_post_row_content .= '<div class="cq_overlay item_wrap ' . $col_class . ' ' . $fallback_class . ' ' . $mobile_view . '" style="background-image: url(' . get_the_post_thumbnail_url($id, 'featured-box-bg-image') . ')">
-                                                          <a href="' . get_the_permalink($id) . '" class="item_link" title="' . get_the_title() . '"></a>
+                        $cq_latest_post_row_content .= '<div class="cq_overlay item_wrap ' . $fallback_class . '" style="background-image: url(' . get_the_post_thumbnail_url($id, 'large') . ')">
+                                                          <a href="' . get_the_permalink($id) . '">
                                                           <div class="item_content">
                                                               <a class="cat-link" href="' . $category['cat_a_link'] . '" target="' . $category['cat_a_target'] . '" title="' . $category['cat_a_title'] . '">' . $category['category'] . '</a>
-                                                              <time datetime="' . get_the_date( 'c', $id ) . '">' . get_the_date( 'j F Y', $id ) . '</time>
-                                                              <h3><a href="' . get_the_permalink($id) . '">' . get_the_title() . '</a></h3>
+                                                              <time datetime="' . get_the_date( 'c', $id ) . '"><span class="material-symbols-outlined">schedule</span>' . get_the_date( 'j F Y', $id ) . '</time>
+                                                              <h5><a href="' . get_the_permalink($id) . '">' . get_the_title() . '</a></h3>
                                                           </div>
+                                                          </a>
                                                         </div>';
                         break;
                         
                     case 'vertical' :
 
-                        $cq_latest_post_row_content .= '<div class="cq_vertical item_wrap col_12 ' . $fallback_class . '">
-                                                          <div class="item_image">
-                                                              <a href="' . get_the_permalink($id) . '">
-                                                                  ' . get_the_post_thumbnail($id, 'featured-box-bg-image') . '
-                                                              </a>
-                                                          </div>
+                        $cq_latest_post_row_content .= '<div class="cq_vertical latest-item  ' . $fallback_class . '">
                                                           <div class="item_content">
-                                                              <a class="cat-link" href="' . $category['cat_a_link'] . '" target="' . $category['cat_a_target'] . '" title="' . $category['cat_a_title'] . '">' . $category['category'] . '</a>
-                                                              <h3><a href="' . get_the_permalink($id) . '">' . get_the_title() . '</a></h3>
-                                                              <time datetime="' . get_the_date( 'c', $id ) . '">' . get_the_date( 'j F Y', $id ) . '</time>
+                                                            <div class="item-info">
+                                                                <a class="cat-link" href="' . $category['cat_a_link'] . '" target="' . $category['cat_a_target'] . '" title="' . $category['cat_a_title'] . '"><span class="material-symbols-outlined">arrow_outward</span>' . $category['category'] . '</a>
+                                                                <div class="item-title">
+                                                                    <h5><a href="' . get_the_permalink($id) . '" class="title-gradient">' . get_the_title() . '</a></h3>
+                                                                </div>
                                                           </div>
+                                                          <time datetime="' . get_the_date( 'c', $id ) . '"><span class="material-symbols-outlined">schedule</span>' . get_the_date( 'j F Y', $id ) . '</time>
+                                                        </div>
                                                         </div>';
                         break;
                 
                     case 'standard' :
                     default :
                         
-                        $cq_latest_post_row_content .= '<div class="cq_standard item_wrap ' . $col_class . ' ' . $fallback_class . ' ' . $mobile_view . '">
-                                                          <a href="' . get_the_permalink($id) . '">
+                        $cq_latest_post_row_content .= '<div class="cq_standard latest-item ' . $fallback_class . '">
+                                                          <div class="item-image">
+                                                            <a href="' . get_the_permalink($id) . '">
                                                               ' . get_the_post_thumbnail($id, 'featured-box-bg-image') . '
-                                                          </a>
-                                                          <div class="item_content">
-                                                              <a class="cat-link" href="' . $category['cat_a_link'] . '" target="' . $category['cat_a_target'] . '" title="' . $category['cat_a_title'] . '">' . $category['category'] . '</a>
-                                                              <time datetime="' . get_the_date( 'c', $id ) . '">' . get_the_date( 'j F Y', $id ) . '</time>
-                                                              <h3><a href="' . get_the_permalink($id) . '">' . get_the_title() . '</a></h3>
+                                                            </a>
                                                           </div>
-                                                          <a href="' . get_the_permalink($id) . '" class="read-more">READ MORE</a>
+                                                          <div class="item_content">
+                                                              <div class="item-info">
+                                                                <div class="item-title">
+                                                                    <h3><a href="' . get_the_permalink($id) . '" class="title-gradient">' . get_the_title() . '</a></h3>
+                                                                </div>
+                                                                <div class="item-category cat-link">
+                                                                    <span class="material-symbols-outlined">arrow_outward</span>
+                                                                    <a href="' . $category['cat_a_link'] . '" target="' . $category['cat_a_target'] . '" title="' . $category['cat_a_title'] . '">' . $category['category'] . '</a>
+                                                                </div>
+                                                             </div>
+                                                             <time datetime="' . get_the_date( 'c', $id ) . '"><span class="material-symbols-outlined">schedule</span>' . get_the_date( 'j F Y', $id ) . '</time>
+                                                          </div>
                                                         </div>';
                         
                         
@@ -1429,7 +1433,7 @@ class cqShortcodes {
             $html .= '<div class="cq_overlay item_wrap" style="background-image: url(' . $image_data[0] . ')">
                         <a href="' . esc_url(get_term_link( $region )) . '" class="destination-link" title="' . esc_html($region->name) . '"></a>
                         <div class="item_content">
-                            <h3><a href="' . esc_url(get_term_link( $region )) . '">' . esc_html($region->name) . '</a></h3>
+                            <h4><a href="' . esc_url(get_term_link( $region )) . '">' . esc_html($region->name) . '</a></h4>
                         </div>
                       </div>';
         }
@@ -1481,7 +1485,7 @@ class cqShortcodes {
 
                         ' . wpautop($region->description) . '
                         
-                        <a href="' . esc_url(get_term_link( $region, 'cruise-type' )) . '" class="destination-link button button-blue button_1" title="' . esc_html($region->name) . '">See More</a>
+                        <a href="' . esc_url(get_term_link( $region, 'cruise-type' )) . '" class="destination-link button button-brand button-outline" title="' . esc_html($region->name) . '">See More</a>
 
                     </div>';
                     
@@ -1504,7 +1508,7 @@ class cqShortcodes {
                                         <div class="cq_overlay item_wrap col_6" style="background-image: url(' .  wp_get_attachment_image_src( $featured_image_id, 'main-post-image' )[0] . ')">
                                             <a href="' . esc_url(get_term_link( $region, 'cruise-type' )) . '" class="destination-link" title="' . esc_html($region->name) . '"></a>
                                             <div class="item_content">
-                                                <h3><a href="' . esc_url(get_term_link( $region, 'cruise-type' )) . '">' . esc_html($region->name) . '</a></h3>
+                                                <h4><a href="' . esc_url(get_term_link( $region, 'cruise-type' )) . '">' . esc_html($region->name) . '</a></h4>
                                             </div>
                                         </div>
                                     </div>';
@@ -1557,7 +1561,7 @@ class cqShortcodes {
 
                 ' . wpautop($description) . '
 
-                <a href="' . esc_url($link['url']) . '" class="destination-link button button-blue button_1" title="' . esc_html($link['title']) . '">' . esc_html($link['title']) . '</a>
+                <a href="' . esc_url($link['url']) . '" class="destination-link button button-brand button-outline" title="' . esc_html($link['title']) . '">' . esc_html($link['title']) . '</a>
 
             </div>';
 
@@ -1612,7 +1616,7 @@ class cqShortcodes {
             $destination_html .= '<div class="cq_overlay item_wrap" style="background-image: url(' . get_the_post_thumbnail_url($destination->ID, 'category-carousel-image') . ')">
                                      <a href="' . esc_url(get_permalink( $destination->ID )) . '" class="destination-link" title="' . esc_html(get_the_title($destination->ID)) . '>"></a>
                                          <div class="item_content">
-                                            <h3><a href="' . esc_url(get_permalink($destination->ID)) . '">' . esc_html(get_the_title($destination->ID)) . '</a></h3>
+                                            <h4><a href="' . esc_url(get_permalink($destination->ID)) . '">' . esc_html(get_the_title($destination->ID)) . '</a></h4>
                                          </div>
 
                                   </div>';
@@ -1729,7 +1733,7 @@ class cqShortcodes {
                                      </div>
                                      <a href="' . esc_url(get_permalink( $ship->ID )) . '" class="destination-link" title="' . esc_html(get_the_title($ship->ID)) . '"></a>
                                          <div class="item_content">
-                                            <h3><a href="' . esc_url(get_permalink($ship->ID)) . '">' . esc_html(get_the_title($ship->ID)) . '</a></h3>
+                                            <h4><a href="' . esc_url(get_permalink($ship->ID)) . '">' . esc_html(get_the_title($ship->ID)) . '</a></h4>
                                          </div>
 
                                   </div>';

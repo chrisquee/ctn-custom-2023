@@ -36,10 +36,6 @@
     }
 }
 
-.cruise-type-regions, 
-.destination-about {
-    padding-top: 2rem;
-}
 .destination-about, 
 .destination-need-to-know, 
 .destination-gallery, 
@@ -72,14 +68,9 @@
     }
 }
 
-.region-about {
-    padding: 15px 0 30px;
-}
-
 .know-item, 
-.selling-item,
-.point-item {
-    padding: 30px;
+.selling-item {
+    padding: 1.5rem;
     background-color: $gray-05;
     border: 1px solid $gray-20;
     border-radius: 1rem;
@@ -109,23 +100,44 @@
     }
 }
 
-.point-item .point-img img {
-    max-height: 300px;
-    object-fit: cover;
+.point-item {
+    background-color: $gray-05;
+    border: 1px solid $gray-20;
+    border-radius: 1rem;
+    
+    &.row-span-1 {
+        
+        .point-content {
+            display: flex;
+            align-items: center;
+            align-content: center;
+            flex-wrap: wrap;
+            height: 100%;
+        }
+    }
+    
+    .point-img {
+        img {
+            max-height: 300px;
+            object-fit: cover;
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+    }
+    
+    .point-content {
+        padding: 30px;
+        
+        h4 {
+            margin: 0;
+        }
+        
+        ul {
+            padding-left: 1rem;
+        }
+    }
 }
-.point-item .point-content {
-    padding: 30px;
-}
-.point-item .point-content ul {
-    padding-left: 1rem;
-}
-.point-item.row-span-1 .point-content {
-    display: flex;
-    align-items: center;
-    align-content: center;
-    flex-wrap: wrap;
-    height: 100%;
-}
+
 @media screen and (min-width: 768px) {
     .cruise-lines-wrapper, .latest-wrapper.cruise-lines-wrapper {
         display: grid;

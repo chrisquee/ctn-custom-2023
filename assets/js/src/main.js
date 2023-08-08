@@ -1,11 +1,12 @@
 import './components/legacy';
 import './components/login';
+import './components/carousels';
+import './components/knowledge-hub-dynamic';
+import './components/cruise-ships';
 import './components/user-verify';
 import './components/newsletter';
 import './components/print-editions';
 import './components/latest-news';
-//import './components/business-directory';
 import './components/chosen';
 import './components/jquery-validate';
-import './components/cruise-ships';
 import './components/dashboard';

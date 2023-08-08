@@ -1,0 +1,17 @@
+/*BOF Category Carousel */
+.latest-wrapper {
+    &.cq_category_carousel,
+    &.single-cruise-type-wrapper {
+        
+        .item_wrap {
+            max-height: 250px;
+            border-radius: 15px;
+            overflow: hidden;
+            
+            @media screen and (min-width: 768px) {
+                max-height: 325px !important;
+            }
+        }
+    }
+}
+/*EOF Category Carousel */

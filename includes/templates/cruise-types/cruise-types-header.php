@@ -30,7 +30,7 @@
 </header><!-- .entry-header -->
 
 <section class="article-links">
-    <div class="col-md-10     no-padding hidden-sm-down">
+    <div class="col-md-10 no-padding hidden-sm-down">
     	<?php custom_breadcrumbs(); ?>
     </div>
 </section>

@@ -1,7 +1,10 @@
 .item_content {
 
         h5,
-        h3 {
+        h4,
+        h3,
+        h2,
+        h1 {
             margin: 0;
         }
     }
@@ -9,7 +12,7 @@
 /* BOF Overlay Styles */
 .latest-wrapper .cq_overlay.item_wrap, .latest-post-row .cq_overlay.item_wrap {
     position: relative;
-    min-height: 400px;
+    min-height: 325px;
     background-size: cover;
     background-position: center center;
     border-radius: 1rem;

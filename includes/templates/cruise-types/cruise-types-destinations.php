@@ -1,10 +1,9 @@
-<div class="container cruise-type-regions">
+<section class="cruise-type-regions">
     <div class="row">
         <div class="col-md-12 no-padding">
             
             <div class="sep-wrap clearfix">
                 <h2 class="sep-title">Destinations</h2>
-                <a href="" class="sep-link"></a>
             </div>
             
             <?php // echo wpautop(get_term_meta($cruise_type->term_id, 'cruise-type-about', true)); ?>
@@ -47,4 +46,4 @@
             
         </div>
     </div>
-</div>
+</section>

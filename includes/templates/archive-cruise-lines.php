@@ -50,45 +50,15 @@ get_header();
                             $article_count = 0;
                         ?>
                         
-						<div id="post-list" class="">
+						<div id="post-list" class="latest-wrapper cruise-lines-wrapper">
                             
 						<?php while ( have_posts() ) : the_post(); ?>
-
-							<?php
-							/* Include the Post-Format-specific template for the content.
-							 * If you want to override this in a child theme, then include a file
-							 * called content-___.php (where ___ is the Post Format name) and that will be used instead.
-							 */
-
-
-							if ( $article_count == 0 ) {
-								echo '<div class="row latest-wrapper cruise-lines-wrapper clearfix">';
-							}
-							?>
 
 							<?php
 							include('cruise-line/cruise-line-listing.php');
 							?>
 
-
-							<?php
-
-							if ( $article_count == 4 ) {
-                                echo '</div>';
-								$article_count = 0;
-							} else {
-								$article_count++;
-							}
-							?>
-
 							<?php endwhile; ?>
-				
-				<?php
-				if ( $article_count != 0 || $article_count != 3 ) {
-					echo '</div>';
-				}
-				?>
-                        </div>
                         
                     </main>
 				<!-- #main -->
