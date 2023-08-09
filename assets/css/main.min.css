@@ -480,6 +480,10 @@ ins, ins iframe {
   object-fit: cover;
 }
 
+.read-more {
+  font-family: "JetBrains Mono", SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
 .sep-wrap {
   display: flex;
   margin-bottom: 2rem;
@@ -3252,15 +3256,15 @@ div[class^=abnde-] img {
 
 .agenda-container .agenda-times .agenda-time .agenda-time-header {
   display: block;
-  border-bottom: 1px solid #cccccc;
-  background-color: #f2f2f2;
+  border-bottom: 1px solid #DCDCE3;
+  background-color: #F9F9FA;
   position: relative;
   overflow: hidden;
 }
 
 .agenda-time-header::after {
-  content: "\f017";
-  font-family: fontAwesome;
+  content: "\e8b5";
+  font-family: "Material Symbols Outlined";
   position: absolute;
   right: 0;
   font-size: 150px;
@@ -3300,7 +3304,6 @@ div[class^=abnde-] img {
 
 .synopsis-wrap.meta-content p {
   line-height: 1.5rem;
-  margin-bottom: 1.5rem;
   font-weight: normal !important;
 }
 
@@ -5119,16 +5122,19 @@ figure.interactive-link .interactive-img .interactive-img-title {
   height: 100%;
 }
 
+.cq_overlay a.destination-link {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
 /* EOF Destinations */
 /* BOF Cruise SHips */
 @media screen and (min-width: 768px) {
   .ship-sidebar {
     padding: 0 0 0 15px !important;
-  }
-}
-@media screen and (max-width: 767px) {
-  .ship-sidebar {
-    padding: 0 !important;
   }
 }
 @media screen and (max-width: 991px) {
@@ -5137,16 +5143,15 @@ figure.interactive-link .interactive-img .interactive-img-title {
     top: 100px;
     z-index: 9;
     left: 100%;
-    right: -200px;
     min-width: 200px;
     border-radius: 5px;
     transition: all 0.7s ease;
   }
   #ship-menu .mobile-label {
     position: absolute;
-    right: 50%;
+    right: 100%;
     display: block;
-    transform: rotate(270deg) translateY(-100%);
+    transform: rotate(270deg);
     color: white;
     background-color: #a1234a;
     padding: 0.5rem 1rem;
@@ -5159,18 +5164,25 @@ figure.interactive-link .interactive-img .interactive-img-title {
     box-shadow: 3px 3px 8px 3px rgba(0, 0, 0, 0.2);
     cursor: pointer;
     transition: all 0.5s ease-in-out;
+    z-index: -1;
+  }
+  #ship-menu.stuck .mobile-label {
+    transform: rotate(270deg) translateY(-100%);
   }
   #ship-menu.open {
     padding: 0;
-    transform: translateX(-215px);
+    transform: translateX(calc(-100% - 17px));
     -webkit-box-shadow: 3px 3px 8px 3px rgba(0, 0, 0, 0.2);
     box-shadow: 3px 3px 8px 3px rgba(0, 0, 0, 0.2);
   }
-  #ship-menu .mobile-label.open {
+  #ship-menu .label {
+    display: none;
+  }
+  #ship-menu .mobile-label .open {
     right: 100%;
     left: auto;
   }
-  #ship-menu .mobile-label > span {
+  #ship-menu > span {
     padding-left: 0.5rem;
   }
   ul.ship-quick-menu {
@@ -5179,22 +5191,26 @@ figure.interactive-link .interactive-img .interactive-img-title {
     border: 1px solid #a1234a;
     background-color: #ffffff;
     border-radius: 0 5px 5px 5px;
-    padding: 0;
+    padding: 1rem;
     margin: 0;
     overflow: hidden;
   }
   ul.ship-quick-menu li {
     display: block;
+    margin-bottom: 0.75rem;
   }
-  ul.ship-quick-menu li.label {
+  ul.ship-quick-menu lilabel {
     display: none;
   }
   ul.ship-quick-menu li a {
-    padding: 0.5rem 1rem;
     color: #a1234a;
-    display: block;
+    display: flex;
+    align-items: center;
     font-size: 1rem;
     text-decoration: none;
+  }
+  ul.ship-quick-menu li:last-of-type {
+    margin-bottom: 0;
   }
 }
 @media screen and (min-width: 992px) {
@@ -5241,29 +5257,37 @@ figure.interactive-link .interactive-img .interactive-img-title {
   ul.ship-quick-menu li a {
     padding: 0.5rem;
     color: #a1234a;
-    display: block;
+    display: flex;
+    align-items: center;
     font-size: 0.7rem;
     text-decoration: none;
+  }
+  ul.ship-quick-menu li a > span.material-symbols-outlined {
+    font-size: 1rem;
+    line-height: 0.7rem;
   }
   .site-boxed ul.ship-quick-menu li a {
     padding: 0.5rem;
   }
 }
 .cruise-ship-meta-wrap {
-  padding-bottom: 50px;
-  border-top: 1px solid #e3e3e3;
+  padding-bottom: 2rem;
+  border-top: 1px solid #DCDCE3;
 }
 .cruise-ship-meta-wrap h3 {
   padding: 1rem 0;
+  margin: 0;
 }
 .cruise-ship-meta-wrap h4 {
   font-weight: bold;
+  margin: 0 0 1rem;
 }
 .cruise-ship-meta-wrap .meta-content {
   position: relative;
   padding-top: 1rem;
   padding-bottom: 30px;
   overflow: hidden;
+  line-height: 2rem;
 }
 .cruise-ship-meta-wrap .meta-content::after {
   display: block;
@@ -5281,16 +5305,25 @@ figure.interactive-link .interactive-img .interactive-img-title {
 
 .more-link,
 .more-cruise-lines {
+  display: inline-flex;
+  align-items: center;
   color: #fff;
   background-color: #a1234a;
   font-size: 0.75rem;
-  padding: 0.25rem 0.75rem;
+  padding: 0.25rem 0.5rem;
   border-radius: 5px;
   text-decoration: none;
 }
+.more-link span,
+.more-cruise-lines span {
+  font-size: 1rem;
+  line-height: 0.75rem;
+  padding-left: 0.5rem;
+}
 
 .more-cruise-lines {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
 }
 .more-cruise-lines.open {
   margin-top: 30px;
@@ -5340,25 +5373,58 @@ ul.accomodation-facilities li {
   text-align: right;
 }
 
-.cruise-ship-line {
+.ship-sidebar section {
+  margin-bottom: 2rem;
+}
+.ship-sidebar section .cruise-ship-line {
   border-radius: 10px;
   overflow: hidden;
   background-color: #F9F9FA;
   border: 1px solid #DCDCE3;
 }
-.cruise-ship-line img {
+.ship-sidebar section .cruise-ship-line img {
   mix-blend-mode: multiply;
 }
-.cruise-ship-line .ship-line-content {
+.ship-sidebar section .cruise-ship-line .ship-line-content,
+.ship-sidebar section .cruise-ship-line .ship-line-logo {
   padding: 1rem;
 }
-.cruise-ship-line .ship-line-content h3 {
+.ship-sidebar section .cruise-ship-line .ship-line-content a,
+.ship-sidebar section .cruise-ship-line .ship-line-logo a {
+  line-height: 0;
+}
+.ship-sidebar section .cruise-ship-line .ship-line-content h3,
+.ship-sidebar section .cruise-ship-line .ship-line-logo h3 {
   color: black;
   margin: 0;
   padding-bottom: 2rem;
 }
+.ship-sidebar section .cruise-ship-line .ship-line-content h3 a,
+.ship-sidebar section .cruise-ship-line .ship-line-logo h3 a {
+  color: black;
+}
+.ship-sidebar section .cruise-ship-line .ship-line-logo {
+  padding: 1rem;
+  text-align: center;
+}
+.ship-sidebar section .cruise-ship-line .ship-line-logo img {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 175px;
+}
+.ship-sidebar section h3 {
+  margin: 0;
+}
 
 /* EOF Ships */
+.cruise-line-about {
+  margin-bottom: 2rem;
+}
+.cruise-line-about h2 {
+  margin: 0 0 1rem;
+}
+
 @media screen and (min-width: 768px) {
   .single-cruise-type-wrapper.row-eq-height.left .destination-title,
   .udg_full_width_block.row-eq-height.left .destination-title,

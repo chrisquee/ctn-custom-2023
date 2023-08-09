@@ -156,14 +156,14 @@
 }
 .agenda-container .agenda-times .agenda-time .agenda-time-header {
     display: block;
-    border-bottom: 1px solid #cccccc;
-    background-color: #f2f2f2;
+    border-bottom: 1px solid $gray-20;
+    background-color: $gray-05;
     position: relative;
     overflow: hidden;
 }
 .agenda-time-header::after {
-    content: "\f017";
-    font-family: fontAwesome;
+    content: "\e8b5";
+    font-family: 'Material Symbols Outlined';
     position: absolute;
     right: 0;
     font-size: 150px;
@@ -198,7 +198,6 @@
 }
 .synopsis-wrap.meta-content p {
   line-height: 1.5rem;
-  margin-bottom: 1.5rem;
   font-weight: normal !important;
 }
 .agenda-content .speakers .speaker {

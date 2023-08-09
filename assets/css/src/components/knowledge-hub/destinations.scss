@@ -247,4 +247,15 @@
 .cq_overlay.item_wrap > .operator-logo > img {
     height: 100%;
 }
+
+.cq_overlay {
+    
+    a.destination-link {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+    }
+}
 /* EOF Destinations */

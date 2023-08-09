@@ -4,75 +4,98 @@
         padding: 0 0 0 15px !important;
     }
 }
-@media screen and (max-width: 767px) {
-    .ship-sidebar {
-        padding: 0 !important;
-    }
-}
 @media screen and (max-width:991px) {
     #ship-menu {
         position: fixed;
         top: 100px;
         z-index: 9;
         left: 100%;
-        right: -200px;
         min-width: 200px;
         border-radius: 5px;
         transition: all 0.7s ease;
+        
+        .mobile-label {
+            position: absolute;
+            right: 100%;
+            display: block;
+            transform: rotate(270deg);
+            color: white;
+            background-color: #a1234a;
+            padding: 0.5rem 1rem;
+            white-space: nowrap;
+            transform-origin: top right;
+            top: 0;
+            border-radius: 5px 5px 0 0;
+            font-size: 0.75rem;
+            -webkit-box-shadow: 3px 3px 8px 3px rgba(0,0,0,0.2);
+            box-shadow: 3px 3px 8px 3px rgba(0,0,0,0.2);
+            cursor: pointer;
+            transition: all 0.5s ease-in-out;
+            z-index: -1;
+        }
+        
+        &.stuck {
+            
+            .mobile-label {
+                transform: rotate(270deg) translateY(-100%);
+            }
+        }
+        
+        &.open {
+            padding: 0;
+            transform: translateX(calc(-100% - 17px));
+             -webkit-box-shadow: 3px 3px 8px 3px rgba(0,0,0,0.2); 
+            box-shadow: 3px 3px 8px 3px rgba(0,0,0,0.2);
+        }
+        
+        .label {
+            display: none;
+        }
+        
+        .mobile-label {
+            
+            .open {
+                right: 100%;
+                left: auto;
+            }
+        }
+        
+        > span {
+            padding-left: 0.5rem;
+        }
     }
-    #ship-menu .mobile-label {
-        position: absolute;
-        right: 50%;
-        display: block;
-        transform: rotate(270deg) translateY(-100%);
-        color: white;
-        background-color: #a1234a;
-        padding: 0.5rem 1rem;
-        white-space: nowrap;
-        transform-origin: top right;
-        top: 0;
-        border-radius: 5px 5px 0 0;
-        font-size: 0.75rem;
-        -webkit-box-shadow: 3px 3px 8px 3px rgba(0,0,0,0.2);
-        box-shadow: 3px 3px 8px 3px rgba(0,0,0,0.2);
-        cursor: pointer;
-        transition: all 0.5s ease-in-out;
-    }
-    #ship-menu.open {
-        padding: 0;
-        transform: translateX(-215px);
-         -webkit-box-shadow: 3px 3px 8px 3px rgba(0,0,0,0.2); 
-        box-shadow: 3px 3px 8px 3px rgba(0,0,0,0.2);
-    }
-    #ship-menu .mobile-label.open {
-        right: 100%;
-        left: auto;
-    }
-    #ship-menu .mobile-label > span {
-        padding-left: 0.5rem;
-    }
+    
+    
     ul.ship-quick-menu {
         display: block;
         width: 100%;
         border: 1px solid #a1234a;
         background-color: #ffffff;
         border-radius: 0 5px 5px 5px;
-        padding: 0;
+        padding: 1rem;
         margin: 0;
         overflow: hidden;
-    }
-    ul.ship-quick-menu li {
-        display: block;
-    }
-    ul.ship-quick-menu li.label {
-        display: none;
-    }
-    ul.ship-quick-menu li a {
-        padding: 0.5rem 1rem;
-        color: #a1234a;
-        display: block;
-        font-size: 1rem;
-        text-decoration: none;
+        
+        li {
+            display: block;
+            margin-bottom: 0.75rem;
+            
+            &label {
+                display: none;
+            }
+            
+            a {
+                color: #a1234a;
+                display: flex;
+                align-items: center;
+                font-size: 1rem;
+                text-decoration: none;
+            }
+            
+            &:last-of-type {
+                margin-bottom: 0;
+            }
+        }
     }
 }
 @media screen and (min-width:992px) {
@@ -119,9 +142,15 @@
     ul.ship-quick-menu li a {
         padding: 0.5rem;
         color: #a1234a;
-        display: block;
+        display: flex;
+        align-items: center;
         font-size: 0.7rem;
         text-decoration: none;
+        
+        > span.material-symbols-outlined {
+            font-size: 1rem;
+            line-height: 0.7rem;
+        }
     }
     .site-boxed ul.ship-quick-menu li a {
         padding: 0.5rem;
@@ -129,15 +158,17 @@
 }
 
 .cruise-ship-meta-wrap {
-    padding-bottom: 50px;
-    border-top: 1px solid #e3e3e3;
+    padding-bottom: 2rem;
+    border-top: 1px solid $gray-20;
     
     h3 {
         padding: 1rem 0;
+        margin: 0;
     }
     
     h4 {
         font-weight: bold;
+        margin: 0 0 1rem;
     }
     
     .meta-content {
@@ -145,6 +176,7 @@
         padding-top: 1rem;
         padding-bottom: 30px;
         overflow: hidden;
+        line-height: 2rem;
         
         &::after {
             display: block;
@@ -165,16 +197,25 @@
 
 .more-link, 
 .more-cruise-lines {
+    display: inline-flex;
+    align-items: center;
     color: #fff;
-    background-color: #a1234a;
+    background-color: $brand-colour;
     font-size: 0.75rem;
-    padding: 0.25rem 0.75rem;
+    padding: 0.25rem 0.5rem;
     border-radius: 5px;
     text-decoration: none;
+    
+    span {
+        font-size: 1rem;
+        line-height: 0.75rem;
+       padding-left: 0.5rem;
+    }    
 }
 
 .more-cruise-lines {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
     
     &.open {
         margin-top: 30px;
@@ -234,24 +275,55 @@ ul.accomodation-facilities {
         }
     }
 }
+.ship-sidebar {
+    
+    section {
+        margin-bottom: 2rem;
+        
+        .cruise-ship-line {
+            border-radius: 10px;
+            overflow: hidden;
+            background-color: $gray-05;
+            border: 1px solid $gray-20;
 
-.cruise-ship-line {
-    border-radius: 10px;
-    overflow: hidden;
-    background-color: $gray-05;
-    border: 1px solid $gray-20;
-    
-    img {
-        mix-blend-mode: multiply;
-    }
-    
-    .ship-line-content {
-        padding: 1rem;
-    
+            img {
+                mix-blend-mode: multiply;
+            }
+
+            .ship-line-content,
+            .ship-line-logo {
+                padding: 1rem;
+
+                a {
+                    line-height: 0;
+                }
+
+                h3 {
+                    color: black;
+                    margin: 0;
+                    padding-bottom: 2rem;
+
+                    a {
+                        color: black;
+                    }
+                }
+            }
+
+            .ship-line-logo {
+                padding: 1rem;
+                text-align: center;
+
+                img {
+                    width: auto;
+                    height: auto;
+                    max-width: 100%;
+                    max-height: 175px;
+                }
+            }
+        }
+        
         h3 {
-            color: black;
             margin: 0;
-            padding-bottom: 2rem;
         }
     }
 }

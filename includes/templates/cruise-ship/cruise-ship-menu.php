@@ -20,7 +20,7 @@
                     <?php } if ($ship->ship_facts) { ?>
                     <li class="hidden-md-up"><a href="#ship-facts">Ship Facts</a></li>
                     <?php } ?>
-                    <li><a href="#ship-about">Top <span class="fa fa-angle-up"></span></a></li>
+                    <li><a href="#ship-about">Top <span class="material-symbols-outlined">expand_less</span></a></li>
                 </ul>
             </div>
         </div>

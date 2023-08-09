@@ -55,7 +55,7 @@
               if ($cruise_line_count > 15) {
                   
                       echo '</div>
-                      <a href="javascript:void(0);" class="more-cruise-lines closed">See More <span class="fa fa-angle-down"></span></a>';
+                      <a href="javascript:void(0);" class="more-cruise-lines closed">See More <span class="material-symbols-outlined">expand_more</span></a>';
                   }
             ?>
         </div>
