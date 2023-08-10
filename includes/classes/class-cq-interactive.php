@@ -268,16 +268,16 @@ class cqInteractive {
         
         $html = '<div class="wrapper advent-calendar-wrapper" id="landing-page-wrapper">
                     <ul id="mobile-scroll">
-                        <li class="nav-up"><span class="lnr lnr-arrow-up"></span></li>
-                        <li class="nav-left"><span class="lnr lnr-arrow-left"></span></li>
+                        <li class="nav-up"><span class="material-symbols-outlined">arrow_upward</span></li>
+                        <li class="nav-left"><span class="material-symbols-outlined">arrow_back</span></li>
                         <li class="nav-desc"><span>Scroll to look around</span></li>
-                        <li class="nav-right"><span class="lnr lnr-arrow-right"></span></li>
-                        <li class="nav-down"><span class="lnr lnr-arrow-down"></span></li>
+                        <li class="nav-right"><span class="material-symbols-outlined">arrow_forward</span></li>
+                        <li class="nav-down"><span class="material-symbols-outlined">arrow_downward</span></li>
                     </ul>
-                    <a id="back_button" href="javascript:history.go(-1)" title="Return to previous page"><span class="fa fa-arrow-left"></span> Go back</a>
+                    <a id="back_button" href="javascript:history.go(-1)" title="Return to previous page"><span class="material-symbols-outlined">arrow_back</span> Go back</a>
                     <h3 id="interactive-item-title">' . get_the_title() . '</h3>
-                    <p class="interactive-description"><span class="fa fa-question"></span></p>
-                    <div  id="content" class="container-fluid no-padding">
+                    <p class="interactive-description"><span class="material-symbols-outlined">question_mark</span></p>
+                    <div id="content">
                         <div id="interactive_content_box">
                             <a class="close-icon"><div class="popup-close"><span></span><span></span><span></span></div></a>
                             <div id="interactive_content_container"></div>
@@ -375,7 +375,7 @@ class cqInteractive {
             
             $html .= '<figure class="interactive-link">
                         <div class="interactive-img">
-                            <a href="' . get_permalink($post_id) . '" class="interactive-img-link-icon" title="View"><span class="fa fa-external-link"></span></a>
+                            <a href="' . get_permalink($post_id) . '" class="interactive-img-link-icon" title="View"><span class="material-symbols-outlined">expand_content</span></a>
                             <a href="' . get_permalink($post_id) . '" class="interactive-img-link" title="View">
                             ' . get_the_post_thumbnail( $post_id, 'medium' ) . '
                             </a>

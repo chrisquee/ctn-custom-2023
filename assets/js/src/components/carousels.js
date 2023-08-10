@@ -1,3 +1,5 @@
+export {owl_init, fancybox_init};
+
 jQuery(document).ready(function() {
     owl_init();
     var $cqowl = jQuery(".cq-owl-carousel");
@@ -75,5 +77,27 @@ function owl_init() {
             }
         }
       });
+    });
+}
+
+function fancybox_init() {
+    
+    var $fancybox = jQuery("a.lightbox");
+    
+    $fancybox.each(function (index) {
+        $(this).fancybox({
+            thumbs : { autoStart:true },
+            toolbar: "auto",
+            arrows: true,
+            infobar: true,
+            smallBtn: "auto",
+            preventCaptionOverlap: true,
+            protect: true,
+            animationEffect: "zoom-in-out",
+            zoomOpacity: "auto",
+            transitionEffect: "rotate",
+            spinnerTpl: '<div class="fancybox-loading"></div>',
+            fullScreen: false,
+        });
     });
 }

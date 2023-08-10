@@ -9,7 +9,7 @@
             </div>
         </div>
 
-        <div class="col-md-5 article-title destination-title">
+        <div class="article-title destination-title">
             
             <?php get_udg_sponsor(); ?>
             
@@ -22,8 +22,8 @@
         </div>
     </div>
 </header><!-- .entry-header -->
-<section class="row article-links">
-    <div class="col-md-10     no-padding hidden-sm-down">
+<section class="article-links">
+    <div class="hidden-sm-down">
         <?php $ship->ship_breadcrumbs(true); ?>
     </div>
 </section>

@@ -1,3 +1,5 @@
+//import './components/cookies';
+import {createCookie, readCookie} from './components/cookies';
 import './components/legacy';
 import './components/login';
 import './components/carousels';
@@ -11,3 +13,4 @@ import './components/chosen';
 import './components/jquery-validate';
 import './components/dashboard';
 import './components/show-more';
+import './components/interactive';

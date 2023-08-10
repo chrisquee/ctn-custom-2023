@@ -1813,7 +1813,7 @@ class cqShortcodes {
     }
     
     function cq_wrap_oembed( $html, $url, $attr, $post_id ) {
-        if ( false !== strpos( $url, "://youtube.com") || false !== strpos( $url, "://youtu.be" ) ) {   
+        if ( false !== strpos( $url, "://youtube.com") || false !== strpos( $url, "://youtu.be" ) || false !== strpos( $url, "://vimeo" ) ) {   
 	       $html = '<div class="video-embed">' . $html . '</div>';
         }
         

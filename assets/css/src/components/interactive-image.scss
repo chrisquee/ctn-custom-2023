@@ -78,7 +78,8 @@ body.logged-in.admin-bar.single-cq_interactive_item #interactive_content_box {
     transform: translateX(-50%);
 }
 .single-cq_interactive_item #landing-page-wrapper #back_button {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
     padding: 0.75rem 1rem;
     background-color: #ffffff;
     border-radius: 30px;
@@ -88,11 +89,18 @@ body.logged-in.admin-bar.single-cq_interactive_item #interactive_content_box {
     box-shadow: 3px 3px 7px 0px rgba(0,0,0,0.3);
     z-index: 1;
     transition: all 0.5s ease-in-out;
+    font-weight: bold;
+    
+    span {
+        font-size: 1rem;
+        margin-right: 0.25rem;
+        font-weight: bold;
+    }
 }
 .single-cq_interactive_item #landing-page-wrapper #back_button:hover, .single-cq_interactive_item #content #back_button:active, .single-cq_interactive_item #content #back_button:focus {
     text-decoration: none;
     color: #ffffff;
-    background-color: #a1234a;
+    background-color: $brand-colour;
 }
 p.interactive-description {
     position: absolute;
@@ -112,22 +120,28 @@ p.interactive-description {
     margin: 0;
     box-shadow: 3px 3px 7px 0px rgba(0,0,0,0.3);
     transition: all 0.5s ease;
-}
-p.interactive-description::before {
-    position: absolute;
-    right: 100%;
-    content: "Click the markers to view more details";
-    width: auto;
-    white-space: nowrap;
-    margin-right: 10px;
-    padding: 0 0.75rem;
-    background-color: #ffffff;
-    border-radius: 30px;
-    font-size: 0.875rem;
-    box-shadow: 3px 3px 7px 0px rgba(0,0,0,0.3);
-    visibility: hidden;
-    opacity: 0;
-    transition: all 0.5s ease;
+    
+    span {
+        font-size: 1rem;
+        line-height: 36px;
+    }
+    
+    &::before {
+        position: absolute;
+        right: 100%;
+        content: "Click the markers to view more details";
+        width: auto;
+        white-space: nowrap;
+        margin-right: 10px;
+        padding: 0 0.75rem;
+        background-color: #ffffff;
+        border-radius: 30px;
+        font-size: 0.875rem;
+        box-shadow: 3px 3px 7px 0px rgba(0,0,0,0.3);
+        visibility: hidden;
+        opacity: 0;
+        transition: all 0.5s ease;
+    }
 }
 p.interactive-description:hover::before, p.interactive-description:focus::before, p.interactive-description:active::before {
     visibility: visible;
@@ -136,8 +150,7 @@ p.interactive-description:hover::before, p.interactive-description:focus::before
 .single-cq_interactive_item #landing-page-wrapper #interactive-item-title {
     display: inline-block;
     padding: 0;
-    /*background-color: #ffffff;
-    border-radius: 30px;*/
+    margin: 0;
     position: absolute;
     top: 1rem;
     left: 1rem;
@@ -190,13 +203,13 @@ ol#hotspots li.hotspot {
   display: inline-block;
   width: 24px;
   height: 24px;
-  background-color: #a1234a;
+  background-color: $brand-colour;
   border-radius: 30px;
   -webkit-border-radius: 30px;
   border: 1px solid #fff;
-  /*outline: 2px solid #a1234a;*/
-  -webkit-box-shadow: 0px 0px 0px 2px #a1234a;
-  box-shadow: 0px 0px 0px 2px #a1234a;
+  /*outline: 2px solid $brand-colour;*/
+  -webkit-box-shadow: 0px 0px 0px 2px $brand-colour;
+  box-shadow: 0px 0px 0px 2px $brand-colour;
   transform: scale(1);
   counter-increment: item;
   position: relative;
@@ -223,9 +236,9 @@ ol#hotspots li.hotspot:hover {
 }
 @keyframes hotspothover {
   /*50% {box-shadow: 0 0 0 20px rgba(161,35,74, 0.01);}
-  100% {box-shadow: 0px 0px 0px 2px #a1234a;}*/
-  0% {box-shadow: 0 0 0 2px #a1234a;}
-  100% {box-shadow: 0 0 0 20px rgba(161,35,74, 0.01);}
+  100% {box-shadow: 0px 0px 0px 2px $brand-colour;}*/
+  0% {box-shadow: 0 0 0 2px $brand-colour;}
+  100% {box-shadow: 0 0 0 20px rgba($brand-colour, 0.01);}
 }
 ol#hotspots li.hotspot.active {
     transform: scale(1.5);
@@ -268,7 +281,40 @@ ol#hotspots li.hotspot.active {
 }
 .interactive-content-img {
     padding: 1rem 0 1rem;
-    border-bottom: 1px solid #e8e8e8;
+    border-bottom: 1px solid $gray-20;
+    
+    img {
+        border-radius: 1rem;
+    }
+    
+    .owl-nav {
+        display: none;
+    }
+    
+    .owl-dots {
+        display: flex;
+        justify-content: center;
+        margin: 1rem 0 0;
+        
+        button.owl-dot {
+            width: 0.5rem;
+            height: 0.5rem;
+            display: block;
+            background-color: $gray-20;
+            border-radius: 50px;
+            border: none;
+            margin-right: 0.5rem;
+            padding: 0;
+
+            &:last-of-type {
+                margin-right: 0;
+            }
+
+            &.active {
+                background-color: $brand-colour;
+            }
+        }
+    }
 }
 .interactive-content {
     padding: 1rem 0 1rem;
@@ -279,7 +325,7 @@ ol#hotspots li.hotspot.active {
 .interactive-content iframe {
     max-width: 100%;
 }
-.interactive-content-wrapper .interactive-content-img.owl-carousel .owl-nav {
+/*.interactive-content-wrapper .interactive-content-img.owl-carousel .owl-nav {
     display: inherit;
 }
 .interactive-content-wrapper .interactive-content-img.owl-carousel .owl-nav.disabled {
@@ -303,7 +349,7 @@ ol#hotspots li.hotspot.active {
 .interactive-content-wrapper .interactive-content-img.owl-carousel .owl-nav > div.owl-next {
     right: 0;
     border-radius: 3px 0 0 3px;
-}
+}*/
 @keyframes spin {
   100% {
     transform: rotate(360deg);
@@ -422,9 +468,9 @@ ol#hotspots li.hotspot.active {
 }
 figure.interactive-link .interactive-img {
     position: relative;
-    border-radius: 10px;
+    border-radius: 1rem;
     overflow: hidden;
-    background-color: #2a2a2a;
+    background-color: $gray-90;
 }
 figure.interactive-link .interactive-img img {
     transition: all 0.5s ease-in-out;
@@ -437,7 +483,7 @@ figure.interactive-link .interactive-img .interactive-img-link-icon {
     top: 0;
     right: 0;
     background-color: rgba(255,255,255,0.5);
-    display: block;
+    display: flex;
     width: 42px;
     height: 42px;
     line-height: 42px;
@@ -446,6 +492,8 @@ figure.interactive-link .interactive-img .interactive-img-link-icon {
     padding-left: 3px;
     z-index: 1;
     transition: all 0.5s ease-in-out;
+    align-items: center;
+    justify-content: center;
 }
 figure.interactive-link .interactive-img .interactive-img-link-icon:hover {
     background-color: rgba(255,255,255,1);

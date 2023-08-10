@@ -4422,7 +4422,8 @@ body.logged-in.admin-bar.single-cq_interactive_item #interactive_content_box {
 }
 
 .single-cq_interactive_item #landing-page-wrapper #back_button {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
   padding: 0.75rem 1rem;
   background-color: #ffffff;
   border-radius: 30px;
@@ -4432,6 +4433,12 @@ body.logged-in.admin-bar.single-cq_interactive_item #interactive_content_box {
   box-shadow: 3px 3px 7px 0px rgba(0, 0, 0, 0.3);
   z-index: 1;
   transition: all 0.5s ease-in-out;
+  font-weight: bold;
+}
+.single-cq_interactive_item #landing-page-wrapper #back_button span {
+  font-size: 1rem;
+  margin-right: 0.25rem;
+  font-weight: bold;
 }
 
 .single-cq_interactive_item #landing-page-wrapper #back_button:hover, .single-cq_interactive_item #content #back_button:active, .single-cq_interactive_item #content #back_button:focus {
@@ -4459,7 +4466,10 @@ p.interactive-description {
   box-shadow: 3px 3px 7px 0px rgba(0, 0, 0, 0.3);
   transition: all 0.5s ease;
 }
-
+p.interactive-description span {
+  font-size: 1rem;
+  line-height: 36px;
+}
 p.interactive-description::before {
   position: absolute;
   right: 100%;
@@ -4485,8 +4495,7 @@ p.interactive-description:hover::before, p.interactive-description:focus::before
 .single-cq_interactive_item #landing-page-wrapper #interactive-item-title {
   display: inline-block;
   padding: 0;
-  /*background-color: #ffffff;
-  border-radius: 30px;*/
+  margin: 0;
   position: absolute;
   top: 1rem;
   left: 1rem;
@@ -4548,7 +4557,7 @@ ol#hotspots li.hotspot {
   border-radius: 30px;
   -webkit-border-radius: 30px;
   border: 1px solid #fff;
-  /*outline: 2px solid #a1234a;*/
+  /*outline: 2px solid $brand-colour;*/
   -webkit-box-shadow: 0px 0px 0px 2px #a1234a;
   box-shadow: 0px 0px 0px 2px #a1234a;
   transform: scale(1);
@@ -4580,7 +4589,7 @@ ol#hotspots li.hotspot:hover {
 
 @keyframes hotspothover {
   /*50% {box-shadow: 0 0 0 20px rgba(161,35,74, 0.01);}
-  100% {box-shadow: 0px 0px 0px 2px #a1234a;}*/
+  100% {box-shadow: 0px 0px 0px 2px $brand-colour;}*/
   0% {
     box-shadow: 0 0 0 2px #a1234a;
   }
@@ -4635,7 +4644,34 @@ ol#hotspots li.hotspot.active {
 
 .interactive-content-img {
   padding: 1rem 0 1rem;
-  border-bottom: 1px solid #e8e8e8;
+  border-bottom: 1px solid #DCDCE3;
+}
+.interactive-content-img img {
+  border-radius: 1rem;
+}
+.interactive-content-img .owl-nav {
+  display: none;
+}
+.interactive-content-img .owl-dots {
+  display: flex;
+  justify-content: center;
+  margin: 1rem 0 0;
+}
+.interactive-content-img .owl-dots button.owl-dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  display: block;
+  background-color: #DCDCE3;
+  border-radius: 50px;
+  border: none;
+  margin-right: 0.5rem;
+  padding: 0;
+}
+.interactive-content-img .owl-dots button.owl-dot:last-of-type {
+  margin-right: 0;
+}
+.interactive-content-img .owl-dots button.owl-dot.active {
+  background-color: #a1234a;
 }
 
 .interactive-content {
@@ -4650,36 +4686,31 @@ ol#hotspots li.hotspot.active {
   max-width: 100%;
 }
 
-.interactive-content-wrapper .interactive-content-img.owl-carousel .owl-nav {
-  display: inherit;
+/*.interactive-content-wrapper .interactive-content-img.owl-carousel .owl-nav {
+    display: inherit;
 }
-
 .interactive-content-wrapper .interactive-content-img.owl-carousel .owl-nav.disabled {
-  display: none;
+    display: none;
 }
-
 .interactive-content-wrapper .interactive-content-img.owl-carousel .owl-nav > div {
-  display: block;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background-color: #fff;
-  width: 32px;
-  height: 32px;
-  line-height: 32px;
-  text-align: center;
+    display: block;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #fff;
+    width: 32px;
+    height: 32px;
+    line-height: 32px;
+    text-align: center;
 }
-
 .interactive-content-wrapper .interactive-content-img.owl-carousel .owl-nav > div.owl-prev {
-  left: 0;
-  border-radius: 0 3px 3px 0;
+    left: 0;
+    border-radius: 0 3px 3px 0;
 }
-
 .interactive-content-wrapper .interactive-content-img.owl-carousel .owl-nav > div.owl-next {
-  right: 0;
-  border-radius: 3px 0 0 3px;
-}
-
+    right: 0;
+    border-radius: 3px 0 0 3px;
+}*/
 @keyframes spin {
   100% {
     transform: rotate(360deg);
@@ -4814,9 +4845,9 @@ ol#hotspots li.hotspot.active {
 
 figure.interactive-link .interactive-img {
   position: relative;
-  border-radius: 10px;
+  border-radius: 1rem;
   overflow: hidden;
-  background-color: #2a2a2a;
+  background-color: #494A57;
 }
 
 figure.interactive-link .interactive-img img {
@@ -4832,7 +4863,7 @@ figure.interactive-link .interactive-img .interactive-img-link-icon {
   top: 0;
   right: 0;
   background-color: rgba(255, 255, 255, 0.5);
-  display: block;
+  display: flex;
   width: 42px;
   height: 42px;
   line-height: 42px;
@@ -4841,6 +4872,8 @@ figure.interactive-link .interactive-img .interactive-img-link-icon {
   padding-left: 3px;
   z-index: 1;
   transition: all 0.5s ease-in-out;
+  align-items: center;
+  justify-content: center;
 }
 
 figure.interactive-link .interactive-img .interactive-img-link-icon:hover {
@@ -4918,6 +4951,22 @@ figure.interactive-link .interactive-img .interactive-img-title {
 .destination-related,
 .cruise-type-lines {
   margin-bottom: 2rem;
+}
+.destination-about h2,
+.destination-need-to-know h2,
+.destination-gallery h2,
+.destination-what-we-love h2,
+.destination-feature h2,
+.destination-cruise-lines h2,
+.cruise-type-news h2,
+.cruise-type-regions h2,
+.destination-related h2,
+.cruise-type-lines h2 {
+  margin-bottom: 2rem;
+}
+
+.destination-about h2 {
+  margin: 0;
 }
 
 .know-wrapper,
@@ -5133,11 +5182,14 @@ figure.interactive-link .interactive-img .interactive-img-title {
 /* EOF Destinations */
 /* BOF Cruise SHips */
 @media screen and (min-width: 768px) {
+  #ship-conent {
+    display: flex;
+  }
   .ship-sidebar {
     padding: 0 0 0 15px !important;
   }
 }
-@media screen and (max-width: 991px) {
+@media screen and (max-width: 1259px) {
   #ship-menu {
     position: fixed;
     top: 100px;
@@ -5213,7 +5265,7 @@ figure.interactive-link .interactive-img .interactive-img-title {
     margin-bottom: 0;
   }
 }
-@media screen and (min-width: 992px) {
+@media screen and (min-width: 1260px) {
   #ship-menu {
     position: sticky;
     top: 60px;
