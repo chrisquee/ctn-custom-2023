@@ -1264,8 +1264,22 @@ hr {
   align-items: center;
 }
 
+.newsletter-form {
+  display: flex;
+}
 .newsletter-form h5 {
   margin: 0 0 1rem;
+}
+.newsletter-form .input-wrap {
+  width: 100%;
+  margin-right: 0.5rem;
+}
+.newsletter-form button .material-symbols-outlined {
+  margin: 0;
+}
+
+.newsletter-block h2 {
+  margin-top: 0;
 }
 
 @media screen and (max-width: 767px) {
@@ -1592,6 +1606,16 @@ hr {
 .cq-cta-wrap.text-light .cq-cta-content h3,
 .cq-cta-wrap.text-light .cq-cta-content p {
   color: #ffffff;
+}
+.cq-cta-wrap.text-light input {
+  background-color: transparent;
+  color: white;
+}
+.cq-cta-wrap.text-light input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+.cq-cta-wrap.text-light input:focus, .cq-cta-wrap.text-light input:focus-visible {
+  outline: none;
 }
 .cq-cta-wrap.text-dark::before {
   position: absolute;
@@ -3542,6 +3566,24 @@ div[class^=abnde-] img {
 }
 
 /*EOF Category Carousel */
+/* BOF CQ Standard Carousel */
+.cq-owl-carousel .owl-stage {
+  display: flex;
+  align-items: center;
+}
+.cq-owl-carousel .owl-stage .owl-item > div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.cq-owl-carousel .owl-stage .owl-item > div > a {
+  max-width: 150px;
+}
+.cq-owl-carousel .owl-stage .owl-item > div > a > img {
+  border-radius: 5px;
+}
+
+/* EOF CQ Standard Carousel */
 .listing-container {
   padding: 1.875rem !important;
   position: relative;
@@ -4330,6 +4372,119 @@ div[class^=abnde-] img {
 }
 
 /* EOF Post Timeline */
+/* BOF Subscribe Form Styles */
+.step-header h2 {
+  margin-bottom: 60px;
+}
+
+.wpcf7 h4 {
+  font-family: "Merriweather", serif;
+}
+
+.wpcf7 button {
+  font-weight: normal !important;
+  text-transform: uppercase;
+}
+
+.wpcf7 .field-section > div > label {
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.wpcf7 .field-section .wpcf7-list-item-label {
+  font-weight: normal;
+}
+
+.wpcf7 .field-section input[type=text], .wpcf7 .field-section select {
+  padding: 1rem;
+  border: 1px solid #6b6b6b;
+  font-weight: normal;
+  line-height: 1;
+}
+
+.wpcf7 .wpcf7-form-control-wrap {
+  display: block;
+  margin-bottom: 45px;
+}
+
+.wpcf7 .button-radio label span, .wpcf7 .button-checkbox label span, .wpcf7 .terms-conditions label span {
+  padding: 1rem;
+  border: 1px solid #6b6b6b;
+  background-color: #fff;
+  text-transform: uppercase;
+  color: #3c3c3c;
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+  font-size: 0.875rem;
+}
+
+.wpcf7 .button-radio input, .wpcf7 .button-checkbox input, .wpcf7 .terms-conditions label > input {
+  display: none !important;
+}
+
+.wpcf7 .button-radio .wpcf7-list-item, .wpcf7 .button-checkbox .wpcf7-list-item, .wpcf7 .terms-conditions .wpcf7-list-item {
+  display: inline-block;
+  margin: 0;
+}
+
+.wpcf7 .travel-agent-type .button-radio .wpcf7-list-item {
+  margin-right: 1rem;
+}
+
+.wpcf7 .button-radio input:checked + span, .wpcf7 .button-checkbox input:checked + span, .wpcf7 .terms-conditions label > input:checked + span {
+  background-color: #a1234a;
+  color: #ffffff;
+  border-color: #a1234a;
+}
+
+.wpcf7 .wpcf7-form-control-wrap:not(.travel-agent-type) .button-radio, .wpcf7 .wpcf7-form-control-wrap:not(.travel-agent-type) .button-checkbox {
+  display: grid;
+  grid-gap: 15px;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+@media screen and (min-width: 768px) and (max-width: 1080px) {
+  .wpcf7 .wpcf7-form-control-wrap:not(.travel-agent-type) .button-radio, .wpcf7 .wpcf7-form-control-wrap:not(.travel-agent-type) .button-checkbox {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+@media screen and (max-width: 767px) {
+  .wpcf7 .wpcf7-form-control-wrap .button-radio, .wpcf7 .wpcf7-form-control-wrap .button-checkbox {
+    display: grid;
+    grid-gap: 15px;
+    grid-template-columns: repeat(1, 1fr) !important;
+  }
+  .wpcf7 .button-radio .wpcf7-list-item, .wpcf7 .button-checkbox .wpcf7-list-item, .wpcf7 .terms-conditions .wpcf7-list-item {
+    display: inline-block;
+    margin: 0;
+  }
+}
+.wpcf7 .button-subscribe {
+  color: white;
+  background-color: #a1234a;
+  border: 1px solid #a1234a;
+}
+
+.wpcf7 .button-subscribe:disabled {
+  opacity: 0.4;
+}
+
+.wpcf7 form .wpcf7-response-output {
+  margin: 2em 0.5em 1em;
+  padding: 0.5em 1em;
+  border: 2px solid red;
+  font-size: 1rem;
+}
+
+.cf7-check-all {
+  position: absolute;
+  bottom: 45px;
+  color: #a1234a !important;
+  font-size: 0.875rem;
+}
+
+/* EOF Subscribe Form Styles */
 /* BOF Interactive image styles */
 body.logged-in.admin-bar.single-cq_interactive_item #landing-page-wrapper {
   position: relative;
@@ -4648,30 +4803,6 @@ ol#hotspots li.hotspot.active {
 }
 .interactive-content-img img {
   border-radius: 1rem;
-}
-.interactive-content-img .owl-nav {
-  display: none;
-}
-.interactive-content-img .owl-dots {
-  display: flex;
-  justify-content: center;
-  margin: 1rem 0 0;
-}
-.interactive-content-img .owl-dots button.owl-dot {
-  width: 0.5rem;
-  height: 0.5rem;
-  display: block;
-  background-color: #DCDCE3;
-  border-radius: 50px;
-  border: none;
-  margin-right: 0.5rem;
-  padding: 0;
-}
-.interactive-content-img .owl-dots button.owl-dot:last-of-type {
-  margin-right: 0;
-}
-.interactive-content-img .owl-dots button.owl-dot.active {
-  background-color: #a1234a;
 }
 
 .interactive-content {

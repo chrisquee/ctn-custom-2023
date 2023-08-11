@@ -15,3 +15,31 @@
     }
 }
 /*EOF Category Carousel */
+
+/* BOF CQ Standard Carousel */
+.cq-owl-carousel {
+    
+    .owl-stage {
+        display: flex;
+        align-items: center;
+        
+        .owl-item {
+            
+            > div {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                
+                > a {
+                    max-width: 150px;
+                    
+                    > img {
+                        border-radius: 5px;
+                    }
+                }
+            }
+        }
+        
+    }
+}
+/* EOF CQ Standard Carousel */

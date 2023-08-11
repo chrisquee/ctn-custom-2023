@@ -286,35 +286,6 @@ ol#hotspots li.hotspot.active {
     img {
         border-radius: 1rem;
     }
-    
-    .owl-nav {
-        display: none;
-    }
-    
-    .owl-dots {
-        display: flex;
-        justify-content: center;
-        margin: 1rem 0 0;
-        
-        button.owl-dot {
-            width: 0.5rem;
-            height: 0.5rem;
-            display: block;
-            background-color: $gray-20;
-            border-radius: 50px;
-            border: none;
-            margin-right: 0.5rem;
-            padding: 0;
-
-            &:last-of-type {
-                margin-right: 0;
-            }
-
-            &.active {
-                background-color: $brand-colour;
-            }
-        }
-    }
 }
 .interactive-content {
     padding: 1rem 0 1rem;

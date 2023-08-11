@@ -162,9 +162,6 @@ function cq_template_loader( $template ) {
 add_filter( 'template_include', 'cq_template_loader' );
 
 
-
-
-
 function cq_my_account_menu($endpoints, $curr_page = '') {
 	
 	$menu_html = '';

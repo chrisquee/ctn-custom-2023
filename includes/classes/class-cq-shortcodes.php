@@ -200,6 +200,8 @@ class cqShortcodes {
     
 		$post_list = new WP_Query($post_list_args);
         
+        //print_r($post_list);
+        
         $html = '';
         
         if ($post_list->have_posts()) {
@@ -216,6 +218,10 @@ class cqShortcodes {
             }
             
             while($post_list->have_posts()) {
+                
+                if ($post_index == 5) {
+                    break;
+                }
                 
                 $post_list->the_post();
                 $thumb_id = get_post_thumbnail_id();
@@ -1250,16 +1256,15 @@ class cqShortcodes {
     
     public function cq_newsletter_block_shortcode($attributes) {
         
-        $html = '<div class="container no-padding clearfix">
-                    <div class="row">
-                        <div class="col-md-12 rel-slider no-padding">
-                            <div class="row no-padding cq-cta-wrap text-light" style="background-image: url(https://ctndev.qinternet.uk/resources/uploads/2021/10/CTN-Register-Background.jpg);">                   
-                                    <div class="cq-cta-content col-md-8 offset-md-2 to-center">
-                                        <h2>Subscribe to our newsletter</h2>
-                                        <p>Keep up to date with all the latest news and incentives in the Cruise Trade News Newsletter.</p>
-                                        ' . do_shortcode('[cq_newsletter_form]') . '
-                                    </div>
-                            </div>
+        $html = '<div class="newsletter-block no-padding clearfix">
+                    <div class="col-md-12 rel-slider no-padding">
+                        <div class="no-padding cq-cta-wrap text-light" style="background-image: url(https://ctndev.qinternet.uk/resources/uploads/2021/10/CTN-Register-Background.jpg);">                   
+                                <div class="cq-cta-content col-md-8 offset-md-2 to-center">
+                                    <h2>Subscribe to our newsletter</h2>
+                                    <p>Keep up to date with all the latest news and incentives in the Cruise Trade News Newsletter.</p>
+                                    ' . do_shortcode('[cq_newsletter_form]') . '
+                                </div>
+                                
                         </div>
                     </div>
                 </div>';

@@ -9,7 +9,7 @@ class cqContentEdit {
         add_filter( 'get_the_excerpt', array( $self, 'cq_wp_trim_excerpt' ));
         add_filter( 'wpseo_metabox_prio', array( $self, 'yoasttobottom') );
         add_filter( 'get_the_archive_title', array( $self, 'remove_archive_prefix') );
-        add_filter('get_image_tag_class',array( $self, 'add_lightbox_image_class') );
+        add_filter( 'get_image_tag_class',array( $self, 'add_lightbox_image_class') );
   	}
 
     function cq_wp_trim_excerpt( $text = '' ) {

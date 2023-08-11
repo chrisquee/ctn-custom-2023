@@ -201,7 +201,7 @@ class cqDashboard {
       
       global $wp_query;
       
-      if ( $wp_query->query_vars['pagename'] != 'my-account' || !is_user_logged_in()) {
+      if ( (isset($wp_query->query_vars['pagename']) && $wp_query->query_vars['pagename'] != 'my-account') || !is_user_logged_in()) {
         return $title;
       }
       
