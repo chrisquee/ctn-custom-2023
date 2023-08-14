@@ -4377,8 +4377,11 @@ div[class^=abnde-] img {
   margin-bottom: 60px;
 }
 
+.wpcf7 h2 {
+  margin: 0;
+}
 .wpcf7 h4 {
-  font-family: "Merriweather", serif;
+  margin: 0;
 }
 
 .wpcf7 button {
@@ -4392,14 +4395,35 @@ div[class^=abnde-] img {
 }
 
 .wpcf7 .field-section .wpcf7-list-item-label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-weight: normal;
+  height: 100%;
+}
+
+.wpcf7 .field-section .wpcf7-list-item label {
+  height: 100%;
 }
 
 .wpcf7 .field-section input[type=text], .wpcf7 .field-section select {
   padding: 1rem;
-  border: 1px solid #6b6b6b;
+  border: none;
+  border-bottom: 1px solid #DCDCE3;
+  background-color: transparent;
   font-weight: normal;
   line-height: 1;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0;
+}
+
+.wpcf7 .field-section .select-wrap {
+  border: none;
+  border-bottom: none;
+  background-color: transparent;
 }
 
 .wpcf7 .wpcf7-form-control-wrap {
@@ -4407,34 +4431,40 @@ div[class^=abnde-] img {
   margin-bottom: 45px;
 }
 
-.wpcf7 .button-radio label span, .wpcf7 .button-checkbox label span, .wpcf7 .terms-conditions label span {
+.wpcf7 .button-radio label input[type=radio] + span.wpcf7-list-item-label, .wpcf7 .button-checkbox label input[type=checkbox] + span.wpcf7-list-item-label, .wpcf7 .field-section .wpcf7-acceptance label span {
   padding: 1rem;
-  border: 1px solid #6b6b6b;
+  border: 1px solid #DCDCE3 !important;
   background-color: #fff;
   text-transform: uppercase;
-  color: #3c3c3c;
-  display: inline-block;
+  border-radius: 0.5rem;
+  color: #212529 !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
   text-align: center;
   font-size: 0.875rem;
+  line-height: 1.25rem;
 }
 
-.wpcf7 .button-radio input, .wpcf7 .button-checkbox input, .wpcf7 .terms-conditions label > input {
+.wpcf7 .field-section .button-radio input, .wpcf7 .field-section .button-checkbox input, .wpcf7 .field-section .wpcf7-acceptance label > input {
   display: none !important;
 }
 
 .wpcf7 .button-radio .wpcf7-list-item, .wpcf7 .button-checkbox .wpcf7-list-item, .wpcf7 .terms-conditions .wpcf7-list-item {
-  display: inline-block;
+  /*display: inline-block;*/
   margin: 0;
+  width: 100%;
+  height: 100%;
 }
 
 .wpcf7 .travel-agent-type .button-radio .wpcf7-list-item {
   margin-right: 1rem;
 }
 
-.wpcf7 .button-radio input:checked + span, .wpcf7 .button-checkbox input:checked + span, .wpcf7 .terms-conditions label > input:checked + span {
+.wpcf7 .button-radio input[type=radio]:checked + span.wpcf7-list-item-label, .wpcf7 .button-checkbox input[type=checkbox]:checked + span.wpcf7-list-item-label, .wpcf7 .field-section .wpcf7-acceptance label > input:checked + span {
   background-color: #a1234a;
-  color: #ffffff;
+  color: #ffffff !important;
   border-color: #a1234a;
 }
 
