@@ -46,50 +46,49 @@ class cqAuctionRegister {
     			}
 			}
 		
-		$content = '<div class="container">
-                    <div class="row register-form">
-						<div class="col-md-5 offset-md-1 form-wrap">
-						<div class="col-md-12">
-							<h2>Register</h2>
-						</div>
-						<div class="col-md-12">
-							'. $messages . '
-						</div>
-		<form id="cq_auction_signup_form" class="register_form" action="' . wp_registration_url() . '" method="post">  
-  			<div class="col-md-6 user-field-wrapper">
-        		<label for="username">Username  
-        		<input type="text" name="username" id="username"></label>
-			</div>
-			<div class="col-md-6 user-field-wrapper">
-        		<label for="email">Email address  
-        		<input type="text" name="email" id="email"></label>  
-			</div>
-			<div class="col-md-6 user-field-wrapper">
-        	   <label for="password">Password  
-        	   <input type="password" name="password" id="password"></label>
-			</div>
-			<div class="col-md-6 user-field-wrapper">
-        		<label for="password_confirmation">Confirm Password  
-        		<input type="password" name="password_confirmation" id="password_confirmation"></label>  
-  			</div>
-			<div class="col-md-12 user-field-wrapper terms">
-        		<input name="terms" id="terms" type="checkbox" value="Yes">  
-        		<label for="terms">I agree to the Terms of Service</label>
-			</div>
-  			<div class="col-md-12">
-        		<input type="submit" id="submitbtn" name="submit" class="submit_button" value="Sign Up" />
-			</div>
-  
-		</form>
-					</div>
-					<div class="col-md-5">
-						<div class="col-md-12">
-						<h2>Already a member?</h2>
-						<p><a href="' . get_permalink( get_page_by_path( 'log-in' ) ) . '" class="login-link">Click here to sign in to your account.</a></p>
-						</div>
-					</div>
-				</div>
-            </div>';
+		$content = '<div class="row register-form">
+						<div class="col-md-8 offset-md-2 form-wrap">
+                            <div class="col-md-12">
+                                <h2>Register</h2>
+                            </div>
+                            <div class="col-md-12">
+                                '. $messages . '
+                            </div>
+                            <form id="cq_auction_signup_form" class="register_form" action="' . wp_registration_url() . '" method="post">  
+                                <div class="user-field-wrapper">
+                                    <label for="username">Username  
+                                    <input type="text" name="username" id="username"></label>
+                                </div>
+                                <div class="user-field-wrapper">
+                                    <label for="email">Email address  
+                                    <input type="text" name="email" id="email"></label>  
+                                </div>
+                                <div class="user-field-wrapper">
+                                   <label for="password">Password  
+                                   <input type="password" name="password" id="password"></label>
+                                </div>
+                                <div class="user-field-wrapper">
+                                    <label for="password_confirmation">Confirm Password  
+                                    <input type="password" name="password_confirmation" id="password_confirmation"></label>  
+                                </div>
+                                <div class="user-field-wrapper terms">
+                                    <input name="terms" id="terms" type="checkbox" value="Yes">  
+                                    <label for="terms">I agree to the Terms of Service</label>
+                                </div>
+                                <div class="">
+                                    <input type="submit" id="submitbtn" name="submit" class="submit_button button button-brand button-fill" value="Sign Up" />
+                                </div>
+
+                            </form>
+                        </div>
+                            
+					    <div class="col-md-8 offset-md-2 form-wrap">
+				            <h2>Already a member?</h2>
+				            <a href="' . get_permalink( get_page_by_path( 'log-in' ) ) . '" class="login-link button button-outline button-brand">Click here to sign in to your account.</a>
+				        </div>
+                            
+				    </div>
+				</div>';
 
 		return $content;
 		

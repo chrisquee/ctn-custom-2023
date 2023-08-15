@@ -6,11 +6,7 @@
  */
 
 get_header('small'); ?>
-<div class="wrapper" id="single-wrapper">
-    
-    <div id="content" class="container-fluid no-padding">
 
-        <div class="row-fluid">
 			<div id="primary" class="col-md-12 content-area no-padding">
 				<?php while ( have_posts() ) : the_post(); ?>
 				<article id="post-<?php the_ID(); ?>" <?php post_class('row-fluid'); ?>>
@@ -21,18 +17,10 @@ get_header('small'); ?>
                         
                     <?php endwhile; // end of the loop. ?>
 					
-			</article> 
+			</article>
             </div><!-- #primary -->
            
         
-        <?php // get_sidebar(); ?>
-
-        </div><!-- .row -->
         
-    </div><!-- Container end -->
-	
-	
-    
-</div><!-- Wrapper end -->
 
 <?php get_footer(); ?>

@@ -33,7 +33,7 @@ class cqJobsFilter {
 		
 		$filter_html = '<div class="container-fluid jobs-filter no-padding ' . $extra_class . '">
 							<div class="row-fluid clearfix filter-wrapper">
-		<form action="' . esc_url(site_url('/jobs/')) . '" method="POST" id="filter" class="archive-row latest-wrapper">';
+		<form action="' . esc_url(site_url('/jobs/')) . '" method="POST" id="filter" class="archive-row">';
 	
 	    $filter_html .= '<div class="col_2">
                         <div class="input-group">
@@ -52,7 +52,7 @@ class cqJobsFilter {
 							</select>
 						</div>
 					</div>
-					<div class="col_2"><button class="button button-orange">Apply filter</button></div>
+					<div class="col_2"><button class="button button-brand button-outline">Apply filter</button></div>
 					<input type="hidden" name="action" value="filter_jobs">                 
 				</form>
                 </div>

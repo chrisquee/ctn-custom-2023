@@ -49,7 +49,7 @@ class cqCustomLogin {
     					<label for="password">Password</label>
     					<input id="password" type="password" name="password">
     					<a class="lost" href="' . wp_lostpassword_url() . '">Lost your password?</a>
-<input class="submit_button" type="submit" value="Login" name="submit">
+<input class="submit_button button button-brand button-fill" type="submit" value="Login" name="submit">
 <a class="get-account" href="' . get_permalink( get_page_by_path( 'register' ) ) . '">Not got an account? Create one here</a>
 <span class="close" href=""><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18"><path d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"/></svg></span>' .
      						wp_nonce_field( 'ajax-login-nonce', 'security' ) . '
@@ -120,7 +120,7 @@ class cqCustomLogin {
                                     <label for="password">Password</label>
                                     <input id="password" type="password" name="password">
                                     <a class="lost" href="' . wp_lostpassword_url(get_permalink()) . '">Lost your password?</a>
-                                    <input class="submit_button" type="submit" value="Login" name="submit">' .
+                                    <input class="submit_button button button-brand button-fill" type="submit" value="Login" name="submit">' .
                                 wp_nonce_field( 'ajax-login-nonce', 'security' ) . '
                                 </form>
                                 </div>
@@ -167,7 +167,7 @@ class cqCustomLogin {
             					<label for="user_login">Email
             					<input type="text" name="user_login" id="user_login"></label>
 								<input type="hidden" name="redirect_to" value="">
-            					<input type="submit" name="submit" class="submit_button lostpassword-button" value="Reset Password"/>' .
+            					<input type="submit" name="submit" class="submit_button lostpassword-button button button-brand button-fill" value="Reset Password"/>' .
      						wp_nonce_field( 'lp-nonce', 'security' ) . '
     						</form>
 						</div>
@@ -229,7 +229,7 @@ class cqCustomLogin {
          
         
             <input type="submit" name="submit" id="resetpass-button"
-                   class="submit_button button" value="Reset Password" />
+                   class="submit_button button button-brand button-fill" value="Reset Password" />
         
     		</form>
 			</div>
