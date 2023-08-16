@@ -166,8 +166,8 @@ header {
     
     &.dashboard-header {
         text-align: center;
-        padding: 1rem 0px;
-        background-color: $gray-05;
+        padding: 0;
+        margin: 0 1rem 1rem;
         
         h1 {
 	        color: #3D4657;

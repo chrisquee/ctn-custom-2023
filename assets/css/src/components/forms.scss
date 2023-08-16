@@ -1,34 +1,86 @@
 /*Login form BOF */
-form#login a {
-    text-decoration: none;
+
+form#login {
+    display: none;
+    background-color: #fff;
+    border-radius: 1rem;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.2);
+    position: fixed;
+    top: 50%;
+    padding: 2.5rem 1.5rem;
+    width: 350px;
+	max-width: 100%;
+    z-index: 9999;
+    left: 50%;
+	transform:translate(-50%,-50%);
+    color: #000;
+    font-size: 0.75rem;
+	overflow: auto;
+	max-height: 95%;
+    
+    a {
+        font-size: 0.875rem;
+        color: $gray-60;
+        text-decoration: none;
+        
+        &.lost {
+            display: block;
+            width: 100%;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+        
+        &.get-account{
+            color: #343232;
+            display: block;
+	        text-align: center;
+            margin: 10px 0 0 0;
+        }
+    }
+    
+    span {
+    
+        &.close {
+            color: $gray-70;
+            position: absolute;
+            right: 15px;
+            top: 15px;
+        }
+    }
+    
+    p {
+        &.status {
+            text-align: center;
+            margin: -25px 0 20px 0;
+            display: none;
+            line-height: 1.25;
+    
+            a {
+                font-size: 0.75rem;
+            }
+        } 
+    }
+    
+    h1 {
+        font-size: 1.75rem;
+        text-align: center;
+        line-height: 1;
+        margin: 0 0 2rem 0;
+    }
 }
 
-form#login span.close {
-    color: #DCDCDC;
-    position: absolute;
-    right: 15px;
-    top: 15px;
-}
 
-form#login a.lost{
-    color: #343232;
-    float: left;
-    margin: 10px 0 0 0;
-}
-form#login a.get-account{
-    color: #343232;
-    display: block;
-	text-align: center;
-    margin: 10px 0 0 0;
-}
-
-form#login p.status, form#message p.status {
+form#message p.status {
     text-align: center;
     margin: -25px 0 20px 0;
     display: none;
+    line-height: 1.25;
+    
+    a {
+        font-size: 0.75rem;
+    }
 }
 a.login_button{
-    font-family: 'Poppins', sans-serif;
     padding: 5px 7px 5px 7px;
     background-color: #FFF;
     border-radius: 3px;
@@ -60,45 +112,8 @@ a.login_button{
     font-size: 0.875rem;
     margin-left: 0.5rem;
 }
-form#login {
-    display: none;
-    background-color: #fff;
-    border-radius: 1rem;
-    box-shadow: 0 0 6px rgba(0, 0, 0, 0.2);
-    position: fixed;
-    top: 50%;
-    padding: 2.5rem 1.5rem;
-    width: 350px;
-	max-width: 100%;
-    z-index: 9999;
-    left: 50%;
-	transform:translate(-50%,-50%);
-    color: #000;
-    font-size: 0.75rem;
-	overflow: auto;
-	max-height: 95%;
-    
-    a {
-        font-size: 0.875rem;
-        color: $gray-60;
-        
-        &.lost {
-            display: block;
-            width: 100%;
-            text-align: center;
-            margin-bottom: 1rem;
-        }
-    }
-}
 
-form#login h1 {
-    color: #000;
-    font-size: 1.5rem;
-    font-weight: 700;
-    text-align: center;
-    line-height: 1;
-    margin: 0 0 2rem 0;
-}
+
 .message-logged-out p, .message-logged-out .button {
 	display: block;
 	text-align: center;
@@ -116,6 +131,7 @@ form.lost_pw_form {
         font-weight: bold;
     }
 }
+
 .user-field-wrapper.terms label {
 	display: inline-block;
 }
@@ -126,6 +142,7 @@ form.register_form input,
 form.lost_pw_form input {
     margin: 0.5rem 0 1.25rem 0;
 }
+
 form.register_form input[type=checkbox] {
     display: inline-block;
     width: auto;
@@ -154,16 +171,19 @@ a.submit_button {
 #lostpasswordform {
     margin-bottom: 4rem;
 }
+
 form#login input.submit_button, 
 form.login_form input.submit_button {
 	display: block;
 	width: 100%;
 }
+
 p.no-profile {
 	display: block;
 	text-align: center;
 	font-size: 1rem;
 }
+
 a#complete_profile {
 	display: block;
     text-align: center;
@@ -210,7 +230,9 @@ a#complete_profile {
     background-color: #9d4b45;
     color: white;
 }
-.error-msg-link:active, .error-msg-link:hover, .error-msg-link:focus {
+.error-msg-link:active, 
+.error-msg-link:hover, 
+.error-msg-link:focus {
     text-decoration: none;
 }
 .user-field-wrapper.terms label {

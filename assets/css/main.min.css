@@ -1890,8 +1890,8 @@ ul#account_menu li.acc-active > a {
 
 header.dashboard-header {
   text-align: center;
-  padding: 1rem 0px;
-  background-color: #F9F9FA;
+  padding: 0;
+  margin: 0 1rem 1rem;
 }
 header.dashboard-header h1 {
   color: #3D4657;
@@ -2163,40 +2163,35 @@ div.mce-menubar {
   display: block;
 }
 
-.exopite-sof-field {
-  padding: 1rem 0;
+/*.exopite-sof-field {
+	padding: 1rem 0;
 }
-
 .exopite-sof-field h4 {
-  font-size: 1rem;
-  margin-bottom: 0;
-  display: inline-block;
-  width: 25%;
-  vertical-align: top;
-  padding: 0.5rem 0;
+	font-size: 1rem;
+	margin-bottom: 0;
+	display: inline-block;
+	width: 25%;
+	vertical-align: top;
+	padding: 0.5rem 0;
 }
-
 @media screen and (max-width: 767px) {
-  .exopite-sof-field h4, .exopite-sof-fieldset {
-    width: 100% !important;
-  }
+	.exopite-sof-field h4, .exopite-sof-fieldset {
+		width: 100% !important;
+	}
 }
 .exopite-sof-fieldset {
-  display: inline-block;
-  width: 70%;
+    display: inline-block;
+    width: 70%;
 }
-
-.exopite-sof-fieldset input,
+.exopite-sof-fieldset input, 
 .exopite-sof-fieldset .select-wrap {
-  display: inline-block !important;
-  width: auto !important;
-  min-width: 40%;
+	display: inline-block !important;
+	width: auto !important;
+	min-width: 40%;
 }
-
 .exopite-sof-text-desc {
-  font-size: 0.75rem;
-}
-
+    font-size: 0.75rem;
+}*/
 .comment_content {
   padding: 1rem;
   background-color: rgb(255, 255, 255);
@@ -2230,49 +2225,83 @@ div.mce-menubar {
   margin-left: -5px;
 }
 
-.brands-section .vc_general.vc_cta3 {
-  border: none !important;
-  box-shadow: 2px 2px 9px 0px rgba(0, 0, 0, 0.2);
+/*.brands-section .vc_general.vc_cta3 {
+	border: none !important;
+	box-shadow: 2px 2px 9px 0px rgba(0,0,0,0.2);
 }
-
 .brands-section .vc_general.vc_cta3 h2 {
-  margin: 0;
-  line-height: 50px;
-}
-
+	margin: 0;
+	line-height: 50px;
+}*/
 /*Login form BOF */
+form#login {
+  display: none;
+  background-color: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.2);
+  position: fixed;
+  top: 50%;
+  padding: 2.5rem 1.5rem;
+  width: 350px;
+  max-width: 100%;
+  z-index: 9999;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #000;
+  font-size: 0.75rem;
+  overflow: auto;
+  max-height: 95%;
+}
 form#login a {
+  font-size: 0.875rem;
+  color: #848596;
   text-decoration: none;
 }
-
-form#login span.close {
-  color: #DCDCDC;
-  position: absolute;
-  right: 15px;
-  top: 15px;
-}
-
 form#login a.lost {
-  color: #343232;
-  float: left;
-  margin: 10px 0 0 0;
+  display: block;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 1rem;
 }
-
 form#login a.get-account {
   color: #343232;
   display: block;
   text-align: center;
   margin: 10px 0 0 0;
 }
-
-form#login p.status, form#message p.status {
+form#login span.close {
+  color: #6F7181;
+  position: absolute;
+  right: 15px;
+  top: 15px;
+}
+form#login p.status {
   text-align: center;
   margin: -25px 0 20px 0;
   display: none;
+  line-height: 1.25;
+}
+form#login p.status a {
+  font-size: 0.75rem;
+}
+form#login h1 {
+  font-size: 1.75rem;
+  text-align: center;
+  line-height: 1;
+  margin: 0 0 2rem 0;
+}
+
+form#message p.status {
+  text-align: center;
+  margin: -25px 0 20px 0;
+  display: none;
+  line-height: 1.25;
+}
+form#message p.status a {
+  font-size: 0.75rem;
 }
 
 a.login_button {
-  font-family: "Poppins", sans-serif;
   padding: 5px 7px 5px 7px;
   background-color: #FFF;
   border-radius: 3px;
@@ -2303,44 +2332,6 @@ a.login_button {
   line-height: 1rem;
   font-size: 0.875rem;
   margin-left: 0.5rem;
-}
-
-form#login {
-  display: none;
-  background-color: #fff;
-  border-radius: 1rem;
-  box-shadow: 0 0 6px rgba(0, 0, 0, 0.2);
-  position: fixed;
-  top: 50%;
-  padding: 2.5rem 1.5rem;
-  width: 350px;
-  max-width: 100%;
-  z-index: 9999;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: #000;
-  font-size: 0.75rem;
-  overflow: auto;
-  max-height: 95%;
-}
-form#login a {
-  font-size: 0.875rem;
-  color: #848596;
-}
-form#login a.lost {
-  display: block;
-  width: 100%;
-  text-align: center;
-  margin-bottom: 1rem;
-}
-
-form#login h1 {
-  color: #000;
-  font-size: 1.5rem;
-  font-weight: 700;
-  text-align: center;
-  line-height: 1;
-  margin: 0 0 2rem 0;
 }
 
 .message-logged-out p, .message-logged-out .button {
@@ -2455,7 +2446,9 @@ a#complete_profile {
   color: white;
 }
 
-.error-msg-link:active, .error-msg-link:hover, .error-msg-link:focus {
+.error-msg-link:active,
+.error-msg-link:hover,
+.error-msg-link:focus {
   text-decoration: none;
 }
 
