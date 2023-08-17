@@ -217,9 +217,9 @@ jQuery(function($){
     );
     
     jQuery('#sidebar .menu-open').on('click', function() {
-            jQuery('#sidebar').toggleClass('mobile-active');
-            jQuery('.menu-open i.fa').toggleClass("fa-bars fa-close");
-        });
+        jQuery('#sidebar').toggleClass('mobile-active');
+        jQuery('.menu-open i.fa').toggleClass("fa-bars fa-close");
+    });
 
     jQuery(document).on("hidden.bs.modal", "#deleteModal", function () {
         jQuery(".set-delete").attr('data-id', '');

@@ -1,0 +1,88 @@
+/* BOF Notices */
+#notices {
+    margin-bottom: 1rem;
+    
+    #user-notices {
+        padding: 0;
+        margin: 0;
+        list-style-type: none;
+        
+        .notice {
+            padding: 0.5rem 1rem 0.5rem 1.75rem;
+            margin-bottom: 0.25rem;
+            border: 1px solid;
+            border-radius: 5px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            
+            &:before {
+                position: absolute;
+                font-family: 'Material Symbols Outlined';
+                left: 0.5rem;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+        }
+        
+        .notice {
+            
+            &.info {
+                color: #059;
+                background-color: #BEF;
+                
+                &:before {
+                    content: "\e88e"
+                }
+            }
+            
+            &.success {
+                color: #fff;
+                background-color: limegreen;
+                border-color: limegreen;
+                
+                &:before {
+                    content: "\e86c"
+                }
+            }
+            
+            &.warning {
+                color: #9F6000;
+                background-color: #FEEFB3;
+                border-color: #FEEFB3;
+                
+                &:before {
+                    content: "\e002"
+                }
+            }
+            
+            &.error {
+                color: #fff;
+                background-color: #f03;
+                border-color: #f03;
+                
+                &:before {
+                    content: "\e000";
+                }
+            }
+            
+            .notice-link {
+                font-size: 0.75rem;
+                margin-left: auto;
+                padding: 0.25rem 0.5rem;
+                border-radius: 5px;
+                color: #fff;
+                border: 2px solid #fff;
+                transition: all 0.5s ease-in-out;
+                
+                &:hover,
+                &:active,
+                &:focus {
+                    text-decoration: none;
+                    background-color: rgba(255,255,255,0.3); 
+                }
+            }
+        }
+    }
+}
+/* EOF Notices */

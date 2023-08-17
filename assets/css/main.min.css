@@ -1650,21 +1650,12 @@ hr {
 /*dashboard pagination */
 ul.page-numbers {
   list-style: none;
-  margin: 0;
+  margin: 2rem 0 0;
   padding: 0;
 }
 
-.page-numbers:after {
-  content: ".";
-  display: block;
-  clear: both;
-  visibility: hidden;
-  line-height: 0;
-  height: 0;
-}
-
 ul.page-numbers li {
-  display: block;
+  display: inline-block;
   float: left;
   margin: 0 4px 4px 0;
   text-align: center;
@@ -1672,17 +1663,25 @@ ul.page-numbers li {
 
 .page-numbers a,
 .page-numbers span {
-  line-height: 1.6em;
-  display: block;
-  padding: 0 0.75rem;
-  height: 32px;
-  line-height: 32px;
-  font-size: 1rem;
+  line-height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  height: 2rem;
+  min-width: 2rem;
+  font-size: 0.875rem;
   text-decoration: none;
   font-weight: 400;
-  color: #3d4657;
+  color: #a1234a;
   cursor: pointer;
-  border: 1px solid #3d4657;
+  border: 1px solid #a1234a;
+  border-radius: 50px;
+}
+.page-numbers a.next, .page-numbers a.prev,
+.page-numbers span.next,
+.page-numbers span.prev {
+  padding: 0 0.75rem;
 }
 
 .page-numbers a span {
@@ -1693,7 +1692,7 @@ ul.page-numbers li {
 .page-numbers.current,
 .page-numbers.current:hover {
   color: #fff;
-  background: #3d4657;
+  background: #a1234a;
   text-decoration: none;
 }
 
@@ -1812,6 +1811,7 @@ nav.sidebar {
     position: absolute;
     left: -250px;
     transition: all ease-in-out 0.6s;
+    height: 100%;
   }
   .seller-dashboard nav.sidebar {
     position: absolute;
@@ -1830,13 +1830,14 @@ nav.sidebar {
     display: inline-block;
     width: auto;
     padding: 0.75rem;
-    background-color: #dbdbdb;
+    background-color: #F9F9FA;
     color: #000;
     transform: rotate(90deg);
     transform-origin: bottom right;
     font-weight: bold;
-    box-shadow: 2px 3px 5px rgba(0, 0, 0, 0.1);
+    box-shadow: -2px -3px 5px rgba(0, 0, 0, 0.1);
     cursor: pointer;
+    border-radius: 0.5rem 0.5rem 0 0;
   }
   .seller-dashboard .offer-actions .button-wrap {
     display: block;
@@ -2532,6 +2533,77 @@ a#complete_profile {
   content: "\e000";
 }
 
+/* BOF Notices */
+#notices {
+  margin-bottom: 1rem;
+}
+#notices #user-notices {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+}
+#notices #user-notices .notice {
+  padding: 0.5rem 1rem 0.5rem 1.75rem;
+  margin-bottom: 0.25rem;
+  border: 1px solid;
+  border-radius: 5px;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+#notices #user-notices .notice:before {
+  position: absolute;
+  font-family: "Material Symbols Outlined";
+  left: 0.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+}
+#notices #user-notices .notice.info {
+  color: #059;
+  background-color: #BEF;
+}
+#notices #user-notices .notice.info:before {
+  content: "\e88e";
+}
+#notices #user-notices .notice.success {
+  color: #fff;
+  background-color: limegreen;
+  border-color: limegreen;
+}
+#notices #user-notices .notice.success:before {
+  content: "\e86c";
+}
+#notices #user-notices .notice.warning {
+  color: #9F6000;
+  background-color: #FEEFB3;
+  border-color: #FEEFB3;
+}
+#notices #user-notices .notice.warning:before {
+  content: "\e002";
+}
+#notices #user-notices .notice.error {
+  color: #fff;
+  background-color: #f03;
+  border-color: #f03;
+}
+#notices #user-notices .notice.error:before {
+  content: "\e000";
+}
+#notices #user-notices .notice .notice-link {
+  font-size: 0.75rem;
+  margin-left: auto;
+  padding: 0.25rem 0.5rem;
+  border-radius: 5px;
+  color: #fff;
+  border: 2px solid #fff;
+  transition: all 0.5s ease-in-out;
+}
+#notices #user-notices .notice .notice-link:hover, #notices #user-notices .notice .notice-link:active, #notices #user-notices .notice .notice-link:focus {
+  text-decoration: none;
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+/* EOF Notices */
 /*!
 Chosen, a Select Box Enhancer for jQuery and Prototype
 by Patrick Filler for Harvest, http://getharvest.com
@@ -3423,6 +3495,10 @@ div[class^=abnde-] img {
 
 /* EOF Speakers custom post type */
 /* BOF Spinner */
+.spin {
+  -webkit-animation: spin 1s infinite linear;
+}
+
 @keyframes spin {
   100% {
     transform: rotate(360deg);

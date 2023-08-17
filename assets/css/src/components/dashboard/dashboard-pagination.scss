@@ -1,21 +1,12 @@
 /*dashboard pagination */
 ul.page-numbers {
     list-style: none;
-    margin: 0;
+    margin: 2rem 0 0;
 	padding: 0;
 }
 
-.page-numbers:after {
-    content: ".";
-    display: block;
-    clear: both;
-    visibility: hidden;
-    line-height: 0;
-    height: 0;
-}
-
 ul.page-numbers li {
-    display: block;
+    display: inline-block;
     float: left;
     margin: 0 4px 4px 0;
     text-align: center;
@@ -23,17 +14,25 @@ ul.page-numbers li {
 
 .page-numbers a,
 .page-numbers span {
-    line-height: 1.6em;
-    display: block;
-    padding: 0 0.75rem;
-    height: 32px;
-    line-height: 32px;
-    font-size: 1rem;
+    line-height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    height: 2rem;
+    min-width: 2rem;
+    font-size: 0.875rem;
     text-decoration: none;
     font-weight: 400;
-	color: #3d4657;
+	color: $brand-colour;
     cursor: pointer;
-    border: 1px solid #3d4657;
+    border: 1px solid $brand-colour;
+    border-radius: 50px;
+    
+    &.next,
+    &.prev {
+        padding: 0 0.75rem;
+    }
 }
 
 .page-numbers a span { padding: 0 }
@@ -42,7 +41,7 @@ ul.page-numbers li {
 .page-numbers.current,
 .page-numbers.current:hover {
     color: #fff;
-    background: #3d4657;
+    background: $brand-colour;
     text-decoration: none;
 }
 
