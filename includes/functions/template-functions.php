@@ -195,7 +195,7 @@ function cq_my_account_menu($endpoints, $curr_page = '') {
         
         $icon_html = '';
         if (isset($value['icon']) && $value['icon'] !== '') {
-            $icon_html = '<i class="fa ' . esc_attr($value['icon']) . '"></i>';
+            $icon_html = '<i class="material-symbols-outlined">' . esc_attr($value['icon']) . '</i>';
         }
 		
 		$menu_html .= '<li class="account-menu-item ' . esc_attr($active_class) . '"><a href="' . esc_url(site_url( '/my-account/' . $value['url'])) . '">' . $icon_html . esc_html($value['name']) . $append . '</i></a>';
@@ -215,7 +215,7 @@ function cq_my_account_menu($endpoints, $curr_page = '') {
                 
                 $child_icon_html = '';
                 if (isset($url['icon']) && $url['icon'] !== '') {
-                    $child_icon_html = '<i class="fa ' . esc_attr($url['icon']) . '"></i>';
+                    $child_icon_html = '<i class="material-symbols-outlined">' . esc_attr($url['icon']) . '</i>';
                 }
                 
 				$menu_html .= '<li class="account-menu-item ' . esc_attr($active_class) . '"><a href="' . esc_url(site_url( '/my-account/' . $url['url'])) . '">' . $child_icon_html . esc_html($url['name']) . $append . '</a></li>';

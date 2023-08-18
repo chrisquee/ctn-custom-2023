@@ -28,7 +28,7 @@ class cqDashboard {
               'permissions' => 'subscriber',
 			  'url' => 'my-details',
 			  'name' => 'My Details',
-			  'icon' => 'fa-angle-right'
+			  'icon' => 'chevron_right'
 		  ),
          /* array(
 			  'url' => 'my-subcriptions',
@@ -43,17 +43,17 @@ class cqDashboard {
           array(
 			  'url' => 'current-jobs',
 			  'name' => 'Jobs',
-			  'icon' => 'fa-angle-down',
+			  'icon' => 'work',
               'permissions' => 'subscriber',
               'children' => array(
 			  		array(
 			  			'url' => 'add-new-job',
 			  			'name' => 'Add a job',
-			  			'icon' => 'fa-angle-right'),
+			  			'icon' => 'chevron_right'),
 				  	array(
 			  			'url' => 'current-jobs',
 			  			'name' => 'Current jobs',
-			  			'icon' => 'fa-angle-right'),
+			  			'icon' => 'chevron_right'),
                   )
 		  	)
 	  );
@@ -80,7 +80,7 @@ class cqDashboard {
             $this->cq_endpoints[] = array(
 			     'url' => 'verify-account',
 			     'name' => 'Verify your account',
-			     'icon' => 'fa-angle-right',
+			     'icon' => 'chevron_right',
                  'add_menu' => false,
             );
             
@@ -101,7 +101,7 @@ class cqDashboard {
             $this->cq_endpoints[] = array(
 			     'url' => 'job-edit',
 			     'name' => 'Update job Listing',
-			     'icon' => 'fa-angle-right',
+			     'icon' => 'chevron_right',
                  'add_menu' => false,
             );
       

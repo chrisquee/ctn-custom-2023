@@ -1,0 +1,41 @@
+/* BOF Account Menu Styles */
+.seller-dashboard nav.sidebar ul {
+	background-color: transparent;
+}
+.seller-dashboard nav.sidebar ul li {
+	display: block !important;
+	text-align: left;
+}
+.seller-dashboard nav.sidebar ul li a {
+	width: 100%;
+	text-transform: none !important;
+	padding: 0.75rem 1rem !important;
+}
+.seller-dashboard nav.sidebar ul li a i {
+    color: #ACACAC;
+	display: inline-block;
+    width: 20px;
+    margin-right: 0.5rem;
+    text-align: center;
+    }
+ul#account_menu li a:hover {
+	text-decoration: none;
+}
+ul#account_menu li > a > i {
+	margin-left: 0.5rem;
+}
+ul#account_menu li.acc-active > a {
+	font-weight: bold;
+}
+ul#account_menu li > .child_menu {
+    display: none;
+    transition: all 0.5s ease-in-out;
+}
+ul#account_menu li.acc-active > .child_menu {
+    height: auto;
+    display: block !important;
+}
+ul#account_menu li.account-menu-item:hover > .child_menu {
+    display: block;
+}
+/* EOF Account Menu Styles */
