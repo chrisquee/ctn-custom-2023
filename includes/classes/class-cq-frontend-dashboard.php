@@ -158,6 +158,7 @@ class cqDashboard {
   }
 	
   public function cq_redirect_dashboard($template) {
+      
       global $wp_query;
 
       if ( $wp_query->query_vars['pagename'] != 'my-account' || !is_user_logged_in()) {

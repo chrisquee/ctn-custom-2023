@@ -213,8 +213,8 @@ class cqJobUser {
 
                         <!-- Modal footer -->
                         <div class="modal-footer">
-                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                          <button type="button" class="btn btn-danger set-delete" data-id="" data-nonce="' . wp_create_nonce( 'job-remove-nonce' ) . '">Delete</button>
+                          <button type="button" class="button button-brand button-outline" data-bs-dismiss="modal">Close</button>
+                          <button type="button" class="button button-brand button-fill set-delete" data-id="" data-nonce="' . wp_create_nonce( 'job-remove-nonce' ) . '">Delete</button>
                         </div>
 
                       </div>

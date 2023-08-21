@@ -14,3 +14,4 @@ import './components/jquery-validate';
 import './components/dashboard';
 import './components/show-more';
 import './components/interactive';
+import './components/modals';

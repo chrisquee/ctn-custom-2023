@@ -13,9 +13,11 @@ class cqContentEdit {
   	}
 
     function cq_wp_trim_excerpt( $text = '' ) {
+        
         $raw_excerpt = $text;
 
-        if ( $text != '' && !is_null($text) ) {
+        if ( $text != '' && $text != null ) {
+        
             $text = get_the_content( '' );
             $text = strip_shortcodes( $text );
             $text = apply_filters( 'the_content', $text );

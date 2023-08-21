@@ -160,71 +160,9 @@ jQuery(function($){
         }
     );
     
-    jQuery('.set-draft').on('click', function (event) {
-		event.preventDefault();
-			job_id = jQuery(this).attr("data-id");
-			job_name = jQuery(this).attr("data-itemName");
-            job_action = jQuery(this).attr("data-itemAction");
-			
-            jQuery(".set-delete").attr('data-id', job_id);
-            jQuery("#item_name").text(job_name);
-	   }
-    );
-
-    jQuery('.set-delete').on('click', 
-        function (event) {
-            event.preventDefault();
-            var deleteButtonWidth = jQuery( this ).width()
-            if ( jQuery( this ).hasClass( "delete-confirm" ) && !jQuery( this ).hasClass( "clicked" ) && !jQuery( this ).hasClass( "sent" )  ) {
-
-                var job_id = jQuery(this).attr("data-id");
-                nonce = ajax_login_object.ctn_nonce;
-                var adminURL = ajax_login_object.ajaxurl;
-                var deleteButton = jQuery( this );
-                var here = this;
-
-                deleteButton.html('<i class="fa fa-refresh fa-spin"></i>').width(deleteButtonWidth);
-
-
-                jQuery.ajax({
-                    type : "post",
-                    dataType : "json",
-                    url : adminURL,
-                    data : {action: "remove_job", job_id : job_id, security: nonce},
-                    success: function(response) {
-                        if(response.status == "success") {
-                            var id = response.job_id;
-                            jQuery('#row-'+id).find('td, th').fadeOut('fast', 
-                                function(id){ 
-                                    jQuery('#row-'+id).remove();                    
-                                });  
-                            deleteButton.html('Deleted <i class="fa fa-check"></i>').width('auto').removeClass('clicked').attr("disabled", true);;
-                        } else {
-                             alert("This item could not be deleted")
-                        }
-                    }
-                }) 
-            } else {
-                jQuery(this).html('Confirm').addClass('delete-confirm').addClass('clicked').delay(1000)
-                    .queue(function(next){
-                        jQuery(this).removeClass('clicked');
-                        next();
-                    })
-
-            }
-        }
-                            
-    );
-    
     jQuery('#sidebar .menu-open').on('click', function() {
         jQuery('#sidebar').toggleClass('mobile-active');
         jQuery('.menu-open i.fa').toggleClass("fa-bars fa-close");
     });
-
-    jQuery(document).on("hidden.bs.modal", "#deleteModal", function () {
-        jQuery(".set-delete").attr('data-id', '');
-        jQuery("#item_name").text('');
-        jQuery(".set-delete").removeClass('clicked').removeClass('delete-confirm').html('Delete').attr("disabled", false);
-      });
 
 });

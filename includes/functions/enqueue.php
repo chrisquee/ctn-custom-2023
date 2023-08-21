@@ -24,11 +24,11 @@ function cq_add_stylesheet() {
 	
 	wp_localize_script( 'cq-custom-js', 'ajax_login_object', $js_params );
 	
-	if ( is_page( 'my-account' ) ) {
+	/*if ( is_page( 'my-account' ) ) {
 		if (current_user_can('directory_admin')) {
             wp_enqueue_script("cq_directory_js", plugins_url("cq-aviation-directory/assets/admin/cq-admin-js.js"), array( 'jquery' ), '0.1');
             wp_enqueue_script( 'jquery-ui-autocomplete' );
 		}
-	}
+	}*/
 }
 add_action('wp_enqueue_scripts', 'cq_add_stylesheet');
