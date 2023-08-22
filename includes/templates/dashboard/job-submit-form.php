@@ -1,15 +1,15 @@
 <?php if (isset($_GET['status']) && $_GET['status'] == 'success') { ?>
-<div id="updated-container" class="container">
-	<div class="updated-container updated">
-		<p>Updated!</p>
-    </div>    
+<div id="notices" class="container">
+	<ul id="user-notices">
+        <li class="notice success">Updated!</li>
+    </ul>    
 </div>
 <?php } ?> 
 
 <?php if (isset($job->job_page_link) && $job->job_page_link !== '') { ?>
 <div id="updated-container-link" class="container">
 	<div class="updated-container">
-		<p><a href="<?php echo esc_url($job->job_page_link); ?>" target="_blank"><i class="fa fa-link"></i> <?php echo esc_url($job->job_page_link); ?></a></p>
+		<a href="<?php echo esc_url($job->job_page_link); ?>" target="_blank" class="button button-ghost button-white"><span class="material-symbols-outlined">link</span> <?php echo esc_url($job->job_page_link); ?></a>
     </div>    
 </div>
 <?php } ?>
@@ -143,7 +143,10 @@
     <div class="upgrade-section no-changes">
             <div class="row cf">
                 <div class="col-md-9">
-                    <span style="margin: 1.1rem 0;display: block;"><input type="checkbox" value="yes" id="up_to_date" name="up_to_date"> Please tick and submit to confirm your details are correct.</span>
+                    <span style="margin: 1.1rem 0;display: block;">
+                        <input type="checkbox" value="yes" id="up_to_date" name="up_to_date"> 
+                        <label for="up_to_date">Please tick and submit to confirm your details are correct.</label>
+                    </span>
                 </div>
                 <div class="col-md-3" style="text-align: right;">
                     <button type="submit" id="submit_button" class="btn-default btn-submit button-primary button button-blue" style="display: inline-block;" disabled="disabled">Save Changes</button> 
@@ -153,8 +156,8 @@
   </form>
 </div>
 <script>
-    jQuery("#up_to_date").click(function() {
-  jQuery("#submit_button").attr("disabled", !this.checked);
+jQuery("#up_to_date").on('change', function() {
+    jQuery("#submit_button").attr("disabled", !this.checked);
 });
 
 </script>

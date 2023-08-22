@@ -1,11 +1,25 @@
 .company-wrap, .services-wrap, .approvals-wrap, .contact-wrap, .upgrade-section, .component-wrap, .airframe-wrap, .specialist-wrap, .engine-wrap, .airport-wrap, .airlines-wrap, .categories-wrap, .category-image-wrap {
-    padding: 1.5rem 1rem;
-    background-color: rgba(0,0,0,0.05);
-    border-radius: 5px;
+    padding: 0 1rem;
+    background-color: white;
+    border-radius: 1rem;
     margin-bottom: 30px;
+    border: 1px solid $gray-20;
+    overflow: hidden;
+    box-shadow: 1px 1px 10px 1px rgba(0,0,0,0.12);
     
     h4 {
-        margin: 0 0 1.5rem;
+        padding: 0.75rem 1rem;
+        margin: 0 -1rem 1rem;
+        display: block;
+        background-color: $gray-05;
+        border-bottom: 1px solid $gray-20;
+    }
+}
+.upgrade-section {
+    padding: 1rem;
+    
+    row {
+        align-items: center;
     }
 }
 .upgrade-section .row-eq-height {

@@ -56,8 +56,8 @@ class cqJobUser {
                                 <td>' . get_the_title() . '</td>
                                 <td>' . esc_html($job->job_company) . '</td>
                                 <td>' . esc_html($job->job_location) . '</td>
-                                <td><a href="' . add_query_arg(array('job_id' => get_the_id()), site_url('/my-account/job-edit/')) . '" class="button button-small button-blue">edit</a>
-                                <button class="button btn-primary button-small set-draft" title="Delete item" data-toggle="modal" data-target="#deleteModal" data-itemName="' . get_the_title() . '" data-id="' . get_the_id() . '" data-nonce="' . wp_create_nonce( 'job-remove-nonce' ) .'"><i class="fa fa-trash-o"></i></button></td>
+                                <td><a href="' . add_query_arg(array('job_id' => get_the_id()), site_url('/my-account/job-edit/')) . '" class="button button-brand button-outline button-small icon-button"><span class="material-symbols-outlined">edit</span></a>
+                                <button class="button button-brand button-fill button-small icon-button set-draft" title="Delete item" data-bs-toggle="modal" data-bs-target="#deleteModal" data-itemName="' . get_the_title() . '" data-id="' . get_the_id() . '" data-nonce="' . wp_create_nonce( 'job-remove-nonce' ) .'"><span class="material-symbols-outlined">delete</span></button></td>
                              </tr>';
                     
                 
