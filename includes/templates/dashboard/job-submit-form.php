@@ -9,7 +9,7 @@
 <?php if (isset($job->job_page_link) && $job->job_page_link !== '') { ?>
 <div id="updated-container-link" class="container">
 	<div class="updated-container">
-		<a href="<?php echo esc_url($job->job_page_link); ?>" target="_blank" class="button button-ghost button-white"><span class="material-symbols-outlined">link</span> <?php echo esc_url($job->job_page_link); ?></a>
+		<a href="<?php echo esc_url($job->job_page_link); ?>" target="_blank" class="button button-ghost button-brand"><span class="material-symbols-outlined">link</span> <?php echo esc_url($job->job_page_link); ?></a>
     </div>    
 </div>
 <?php } ?>
@@ -134,7 +134,7 @@
 			    	?>
 					<input type="file" name="logo_image" id="logo_image" class="regular-text" accept="image/*" />
                     <input type="hidden" name="logo_image_id" id="logo_image_id" value="<?php echo $job->job_logo; ?>" />
-                    <button id="logo-upload" class="button button-blue" data-nonce="<?php echo $nonce; ?>">Add Logo</button>
+                    <button id="logo-upload" class="button button-brand button-outline" data-nonce="<?php echo $nonce; ?>">Add Logo</button>
                     <div class="logo-thumbnail"><img src="<?php echo $logo_src; ?>" id="logo-img"></div>
               </div>
           </div>
@@ -149,7 +149,7 @@
                     </span>
                 </div>
                 <div class="col-md-3" style="text-align: right;">
-                    <button type="submit" id="submit_button" class="btn-default btn-submit button-primary button button-blue" style="display: inline-block;" disabled="disabled">Save Changes</button> 
+                    <button type="submit" id="submit_button" class="button button-brand button-fill" style="display: inline-block;" disabled="disabled">Save Changes</button> 
                 </div>
             </div>
         </div>

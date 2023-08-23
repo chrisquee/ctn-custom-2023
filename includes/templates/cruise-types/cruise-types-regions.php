@@ -22,7 +22,7 @@ if ($sidebar == '<div class="ad-widget"></div>' || !is_active_sidebar('udg-ads')
             //print_r( $terms ); ?>
             
             <div class="sep-wrap clearfix">
-                <h2 class="sep-title"><?php echo $cruise_type->name; ?></h2>
+                <h2 class="sep-title"><span class="material-symbols-outlined">arrow_outward</span><?php echo $cruise_type->name; ?></h2>
                 <a href="" class="sep-link"></a>
             </div>
             

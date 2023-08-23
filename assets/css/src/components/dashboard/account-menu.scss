@@ -1,6 +1,8 @@
 /* BOF Account Menu Styles */
 .seller-dashboard nav.sidebar ul {
 	background-color: transparent;
+    position: sticky;
+    top: 0;
 }
 .seller-dashboard nav.sidebar ul li {
 	display: block !important;

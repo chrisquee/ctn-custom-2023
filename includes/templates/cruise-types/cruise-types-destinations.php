@@ -3,7 +3,7 @@
         <div class="col-md-12 no-padding">
             
             <div class="sep-wrap clearfix">
-                <h2 class="sep-title">Destinations</h2>
+                <h2 class="sep-title"><span class="material-symbols-outlined">arrow_outward</span>Destinations</h2>
             </div>
             
             <?php // echo wpautop(get_term_meta($cruise_type->term_id, 'cruise-type-about', true)); ?>

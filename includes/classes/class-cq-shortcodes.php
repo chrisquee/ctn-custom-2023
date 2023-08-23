@@ -16,6 +16,7 @@ class cqShortcodes {
         add_shortcode('cq_publication_box', array($self, 'cq_publication_box_shortcode') );
         add_shortcode('cq_in_page_menu', array($self, 'cq_in_page_menu_shortcode'));
         add_shortcode('cq_events_list', array($self, 'cq_events_list_shortcode'));
+        add_shortcode('cq_fullevents_list', array($self, 'cq_fullevents_list_shortcode'));
         add_shortcode('cq_category_carousel', array($self, 'cq_category_carousel_shortcode'));
         add_shortcode('cq_category_carousel_item', array($self, 'cq_category_carousel_item_shortcode'));
         add_shortcode('cq_category_grid', array($self, 'cq_category_grid_shortcode'));
@@ -2341,5 +2342,139 @@ class cqShortcodes {
         return $html;
     }
     /* EOF call to action */
+    
+    public function cq_fullevents_list_shortcode($attributes) {
+        
+        global $wp_query;
+        
+        //print_r($wp_query);
+        
+        $atts = shortcode_atts(array(
+                'max_events'     => '100',
+                'future_only' => '1',
+                'max_height' => '300px',
+                'border_color' => '#f2f2f2',
+                'category' => 'All'
+            ), $attributes);
+        $html = '';
+        $now = time();
+        
+        $query_args =  array(
+            'post_type' => 'events',
+            'meta_key'  => 'event_end_date',
+            'meta_query' => array(
+                array(
+                    'key' => 'event_end_date',
+                    'value' => $now,
+                    'compare' => '>='
+                    ),
+                ),
+            'posts_per_page' => $atts['max_events'],
+            'orderby'   => 'meta_value_num',
+            'order'     => 'ASC',
+        );
+    
+        if (is_numeric($atts['category'])) {
+			$tax_query = array(
+				array(
+           			'taxonomy' => 'event-category',
+           			'field' => 'term_id',
+           			'terms' => $atts['category'], 
+           			'operator' => 'IN'
+   			 	)
+			);
+			$query_args['tax_query'] = $tax_query;
+		}
+        
+        $query = new WP_Query($query_args);
+        
+        $col_class = 'col_12';
+        $fallback_class = 'col-md-12';
+        $fallback_class = '';
+        
+        $gap_class = $atts['max_events'] == '1' ? 'no_gap' : '';
+        $post_index = 0;
+        
+        $request_cat = get_query_var('eventcategory');
+        $request_mode = get_query_var('eventmode');
+        $request_type = get_query_var('eventtype');
+        
+        $request_cat_id = $request_cat != '' ? get_term_by( 'slug', $request_cat, 'event-category') : 0;
+        
+        $cat = isset($request_cat_id->term_id) && $request_cat_id->term_id > 0 ? $request_cat_id->term_id : $atts['category'];
+        
+        $event_type_array = array(
+                                    array('value' => '',
+                                          'title' => 'Select Event Organisers'),
+                                    array('value' => 'our_events',
+                                          'title' => 'CTN Events'),
+                                    array('value' => 'partner_events',
+                                          'title' => 'Partner Events'),
+                                );
+        
+        $event_mode_array = array(
+                                    array('value' => '',
+                                          'title' => 'Select Event Type'),
+                                    array('value' => 'offline',
+                                          'title' => 'Offline'),
+                                    array('value' => 'online',
+                                          'title' => 'Online'),
+                                );
+
+        $html = '<div class="event-calendar-wrapper">
+                                <h4 class="filter-events-title">Filter Events</h4>
+
+                                <form action="' . site_url() . '/wp-admin/admin-ajax.php" method="POST" id="filter">';
+
+                                    $args = array(
+                                        'taxonomy'                 => 'event-category',
+                                        'pad_counts'               => false );
+                                    $categories = get_terms($args);  
+
+        $html .= '<div class="row eventSearchFiter">
+        <div class="col-md-4 event-fields select-event-category">
+            <select class="form-control event-container eventcategory" name="eventcategory">
+                <option value="">Select Publication</option>';
+
+                foreach ($categories as $value) :
+                    $html .= '<option '. ( $value->term_id == $cat ? 'selected="selected"' : '' ) . ' value=' . $value->slug . '>' . $value->name . '</option>';
+                 endforeach; 
+        
+                 $html .= '</select>
+                 </div>
+                 <div class="col-md-4 event-fields select-event-type">
+                     <select class="form-control" name="eventtype">';
+                
+                     foreach ($event_type_array as $type) {
+                        $html .= '<option value="' . esc_attr($type['value']) . '" ' . ( $type['value'] == $request_type ? 'selected="selected"' : '' ) . '>' . $type['title'] . '</option>';
+                    }
+                
+                    $html .= '</select>
+                    </div>
+                    <div class="col-md-4 select-event-mode">
+                        <select class="form-control" name="eventmode">';
+                    
+                        foreach ($event_mode_array as $mode) {
+                            $html .= '<option value="' . esc_attr($mode['value']) . '" ' . ( $mode['value'] == $request_mode ? 'selected="selected"' : '' ) . '>' . $mode['title'] . '</option>';
+                        }  
+
+                        $html .= '</select>
+                        </div>
+        
+                    </div>
+                    <input type="hidden" name="action" value="myfilter">
+                    </form>
+                    <div class="sep-wrap clearfix">
+                            <h2 class="sep-title">
+                                <span class="material-symbols-outlined">arrow_outward</span>Upcoming Events
+                            </h2>
+                        </div>
+                    <div id="response_events" class="newlistevents">';
+                        $html .= events_filter_function($cat);  
+                        $html .= '</div>
+                        </div>'; 
+                 
+        return $html;
+    }
 }
 cqShortcodes::init();

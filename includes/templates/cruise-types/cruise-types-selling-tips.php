@@ -9,7 +9,7 @@ if ($pairs) { ?>
         <div class="col-md-12 no-padding">
             
             <div class="sep-wrap clearfix">
-                <h2 class="sep-title">Selling Tips</h2>
+                <h2 class="sep-title"><span class="material-symbols-outlined">arrow_outward</span>Selling Tips</h2>
                 <a href="" class="sep-link"></a>
             </div>
             

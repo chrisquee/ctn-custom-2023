@@ -1,6 +1,6 @@
 jQuery(function($) {
     
-    jQuery('#code-submit').on('click', 
+    jQuery('#user-code-submit').on('click', 
         function (event) {
             event.preventDefault();
             var acceptButtonWidth = jQuery( this ).width()

@@ -15,7 +15,7 @@ if ( !empty($related) ) : ?>
         <div class="col-md-12 no-padding">
             
             <div class="sep-wrap clearfix">
-                <h2 class="sep-title"><?php echo get_the_title(); ?> Destinations</h2>
+                <h2 class="sep-title"><span class="material-symbols-outlined">arrow_outward</span><?php echo get_the_title(); ?> Destinations</h2>
                 <a href="" class="sep-link"></a>
             </div>
             

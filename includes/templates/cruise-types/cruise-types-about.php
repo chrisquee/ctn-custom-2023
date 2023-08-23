@@ -7,7 +7,7 @@ if ($about != '') { ?>
         <div class="col-md-12 no-padding">
             
             <div class="sep-wrap clearfix">
-                <h2 class="sep-title">About</h2>
+                <h2 class="sep-title"><span class="material-symbols-outlined">arrow_outward</span>About</h2>
             </div>
             
             <div class="region-about">

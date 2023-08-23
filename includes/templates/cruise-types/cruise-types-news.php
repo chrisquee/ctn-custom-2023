@@ -17,7 +17,7 @@ if ($post_list->have_posts()) {
     $mobile_class = 'with_image';
 
     $html .= '<div class="sep-wrap clearfix">
-                    <h2 class="sep-title">Related News</h2>
+                    <h2 class="sep-title"><span class="material-symbols-outlined">arrow_outward</span>Related News</h2>
                 </div>';
 
     $html .= '<div class="latest-wrapper ' . $desktop_class . ' ' . $mobile_class . '">';

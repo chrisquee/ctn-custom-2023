@@ -16,6 +16,7 @@ class cqVcExtend {
         add_action( 'vc_before_init', array($self, 'cq_publication_box') );
         add_action( 'vc_before_init', array($self, 'cq_in_page_menu') );
         add_action( 'vc_before_init', array($self, 'cq_vc_events_list') );
+        add_action( 'vc_before_init', array($self, 'cq_vc_fullevents_list') );
         add_action( 'vc_before_init', array($self, 'cq_category_carousel') );
         add_action( 'vc_before_init', array($self, 'cq_category_carousel_item') );
         add_action( 'vc_before_init', array($self, 'cq_category_grid') );
@@ -57,6 +58,8 @@ class cqVcExtend {
         add_filter( 'vc_autocomplete_cq_featured_cruise_lines_item_cruise_line_id_callback', 'cq_cruise_line_autocomplete_suggester', 10, 1 );
         add_filter( 'vc_autocomplete_cq_featured_cruise_ships_item_cruise_ship_id_render', 'cq_ship_autocomplete_suggester_render', 10, 1 );
         add_filter( 'vc_autocomplete_cq_featured_cruise_ships_item_cruise_ship_id_callback', 'cq_ship_autocomplete_suggester', 10, 1 );
+        add_filter( 'vc_autocomplete_cq_events_list_event_id_render', array($self, 'cq_event_autocomplete_suggester_render'), 10, 1 );
+        add_filter( 'vc_autocomplete_cq_events_list_event_id_callback', array($self, 'cq_event_autocomplete_suggester'), 10, 1 );
         add_action('admin_enqueue_scripts', array( $self, 'enqueue_scripts'));
   	}
     
@@ -1698,6 +1701,103 @@ class cqVcExtend {
 		) );
 	}
     /* EOF call to action */
+    
+    public function cq_vc_fullevents_list() {
+        
+        $output_categories = array('', 'All');
+	
+		if (isset($_POST['action']) && $_POST['action'] == 'vc_edit_form') {
+			$categories = get_terms( 'event-category', array('hide_empty' => false) );
+		
+			foreach($categories as $category) { 
+				$output_categories[] = array($category->term_id, $category->name);
+			}
+        }
+	
+        vc_map( array(
+            "name" => __( "CQ Events Full List", 'CQ_Custom' ),
+            "base" => "cq_fullevents_list",
+            "description" => "Events Full List",
+            "class" => "eventfulllistEvent",
+            "icon" => "",
+            "category" => __( 'by CQ', 'CQ_Custom' ),
+            "params" => array(
+                array(
+                    "type" => "dropdown",
+                    "class" => "",
+                    "heading" => __( "Max Events", 'CQ_Custom' ),
+                    "param_name" => "max_events",
+                    'value'       => array(
+                        '1'   => '1',
+                        '3'   => '3',
+                        '5' => '5',
+                        'All'  => '9999'
+                    ),
+                    "description" => __( "Maximum number of events to show", 'CQ_Custom' )
+                ),
+                array(
+                    "type" => "checkbox",
+                    "class" => "",
+                    "heading" => __( "Future Only", 'CQ_Custom' ),
+                    "param_name" => "future_only",
+                    "value" =>  __( "1", 'CQ_Custom' ),
+                    "description" => __( "Show only events in the future", 'CQ_Custom' )
+                ),
+                array(
+                    "type" => "dropdown",
+                    "class" => "",
+                    "heading" => __( "Select Category", 'CQ_Custom' ),
+                    "param_name" => "category",
+                    "value" => $output_categories,
+                    "description" => __( "Input number of upcoming auctions to show.", 'CQ_Custom' )
+                ),
+                array(
+                    "type" => "colorpicker",
+                    "class" => "",
+                    "heading" => __( "Border Color", 'CQ_Custom' ),
+                    "param_name" => "border_color",
+                    "value" => '',
+                    "description" => __( "Choose the colour border around the events list", 'CQ_Custom' )
+                )
+            )
+       ) );
+    }
+    
+    public function cq_event_autocomplete_suggester_render( $query ) {
+        $query = trim( $query[ 'value' ] );
+
+        // get value from requested
+        if ( !empty( $query ) ) {
+            $post_object = get_post( ( int )$query );
+            if ( is_object( $post_object ) ) {
+                $post_title = $post_object->post_title;
+                $post_id = $post_object->ID;
+                $data = array();
+                $data[ 'value' ] = $post_id;
+                $data[ 'label' ] = $post_title;
+                return !empty( $data ) ? $data : false;
+            }
+            return false;
+        }
+        return false;
+    }
+
+    public function cq_event_autocomplete_suggester( $query ) {
+        global $wpdb;
+        //$post_id = ( int )$query;
+        $post_results = $wpdb->get_results( $wpdb->prepare( "SELECT a.ID AS id, a.post_title AS title FROM {$wpdb->posts} AS a
+    WHERE a.post_type = 'events' AND a.post_status != 'trash' AND a.post_title LIKE '%%%s%%'", stripslashes( $query ) ), ARRAY_A );
+        $results = array();
+        if ( is_array( $post_results ) && !empty( $post_results ) ) {
+            foreach ( $post_results as $value ) {
+                $data = array();
+                $data[ 'value' ] = $value[ 'id' ];
+                $data[ 'label' ] = $value[ 'title' ] . ' - '. get_the_time('d-m-Y', $value[ 'id' ]);;
+                $results[] = $data;
+            }
+        }
+        return $results;
+    }
 
 }
 cqVcExtend::init();

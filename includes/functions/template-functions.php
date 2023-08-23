@@ -510,3 +510,177 @@ function get_post_by_slug( $post_name ) {
 
     return array_shift($post_ids);
 }
+
+function events_filter_function($cat){
+	$html = '<div class="clearfix listings-wrapper">';
+
+	if($cat != 'All'):
+		$term = get_term( $cat );
+	endif;
+	
+	$currentdate = date("m/d/Y", mktime(0, 0, 0, date("m"), date("d"), date("Y")));
+
+	$args = array(
+		'post_type' => 'events',
+		'posts_per_page' => -1,
+		'post_status' => 'publish',
+		'meta_key' => 'event_start_date',
+		'meta_compare' => '>=',
+		'meta_value' => $currentdate,
+		'orderby' => 'meta_value',
+       	'order' => 'ASC',
+	);
+	if(isset($_REQUEST['eventtype']) && !empty($_REQUEST['eventtype'])){
+		$args['meta_query'] = array(
+			array(
+				'key'     => 'event_type',
+				'value'   => $_REQUEST['eventtype'],
+				'compare' => '='
+			)
+		);
+	}
+	if(isset($_REQUEST['eventmode']) && !empty($_REQUEST['eventmode'])){
+		$args['meta_query'][] = array(
+			array(
+				'key'     => 'event_category',
+				'value'   => $_REQUEST['eventmode'],
+				'compare' => '='
+			)
+		);
+	}
+	
+	if(isset($term->name)){
+		$args['tax_query'][] = array(
+			array(
+				'taxonomy' => 'event-category',
+				'field'    => 'slug',
+				'terms' => $term->name
+			),
+	);
+	} else {
+		if( isset($_REQUEST['eventcategory']) && !empty($_REQUEST['eventcategory']) ) {
+			$args['tax_query'][] = array(
+					array(
+						'taxonomy' => 'event-category',
+						'field'    => 'slug',
+						'terms' => $_REQUEST['eventcategory']
+					),
+			);
+		}
+	}
+
+	$query = new WP_Query( $args );
+
+	if( $query->have_posts() ) :
+		
+		while( $query->have_posts() ): $query->the_post();
+
+			global $post;
+			
+			$id = get_the_ID();
+			
+	
+			$startd = get_post_meta( $id, "event_start_date", true);
+			
+			$startdate = date("d", $startd);
+			
+			$startdayOnly = date("D", $startd);
+            $startdateMonthShort = date("M", $startd);
+			$startdateMonth = date("M j Y", $startd);
+            $startdateYear = date("Y", $startd);
+
+			$endd = get_post_meta( $id, "event_end_date", true);
+			$enddate = date("F j, Y", $endd);
+			$evt_desc = get_post_meta( $id, "event_description", true);
+			$evt_descsmall = substr($evt_desc, 0, 300);
+			$cta_text = get_post_meta( $id, "cta_text", true);
+			$cta_text_html = $cta_text != '' ? $cta_text : 'FIND OUT MORE';
+			$cta_data = '';
+			// if(rwmb_meta('event_url') != ''){
+			// 	$cta_data = '<a href="' . esc_url(rwmb_meta('event_url')) . '" target="_blank" class="event-calendar-link hidden-sm-down">
+			// 	<span class="material-symbols-outlined">arrow_forward</span>' . esc_html($cta_text_html) . '</a>';
+			// }
+			$evt_address = get_post_meta( $id, "event_address", true);
+
+			$terms = get_the_terms($id, 'event-category' );
+			if($terms):
+				foreach ($terms as $term) {
+					$category = $term->name;				
+					$cat_html = '';
+					
+					if($category){
+						$cat_html = $category;
+					}
+					break;
+				}
+			endif;
+
+
+			$image_html = '';
+			$images = rwmb_meta( 'event-logo', array('size' => 'full'), $post->ID ); // Prior to 4.8.0
+			if ( !empty( $images ) ) {
+				foreach ( $images as $image ) {
+					$image['alt'] = get_the_title();
+					$image_html = '<img src="' . $image['url'] . '" width="' . $image['width'] . '" height="' . $image['height'] . '" alt="' . $image['alt'] . '" />';
+				}
+			}
+
+			$evt_addressDetail = '';
+			if($evt_address){
+				$evt_addressDetail = '<span class="material-symbols-outlined">location_on</span>
+									<span class="location">' . $evt_address . '</span>';
+			}
+			// $profile_contnet = get_the_content();
+			$newDate = date("m/d/Y", strtotime($startdateMonth));
+			if (strtotime($currentdate) >= strtotime($newDate)){
+				//echo "Previous Events";
+			} else {
+			$html .= '<div class="listing-container">
+                        <div class="listing-content">
+							<p class="category">
+								<span class="material-symbols-outlined">arrow_outward</span>' 
+								. $cat_html . 
+							'</p>
+                            <h3 class="entry-title">' . $post->post_title . '</h3>
+							<div class="logo-container">' . $image_html . '</div>
+							<div class="listing-icon-info">
+								<p class="meta">' . $evt_addressDetail . '</p>
+								<p class="meta">
+									<span class="material-symbols-outlined">calendar_month</span>' . $startdateMonth . 
+								'</p>
+							</div>'. $evt_descsmall .
+							'<div class="listing-footer">';
+
+							if(strlen($evt_desc) == 0) {
+								$html .= '<a href="' . esc_url(rwmb_meta('event_url')) . '" class="button button-brand button-outline" target=_blank>';
+							} else {
+								$html .= '<a href="' . get_the_permalink($id) . '" class="button button-brand button-outline" >';
+											
+							}
+
+							$html.='<span class="material-symbols-outlined">arrow_forward</span>' . esc_html($cta_text_html) . 
+							'</a>
+                        	</div>
+                        </div>
+
+                  </div>';
+			}
+		
+		endwhile;
+		wp_reset_postdata();
+	else :
+		$html .="<div class='no-results'>
+					<h3>No Events Found</h3>
+					<p>We couldn't find what you were searching for. Try searching again</p>
+				</div></div>";
+	endif;
+    
+    if (wp_doing_ajax()) {
+		echo $html;
+        die;
+    } else {
+		return $html;
+	}
+}
+add_action('wp_ajax_myfilter', 'events_filter_function');
+add_action('wp_ajax_nopriv_myfilter', 'events_filter_function');

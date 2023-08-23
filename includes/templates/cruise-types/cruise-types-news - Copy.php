@@ -17,7 +17,7 @@ if (!empty($news_items)) {
                 <div class="row">
                     <div class="col-md-12 no-padding">
                         <div class="sep-wrap clearfix">
-                            <h2 class="sep-title">Related News</h2>
+                            <h2 class="sep-title"><span class="material-symbols-outlined">arrow_outward</span>Related News</h2>
                             <a href="" class="sep-link"></a>
                         </div>';
     
