@@ -717,7 +717,7 @@ function cq_profile_save_button() {
 		<div class="cq-save row">
 			<div class="col-md-12">
 				<label class="wpfep_save_description">Save your updates.</label>
-				<input type="submit" class="submit_button" name="cq_save_profile" value="Update" >
+				<input type="submit" class="button button-brand button-fill submit_button" name="cq_save_profile" value="Update" >
 			</div>
 		</div>
     </section>    
