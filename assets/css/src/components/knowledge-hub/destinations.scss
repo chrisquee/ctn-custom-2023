@@ -7,6 +7,7 @@
     }
 }
 .destination-title {
+    position: relative;
     
     &.no-image {
       padding: 30px;
@@ -234,6 +235,7 @@
     }
     .udg-sponsor {
         padding-top: 2rem;
+        box-shadow: 1px 1px 10px 1px rgba(0,0,0,0.2);
     }
     .destination-title p.section-name {
         padding: 0;
