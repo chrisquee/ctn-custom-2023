@@ -45,6 +45,9 @@ class cqShortcodes {
         add_shortcode('cq_grid_links_item', array($self, 'cq_grid_links_item_shortcode'));
         add_filter('embed_oembed_html', array($self, 'cq_wrap_oembed'), 99, 4 );
         add_filter('the_content', array($self, 'cq_wrap_iframe') );
+        add_action( 'get_footer', array($self, 'localize_homepage_posts'), 999 );
+        add_action( 'wp_ajax_more_latest_news', array($self, 'load_more_latest_news'));
+        add_action( 'wp_ajax_nopriv_more_latest_news', array($self, 'load_more_latest_news'));
   	}
     
     public function cq_large_cta_shortcode($attributes) {
@@ -2475,6 +2478,96 @@ class cqShortcodes {
                         </div>'; 
                  
         return $html;
+    }
+    
+    public function localize_homepage_posts() {
+        wp_localize_script( 'cq-custom-js', 'page_data', base64_encode(json_encode($this->home_page_post_ids)) );
+    }
+    
+    public function load_more_latest_news() {
+        
+        //$_POST = filter_input_array($_POST, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        
+        $this->home_page_post_ids = json_decode(base64_decode( $_POST['suppress'] ));
+        $category = $_POST['cat'];
+        $page = $_POST['page'];
+        $per_page = $_POST['per_page'];
+        $html = '';
+        
+        if ($per_page != '' && $page != '') {
+            $offset = $page * $per_page;
+            
+            $post_list_args = array(
+                'post_type' => 'post',
+                'suppress_filters' => true,
+                'post_status' => 'publish',
+                'post__not_in' => $this->home_page_post_ids,
+                'showposts' => $per_page,
+                'offset' => $offset
+    	    );
+		
+            if (is_numeric($category) && $category != '') {
+                $post_list_args['cat'] = $category;
+            }
+            
+            $post_list = new WP_Query($post_list_args);
+            
+            while($post_list->have_posts()) {
+                $post_list->the_post();
+                
+                $thumb_id = get_post_thumbnail_id();
+                $post_id = get_the_ID();
+                $this->home_page_post_ids[] = $post_id;
+                
+                $category = get_the_category();
+                $category_title = $category[0]->name;
+                $category_link = get_category_link($category[0]->term_id);
+                
+                $primary_category = smart_category_top_parent_id($category[0]->term_id);
+                $primary_category_title = get_category($primary_category)->name;
+                $primary_category_link = get_category_link($primary_category);
+                
+                if ($category_title != $primary_category_title) {
+                    $category_html = '<a href="' . $primary_category_link . '">' . $primary_category_title . '</a>
+                                      <a href="' . $category_link . '" class="cat-hidden">/ ' . $category_title . '</a>';
+                } else {
+                    $category_html = '<a href="' . $primary_category_link . '">' . $primary_category_title . '</a>';
+                }
+
+
+                $html .= '<article id="post-' . get_the_ID() . '" class="latest-item new-item" style="display: none;">
+                              <div class="item-image">
+                                  <a href="' . esc_url( get_permalink() ) .'" title="' . get_the_title() . '" class="latest-img-overlay">
+                                      ' . get_the_post_thumbnail( get_the_ID(), 'featured-box-bg-image' ) . '
+                                  </a>
+                              </div>
+                              <div class="item-content">
+                                <div class="item-info">
+                                    <div class="item-title">
+                                        <h3><a href="' . get_the_permalink() . '" class="title-gradient">' . get_the_title() . '</a></h3>
+                                    </div>
+
+                                    <div class="item-category cat-link">
+                                        <span class="material-symbols-outlined">arrow_outward</span>
+                                        ' .$category_html . '
+                                    </div>
+                                </div>
+                                <p>' . wp_trim_words( get_the_excerpt(), 40, '...') . '</p>
+                                <div class="item-author author-text">
+                                    ' . get_the_author() . '
+                                </div>
+                              </div>
+                          </article>';
+
+            }
+            
+            wp_reset_postdata();
+            
+        }
+        
+        echo $html;
+        
+        die;
     }
 }
 cqShortcodes::init();

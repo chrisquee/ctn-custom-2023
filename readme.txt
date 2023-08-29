@@ -16,6 +16,10 @@ Custom functionality for Cruise Trade News
 
 == Changelog ==
 
+= 2.0.3 =
+
+FiXES fix for AJAX load more on latest news.
+
 = 2.0.2 =
 
 FiXES fix block for latest news.
