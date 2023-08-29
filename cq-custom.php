@@ -19,12 +19,12 @@ require_once('includes/loader.php');
 
 require_once('vendor/plugin-update-checker/plugin-update-checker.php');
 $ctnUpdateChecker = Puc_v4_Factory::buildUpdateChecker(
-	'https://github.com/Real-response-media/ctn-custom/',
+	'https://github.com/chrisquee/ctn-custom-2023/',
 	__FILE__,
 	'cq-custom'
 );
 $ctnUpdateChecker->setBranch('master');
-$ctnUpdateChecker->setAuthentication('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');
+$ctnUpdateChecker->setAuthentication('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');
 
 define( 'CQ_CUSTOM_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 define( 'CQ_CUSTOM_PLUGIN_PATH', plugin_dir_path( __FILE__ ) );
