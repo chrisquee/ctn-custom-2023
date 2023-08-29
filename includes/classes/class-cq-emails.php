@@ -303,7 +303,7 @@ class CqEmails {
     }
 
     public function user_email_section_options_callback() { // Section Callback
-        echo '<p>Customize the name from name and email address that any user emails come from and set up SMTP.</p>';  
+        echo '<p>Customize the name from name and email address that any user emails come from and set up SMTP.</p>'; 
     }
 
     function user_email_textbox_callback($args) {  // Textbox Callback

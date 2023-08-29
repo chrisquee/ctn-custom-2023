@@ -3,7 +3,7 @@
 Plugin Name: CQ Custom
 Plugin URI: https://www.qinternet.uk/
 Description: Custom setup and functionality for Cruise Trade News.
-Version: 2.0
+Version: 2.0.1
 Author: Chris Quee
 Author URI: https://www.qinternet.uk/
 License: Custom
@@ -23,8 +23,9 @@ $ctnUpdateChecker = Puc_v4_Factory::buildUpdateChecker(
 	__FILE__,
 	'cq-custom'
 );
+$token = get_option('github_access_token');
 $ctnUpdateChecker->setBranch('master');
-$ctnUpdateChecker->setAuthentication('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');
+$ctnUpdateChecker->setAuthentication($token);
 
 define( 'CQ_CUSTOM_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 define( 'CQ_CUSTOM_PLUGIN_PATH', plugin_dir_path( __FILE__ ) );

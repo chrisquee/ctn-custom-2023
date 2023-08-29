@@ -2,7 +2,7 @@
 
 Contributors: chrisquee
 Requires at least: 5.9
-Tested up to: 6.1
+Tested up to: 6.3
 Stable tag: 4.3
 Requires PHP: 7.0
 License: GPLv2 or later
@@ -15,6 +15,10 @@ Custom functionality for Cruise Trade News
 Custom functionality for Cruise Trade News
 
 == Changelog ==
+
+= 2.0.1 =
+
+UPDATE remove Github access token from codebase and add settings field for it.
 
 = 2.0 =
 
