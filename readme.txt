@@ -16,6 +16,10 @@ Custom functionality for Cruise Trade News
 
 == Changelog ==
 
+= 2.0 =
+
+MAJOR UPDATE Complete redesign swich out font awesome for material icons
+
 = 1.42 =
 
 FIX correct some errors when uploading images to Jobs.
