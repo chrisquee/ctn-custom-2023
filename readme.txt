@@ -16,6 +16,10 @@ Custom functionality for Cruise Trade News
 
 == Changelog ==
 
+= 2.0.2 =
+
+FiXES fix block for latest news.
+
 = 2.0.1 =
 
 UPDATE remove Github access token from codebase and add settings field for it.

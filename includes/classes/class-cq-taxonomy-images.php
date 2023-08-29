@@ -188,6 +188,13 @@ public function load_media() {
      update_term_meta( $term_id, $taxonomy . '-image-id', '' );
    }
      
+    if( isset( $_POST[$taxonomy . '-logo-image-id'] ) && '' !== $_POST[$taxonomy . '-logo-image-id'] ){
+     $image = $_POST[$taxonomy . '-logo-image-id'];
+     update_term_meta( $term_id, $taxonomy . '-logo-image-id', $image );
+   } else {
+     update_term_meta( $term_id, $taxonomy . '-logo-image-id', '' );
+   }
+     
     if( isset( $_POST[$taxonomy . '-news-category'] )) {
      $category_id = $_POST[$taxonomy . '-news-category'];
      update_term_meta( $term_id, $taxonomy . '-news-category', $category_id );

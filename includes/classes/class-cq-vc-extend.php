@@ -253,20 +253,9 @@ class cqVcExtend {
         $categories = get_categories();
 
         foreach($categories as $category) { 
-            $output_categories[] = array($category->term_id, $category->name);
+            $cat_name = $category->parent == 0 ? html_entity_decode($category->name) : html_entity_decode(get_cat_name($category->parent)) . ' - ' . html_entity_decode($category->name);
+            $output_categories[] = array($category->term_id, $cat_name);
         }
-        
-        $ctn_standard_layout_array = array(1 => array('cols' => 1,
-                                             'types' => array( 1 => 'to_side')
-                                           ),
-                                           2 => array('cols' => 3,
-                                                      'types' => array( 1 => 'standard', 2 => 'standard', 3 => 'standard')
-                                            ),
-                                           3 => array('cols' => 3,
-                                                      'types' => array( 1 => 'standard_no_img', 2 => 'standard_no_img', 3 => 'standard_no_img')
-                                            ),
-                                          );
-        $ctn_standard_layout = base64_encode(serialize($ctn_standard_layout_array));
         
         $standard_layout_array = array(1 => array('cols' => 2,
                                              'types' => array( 1 => 'overlay', 2 => 'overlay')
@@ -332,6 +321,62 @@ class cqVcExtend {
         
         $latest_6_new = base64_encode(serialize($latest_6_new_array));
         
+        $latest_7_new_array = array(1 => 
+                                       array('cols' => 1,
+                                             'types' => array( 1 => 'overlay')
+                                        ),
+                                       2 => array('cols' => 2,
+                                                  'types' => array( 1 => 'overlay', 2 => 'overlay')
+                                            ),
+                                      );
+        
+        $latest_7_new = base64_encode(serialize($latest_7_new_array));
+        
+        $latest_8_new_array = array(1 => array('cols' => 1,
+                                             'types' => array( 1 => 'overlay')
+                                        ),
+                                       2 => array('cols' => 3,
+                                                  'types' => array( 1 => 'overlay', 2 => 'overlay', 3 => 'overlay')
+                                            ),
+                                      );
+        
+        $latest_8_new = base64_encode(serialize($latest_8_new_array));
+        
+        $latest_9_new_array = array(1 => array('cols' => 1,
+                                             'types' => array( 1 => 'to_side')
+                                           ),
+                                           2 => array('cols' => 3,
+                                                      'types' => array( 1 => 'overlay', 2 => 'overlay', 3 => 'overlay')
+                                            ),
+                                          );
+        $latest_9_new = base64_encode(serialize($latest_9_new_array));
+        
+        $latest_10_new_array = array(1 => array('cols' => 1,
+                                             'types' => array( 1 => 'to_side')
+                                           ),
+                                           2 => array('cols' => 3,
+                                                      'types' => array( 1 => 'standard', 2 => 'standard', 3 => 'standard')
+                                            ),
+                                          );
+        $latest_10_new = base64_encode(serialize($latest_10_new_array));
+        
+        $latest_11_new_array = array(1 => array('cols' => 1,
+                                             'types' => array( 1 => 'overlay')
+                                        ),
+                                      );
+        
+        $latest_11_new = base64_encode(serialize($latest_11_new_array));
+        
+        $latest_12_new = array(1 => array('cols' => 2,
+                                             'types' => array( 1 => 'standard', 2 => 'standard')
+                                        ),
+                                       2 => array('cols' => 3,
+                                                  'types' => array( 1 => 'standard', 2 => 'standard', 3 => 'standard')
+                                            ),
+                                      );
+        
+        $latest_12_new = base64_encode(serialize($latest_12_new));
+        
         vc_map( array(
 			"name" => __( "CQ Latest News", "CQ_Custom" ),
 			"base" => "cq_latest_news",
@@ -349,9 +394,49 @@ class cqVcExtend {
                 array(
                 	"type" => "dropdown",
                 	"class" => "",
+                	"heading" => __( "Desktop Display", 'CQ_Custom' ),
+                	"param_name" => "desktop_display",
+                	"value" => array('Full Width' => 'full_width',
+                                     'Cards' => 'cards'),
+                	"description" => __( "Choose how this element should look on desktop", 'CQ_Custom' )
+            	),
+                array(
+                	"type" => "dropdown",
+                	"class" => "",
+                	"heading" => __( "Mobile Display", 'CQ_Custom' ),
+                	"param_name" => "mobile_display",
+                	"value" => array('With Image' => 'with_image',
+                                     'No Image' => 'no_image'),
+                	"description" => __( "Choose how this element should look on mobile", 'CQ_Custom' )
+            	),
+                array(
+                    "type"          => "checkbox",
+                    "admin_label"   => true,
+                    "weight"        => 10,
+                    "heading"       => __( "Add Load More?", "CQ_Custom" ),
+                    "description"   => __("Add the option to load more articles.", "CQ_Custom"),
+                    "value"         => '',
+                    "param_name"    => "load_more",
+                ),
+                /*array(
+                	"type" => "dropdown",
+                	"class" => "",
                 	"heading" => __( "Layout", 'CQ_Custom' ),
                 	"param_name" => "latest_post_layout",
-                	"value" => array('Select Layout' => '','1 top 3 bottom' => $ctn_standard_layout, '2 top 3 bottom' => $standard_layout, '3 top 3 bottom' => $latest_6, '2 top 2 bottom all overlay type' => $latest_4_overlay, '3 top 3 bottom all overlay type' => $latest_6_overlay, '3 top 3 bottom all standard type' => $latest_6_standard, 'new layout' => $latest_6_new),
+                	"value" => array('Select Layout' => '', 
+                                     '2 top 3 bottom' => $standard_layout, 
+                                     '3 top 3 bottom' => $latest_6, 
+                                     '2 top 2 bottom all overlay type' => $latest_4_overlay, 
+                                     '3 top 3 bottom all overlay type' => $latest_6_overlay, 
+                                     '3 top 3 bottom all standard type' => $latest_6_standard, 
+                                     'new layout' => $latest_6_new,
+                                     '1 top 2 bottom all overlay type' => $latest_7_new,
+                                     '1 top 3 bottom all overlay type' => $latest_8_new,
+                                     '1 top 3 bottom - top to side' => $latest_9_new,
+                                     '1 top 3 bottom - top to side - bottom standard' => $latest_10_new,
+                                     'Single Row Overlay' => $latest_11_new,
+                                     '2 top 3 bottom all standard type' => $latest_12_new
+                                    ),
                 	"description" => __( "Choose the layout for this element.", 'CQ_Custom' )
             	),
 				array(
@@ -363,24 +448,6 @@ class cqVcExtend {
                     "value"         => '',
                     "param_name"    => "ad_space",
                 ),
-                array(
-                	'type'          => 'autocomplete',
-                    'class'         => '',
-                    'heading'       => esc_html__( 'Must Include', 'alispx' ),
-                    'param_name'    => 'post_id',
-                    'settings' => array('multiple' => true, 'sortable' => true, 'unique_values' => true),
-                    'admin_label' => true,
-                    'description' => 'Select some articles or pages that must be shown',
-            	),
-                array(
-                	'type'          => 'autocomplete',
-                    'class'         => '',
-                    'heading'       => esc_html__( 'Suppress Categories', 'alispx' ),
-                    'param_name'    => 'category_not',
-                    'settings' => array('multiple' => true, 'sortable' => false, 'unique_values' => true),
-                    'admin_label' => true,
-                    'description' => "Hide this category's articles from the front end. Note: if an article from these categories is selected as Must Include, it will still be shown.",
-            	),
                 array(
 					"type" => "textfield",
 					"class" => "",
@@ -394,7 +461,7 @@ class cqVcExtend {
                         'element'   => 'ad_space',
                         'value'     => 'true'
                     ),
-				),
+				),*/
 			)
 		) );
     }
