@@ -16,6 +16,10 @@ Custom functionality for Cruise Trade News
 
 == Changelog ==
 
+= 2.0.5 =
+
+FiXES Correct excerpt not appearing in ajax loaded items.
+
 = 2.0.4 =
 
 FiXES Correct digital issue archive items.

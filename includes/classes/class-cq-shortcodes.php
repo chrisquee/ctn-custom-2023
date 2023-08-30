@@ -2481,14 +2481,18 @@ class cqShortcodes {
     }
     
     public function localize_homepage_posts() {
-        wp_localize_script( 'cq-custom-js', 'page_data', base64_encode(json_encode($this->home_page_post_ids)) );
+        if (is_array($this->home_page_post_ids) && !empty($this->home_page_post_ids)) {
+            wp_localize_script( 'cq-custom-js', 'page_data', $this->home_page_post_ids );
+        }
     }
     
     public function load_more_latest_news() {
         
+        global $post;
+        
         //$_POST = filter_input_array($_POST, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         
-        $this->home_page_post_ids = json_decode(base64_decode( $_POST['suppress'] ));
+        $this->home_page_post_ids = $_POST['suppress'];
         $category = $_POST['cat'];
         $page = $_POST['page'];
         $per_page = $_POST['per_page'];
@@ -2513,6 +2517,7 @@ class cqShortcodes {
             $post_list = new WP_Query($post_list_args);
             
             while($post_list->have_posts()) {
+                setup_postdata($post);
                 $post_list->the_post();
                 
                 $thumb_id = get_post_thumbnail_id();
@@ -2552,7 +2557,7 @@ class cqShortcodes {
                                         ' .$category_html . '
                                     </div>
                                 </div>
-                                <p>' . wp_trim_words( get_the_excerpt(), 40, '...') . '</p>
+                                <p>' . wp_trim_words( get_the_content($post_id), 40, '...') . '</p>
                                 <div class="item-author author-text">
                                     ' . get_the_author() . '
                                 </div>
