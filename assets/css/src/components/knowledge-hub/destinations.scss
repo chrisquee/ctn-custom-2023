@@ -9,10 +9,26 @@
 .destination-title {
     position: relative;
     width: 100%;
+    line-height: 2rem;
+    
+    @media screen and (min-width: 768px) {
+        padding-left: 2rem;
+    }
     
     &.no-image {
-      padding: 30px;
-      background-color: #fff;
+        padding: 2rem;
+        background-color: $gray-05;
+        border: 1px solid $gray-20;
+        border-radius: 1rem;
+        margin-left: 0 !important;
+        
+        @media screen and (min-width: 768px) {
+            padding: 2rem;
+        }
+    }
+    
+    h3 {
+        margin: 0 0 1rem;
     }
 
     h1 {
@@ -66,6 +82,13 @@
     }
 }
 
+.destination-feature {
+    
+    .destination-title {
+        padding-top: 1rem;
+    }
+}
+
 .know-wrapper, 
 .selling-wrapper {
     display: grid;
@@ -103,6 +126,12 @@
     h3 {
         margin: 0;
     }
+}
+
+.points-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
 }
 
 @media screen and (min-width: 768px) {

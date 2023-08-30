@@ -4,7 +4,7 @@ $points = rwmb_meta( 'cruise_type_interest', ['object_type' => 'term'], $term_id
             
 if ($points) { ?>
 
-<div class="container destination-what-we-love">
+<div class="destination-what-we-love">
     <div class="row">
         <div class="col-md-12 no-padding">
             

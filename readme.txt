@@ -16,6 +16,10 @@ Custom functionality for Cruise Trade News
 
 == Changelog ==
 
+= 2.0.10 =
+
+FiXES Fixes for destination pages. Primarily, the destination feature block.
+
 = 2.0.9 =
 
 FiXES Change background image on category carousel to be a default image size, set by the theme.
