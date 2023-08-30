@@ -16,6 +16,10 @@ Custom functionality for Cruise Trade News
 
 == Changelog ==
 
+= 2.0.4 =
+
+FiXES Correct digital issue archive items.
+
 = 2.0.3 =
 
 FiXES fix for AJAX load more on latest news.
