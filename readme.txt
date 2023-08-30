@@ -16,6 +16,10 @@ Custom functionality for Cruise Trade News
 
 == Changelog ==
 
+= 2.0.8 =
+
+FiXES Fix for UDG sponsor logo display.
+
 = 2.0.7 =
 
 FiXES Fix for UDG sponsor in wrong position when destination title wrapper is not full width. This is on mobile.

@@ -29,6 +29,10 @@
             margin: 0;
             padding: 30px 0 0;
             width: 100%;
+            
+            @media screen and (max-width:767px) {
+                padding: 0;
+            }
         }
     }
     
@@ -206,42 +210,47 @@
 }
 .udg-sponsor-wrap {
     width: 145px;
-}
-.udg-sponsor-wrap p {
-    font-size: 0.875rem;
-    margin-bottom: 0.75rem;
-}
-.udg-sponsor {
-    width: 145px;
-    background-color: #fff;
-    padding: 15px;
-    border-radius: 10px;
-}
-@media screen and (max-width:767px) {
-    .udg-sponsor-wrap {
+    background-color: $gray-05;
+    border-radius: 0.5rem;
+    
+    @media screen and (max-width:767px) {
         position: absolute;
         right: 1rem;
         top: 0;
         transform: translateY(-60%);
+        
+        &::before {
+            content: "SPONSORED BY";
+            position: absolute;
+            top: 0.5rem;
+            left: 1rem;
+            font-size: 0.75rem;
+        }
     }
-    .udg-sponsor-wrap::before {
-        content: "SPONSORED BY";
-        position: absolute;
-        top: 0.5rem;
-        left: 1rem;
-        font-size: 0.75rem;
+    
+    p {
+        font-size: .75rem;
+        margin: 0 0.75rem;
+        line-height: 1;
+        padding-top: 1rem;
+        
+        @media screen and (max-width:767px) {
+            display: none;
+        }
     }
-    .udg-sponsor-wrap p {
-        display: none;
-    }
+    
     .udg-sponsor {
-        padding-top: 2rem;
-        box-shadow: 1px 1px 10px 1px rgba(0,0,0,0.2);
-    }
-    .destination-title p.section-name {
-        padding: 0;
+        width: 145px;
+        padding: 15px;
+        border-radius: 10px;
+        
+        @media screen and (max-width:767px) {
+            padding-top: 2rem;
+            box-shadow: 1px 1px 10px 1px rgba(0,0,0,0.2);
+        }
     }
 }
+
 @media screen and (min-width: 768px) {
     .latest-wrapper.ship-carousel {
         grid-template-columns: repeat(3, 1fr);
