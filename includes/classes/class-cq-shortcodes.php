@@ -1486,7 +1486,7 @@ class cqShortcodes {
 
                     $content_html = '<div class="article-title destination-title">'
 
-                        . get_udg_sponsor() .
+                        . get_udg_sponsor(false) .
 
                         '<p class="section-name">ULTIMATE DESTINATION GUIDE</p>
 

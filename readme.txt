@@ -16,6 +16,10 @@ Custom functionality for Cruise Trade News
 
 == Changelog ==
 
+= 2.0.6 =
+
+FiXES Fix for UDG sponsor in wrong position when using a shortcode.
+
 = 2.0.5 =
 
 FiXES Correct excerpt not appearing in ajax loaded items.

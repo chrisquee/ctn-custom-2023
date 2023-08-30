@@ -405,7 +405,9 @@ function add_quote( &$value, $key) {
     $value = "'$value'";
 }
 
-function get_udg_sponsor() {
+function get_udg_sponsor($echo = true) {
+    
+    $html = '';
     
      if( function_exists('the_ad_placement') ) { 
          
@@ -414,16 +416,21 @@ function get_udg_sponsor() {
          $sponsor = ob_get_contents();
          ob_end_clean();
 
-        if ($sponsor != '') { ?>
+        if ($sponsor != '') { 
 
-        <div class="udg-sponsor-wrap">
+        $html = '<div class="udg-sponsor-wrap">
             <p class="sponsored-by">SPONSORED BY</p>
-            <div class="udg-sponsor">
-            <?php echo $sponsor; ?>
+            <div class="udg-sponsor">' .$sponsor . '
             </div>
-        </div>
-      <?php }
-    } 
+        </div>';
+      }
+    }
+    
+    if ($echo) {
+        echo $html;
+    } else {
+        return $html;
+    }
     
     return;
 }
