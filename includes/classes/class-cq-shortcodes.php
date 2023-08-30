@@ -638,7 +638,7 @@ class cqShortcodes {
             
             $image_id = get_term_meta($category_id, 'category-image-id', true);
             
-            $image_data = wp_get_attachment_image_src( $image_id, 'category-carousel-image' );
+            $image_data = wp_get_attachment_image_src( $image_id, 'featured-box-bg-image' );
             
             $html .= '<div class="cq_overlay item_wrap" style="background-image: url(' . $image_data[0] . ')">
                         <a href="' . esc_url(get_term_link( $category )) . '" class="destination-link" title="' . esc_html($category->name) . '"></a>
@@ -719,7 +719,8 @@ class cqShortcodes {
 			'post_type' => 'cq_digital_issue',
 			'suppress_filters' => true,
 			'post_status' => 'publish',
-			'showposts' => $items
+			'showposts' => $items,
+            'post__not_in' => $this->home_page_post_ids,
     	);
 		
 		if ($atts['publication'] != 'All' && $atts['publication'] != '') {

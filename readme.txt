@@ -16,6 +16,12 @@ Custom functionality for Cruise Trade News
 
 == Changelog ==
 
+= 2.0.9 =
+
+FiXES Change background image on category carousel to be a default image size, set by the theme.
+FiXES Change font size for digital issues titles to be smaller.
+FiXES Add post non-repeat logic to digital issues block.
+
 = 2.0.8 =
 
 FiXES Fix for UDG sponsor logo display.

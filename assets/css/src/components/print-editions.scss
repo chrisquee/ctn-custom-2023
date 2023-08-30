@@ -31,7 +31,8 @@
         }
 
         h2 {
-            line-height: 1.75rem;
+            line-height: 1.25rem;
+            font-size: 1rem;
             
             a {
                 color: inherit;
@@ -44,6 +45,7 @@
             font-size: 0.875rem;
             line-height: 1.125rem;
             align-items: flex-start;
+            font-weight: normal;
 
             span {
                 font-size: 1rem;
@@ -156,7 +158,6 @@ hr {
     text-transform: capitalize;
 }
 
-.digital-issue-footer h2,
 .load-more-header {
     margin: 0rem;
     font-size: 1.5rem;
