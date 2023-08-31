@@ -12,28 +12,29 @@ do_action('get_ship_data');
         <?php include('cruise-ship/cruise-ship-header.php'); ?>
 
         <div id="ship-conent">
-            <div class="col-md-8 no-padding">
-                <?php include('cruise-ship/cruise-ship-content.php'); ?>
+            <?php include('cruise-ship/cruise-ship-content.php'); ?>
 
-                <?php include('cruise-ship/cruise-ship-menu.php'); ?>
-
-                <?php include('cruise-ship/cruise-ship-accommodation.php'); ?>
-
-                <?php include('cruise-ship/cruise-ship-entertainment.php'); ?>
-
-                <?php include('cruise-ship/cruise-ship-dining.php'); ?>
-
-                <?php include('cruise-ship/cruise-ship-enrichment.php'); ?>
-
-                <?php include('cruise-ship/cruise-ship-health-fitness.php'); ?>
-
-                <?php include('cruise-ship/cruise-ship-deckplans.php'); ?>
-            </div>
             <div class="ship-sidebar">
                 <?php include('cruise-ship/cruise-ship-line.php'); ?>
-                <?php include('cruise-ship/cruise-ship-facts.php'); ?>
             </div>
         </div>
+    
+        <?php include('cruise-ship/cruise-ship-facts.php'); ?>
+
+        <?php include('cruise-ship/cruise-ship-menu.php'); ?>
+
+        <?php include('cruise-ship/cruise-ship-accommodation.php'); ?>
+
+        <?php include('cruise-ship/cruise-ship-entertainment.php'); ?>
+
+        <?php include('cruise-ship/cruise-ship-dining.php'); ?>
+
+        <?php include('cruise-ship/cruise-ship-enrichment.php'); ?>
+
+        <?php include('cruise-ship/cruise-ship-health-fitness.php'); ?>
+
+        <?php include('cruise-ship/cruise-ship-deckplans.php'); ?>
+            
 </article><!-- #post-## -->
 
 <?php //include('destination/destination-related.php'); ?>

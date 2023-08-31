@@ -16,6 +16,10 @@ Custom functionality for Cruise Trade News
 
 == Changelog ==
 
+= 2.0.11 =
+
+FiXES Featured News autocomplete, changed item wrapper in featured news to be semantic <article> tag. Changed layout of cruise ships pages, to include horizontal ship facts, so giving more space to the sections below. Fixes to spacing for the headers on the UDG as well as the shortcodes that use the similar classes. Fixed button sizing on UDG shortcodes and digital issues. Newsletter block button sizing.
+
 = 2.0.10 =
 
 FiXES Fixes for destination pages. Primarily, the destination feature block.

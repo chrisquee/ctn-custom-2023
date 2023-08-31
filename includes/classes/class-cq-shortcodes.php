@@ -199,9 +199,10 @@ class cqShortcodes {
 			'post_status' => 'publish',
             'post__in' => $all_posts_array,
             'orderby' => 'post__in',
+            'order' => 'ASC',
 			'posts_per_page' => 5
     	);
-    
+        
 		$post_list = new WP_Query($post_list_args);
         
         //print_r($post_list);
@@ -211,6 +212,7 @@ class cqShortcodes {
         if ($post_list->have_posts()) {
         
             $html .= '<div class="featured-wrapper">';
+            
             $post_index = 0;
             
             $ad_active = false;
@@ -249,7 +251,7 @@ class cqShortcodes {
                 
                 if ($post_index == 0) {
                     
-                    $html .= '<div class="featured-item main-item index-' . $post_index . '">
+                    $html .= '<article class="featured-item main-item index-' . $post_index . '">
                                 
                                 <div class="item-content">
                                     <div class="item-info">
@@ -274,7 +276,7 @@ class cqShortcodes {
                                     </a>
                                 </div>
                     
-                             </div>';
+                             </article>';
                     
                 } else {
                     
@@ -290,7 +292,7 @@ class cqShortcodes {
                         break;
                     }
                     
-                    $html .= '<div class="featured-item secondary-item index-' . $post_index . '">
+                    $html .= '<article class="featured-item secondary-item index-' . $post_index . '">
                                 <div class="item-info">
                                     <div class="item-title">
                                         <h5><a href="' . get_the_permalink() . '" class="title-gradient">' . get_the_title() . '</a></h5>
@@ -306,7 +308,7 @@ class cqShortcodes {
                                     ' . get_the_author() . '
                                 </div>
                     
-                             </div>';
+                             </article>';
                     
                 }
                 
@@ -1491,7 +1493,7 @@ class cqShortcodes {
 
                         '<p class="section-name">ULTIMATE DESTINATION GUIDE</p>
 
-                        <h1 class="entry-title">' . esc_html($region->name) . '</h1>
+                        <h1 class="entry-title"><a href="' . esc_url(get_term_link( $region, 'cruise-type' )) . '" class="title-gradient">' . esc_html($region->name) . '</a></h1>
 
                         ' . wpautop($region->description) . '
                         

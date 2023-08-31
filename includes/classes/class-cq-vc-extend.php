@@ -48,6 +48,8 @@ class cqVcExtend {
         add_filter( 'vc_autocomplete_cq_category_grid_item_category_id_callback', 'cq_category_autocomplete_suggester', 10, 1 );
         add_filter( 'vc_autocomplete_cq_latest_news_post_id_render', 'cq_post_autocomplete_suggester_render', 10, 1 );
         add_filter( 'vc_autocomplete_cq_latest_news_post_id_callback', 'cq_post_autocomplete_suggester', 10, 1 );
+        add_filter( 'vc_autocomplete_cq_featured_news_post_id_render', 'cq_post_autocomplete_suggester_render', 10, 1 );
+        add_filter( 'vc_autocomplete_cq_featured_news_post_id_callback', 'cq_post_autocomplete_suggester', 10, 1 );
         add_filter( 'vc_autocomplete_cq_latest_news_category_not_render', 'cq_category_autocomplete_suggester_render', 10, 1 );
         add_filter( 'vc_autocomplete_cq_latest_news_category_not_callback', 'cq_category_autocomplete_suggester', 10, 1 );
         add_filter( 'vc_autocomplete_cq_featured_regions_item_region_id_render', 'cq_region_autocomplete_suggester_render', 10, 1 );

@@ -258,28 +258,46 @@ ul.accomodation-facilities {
 #ship-facts {
     
     .cruise-ship-facts {
-        padding: 1rem !important;
-        border-radius: 10px;
-        background-color: $gray-05;
-        border: 1px solid $gray-20;
-        margin-bottom: 2rem;
+        padding: 1rem 0 0 !important;
+        
+        h3 {
+            margin: 0 0 1rem;
+        }
+        
+        .table-responsive {
+            border-radius: 0.5rem;
+            /*box-shadow: 1px 1px 10px 1px rgba(0,0,0,0.2);*/
+            border: 1px solid $gray-20;
+        }
         
         table {
+            font-size: 0.875rem;
+            margin-bottom: 0;
+            
+            thead {
+                background-color: $gray-05;
+            }
+            
+            tbody {
+                
+            }
+            
             tr {
                 
+                > th {
+                   text-align: center;
+                    vertical-align: middle;
+                }
+                
                 > td {
-                    padding-left: 0;
-                    padding-right: 0;
-                    
-                    &:last-child {
-                        text-align: right;
-                    }
+                    text-align: center; 
                 }
             }
         }
     }
 }
 .ship-sidebar {
+    min-width: 300px;
     
     section {
         margin-bottom: 2rem;

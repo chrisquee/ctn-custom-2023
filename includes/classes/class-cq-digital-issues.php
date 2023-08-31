@@ -14,8 +14,8 @@ class cqDigitalIssuePostType {
   public function register_cq_digital_issue_post_type() {
 
     $labels = array(
-      'name' => _x( 'Digital Issue', 'Post Type General Name', 'CQ_Custom' ),
-      'singular_name' => _x( 'Digital Issue', 'Post Type Singular Name', 'CQ_Custom' ),
+      'name' => _x( 'Digital Issues', 'Post Type General Name', 'CQ_Custom' ),
+      'singular_name' => _x( 'Digital Issues', 'Post Type Singular Name', 'CQ_Custom' ),
       'menu_name' => __( 'Digital Issues', 'CQ_Custom' ),
       'name_admin_bar' => __( 'Digital Issues', 'CQ_Custom' ),
       'archives' => __( 'Digital Issue Archives', 'CQ_Custom' ),
@@ -43,7 +43,7 @@ class cqDigitalIssuePostType {
       'filter_items_list' => __( 'Filter Digital Issues', 'CQ_Custom' ),
     );
     $args = array(
-      'label' => __( 'Digital Issue', 'CQ_Custom' ),
+      'label' => __( 'Digital Issues', 'CQ_Custom' ),
       'description' => __( 'Digital Issues', 'CQ_Custom' ),
       'labels' => $labels,
       'taxonomies' => array( 'cq_publications' ),

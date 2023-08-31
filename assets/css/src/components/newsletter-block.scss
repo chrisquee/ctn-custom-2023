@@ -80,12 +80,20 @@
     }
     
     button {
+        cursor: pointer;
         
         &#newsletter_submit {
             padding: 0 0.5rem;
         
             @media screen and (min-width: 768px) {
                 padding: 0 1rem;
+            }
+            
+            span {
+                
+                &.hidden-md-down {
+                    font-size: 0.875rem;
+                }
             }
         }
         
