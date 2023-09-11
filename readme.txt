@@ -16,6 +16,14 @@ Custom functionality for Cruise Trade News
 
 == Changelog ==
 
+= 2.0.12 =
+
+FIX - Allow button colour on elements to be dictated by the scheme in the CMS.
+FIX - Cruise Lines Archive - Disable cruise lines where a logo is not present.
+FIX - allow for the different default number of items on the Cruise Lines archive.
+FIX - Add correct intro text on Jobs archive.
+UPDATE - styling tweaks on the Cruise Lines list cards.
+
 = 2.0.11 =
 
 FiXES Featured News autocomplete, changed item wrapper in featured news to be semantic <article> tag. Changed layout of cruise ships pages, to include horizontal ship facts, so giving more space to the sections below. Fixes to spacing for the headers on the UDG as well as the shortcodes that use the similar classes. Fixed button sizing on UDG shortcodes and digital issues. Newsletter block button sizing.

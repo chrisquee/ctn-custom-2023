@@ -97,11 +97,11 @@ class cqShortcodes {
         $subtitle_html = $cq_cta_atts['fw_cta_subtitle'] != '' ? '<p>' . esc_html($cq_cta_atts['fw_cta_subtitle']) . '</p>' : '';
         
         if ($button_1['text'] != '') {
-            $button_html .= '<a href="' . $button_1['a_link'] . '" class="button button-orange button_1" ' . $button_1['a_target'] . ' ' . $button_1['a_title'] . '>' . esc_html($button_1['text']) . '</a>';
+            $button_html .= '<a href="' . $button_1['a_link'] . '" class="button button-category button_1" ' . $button_1['a_target'] . ' ' . $button_1['a_title'] . '>' . esc_html($button_1['text']) . '</a>';
         }
         
         if ($button_2['text'] != '') {
-            $button_html .= '<a href="' . $button_2['a_link'] . '" class="button button-blue button_1" ' . $button_2['a_target'] . ' ' . $button_2['a_title'] . '>' . esc_html($button_2['text']) . '</a>';
+            $button_html .= '<a href="' . $button_2['a_link'] . '" class="button button-category button_1" ' . $button_2['a_target'] . ' ' . $button_2['a_title'] . '>' . esc_html($button_2['text']) . '</a>';
         }
 	
 	    $output_html = '<div class="row no-padding cq-cta-wrap ' . $colour_class . '" style="background-image: url(' . $cta_img_url . ');">
@@ -869,8 +869,8 @@ class cqShortcodes {
                                                         <h3><a href="' . esc_url( $link ) . '" target="' . esc_attr($target) . '">' . get_the_title() . '</a></h3>
                                                         ' . get_the_excerpt() . '
                                                         <div class="directory-header-button-container">
-                                                            <a href="' . esc_url( $link ) . '" target="' . esc_attr($target) . '" class="button button-brand button-fill">READ NOW</a>
-                                                            <a href="' . esc_url( site_url('/digital-issues/') ) . '" target="' . esc_attr($target) . '" class="button button-brand button-outline">ALL ISSUES</a>
+                                                            <a href="' . esc_url( $link ) . '" target="' . esc_attr($target) . '" class="button button-category button-fill">READ NOW</a>
+                                                            <a href="' . esc_url( site_url('/digital-issues/') ) . '" target="' . esc_attr($target) . '" class="button button-category button-outline">ALL ISSUES</a>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1497,7 +1497,7 @@ class cqShortcodes {
 
                         ' . wpautop($region->description) . '
                         
-                        <a href="' . esc_url(get_term_link( $region, 'cruise-type' )) . '" class="destination-link button button-brand button-outline" title="' . esc_html($region->name) . '">See More</a>
+                        <a href="' . esc_url(get_term_link( $region, 'cruise-type' )) . '" class="destination-link button button-category button-outline" title="' . esc_html($region->name) . '">See More</a>
 
                     </div>';
                     
@@ -1573,7 +1573,7 @@ class cqShortcodes {
 
                 ' . wpautop($description) . '
 
-                <a href="' . esc_url($link['url']) . '" class="destination-link button button-brand button-outline" title="' . esc_html($link['title']) . '">' . esc_html($link['title']) . '</a>
+                <a href="' . esc_url($link['url']) . '" class="destination-link button button-category button-outline" title="' . esc_html($link['title']) . '">' . esc_html($link['title']) . '</a>
 
             </div>';
 

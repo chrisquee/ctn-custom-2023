@@ -19,7 +19,7 @@ get_header();
                 <div class="row-fluid clearfix">
                     <div class="col-md-12 header-content directory-header">
                         <h1 class="page-title">Jobs Board</h1>
-                        <p class="job-board-description">Welcome to the Aviation Business News jobs board. Here you can browse the latest jobs on offer throughout the aviation industry.
+                        <p class="job-board-description">Welcome to the Cruise Trade News jobs board. Here you can browse the latest jobs on offer throughout the cruise industry.
                             Listing is free so if you would like to list your available positions please register and submit your vacancies 
                             <a href="<?php echo site_url('/register/'); ?>" title="Subscribe">here</a>.
                         </p>

@@ -7,7 +7,10 @@
     </div>
   </div>
 </header>
-<div class="container dashboard-content"> 
+<div class="container dashboard-content">
+    <div id="notices">
+        <?php do_action('show_notices');  ?>
+    </div>
 <?php do_action( 'cq_show_messages'); ?>
 <?php do_action( 'cq_before_profile_fields', '', get_current_user_id() ); ?>
 

@@ -217,9 +217,13 @@
     padding: 30px;
     align-content: center;
     flex-wrap: wrap;
-    background-color: #fff;
+    background-color: $gray-05;
     border-radius: 10px;
-    position: relative
+    position: relative;
+    
+    img {
+        mix-blend-mode: multiply;
+    }
 }
 .cruise-lines-see-more {
     display: none;
@@ -232,13 +236,7 @@
   font-size: 0.875rem;
   display: inline-block;
   font-weight: bold;
-  color: transparent;
-  background: #a1234a;
-    background-clip: border-box;
-  -webkit-background-clip: text;
-  -moz-background-clip: text;
-  background-clip: text;
-  text-shadow: 0px 1px 0px rgba(255,255,255,0.5);
+  color: var(--category-colour);
 }
 .cruise-line-title {
     border-bottom: 1px solid #e3e3e3;

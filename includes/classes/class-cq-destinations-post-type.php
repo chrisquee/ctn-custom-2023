@@ -768,7 +768,15 @@ class cqDestinations {
     public function archive_item_number( $query ) {
 
      if (is_post_type_archive( 'cruise-line' ) && !isset($_POST['page']) && $query->is_main_query()) {
+        
+        $meta_query = array(
+            array(
+                'key' => '_thumbnail_id',
+            )
+        );
+         
        // show 20 posts
+       $query->set('meta_query', $meta_query);
        $query->set('posts_per_page', 20);
        $query->set( 'orderby', array( 'menu_order' => 'DESC', 'title' => 'ASC' ) );
      }

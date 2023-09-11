@@ -20,7 +20,7 @@ class cqNewsletter {
                     <div class="cq-container">
                         <form id="newsletter_form" class="newsletter-form" action="' . get_site_url() . '/wp-admin/admin-ajax.php" method="POST">
                             <input class="rce-contact-control required email" type="email" name="newsletter_email" placeholder="you@yourdomain.com" />
-                            <button class="button button-brand button-fill button-small newsletter_submit" type="submit" id="newsletter_submit"><span class="hidden-md-down">Submit</span> <span class="material-symbols-outlined">chevron_right</span></button>
+                            <button class="button button-category button-fill button-small newsletter_submit" type="submit" id="newsletter_submit"><span class="hidden-md-down">Submit</span> <span class="material-symbols-outlined">chevron_right</span></button>
                         </form>
                         <div class="vc-newsletter-submit-result"></div>
                     </div>';
