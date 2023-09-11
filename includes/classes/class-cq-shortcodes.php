@@ -1263,9 +1263,13 @@ class cqShortcodes {
     
     public function cq_newsletter_block_shortcode($attributes) {
         
+        $bg_image = get_theme_mod('newsletter_background');
+        
+        $bg_image_url = $bg_image != '' ? $bg_image : get_stylesheet_directory_uri() . '/images/CTN-Register-Background.jpg';
+        
         $html = '<div class="newsletter-block no-padding clearfix">
                     <div class="col-md-12 rel-slider no-padding">
-                        <div class="no-padding cq-cta-wrap text-light" style="background-image: url(https://ctndev.qinternet.uk/resources/uploads/2021/10/CTN-Register-Background.jpg);">                   
+                        <div class="no-padding cq-cta-wrap text-light" style="background-image: url(' . esc_attr($bg_image_url) . ');">                   
                                 <div class="cq-cta-content col-md-8 offset-md-2 to-center">
                                     <h2>Subscribe to our newsletter</h2>
                                     <p>Keep up to date with all the latest news and incentives in the Cruise Trade News Newsletter.</p>

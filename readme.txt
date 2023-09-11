@@ -18,6 +18,10 @@ Custom functionality for Cruise Trade News
 
 = 2.0.12 =
 
+FIX allow newsletter background image to be pulled from theme settings.
+
+= 2.0.12 =
+
 FIX - Allow button colour on elements to be dictated by the scheme in the CMS.
 FIX - Cruise Lines Archive - Disable cruise lines where a logo is not present.
 FIX - allow for the different default number of items on the Cruise Lines archive.
