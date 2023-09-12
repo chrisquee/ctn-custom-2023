@@ -24,7 +24,7 @@
             display: block;
             transform: rotate(270deg);
             color: white;
-            background-color: #a1234a;
+            background-color: var(--category-colour);
             padding: 0.5rem 1rem;
             white-space: nowrap;
             transform-origin: top right;
@@ -73,7 +73,7 @@
     ul.ship-quick-menu {
         display: block;
         width: 100%;
-        border: 1px solid #a1234a;
+        border: 1px solid var(--category-colour);
         background-color: #ffffff;
         border-radius: 0 5px 5px 5px;
         padding: 1rem;
@@ -89,7 +89,7 @@
             }
             
             a {
-                color: #a1234a;
+                color: var(--category-colour);
                 display: flex;
                 align-items: center;
                 font-size: 1rem;
@@ -119,7 +119,7 @@
     ul.ship-quick-menu {
         display: inline-block;
         width: auto;
-        border: 1px solid #a1234a;
+        border: 1px solid var(--category-colour);
         background-color: #ffffff;
         border-radius: 50px;
         padding: 0;
@@ -131,7 +131,7 @@
     }
     ul.ship-quick-menu li {
         display: inline-block;
-        border-right: 1px solid #a1234a;
+        border-right: 1px solid var(--category-colour);
         list-style: none;
     }
     ul.ship-quick-menu li:last-child {
@@ -139,13 +139,13 @@
     }
     ul.ship-quick-menu li.label {
         padding: 0.5rem;
-        background-color: #a1234a;
+        background-color: var(--category-colour);
         color: #ffffff;
         font-size: 0.7rem;
     }
     ul.ship-quick-menu li a {
         padding: 0.5rem;
-        color: #a1234a;
+        color: var(--category-colour);
         display: flex;
         align-items: center;
         font-size: 0.7rem;
@@ -204,7 +204,7 @@
     display: inline-flex;
     align-items: center;
     color: #fff;
-    background-color: $brand-colour;
+    background-color: var(--category-colour);
     font-size: 0.75rem;
     padding: 0.25rem 0.5rem;
     border-radius: 5px;

@@ -22,6 +22,10 @@
 }
 .agenda-container .tab:checked + label {
     color: #000;
+    
+    &:hover {
+        background-color: var(--category-colour-75);
+    }
 }
 .agenda-container .tab-mobile:checked + label, .mob-active {
     color: #000 !important;
@@ -78,7 +82,7 @@
   border-bottom-left-radius: 0;
 }
 .agenda-container .tab:checked + label {
-  background-color: #2d348c;
+  background-color: var(--category-colour);
   color: #ffffff;
   box-shadow: 0 -1px 0 #fff inset;
   cursor: default;
@@ -88,7 +92,7 @@
 }
 .agenda-container .tab + label {
   position: relative;
-  background-color: #f2f2f2;
+  background-color: $gray-05;
   cursor: pointer;
   display: block;
   text-decoration: none;
@@ -113,7 +117,7 @@
     width: 100%;
     margin: 0;
     text-align: left;
-    border-bottom: 1px solid #eaeaea;
+    border-bottom: 1px solid $gray-20;
 }
 .agenda-container .tab + label > span.fa {
     margin-right: 0.5rem;
@@ -121,7 +125,7 @@
 .agenda-container span.tab-divider {
     width: 100%;
     height: 1px;
-    background-color: #eaeaea;
+    background-color: $gray-20;
 }
 .agenda-container .tab-header {
     display: flex;
@@ -153,6 +157,7 @@
     margin-bottom: 20px;
     border-radius: 10px;
     overflow: hidden;
+    border: 1px solid $gray-20;
 }
 .agenda-container .agenda-times .agenda-time .agenda-time-header {
     display: block;
@@ -175,7 +180,7 @@
 .agenda-container .agenda-times .agenda-time .agenda-time-header p {
     padding: 1rem 2rem;
     font-weight: bold;
-    border-bottom: 3px solid #a1234a;
+    border-bottom: 3px solid var(--category-colour);
     display: inline-block;
     margin: 0 0 -1px 0;
 }

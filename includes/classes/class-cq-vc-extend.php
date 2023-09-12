@@ -42,6 +42,8 @@ class cqVcExtend {
         add_action( 'vc_before_init', array($self, 'cq_grid_links_item') );
         add_action( 'vc_before_init', array($self, 'cq_latest_jobs_row') );
         add_action( 'vc_before_init', array($self, 'cq_call_to_action') );
+        //vc_add_shortcode_param( 'timefield', array($self, 'cq_add_vc_time') );
+        //vc_add_shortcode_param( 'datefield', array($self, 'cq_add_vc_date') );
         add_filter( 'vc_autocomplete_cq_category_carousel_item_category_id_render', 'cq_category_autocomplete_suggester_render', 10, 1 );
         add_filter( 'vc_autocomplete_cq_category_carousel_item_category_id_callback', 'cq_category_autocomplete_suggester', 10, 1 );
         add_filter( 'vc_autocomplete_cq_category_grid_item_category_id_render', 'cq_category_autocomplete_suggester_render', 10, 1 );
@@ -1333,6 +1335,22 @@ class cqVcExtend {
             ) 
         );
 
+    }
+    
+    public function cq_add_vc_time( $settings, $value ) {
+        return '<div class="timefield_block">'
+           .'<input name="' . esc_attr( $settings['param_name'] ) . '" class="wpb_vc_param_value wpb-textinput ' .
+           esc_attr( $settings['param_name'] ) . ' ' .
+           esc_attr( $settings['type'] ) . '_field" type="time" value="' . esc_attr( $value ) . '" />' .
+           '</div>'; // This is html markup that will be outputted in content elements edit form
+    }
+
+    public function cq_add_vc_date( $settings, $value ) {
+        return '<div class="datefield_block">'
+           .'<input name="' . esc_attr( $settings['param_name'] ) . '" class="wpb_vc_param_value wpb-textinput ' .
+           esc_attr( $settings['param_name'] ) . ' ' .
+           esc_attr( $settings['type'] ) . '_field" type="date" value="' . esc_attr( $value ) . '" />' .
+           '</div>'; // This is html markup that will be outputted in content elements edit form
     }
 
     public function cq_custom_agenda_day() {

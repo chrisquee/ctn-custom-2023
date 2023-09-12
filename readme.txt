@@ -16,7 +16,13 @@ Custom functionality for Cruise Trade News
 
 == Changelog ==
 
-= 2.0.12 =
+= 2.0.14 =
+
+FIX CMS colour change throughout
+FIX Agenda block fixes and styling tweaks
+UPDATE Secondary font changes
+
+= 2.0.13 =
 
 FIX allow newsletter background image to be pulled from theme settings.
 
