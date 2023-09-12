@@ -16,6 +16,9 @@ Custom functionality for Cruise Trade News
 
 == Changelog ==
 
+= 2.0.15 = Make sure CSS colours are consistent throughout
+           Code refactoring
+
 = 2.0.15 = UPDATE add animated fade to newsletter and subscribe blocks
            FIX wrong colour on print editions archive
 

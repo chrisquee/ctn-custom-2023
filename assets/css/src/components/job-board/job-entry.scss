@@ -3,7 +3,7 @@
     margin-bottom: 2rem;
 }
 .back-to-job-board {
-    color: $brand-colour;
+    color: var(--category-colour);
     font-family: $font-family-monospace;
     text-transform: uppercase;
     display: flex;
@@ -26,7 +26,7 @@
     margin: 0;
     display: flex;
     align-items: center;
-    color: $brand-colour;
+    color: var(--category-colour);
     
     span {
         margin-right: 0.5rem;

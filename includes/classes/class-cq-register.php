@@ -76,7 +76,7 @@ class cqAuctionRegister {
                                     <label for="terms">I agree to the Terms of Service</label>
                                 </div>
                                 <div class="">
-                                    <input type="submit" id="submitbtn" name="submit" class="submit_button button button-brand button-fill" value="Sign Up" />
+                                    <input type="submit" id="submitbtn" name="submit" class="submit_button button button-category button-fill" value="Sign Up" />
                                 </div>
 
                             </form>
@@ -84,7 +84,7 @@ class cqAuctionRegister {
                             
 					    <div class="col-md-8 offset-md-2 form-wrap">
 				            <h2>Already a member?</h2>
-				            <a href="' . get_permalink( get_page_by_path( 'log-in' ) ) . '" class="login-link button button-outline button-brand">Click here to sign in to your account.</a>
+				            <a href="' . get_permalink( get_page_by_path( 'log-in' ) ) . '" class="login-link button button-outline button-category">Click here to sign in to your account.</a>
 				        </div>
                             
 				    </div>

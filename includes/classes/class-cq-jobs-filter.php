@@ -52,7 +52,7 @@ class cqJobsFilter {
 							</select>
 						</div>
 					</div>
-					<div class="col_2"><button class="button button-brand button-outline">Apply filter</button></div>
+					<div class="col_2"><button class="button button-category button-outline">Apply filter</button></div>
 					<input type="hidden" name="action" value="filter_jobs">                 
 				</form>
                 </div>

@@ -249,8 +249,8 @@ ul.accomodation-facilities {
         padding: 0 1rem;
         margin-bottom: 0.5rem;
         margin-right: 0.5rem;
-        border: 1px solid #a1234a;
-        color: #a1234a;
+        border: 1px solid var(--category-colour);
+        color: var(--category-colour);
         border-radius: 50px;
     }
 }

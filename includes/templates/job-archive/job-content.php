@@ -31,7 +31,7 @@ do_action('get_job_data');
         <p class="listing-description"><?php echo wp_trim_words( $job->job_description, 45, '...'); ?></p>
 
         <div class="listing-footer">
-            <a href="<?php echo the_permalink(); ?>" class="button button-brand button-outline">
+            <a href="<?php echo the_permalink(); ?>" class="button button-category button-outline">
                 <span class="material-symbols-outlined">arrow_forward</span>Find out more
             </a>
         </div>
