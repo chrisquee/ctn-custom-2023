@@ -16,7 +16,9 @@ Custom functionality for Cruise Trade News
 
 == Changelog ==
 
-= 2.0.15 = Make sure CSS colours are consistent throughout
+= 2.0.17 = Remove fulltext search as it won't work without a database update.
+
+= 2.0.16 = Make sure CSS colours are consistent throughout
            Code refactoring
 
 = 2.0.15 = UPDATE add animated fade to newsletter and subscribe blocks
