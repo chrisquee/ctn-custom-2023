@@ -106,6 +106,30 @@
 
 .newsletter-block {
     margin-bottom: 2rem;
+    position: relative;
+    
+    &::after {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        content: "";
+        background: -webkit-linear-gradient(rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.03) 100%);
+        background: -o-linear-gradient(rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.03) 100%);
+        background: linear-gradient(rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.03) 100%);
+        background-size: 100% 200%;
+        background-position: bottom center;
+        border-radius: 1rem;
+        transition: all 0.5s ease-in-out;
+    }
+    
+    &:hover {
+        
+        &::after {
+            background-position: top center;
+        }
+    }
     
     h2 {
         margin-top: 0;
