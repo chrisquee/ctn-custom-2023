@@ -54,9 +54,9 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: -webkit-linear-gradient(rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.03) 100%);
-            background: -o-linear-gradient(rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.03) 100%);
-            background: linear-gradient(rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.03) 100%);
+            background: -webkit-linear-gradient(rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.05) 100%);
+            background: -o-linear-gradient(rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.05) 100%);
+            background: linear-gradient(rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.05) 100%);
             background-size: 100% 200%;
             background-position: bottom center;
             transition: all 0.5s ease-in-out;
@@ -80,7 +80,7 @@
             color: white;
             
             &::placeholder {
-                color: rgba(255,255,255,0.5);
+                color: rgba(255,255,255,0.9);
             }
             
             &:focus,

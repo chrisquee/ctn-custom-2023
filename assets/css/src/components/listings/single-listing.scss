@@ -15,7 +15,7 @@
     display:flex;
     flex-wrap: wrap;
     gap: 15px;
-    color: #848596;
+    color: $gray-60;
     font-family: $font-family-monospace; 
 
     p {
@@ -26,7 +26,7 @@
         border: solid 1px $gray-20;
         border-radius: 10px;
         padding: 0.25rem 1rem 0.25rem 0.5rem;
-        background: #F9F9FA;
+        background: $gray-05;
         margin: 0px;
     }
 

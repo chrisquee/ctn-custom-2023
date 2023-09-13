@@ -16,6 +16,8 @@ Custom functionality for Cruise Trade News
 
 == Changelog ==
 
+= 2.0.18 = Further CSS changes
+
 = 2.0.17 = Remove fulltext search as it won't work without a database update.
 
 = 2.0.16 = Make sure CSS colours are consistent throughout

@@ -134,7 +134,7 @@ class cqJobsFilter {
 	
 	function cq_filter_function($wp_query){
 		
-         if ( isset( $_POST[ 'action' ] ) && $_POST[ 'action' ] == 'filter_jobs' && $wp_query->is_main_query()):
+         if ( isset( $_POST[ 'action' ] ) && $_POST[ 'action' ] == 'filter_jobs' && $wp_query->is_main_query()) {
 
                 $wp_query->set( 'orderby' , 'date');
                 $wp_query->set( 'post_type', 'jobs');
@@ -170,7 +170,7 @@ class cqJobsFilter {
 
             $wp_query->set( 'meta_query', $args[ 'meta_query' ] );
 
-        endif;
+         }
    
         return $wp_query;
     }
