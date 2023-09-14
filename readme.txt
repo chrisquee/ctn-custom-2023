@@ -16,6 +16,8 @@ Custom functionality for Cruise Trade News
 
 == Changelog ==
 
+= 2.0.22 = Trim excerpt. 
+
 = 2.0.21 = More styling fixes. 
 
 = 2.0.20 = UPDATE Apply global colour to dashboard pagination. 

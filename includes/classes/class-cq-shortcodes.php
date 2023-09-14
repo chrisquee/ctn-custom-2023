@@ -600,7 +600,7 @@ class cqShortcodes {
                                         ' .$category_html . '
                                     </div>
                                 </div>
-                                <p>' . wp_trim_words( $excerpt, 40, '...') . '</p>
+                                <p>' . trim(wp_trim_words( $excerpt, 40, '...')) . '</p>
                                 <div class="item-author author-text">
                                     ' . get_the_author() . '
                                 </div>
