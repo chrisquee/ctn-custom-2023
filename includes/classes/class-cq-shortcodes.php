@@ -162,6 +162,7 @@ class cqShortcodes {
                                 'featured_post_category' => '',
                                 'post_id' => '',
                                 'ad_space' => false,
+                                'suppress_sticky' => 'false',
                                 'ad_shortcode' => ''
                             ), $attributes);
         
@@ -173,15 +174,27 @@ class cqShortcodes {
             $must_include_array = explode(',', $atts['post_id']);
             
         }
-            
+        
+        $sticky_posts = get_option( 'sticky_posts' );
+        
+        if ($atts['suppress_sticky'] == 'true') {
+            $exclude_array = array_merge($must_include_array, $this->home_page_post_ids, $sticky_posts);
+        } else {
+            $exclude_array = array_merge($must_include_array, $this->home_page_post_ids);
+        }
+        
         $exclude_array = array_merge($must_include_array, $this->home_page_post_ids);
 
         $query_args = array( 'post_type' => 'post',
                              'suppress_filters' => true,
                              'post_status' => 'publish',
                              'post__not_in' => $exclude_array,
-                             'posts_per_page' => 5
+                             'posts_per_page' => 5,
                             );
+        
+        if ($atts['suppress_sticky'] == 'true') {
+            $query_args['ignore_sticky_posts'] = 1;
+        }
         
         if (is_numeric($atts['featured_post_category'])) {
 			$query_args['cat'] = $atts['featured_post_category'];
@@ -202,6 +215,10 @@ class cqShortcodes {
             'order' => 'ASC',
 			'posts_per_page' => 5
     	);
+        
+        if ($atts['suppress_sticky'] == 'true') {
+            $post_list_args['ignore_sticky_posts'] = true;
+        }
         
 		$post_list = new WP_Query($post_list_args);
         

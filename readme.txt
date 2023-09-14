@@ -16,7 +16,10 @@ Custom functionality for Cruise Trade News
 
 == Changelog ==
 
-= 2.0.18 = Further CSS changes
+= 2.0.19 = FIX issue with sticky posts being included when not wanted in Featured Articles block. New option to disable sticky posts.
+           FIX Featured item on region taxonomy not rendering paragraphs correctly.
+
+= 2.0.18 = Further CSS changes.
 
 = 2.0.17 = Remove fulltext search as it won't work without a database update.
 

@@ -3,7 +3,7 @@
 Plugin Name: CQ Custom
 Plugin URI: https://www.qinternet.uk/
 Description: Custom setup and functionality for Cruise Trade News.
-Version: 2.0.18
+Version: 2.0.19
 Author: Chris Quee
 Author URI: https://www.qinternet.uk/
 License: Custom

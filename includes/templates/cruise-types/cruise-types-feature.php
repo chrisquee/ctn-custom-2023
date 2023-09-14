@@ -27,7 +27,7 @@ if ( $feature_heading != '' && $feature_description != '') {
 
             <h3><?php echo esc_html($feature_heading); ?></h3>
             
-            <?php echo esc_html($feature_description); ?>
+            <?php echo wpautop(esc_html($feature_description)); ?>
 
         </div>
     </div>
