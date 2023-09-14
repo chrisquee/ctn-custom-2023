@@ -16,6 +16,8 @@ Custom functionality for Cruise Trade News
 
 == Changelog ==
 
+= 2.0.23 = Trim excerpt for &nbsp;. 
+
 = 2.0.22 = Trim excerpt. 
 
 = 2.0.21 = More styling fixes. 

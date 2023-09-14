@@ -574,6 +574,7 @@ class cqShortcodes {
                 $primary_category_title = get_category($primary_category)->name;
                 $primary_category_link = get_category_link($primary_category);
                 $excerpt = preg_replace("~(?:\[/?)[^/\]]+/?\]~s", '', get_the_content());
+                $excerpt = str_replace('&nbsp;', ' ', $excerpt);
                 
                 if ($category_title != $primary_category_title) {
                     $category_html = '<a href="' . $primary_category_link . '">' . $primary_category_title . '</a>
