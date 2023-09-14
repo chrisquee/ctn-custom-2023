@@ -24,9 +24,9 @@ ul.page-numbers li {
     font-size: 0.875rem;
     text-decoration: none;
     font-weight: 400;
-	color: $brand-colour;
+	color: var(--category-colour);
     cursor: pointer;
-    border: 1px solid $brand-colour;
+    border: 1px solid var(--category-colour);
     border-radius: 50px;
     
     &.next,
@@ -41,7 +41,7 @@ ul.page-numbers li {
 .page-numbers.current,
 .page-numbers.current:hover {
     color: #fff;
-    background: $brand-colour;
+    background: var(--category-colour);
     text-decoration: none;
 }
 

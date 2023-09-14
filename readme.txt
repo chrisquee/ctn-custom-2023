@@ -16,6 +16,10 @@ Custom functionality for Cruise Trade News
 
 == Changelog ==
 
+= 2.0.21 = More styling fixes. 
+
+= 2.0.20 = UPDATE Apply global colour to dashboard pagination. 
+
 = 2.0.19 = FIX issue with sticky posts being included when not wanted in Featured Articles block. New option to disable sticky posts.
            FIX Featured item on region taxonomy not rendering paragraphs correctly.
 
