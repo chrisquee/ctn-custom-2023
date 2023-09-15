@@ -3,6 +3,7 @@ import {createCookie, readCookie} from './components/cookies';
 import './components/legacy';
 import './components/login';
 import './components/carousels';
+import './components/countdown';
 import './components/knowledge-hub-dynamic';
 //import './components/cruise-ships';
 import './components/user-verify';

@@ -59,6 +59,10 @@ class cqShortcodes {
                                 'title_size' => 'h1',
                                 'fw_cta_subtitle' => '',
                                 'content_position' => '',
+                                'add_countdown' => 'false',
+                                'countdown_end_date' => '',
+                                'countdown_end_time' => '',
+                                'countdown_timeout_message' => 'ENDED',
                                 'text_colour' => 'text-light',
                                 'fw_cta_button_1_link' => '',
                                 'fw_cta_button_2_link' => ''
@@ -91,22 +95,54 @@ class cqShortcodes {
         $image_attributes = wp_get_attachment_image_src( $cq_cta_atts['cq_fw_cta_bg_img'], 'featured-box-bg-image' );
 	    $cta_img_url = $image_attributes[0];
         
+        $countdown_html = '';
+        
+        if ($cq_cta_atts['add_countdown'] == true) {
+            
+            $countdown_html = '<div class="cq-cta-countdown" data-enddate="' . esc_attr($cq_cta_atts['countdown_end_date']) . '" data-endtime="' . esc_attr($cq_cta_atts['countdown_end_time']) . '" data-endmessage="' . esc_attr($cq_cta_atts['countdown_timeout_message']) . '">
+                <div class="time-wrap days-wrap">
+                    <span>Days</span>
+                    <div class="time-content days-content">
+                    </div>
+                </div>
+                <div class="time-wrap hours-wrap">
+                    <span>Hours</span>
+                    <div class="time-content hours-content">
+                    </div>
+                </div>
+                <div class="time-wrap minutes-wrap">
+                    <span>Min<span class="d-none d-md-inline">ute</span>s</span>
+                    <div class="time-content minutes-content">
+                    </div>
+                </div>
+                <div class="time-wrap seconds-wrap">
+                    <span>Sec<span class="d-none d-md-inline">ond</span>s</span>
+                    <div class="time-content seconds-content">
+                    </div>
+                </div>
+            </div>';
+            
+        }
+        
         $button_1 = $this->get_link_params($cq_cta_atts['fw_cta_button_1_link']);
         $button_2 = $this->get_link_params($cq_cta_atts['fw_cta_button_2_link']);
         $colour_class = esc_attr($cq_cta_atts['text_colour']);
         $subtitle_html = $cq_cta_atts['fw_cta_subtitle'] != '' ? '<p>' . esc_html($cq_cta_atts['fw_cta_subtitle']) . '</p>' : '';
         
+        $button_class = $colour_class == 'text-light' ? 'button-white' : 'button-category';
+        
         if ($button_1['text'] != '') {
-            $button_html .= '<a href="' . $button_1['a_link'] . '" class="button button-category button_1" ' . $button_1['a_target'] . ' ' . $button_1['a_title'] . '>' . esc_html($button_1['text']) . '</a>';
+            $button_html .= '<a href="' . $button_1['a_link'] . '" class="button ' . $button_class . ' button-outline" ' . $button_1['a_target'] . ' ' . $button_1['a_title'] . '>' . esc_html($button_1['text']) . '</a>';
         }
         
         if ($button_2['text'] != '') {
-            $button_html .= '<a href="' . $button_2['a_link'] . '" class="button button-category button_1" ' . $button_2['a_target'] . ' ' . $button_2['a_title'] . '>' . esc_html($button_2['text']) . '</a>';
+            $button_html .= '<a href="' . $button_2['a_link'] . '" class="button ' . $button_class . ' button-outline" ' . $button_2['a_target'] . ' ' . $button_2['a_title'] . '>' . esc_html($button_2['text']) . '</a>';
         }
 	
-	    $output_html = '<div class="row no-padding cq-cta-wrap ' . $colour_class . '" style="background-image: url(' . $cta_img_url . ');">
+	    $output_html = '<div class="cq-cta-wrap ' . $colour_class . ' ' . esc_attr($cq_cta_atts['content_position']) . '" style="background-image: url(' . $cta_img_url . ');">
                             
                                 <div class="cq-cta-content ' . $con_class . '">
+                                    ' . $countdown_html . '
                                     <' . $title_size . '>' . esc_html($cq_cta_atts['fw_cta_title']) . '</' . $title_size . '>
                                     ' . $subtitle_html . '
                                     <div class="cta-button-container">

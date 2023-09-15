@@ -128,6 +128,47 @@ class cqVcExtend {
 					"value" => array( 'Select' => '', 'Left' => 'left','Center' => 'center', 'Right' => 'right' ),
 					"description" => __( "Where would you like the content to be positioned?", 'CQ_Custom' )
 				),
+                array(
+                    "type"          => "checkbox",
+                    "admin_label"   => true,
+                    "weight"        => 10,
+                    "heading"       => __( "Add Countdown", "CQ_Custom" ),
+                    "description"   => __("Add a countdown timer to the CTA", "CQ_Custom"),
+                    "value"         => '',
+                    "param_name"    => "add_countdown",
+                ),
+                array(
+                    "type" => "datefield",
+                    "heading" => __("Countdown End Date", "CQ_Custom"),
+                    "param_name" => "countdown_end_date",
+                    "description" => __("Add the end date for the countdown.", "CQ_Custom"),
+                    "dependency"    => array(
+                        'element'   => 'add_countdown',
+                        'value'     => 'true'
+                    ),
+                ),
+                array(
+                    'type' => 'timefield',
+                    'value' => '',
+                    'heading' => esc_html__( 'Countdown End Time', "CQ_Custom" ),
+                    'param_name' => 'countdown_end_time',
+                    "description" => __("Add the end time for the countdown.", "CQ_Custom"),
+                    'dependency'    => array(
+                        'element'   => 'add_countdown',
+                        'value'     => 'true'
+                    ),
+                ),
+                array(
+                    'type' => 'textfield',
+                    'value' => '',
+                    'heading' => esc_html__( 'Countdown Timeout Message', "CQ_Custom" ),
+                    'param_name' => 'countdown_timeout_message',
+                    "description" => __("Add a message to display when the timer ends.", "CQ_Custom"),
+                    'dependency'    => array(
+                        'element'   => 'add_countdown',
+                        'value'     => 'true'
+                    ),
+                ),
 				array(
                 	"type" => "vc_link",
                 	"class" => "",
