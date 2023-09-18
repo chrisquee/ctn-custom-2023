@@ -16,7 +16,9 @@ Custom functionality for Cruise Trade News
 
 == Changelog ==
 
-= 2.1 =FIX Small fix to newsletter block, remove coloured background.
+= 2.1.2 = FIX Small fix to newsletter block, adjust gradient overlay.
+
+= 2.1.1 = FIX Small fix to newsletter block, remove coloured background.
 
 = 2.1 = UPDATE add countdown timer to Large CTA block.
 
