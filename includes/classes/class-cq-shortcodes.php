@@ -1324,7 +1324,7 @@ class cqShortcodes {
         $html = '<div class="newsletter-block no-padding clearfix">
                     <div class="col-md-12 rel-slider no-padding">
                         <div class="no-padding cq-cta-wrap text-light" style="background-image: url(' . esc_attr($bg_image_url) . ');">                   
-                                <div class="cq-cta-content col-md-8 offset-md-2 to-center">
+                                <div class="cq-cta-content newsletter-content col-md-8 offset-md-2 to-center">
                                     <h2>Subscribe to our newsletter</h2>
                                     <p>Keep up to date with all the latest news and incentives in the Cruise Trade News Newsletter.</p>
                                     ' . do_shortcode('[cq_newsletter_form]') . '

@@ -232,7 +232,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: -webkit-linear-gradient(rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.05) 100%);
+            background: -webkit-linear-gradient(rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.15) 100%);
             background: -o-linear-gradient(rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.05) 100%);
             background: linear-gradient(rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.05) 100%);
             background-size: 100% 200%;
@@ -244,9 +244,12 @@
         
         .cq-cta-content {
             z-index: 1;
-            background-color: var(--category-colour-75);
             padding: 1rem;
             border-radius: 0.75rem;
+            
+            &:not(.newsletter-content) {
+                background-color: var(--category-colour-75);
+            }
             
             h1,
             h2,
