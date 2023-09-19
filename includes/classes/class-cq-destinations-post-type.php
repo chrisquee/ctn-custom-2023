@@ -240,7 +240,7 @@ class cqDestinations {
         $meta_boxes[] = array(
             'id' => 'destination-images',
             'title' => esc_html__( 'Image Gallery', 'CQ_Custom' ),
-            'pages'    => array( 'destinations', 'cruise-line', 'post' ),
+            'pages'    => array( 'destinations', 'cruise-line' ),
             'context'  => 'normal',
             'priority' => 'high',
             'fields' => array(
