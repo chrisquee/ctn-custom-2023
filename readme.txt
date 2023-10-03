@@ -16,6 +16,8 @@ Custom functionality for Cruise Trade News
 
 == Changelog ==
 
+= 2.1.4 = FIX Layout for simgle speaker.
+
 = 2.1.3 = FIX Sponsor logos on UDG.
 
 = 2.1.2 = FIX Small fix to newsletter block, adjust gradient overlay.

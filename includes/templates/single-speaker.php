@@ -17,7 +17,7 @@ get_header();
        <?php while ( have_posts() ) : the_post(); ?>
 		<article id="post-<?php the_ID(); ?>" <?php post_class('row-fluid'); ?>>
 			
-			<div class="container-fluid article-header">
+			<div class="article-header">
 			    <?php include('speaker/speaker-header.php'); ?>
             </div>
 
