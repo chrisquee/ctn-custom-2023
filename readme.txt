@@ -16,7 +16,9 @@ Custom functionality for Cruise Trade News
 
 == Changelog ==
 
-= 2.1.4 = FIX Layout for simgle speaker.
+= 2.1.5 = FIX CQ Carousel Images.
+
+= 2.1.4 = FIX Layout for single speaker.
 
 = 2.1.3 = FIX Sponsor logos on UDG.
 

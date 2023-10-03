@@ -19,6 +19,10 @@
 /* BOF CQ Standard Carousel */
 .cq-owl-carousel {
     
+    .owl-stage-outer {
+        min-height: 80px;
+    }
+    
     .owl-stage {
         display: flex;
         align-items: center;
@@ -35,6 +39,8 @@
                     
                     > img {
                         border-radius: 5px;
+                        min-height: 80px;
+                        object-fit: contain;
                     }
                 }
             }
