@@ -16,6 +16,8 @@ Custom functionality for Cruise Trade News
 
 == Changelog ==
 
+= 2.1.6 = Update add custom gallery.
+
 = 2.1.5 = FIX CQ Carousel Images.
 
 = 2.1.4 = FIX Layout for single speaker.

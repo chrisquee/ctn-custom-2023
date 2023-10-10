@@ -47,7 +47,7 @@ jQuery(document).ready(function() {
 });
 
 function owl_init() {
-    var $owl = jQuery(".owl-carousel");
+    var $owl = jQuery(".owl-carousel").not('.gallery-carousel');
 	$owl.each(function (index) {
         
         var items_no = jQuery(this).attr('data-items') != undefined ? jQuery(this).attr('data-items') : 1;

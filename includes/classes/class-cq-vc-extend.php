@@ -42,6 +42,7 @@ class cqVcExtend {
         add_action( 'vc_before_init', array($self, 'cq_grid_links_item') );
         add_action( 'vc_before_init', array($self, 'cq_latest_jobs_row') );
         add_action( 'vc_before_init', array($self, 'cq_call_to_action') );
+        add_action( 'vc_before_init', array($self, 'cq_wp_image_gallery') );
         //vc_add_shortcode_param( 'timefield', array($self, 'cq_add_vc_time') );
         //vc_add_shortcode_param( 'datefield', array($self, 'cq_add_vc_date') );
         add_filter( 'vc_autocomplete_cq_category_carousel_item_category_id_render', 'cq_category_autocomplete_suggester_render', 10, 1 );
@@ -1934,6 +1935,41 @@ class cqVcExtend {
             }
         }
         return $results;
+    }
+    
+    public function cq_wp_image_gallery() {
+        
+        vc_map( array(
+			"name" => __( "CQ Image Gallery", "CQ_Custom" ),
+			"base" => "cq_wp_gallery",
+			"category" => __( 'by CQ', 'CQ_Custom' ),
+			"params" => array(
+				// add params same as with any other content element
+				array(
+					"type" => "attach_images",
+					"heading" => __( "Gallery Images", "CQ_Custom" ),
+					"param_name" => "ids",
+					"description" => __( "Select your gallery images", "CQ_Custom" )
+				),
+                array(
+					"type" => "dropdown",
+					"class" => "",
+					"heading" => __( "Gallery Style", 'CQ_Custom' ),
+					"param_name" => "style",
+					"value" => array( 'Select Style' => '', 'Grid' => 'grid','Slider' => 'slider' ),
+					"description" => __( "Choose the style of the gallery, grid is the default.", 'CQ_Custom' )
+				),
+                array(
+					"type" => "dropdown",
+					"class" => "",
+					"heading" => __( "For sliders choose adaptive or fixed height", 'CQ_Custom' ),
+					"param_name" => "auto_height",
+					"value" => array( 'Select Adaptive Height' => '', 'Fixed Height' => 'fixed','Adaptive Height' => 'adaptive' ),
+					"description" => __( "Adaptive height shows the full image and expands the slider. No effect in grid mode.", 'CQ_Custom' )
+				),
+			)
+		) );
+        
     }
 
 }

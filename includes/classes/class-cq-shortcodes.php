@@ -43,11 +43,16 @@ class cqShortcodes {
         add_shortcode('cq_latest_jobs_row', array($self, 'cq_latest_jobs_row_shortcode') );
         add_shortcode('cq_call_to_action', array($self, 'cq_call_to_action_shortcode') );
         add_shortcode('cq_grid_links_item', array($self, 'cq_grid_links_item_shortcode'));
+        add_shortcode('cq_wp_gallery', array($self, 'cq_wp_gallery_shortcode'));
         add_filter('embed_oembed_html', array($self, 'cq_wrap_oembed'), 99, 4 );
         add_filter('the_content', array($self, 'cq_wrap_iframe') );
         add_action( 'get_footer', array($self, 'localize_homepage_posts'), 999 );
         add_action( 'wp_ajax_more_latest_news', array($self, 'load_more_latest_news'));
         add_action( 'wp_ajax_nopriv_more_latest_news', array($self, 'load_more_latest_news'));
+        //Custom gallery methods
+        add_filter( 'post_gallery', array($self, 'cq_custom_gallery'), 10, 3 );
+        add_action( 'admin_head-media-upload-popup', array($self, 'add_gallery_option') );
+        add_action('print_media_templates', array($self, 'add_gallery_options') );
   	}
     
     public function cq_large_cta_shortcode($attributes) {
@@ -2635,5 +2640,356 @@ class cqShortcodes {
         
         die;
     }
+    
+    public function cq_wp_gallery_shortcode($attributes) {
+        
+        $html = $this->cq_custom_gallery( '', $attributes, 0 );
+        
+        return $html;
+        
+    }
+    
+    function cq_custom_gallery( $output, $attr, $instance ) {
+
+        $post = get_post();
+        static $instance = 0;
+        $instance++;
+        if ( ! empty( $attr['ids'] ) ) {
+                // 'ids' is explicitly ordered, unless you specify otherwise.
+                if ( empty( $attr['orderby'] ) ) {
+                        $attr['orderby'] = 'post__in';
+                }
+                $attr['include'] = $attr['ids'];
+        }
+
+        $html5 = current_theme_supports( 'html5', 'gallery' );
+        $atts  = shortcode_atts(
+                array(
+                        'order'      => 'ASC',
+                        'orderby'    => 'menu_order ID',
+                        'id'         => $post ? $post->ID : 0,
+                        'itemtag'    => $html5 ? 'figure' : 'dl',
+                        'icontag'    => $html5 ? 'div' : 'dt',
+                        'captiontag' => $html5 ? 'figcaption' : 'dd',
+                        'columns'    => 3,
+                        'style'    => 'grid',
+                        'auto_height' => 'fixed',
+                        'size'       => 'mini-product-image',
+                        'include'    => '',
+                        'exclude'    => '',
+                        'link'       => '',
+                ),
+                $attr,
+                'gallery'
+        );
+        $id = intval( $atts['id'] );
+        if ( ! empty( $atts['include'] ) ) {
+                $_attachments = get_posts(
+                        array(
+                                'include'        => $atts['include'],
+                                'post_status'    => 'inherit',
+                                'post_type'      => 'attachment',
+                                'post_mime_type' => 'image',
+                                'order'          => $atts['order'],
+                                'orderby'        => $atts['orderby'],
+                        )
+                );
+                $attachments = array();
+                foreach ( $_attachments as $key => $val ) {
+                        $attachments[ $val->ID ] = $_attachments[ $key ];
+                }
+        } elseif ( ! empty( $atts['exclude'] ) ) {
+                $attachments = get_children(
+                        array(
+                                'post_parent'    => $id,
+                                'exclude'        => $atts['exclude'],
+                                'post_status'    => 'inherit',
+                                'post_type'      => 'attachment',
+                                'post_mime_type' => 'image',
+                                'order'          => $atts['order'],
+                                'orderby'        => $atts['orderby'],
+                        )
+                );
+        } else {
+                $attachments = get_children(
+                        array(
+                                'post_parent'    => $id,
+                                'post_status'    => 'inherit',
+                                'post_type'      => 'attachment',
+                                'post_mime_type' => 'image',
+                                'order'          => $atts['order'],
+                                'orderby'        => $atts['orderby'],
+                        )
+                );
+        }
+        if ( empty( $attachments ) ) {
+                return '';
+        }
+        if ( is_feed() ) {
+                $output = "\n";
+                foreach ( $attachments as $att_id => $attachment ) {
+                        $output .= wp_get_attachment_link( $att_id, $atts['size'], true ) . "\n";
+                }
+                return $output;
+        }
+        $itemtag    = tag_escape( $atts['itemtag'] );
+        $captiontag = tag_escape( $atts['captiontag'] );
+        $icontag    = tag_escape( $atts['icontag'] );
+        $valid_tags = wp_kses_allowed_html( 'post' );
+        if ( ! isset( $valid_tags[ $itemtag ] ) ) {
+                $itemtag = 'dl';
+        }
+        if ( ! isset( $valid_tags[ $captiontag ] ) ) {
+                $captiontag = 'dd';
+        }
+        if ( ! isset( $valid_tags[ $icontag ] ) ) {
+                $icontag = 'dt';
+        }
+        $columns   = intval( $atts['columns'] );
+        $itemwidth = $columns > 0 ? floor( 100 / $columns ) : 100;
+        $float     = is_rtl() ? 'right' : 'left';
+        $selector = "gallery-{$instance}";
+        $gallery_style = '';
+        $attachments_number = sizeof($attachments);
+        $attachments_more = $attachments_number - 8;
+        
+        
+        $size_class  = sanitize_html_class( $atts['size'] );
+        $style_class = $atts['style'] == 'slider' ? 'gallery-carousel owl-carousel' : '';
+        //$atts['size'] = $atts['style'] == 'slider' ? 'main-post-image' : $atts['size'];
+        
+        if ($atts['style'] == 'slider') {
+            if ($atts['auto_height'] == 'adaptive') {
+                $atts['size'] = 'medium';
+            } else {
+                $atts['size'] = 'main-post-image';
+            }
+        }
+        
+        $gallery_div = "<div id='$selector' class='gallery galleryid-{$id} {$style_class} gallery-columns-{$columns} gallery-size-{$size_class}'>";
+        
+        /**
+         * Filters the default gallery shortcode CSS styles.
+         *
+         * @since 2.5.0
+         *
+         * @param string $gallery_style Default CSS styles and opening HTML div container
+         *                              for the gallery shortcode output.
+         */
+        $output = apply_filters( 'gallery_style', $gallery_style . $gallery_div );
+        $i = 1;
+        foreach ( $attachments as $id => $attachment ) {
+            
+            $attr = array('class' => 'lightbox');
+            $last_item_class = $i == 9 ? 'last-item' : '';
+            $data_more = $i == 9 ? 'data-moreitems="+' . $attachments_more . ' More"' : '';
+
+            if ( ! empty( $atts['link'] ) && 'file' === $atts['link'] ) {
+                    $image_output = wp_get_attachment_link( $id, $atts['size'], false, false, false, $attr );
+            } elseif ( ! empty( $atts['link'] ) && 'none' === $atts['link'] ) {
+                    $image_output = wp_get_attachment_image( $id, $atts['size'], false, $attr );
+            } else {
+                $url = wp_get_attachment_image_src($id, 'full');
+                $thumb_url = wp_get_attachment_image_src($id, 'thumbnail');
+                
+                $image_output = '<a href="'. $url[0] . '" data-title="'. wptexturize($attachment->post_excerpt) .'" data-fancybox="gallery" data-thumb="' . $thumb_url[0] . '"' . $data_more . ' data-caption="'. wptexturize($attachment->post_excerpt) .'" itemprop="image" class="lightbox">';
+                $attr['data-thumb'] = $thumb_url[0];
+                $image_output .= wp_get_attachment_image( $id, $atts['size'], false, $attr );
+                $image_output .= '</a>';
+            }
+
+            /*$image_output = str_replace('<a href', '<a class="lightbox" data-fancybox="gallery" ' . $data_more . ' data-caption="'. wptexturize($attachment->post_excerpt) .'" data-title="'. wptexturize($attachment->post_excerpt) .'" href', $image_output);*/
+                
+            $image_meta = wp_get_attachment_metadata( $id );
+            
+            $orientation = '';
+
+            if ( isset( $image_meta['height'], $image_meta['width'] ) ) {
+                    $orientation = ( $image_meta['height'] > $image_meta['width'] ) ? 'portrait' : 'landscape';
+            }
+
+            $output .= "<{$itemtag} class='gallery-item {$last_item_class}'>";
+            $output .= "
+                    <{$icontag} class='gallery-icon {$orientation}'>
+                            $image_output
+                    </{$icontag}>";
+            if ( $captiontag && trim( $attachment->post_excerpt ) ) {
+                    $output .= "
+                            <{$captiontag} class='wp-caption-text gallery-caption' id='$selector-$id'>
+                            " . wptexturize( $attachment->post_excerpt ) . "
+                            </{$captiontag}>";
+            }
+            $output .= "</{$itemtag}>";
+            if ( ! $html5 && $columns > 0 && ++$i % $columns == 0 ) {
+                    $output .= '<br style="clear: both" />';
+            }
+            
+            $i++;
+        }
+        if ( ! $html5 && $columns > 0 && $i % $columns !== 0 ) {
+                $output .= "
+                        <br style='clear: both' />";
+        }
+        $output .= "
+                </div>\n";
+                return $output;
+
+    }
+
+    public function add_gallery_option() {
+        if( $_GET['tab'] == 'gallery' ) {
+            ?>
+            <script type="text/javascript">
+            jQuery(document).ready( function($) {
+
+                // append the table row
+                $('.media-sidebar .gallery-settings').append('<span class="setting"><label><span class="alignleft">Style:</span></label></th><td class="field"><select id="style" name="style"><option value="grid">Grid</option><option value="slideshow">Slideshow</option></select></span>');
+
+                // set our vars
+                var $style = '', $is_update = false;
+
+                // Select parent editor, read existing gallery data 
+                w = wpgallery.getWin();
+                editor = w.tinymce.EditorManager.activeEditor;
+
+                if (editor !== null) {
+                    gal = editor.selection.getNode();
+
+                    if (editor.dom.hasClass(gal, 'wpGallery')) {
+                        $style = editor.dom.getAttrib(gal, 'title').match(/style=['"]([^'"]+)['"]/i);
+                        var $is_update = true;
+                        if ($style != null) {
+                            $style = $style[1];
+                            $('table#basic #style').find('option[value="' + $style + '"]').attr('selected','selected');
+                        }
+                    } else {
+                        $('#insert-gallery').show();
+                        $('#update-gallery').hide();
+                    }
+                }
+
+                // remove standard onmousedown action
+                $('#insert-gallery').attr('onmousedown', '');
+
+                // Insert or update the actual shortcode
+                $('#update-gallery, #insert-gallery, #save-all').mousedown(function() {
+                    var $styleAdd = '';
+                    if (editor !== null)
+                        var orig_gallery = editor.dom.decode(editor.dom.getAttrib(gal, 'title'));
+                    else
+                        var orig_gallery = '';
+
+                    // Check which which style is selected
+                    if($('table#basic #style').val() != 'standard') {
+                        $styleAdd = ' style="slideshow"';
+                    }
+
+                    if ($(this).attr('id') == 'insert-gallery') {
+                        w.send_to_editor('[gallery' + wpgallery.getSettings() + $styleAdd + ']');
+                    }
+
+                    // Update existing shortcode
+                    if ($is_update) {
+                        if ($styleAdd != '' && orig_gallery.indexOf(' style=') == -1)
+                            editor.dom.setAttrib(gal, 'title', orig_gallery + $styleAdd);
+                        else if (orig_gallery.indexOf(' style=') != -1)
+                            editor.dom.setAttrib(gal, 'title', orig_gallery.replace(' style="slideshow"', $styleAdd));
+                        else
+                            editor.dom.setAttrib(gal, 'title', orig_gallery.replace(' style="slideshow"', ''));
+                    }
+                });
+
+            });
+            </script>
+            <?php
+        }
+    }
+    
+    public function add_gallery_options(){
+        ?>
+        <script type="text/html" id="tmpl-custom-gallery-setting">
+            <span class="setting">
+              <label><?php _e('Style'); ?></label>
+              <select data-setting="style">
+                <option value="" selected>Select Style</option>
+                <option value="grid" selected>Grid</option>
+                <option value="slider">Slider</option>
+              </select>
+            </span>
+            
+            <span class="setting">
+              <label><?php _e('Style'); ?></label>
+              <select data-setting="auto_height">
+                <option value="" selected>Select Adaptive height</option>
+                <option value="fixed" selected>Fixed Height</option>
+                <option value="adaptive">Adaptive Height</option>
+              </select>
+              <br />
+              <small>Adaptive height shows the full image and expands the slider. No effect in grid mode.</small>
+            </span>
+
+        </script>
+
+        <script>
+
+            jQuery(document).ready(function() {
+                _.extend(wp.media.gallery.defaults, {
+                    ds_select: 'grid',
+                });
+
+                wp.media.view.Settings.Gallery = wp.media.view.Settings.Gallery.extend({
+                template: function(view){
+                  return wp.media.template('gallery-settings')(view)
+                       + wp.media.template('custom-gallery-setting')(view);
+                },
+                update: function( key ) {
+                    var value = this.model.get( key ),
+                      $setting = this.$('[data-setting="' + key + '"]'),
+                      $buttons, $value;
+
+                    // Bail if we didn't find a matching setting.
+                    if ( ! $setting.length ) {
+                      return;
+                    }
+                    
+                    if ( $setting.is('select') ) {
+                      $value = $setting.find('[value="' + value + '"]');
+
+                      if ( $value.length ) {
+                        $setting.find('option').prop( 'selected', false );
+                        $value.prop( 'selected', true );
+                      } else {
+                        // If we can't find the desired value, record what *is* selected.
+                        this.model.set( key, $setting.find(':selected').val() );
+                      }
+
+                    // Handle button groups.
+                    } else if ( $setting.hasClass('button-group') ) {
+                      $buttons = $setting.find('button').removeClass('active');
+                      $buttons.filter( '[value="' + value + '"]' ).addClass('active');
+
+                    // Handle text inputs and textareas.
+                    } else if ( $setting.is('input[type="text"], textarea') ) {
+                      if ( ! $setting.is(':focus') ) {
+                        $setting.val( value );
+                      }
+                    // Handle checkboxes.
+                    } else if ( $setting.is('input[type="checkbox"]') ) {
+                      $setting.prop( 'checked', !! value && 'false' !== value );
+                    }
+                    // HERE the only modification I made
+                    else {
+                      $setting.val( value ); // treat any other input type same as text inputs
+                    }
+                    // end of that modification
+                  },
+                });
+
+            });
+
+        </script>
+        <?php
+
+        }
 }
 cqShortcodes::init();

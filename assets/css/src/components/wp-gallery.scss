@@ -1,0 +1,160 @@
+.gallery,
+.wp-block-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-gap: 1rem;
+    position: relative;
+    margin-bottom: 2rem;
+    
+    &.gallery-carousel {
+        border-radius: 1rem;
+        overflow: hidden;
+        
+        &::after {
+            position: absolute;
+            font-family: "Material Symbols Outlined";
+            content: "gallery_thumbnail";
+            -webkit-font-feature-settings: "liga";
+            position: absolute;
+            top: 0;
+            right: 0;
+            color: white;
+            background-color: rgba(0,0,0,0.8);
+            display: flex;
+            width: 48px;
+            height: 48px;
+            align-items: center;
+            justify-content: center;
+            border-radius: 0 1rem 0 1rem;
+            font-size: 1.5rem;
+            pointer-events: none;
+        }
+        
+        .owl-nav {
+            display: block;
+        }
+        
+        .owl-prev,
+        .owl-next {
+            position: absolute;
+            width: 2rem;
+            display: flex;
+            height: 2rem;
+            color: white;
+            background-color: var(--category-colour-75);
+            border: none;
+            border-radius: 99px;
+            top: 50%;
+            transform: translateY(-50%);
+            align-content: center;
+            justify-content: center;
+            padding: 0;
+            
+            span {
+                line-height: 2rem;
+            }
+        }
+        
+        .owl-prev {
+            left: 1rem;
+        }
+        
+        .owl-next {
+            right: 1rem;
+        }
+        
+        figure {
+            
+            &.gallery-item {
+                
+                &.last-item {
+                
+                    a {
+                        
+                        &::after {
+                            content: '' !important;
+                            background: none;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    figure {
+        position: relative;
+        
+        &.gallery-item {
+            margin-bottom: 0;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            
+            img {
+                border-radius: 0.5rem;
+            }
+            
+            &.last-item {
+                
+                a {
+                    &::after {
+                        content: attr(data-moreitems);
+                        position: absolute;
+                        background-color: var(--category-colour-75);
+                        top: 0;
+                        bottom: 0;
+                        left: 0;
+                        right: 0;
+                        color: white;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        font-size: 1.5rem;
+                        font-weight: bold;
+                    }
+                }
+                
+                figcaption {
+                    display: none;
+                }
+            }
+            
+            &:nth-of-type(n+10) {
+                display: none !important;
+            }
+        }
+        
+        &:hover {
+            
+            figcaption {
+                
+                &.gallery-caption {
+                    transform: translateY(0);
+                }
+            }
+        }
+        
+        .gallery-icon {
+            
+            a {
+                display: block;
+                line-height: 0;
+            }
+        }
+        
+        figcaption {
+            
+            &.gallery-caption {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                margin: 0;
+                padding: 0.5rem;
+                color: white;
+                background-color: var(--category-colour-75);
+                transform: translateY(100%);
+                transition: all 0.3s ease-in-out;
+            }
+        }
+    }
+}
