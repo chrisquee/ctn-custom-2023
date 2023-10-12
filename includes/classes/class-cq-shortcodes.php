@@ -2249,7 +2249,7 @@ class cqShortcodes {
         } else {
             $link_html_img = '<a href="' . esc_url(wp_get_attachment_url($file_picker)) . '" class="download" target="_blank" download>';
             $file_url = wp_get_attachment_url($file_picker);
-            $link_html = '<a href="' . esc_url(wp_get_attachment_url($file_picker)) . '" class="download button button-blue" target="_blank" download>';
+            $link_html = '<a href="' . esc_url(wp_get_attachment_url($file_picker)) . '" class="download button button-category button-outline" target="_blank" download>';
             
             $filetype = wp_check_filetype( $file_url );
             
@@ -2268,8 +2268,7 @@ class cqShortcodes {
                         ' . wpautop($description) . '
                     </div>
                     <div class="grid-link-item-action">
-                       ' . $link_html . 'DOWNLOAD <i class="fa fa-download" aria-hidden="true"></i>
-</a> 
+                       ' . $link_html . '<span class="material-symbols-outlined">download</span> DOWNLOAD</a> 
                     </div>
                 </div>';
         
