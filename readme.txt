@@ -16,6 +16,8 @@ Custom functionality for Cruise Trade News
 
 == Changelog ==
 
+= 2.1.7 = FIX add in missing grid download links CSS.
+
 = 2.1.6 = Update add custom gallery.
 
 = 2.1.5 = FIX CQ Carousel Images.

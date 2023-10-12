@@ -1,0 +1,92 @@
+/* BOF Grid Links */
+.grid-links {
+    display: grid;
+    grid-gap: 15px;
+    grid-template-columns: repeat(auto-fill, minmax(300px,1fr));
+    grid-template-rows: repeat(1,1fr);    
+}
+@media screen and (min-width: 768px) {
+    .grid-links.grid-links-large {
+        display: grid;
+        grid-gap: 15px;
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(1,1fr);
+    }
+    .grid-links.grid-links-large .grid-link-item {
+        display: flex;
+        align-items: center;
+    }
+    .grid-links.grid-links-large .grid-link-item .grid-link-item-image {
+        max-width: 20%;
+        height: 100%;
+        
+        > a {
+            height: 100%;
+        }
+    }
+    .grid-links.grid-links-large .grid-link-item .grid-link-item-content {
+        width: 50%;
+    }
+    .grid-links.grid-links-large .grid-link-item .grid-link-item-action {
+        width: 30%;
+        text-align: center;
+    }
+}
+.grid-links .grid-link-item {
+    background-color: $gray-05;
+    border: 1px solid $gray-20;
+    border-radius: 1rem;
+    overflow: hidden;
+    position: relative;
+}
+.grid-links.grid-links-cards .grid-link-item .grid-link-item-image {
+    height: 230px;
+    overflow: hidden;
+}
+.grid-links.grid-links-cards .grid-link-item .grid-link-item-action {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 1rem;
+}
+@media screen and (max-width: 767px) {
+    .grid-links .grid-link-item .grid-link-item-image {
+        height: 230px;
+        overflow: hidden;
+    }
+    .grid-links .grid-link-item .grid-link-item-content {
+        padding-bottom: 79px !important;
+    }
+    .grid-links .grid-link-item .grid-link-item-action {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+    }
+}
+.grid-links .grid-link-item .grid-link-item-image img {
+    width: auto;
+    object-fit: cover;
+    min-height: 100%;
+}
+.grid-links .grid-link-item .grid-link-item-content {
+    padding: 1rem;
+}
+.grid-links.grid-links-cards .grid-link-item .grid-link-item-content {
+    padding-bottom: 79px;
+}
+.grid-links .grid-link-item .grid-link-item-content h3 {
+    font-size: 1.2rem;
+    margin: 0;
+}
+.grid-links .grid-link-item .grid-link-item-content p {
+    font-size: 0.875rem;
+}
+.grid-links .grid-link-item .grid-link-item-action a {
+    white-space: nowrap;
+}
+.grid-links .grid-link-item .grid-link-item-action a i {
+    margin-left: 0.5rem;
+}
+/* EOF Grid Links*/
