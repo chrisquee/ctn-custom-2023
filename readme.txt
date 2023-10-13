@@ -16,6 +16,8 @@ Custom functionality for Cruise Trade News
 
 == Changelog ==
 
+= 2.1.8 = FIX small tweak to fix button alignment on mobile and margin bottom on grid links
+
 = 2.1.7 = FIX add in missing grid download links CSS.
 
 = 2.1.6 = Update add custom gallery.

@@ -3,7 +3,8 @@
     display: grid;
     grid-gap: 15px;
     grid-template-columns: repeat(auto-fill, minmax(300px,1fr));
-    grid-template-rows: repeat(1,1fr);    
+    grid-template-rows: repeat(1,1fr);
+    margin-bottom: 2rem;
 }
 @media screen and (min-width: 768px) {
     .grid-links.grid-links-large {
@@ -63,6 +64,7 @@
         bottom: 0;
         left: 0;
         right: 0;
+        padding: 1rem;
     }
 }
 .grid-links .grid-link-item .grid-link-item-image img {
