@@ -3,7 +3,12 @@
 
         <div class="col-md-7 article-image">
             <div class="post-image">
-                <a href="<?php $url = wp_get_attachment_image_src(get_post_meta($post->ID, 'cruise_line_cover_image', true), 'full'); echo $url[0]; ?>" title="<?php the_title_attribute(); ?>" itemprop="image" class="lightbox">
+                <?php
+                    $url = wp_get_attachment_image_src(get_post_meta($post->ID, 'cruise_line_cover_image', true), 'full');
+                
+                    $link_image = $url !== false && is_array($url) ? $url[0] : '';
+                ?>
+                <a href="<?php echo $link_image; ?>" title="<?php the_title_attribute(); ?>" itemprop="image" class="lightbox">
                 <?php echo wp_get_attachment_image(get_post_meta($post->ID, 'cruise_line_cover_image', true), 'main-post-image' ); ?> 
                 </a>
             </div>

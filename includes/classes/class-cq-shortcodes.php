@@ -1888,7 +1888,7 @@ class cqShortcodes {
     }
     
     function cq_wrap_oembed( $html, $url, $attr, $post_id ) {
-        if ( false !== strpos( $url, "://youtube.com") || false !== strpos( $url, "://youtu.be" ) || false !== strpos( $url, "://vimeo" ) ) {   
+        if ( false !== strpos( $url, "://youtube.com") || false !== strpos( $url, "://youtu.be" ) || false !== strpos( $url, "://www.youtube.com" ) || false !== strpos( $url, "://vimeo" ) ) {   
 	       $html = '<div class="video-embed">' . $html . '</div>';
         }
         
@@ -1902,7 +1902,7 @@ class cqShortcodes {
             $pattern = '~<iframe.*</iframe>|<embed.*</embed>~';
             preg_match_all( $pattern, $content, $matches );
             foreach ( $matches[0] as $match ) {
-                if ( false !== strpos( $match, "://youtube.com") || false !== strpos( $match, "://youtu.be" ) ) {
+                if ( false !== strpos( $match, "://youtube.com") || false !== strpos( $match, "://youtu.be" ) || false !== strpos( $match, "://www.youtube.com" ) ) {
                     $wrappedframe = '<div class="video-embed">' . $match . '</div>';
                     $content = str_replace($match, $wrappedframe, $content);
                 }

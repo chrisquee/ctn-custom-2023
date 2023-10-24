@@ -16,6 +16,9 @@ Custom functionality for Cruise Trade News
 
 == Changelog ==
 
+= 2.1.9 = FIX properly check the header images for url as attempting to get an array key on a boolean throws error.
+          FIX catch YouTube videos that have www. at the start of the URL, for wrapping.
+
 = 2.1.8 = FIX small tweak to fix button alignment on mobile and margin bottom on grid links
 
 = 2.1.7 = FIX add in missing grid download links CSS.

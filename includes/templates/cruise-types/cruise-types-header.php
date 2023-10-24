@@ -4,12 +4,17 @@
 
         <div class="col-md-7 article-image">
             <div class="post-image">
-                <?php $featured_image_id = get_term_meta(get_queried_object_id(), 'cruise-type-image-id', true); 
-                      $description = get_term_meta(get_queried_object_id(), 'description', true); 
-                $object = get_queried_object();
-                //print_r($object);
+                <?php 
+                    $featured_image_id = get_term_meta(get_queried_object_id(), 'cruise-type-image-id', true); 
+                    $description = get_term_meta(get_queried_object_id(), 'description', true); 
+                    $object = get_queried_object();
+                    //print_r($object);
+                
+                    $url = wp_get_attachment_image_src($featured_image_id, 'main-post-image');
+                
+                    $link_image = $url !== false && is_array($url) ? $url[0] : '';
                 ?>
-                <a href="<?php $url = wp_get_attachment_image_src($featured_image_id, 'main-post-image'); echo $url[0]; ?>" title="" itemprop="image" class="lightbox">
+                <a href="<?php echo $link_image; ?>" title="" itemprop="image" class="lightbox">
                 <?php echo wp_get_attachment_image( $featured_image_id, 'main-post-image' ); ?> 
                 </a>
             </div>
