@@ -6,9 +6,9 @@ class cqNewsletter {
     	$self = new self();
         add_action( 'wp_ajax_submit_cq_newsletter_signup_form', array($self, 'submit_cq_newsletter_signup_form') );
         add_action( 'wp_ajax_nopriv_submit_cq_newsletter_signup_form', array($self, 'submit_cq_newsletter_signup_form') );
-        add_action( 'wp_footer', array($self, 'force24_js'), 100 );
+        //add_action( 'wp_footer', array($self, 'force24_js'), 100 );
         add_action( 'wp_head', array($self, 'setup_onesignal_overrides'), 100);
-        //add_action( 'wp_head', array($self, 'force24_v3_js'), 99);
+        add_action( 'wp_head', array($self, 'force24_v3_js'), 99);
         add_shortcode('cq_newsletter_form', array($self, 'cq_add_newsletter_form') );
   	}
     
@@ -241,20 +241,6 @@ class cqNewsletter {
           })();
         </script>
         <noscript><p><img src="https://berrythompson.innocraft.cloud/matomo.php?idsite=21&amp;rec=1" style="border:0;" alt="" /></p></noscript>
-
-        <!-- Force24 Tracking -->
-        <script>
-            (function (f, o, r, c, e, _2, _4) {
-                f.Force24Object = e, f[e] = f[e] || function () {
-                    f[e].q = f[e].q || [], f[e].q.push(arguments)
-                }, f[e].l = 1 * new Date, _2 = o.createElement(r),
-                _4 = o.getElementsByTagName(r)[0], _2.async = !0, _2.src = c, _4.parentNode.insertBefore(_2, _4)
-            })(window, document, "script", "https://static.websites.data-crypt.com/scripts/activity/v3/inject-v3.min.js", "f24");
-
-            f24('config', 'set_tracking_id', '9a1d8e83-ca10-4981-8763-91c92fffe6c4');
-            f24('config', 'set_client_id', '98fb23b8-79f2-49ed-9b8b-5d985a8d0c18');
-        </script>
-        <!-- End Force24 Tracking -->
 
         <?php
     }
