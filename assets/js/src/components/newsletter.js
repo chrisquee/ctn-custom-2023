@@ -51,6 +51,7 @@ jQuery(document).ready(function($) {
 				var existingHTML = $(this).find(".newsletter_submit").html();
                 $(this).find(".newsletter_submit").html(" <i class=\"fa fa-refresh fa-spin fa-fw newsletter-loading\"></i>");
                 $(this).find(".newsletter_submit").prop('disabled', true);
+                var is_popup = $(this).find(".newsletter_submit").hasClass("popup_submit");
                 var responseHTML = $(this).find(".cq-container");
                 var postData = $(this).serializeArray();
                 var email = $(form).find('input[name="newsletter_email"]').val();
