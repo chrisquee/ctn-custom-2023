@@ -62,8 +62,39 @@ jQuery(document).ready(function($) {
                     data : postData,
                     action : 'submit_cq_newsletter_signup_form'
                 };
-
+                
                 var thisRequest = jQuery.post(formURL, data, function(response){
+                    
+                    if (is_popup) {
+                        gtag('event', 'Submitted_PopUp', {
+                                'event_label': 'Submitted Popup',
+                                'event_category': 'newsletter_popup',
+                                'non_interaction': true
+                        });
+                    } else {
+                        gtag('event', 'Submitted_Home_Newsletter', {
+                                'event_label': 'Submitted Home Newsletter',
+                                'event_category': 'newsletter_subscribe',
+                                'non_interaction': true
+                        });
+                    }
+                    //f24("send", "form", "form.newsletter-form");
+                    
+                    if (typeof _paq != 'undefined') {
+                        _paq.push(['setUserId', email]);
+                        _paq.push(['trackEvent', 'Newsletter', 'Newsletter Inline Subscribe', email]);
+                    }
+                    
+
+                    $(".newsletter-loading").remove();
+                    $(".newsletter_submit").prop('disabled', false);
+                    $(".newsletter_submit").html(existingHTML);
+                    console.log(responseHTML);
+                    $(".vc-newsletter-submit-result").html(response).slideDown("slow", "swing");
+                    $(".newsletter_form").unbind();
+                });
+
+                /*var thisRequest = jQuery.post(formURL, data, function(response){
                     
                     if (is_full === true) {
                         
@@ -117,7 +148,7 @@ jQuery(document).ready(function($) {
                     if (response.search("error") == -1) {
                         $(".newsletter-form")[0].reset();
                     }
-                });
+                });*/
 			}
 			console.log('Errors: '+hasError);
     		e.preventDefault(); //STOP default action

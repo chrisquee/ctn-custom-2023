@@ -16,7 +16,9 @@ Custom functionality for Cruise Trade News
 
 == Changelog ==
 
-= 2.1.10 = Add Force24 V£ tracking script.
+= 2.1.11 = FIX Changes to newsletter JS to accomodate F24 V3 API.
+
+= 2.1.10 = Add Force24 V3 tracking script.
 
 = 2.1.9 = FIX properly check the header images for url as attempting to get an array key on a boolean throws error.
           FIX catch YouTube videos that have www. at the start of the URL, for wrapping.
