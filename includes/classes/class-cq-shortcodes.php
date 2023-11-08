@@ -1902,7 +1902,7 @@ class cqShortcodes {
             $pattern = '~<iframe.*</iframe>|<embed.*</embed>~';
             preg_match_all( $pattern, $content, $matches );
             foreach ( $matches[0] as $match ) {
-                if ( false !== strpos( $match, "://youtube.com") || false !== strpos( $match, "://youtu.be" ) || false !== strpos( $match, "://www.youtube.com" ) ) {
+                if ( false !== strpos( $match, "://youtube.com") || false !== strpos( $match, "://youtu.be" ) || false !== strpos( $match, "://www.youtube.com" ) || false !== strpos( $match, "://player.vimeo.com") || false !== strpos( $match, "://vimeo" )  ) {
                     $wrappedframe = '<div class="video-embed">' . $match . '</div>';
                     $content = str_replace($match, $wrappedframe, $content);
                 }
