@@ -174,12 +174,12 @@ p.interactive-description:hover::before, p.interactive-description:focus::before
     position: relative;
     vertical-align: bottom;
     margin: auto;
-    min-height: 100%;
-    min-width: 100%;
+    /*min-height: 100%;
+    min-width: 100%;*/
 }
 .single-cq_interactive_item #content img.attachment-full {
     width: auto !important;
-    min-width: 100%;
+    min-width: 100vw;
     max-width: none;
     min-height: 100vh;
 }
