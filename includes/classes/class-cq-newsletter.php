@@ -22,6 +22,7 @@ class cqNewsletter {
                             <input class="rce-contact-control required email" type="email" name="newsletter_email" placeholder="you@yourdomain.com" />
                             <button class="button button-category button-fill button-small newsletter_submit" type="submit" id="newsletter_submit"><span class="hidden-md-down">Submit</span> <span class="material-symbols-outlined">chevron_right</span></button>
                         </form>
+                        <small>By providing your email address you consent to us sending you information by email. For more information see our <a href="' . get_permalink(get_page_by_path('privacy-policy')) . '">privacy policy</a>.</small>
                         <div class="vc-newsletter-submit-result"></div>
                     </div>';
         

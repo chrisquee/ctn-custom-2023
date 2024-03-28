@@ -8,6 +8,7 @@ import './components/knowledge-hub-dynamic';
 //import './components/cruise-ships';
 import './components/user-verify';
 import './components/newsletter';
+import './components/logging';
 import './components/print-editions';
 import './components/latest-news';
 import './components/chosen';

@@ -16,6 +16,10 @@ function cq_add_stylesheet() {
             'ctn_nonce' => wp_create_nonce( 'cq-nonce' )
     	);
     
+    if ($post) {
+        $js_params['post_id'] = $post->ID;
+    }
+    
     $js_params = apply_filters('cq-localized-params', $js_params);
     
     if (is_user_logged_in()) {

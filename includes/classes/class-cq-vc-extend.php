@@ -10,6 +10,7 @@ class cqVcExtend {
 		add_action( 'vc_before_init', array($self, 'cq_title_separator') );
         add_action( 'vc_before_init', array($self, 'cq_featured_news') );
         add_action( 'vc_before_init', array($self, 'cq_latest_news') );
+        add_action( 'vc_before_init', array($self, 'cq_vc_highlight_post') );
         add_action( 'vc_before_init', array($self, 'cq_latest_digital_issues') );
         add_action( 'vc_before_init', array($self, 'cq_latest_issue') );
         add_action( 'vc_before_init', array($self, 'cq_latest_post_row') );
@@ -55,6 +56,8 @@ class cqVcExtend {
         add_filter( 'vc_autocomplete_cq_featured_news_post_id_callback', 'cq_post_autocomplete_suggester', 10, 1 );
         add_filter( 'vc_autocomplete_cq_latest_news_category_not_render', 'cq_category_autocomplete_suggester_render', 10, 1 );
         add_filter( 'vc_autocomplete_cq_latest_news_category_not_callback', 'cq_category_autocomplete_suggester', 10, 1 );
+        add_filter( 'vc_autocomplete_cq_highlight_post_post_id_render', 'cq_post_autocomplete_suggester_render', 10, 1 );
+        add_filter( 'vc_autocomplete_cq_highlight_post_post_id_callback', 'cq_post_autocomplete_suggester', 10, 1 );
         add_filter( 'vc_autocomplete_cq_featured_regions_item_region_id_render', 'cq_region_autocomplete_suggester_render', 10, 1 );
         add_filter( 'vc_autocomplete_cq_featured_regions_item_region_id_callback', 'cq_region_autocomplete_suggester', 10, 1 );
         add_filter( 'vc_autocomplete_cq_featured_destinations_item_destination_id_render', 'cq_destination_autocomplete_suggester_render', 10, 1 );
@@ -521,6 +524,46 @@ class cqVcExtend {
 		) );
     }
     
+    public function cq_vc_highlight_post() {
+        
+        vc_map( array(
+            'name'                  => esc_html__( 'CQ Highlight Post', 'CQ_Custom' ),
+            'base'                  => 'cq_highlight_post',
+            'category'              => esc_html__( 'by CQ', 'CQ_Custom' ),
+            'description'           => esc_html__( 'CQ Highlight Post', 'CQ_Custom' ),
+            'params'                => array(
+                /*array(
+                    "type" => "dropdown",
+                    "class" => "",
+                    "heading" => __( "Row Style", 'CQ_Custom' ),
+                    "param_name" => "highlight_post_style",
+                    "admin_label" => true,
+                    "value" => array( 'Standard' => 'std', 'Image Left' => 'img_left' ),
+                    "description" => __( "Layout of this block. Use a two, four or single column design", 'CQ_Custom' )
+                ),*/
+                array(
+                    'type'          => 'autocomplete',
+                    'class'         => '',
+                    'heading'       => esc_html__( 'Select Post', 'CQ_Custom' ),
+                    'param_name'    => 'post_id',
+                    'settings' => array('multiple' => false, 'sortable' => true, 'unique_values' => true),
+                ),
+                array(
+                        "type" => "textfield",
+                        "heading" => __( "Label Text", "CQ_Custom" ),
+                        "param_name" => "label_text",
+                        "description" => __( "Add text for the pill at the top of the block. e.g Editors Pick", 'CQ_Custom' )
+                    ),
+                array(
+                        "type" => "textfield",
+                        "heading" => __( "Extra class name", "CQ_Custom" ),
+                        "param_name" => "el_class",
+                        "description" => __( "If you wish to style particular content element differently, then use this field to add a class name and then refer to it in your css file.", 'CQ_Custom' )
+                    ),
+            )
+        ) );
+    }
+    
     public function cq_latest_digital_issues() {
         
         $output_publications = array('All' => '');
@@ -735,11 +778,37 @@ class cqVcExtend {
 			"category" => __( 'by CQ', 'CQ_Custom' ),
 			"params" => array(
                 array(
-                        "type" => "textfield",
-                        "heading" => __( "Extra class name", "CQ_Custom" ),
-                        "param_name" => "el_class",
-                        "description" => __( "If you wish to style particular content element differently, then use this field to add a class name and then refer to it in your css file.", 'CQ_Custom' )
-                    ),
+					"type" => "dropdown",
+					"class" => "",
+					"heading" => __( "Style", 'CQ_Custom' ),
+					"param_name" => "style",
+					"value" => array( 'Standard' => 'standard', 'Slim' => 'slim', 'Split' => 'split' ),
+					"description" => __( "Select the style of this block", 'CQ_Custom' )
+				),
+                array(
+                    "type" => "textfield",
+                    "heading" => __( "Title", "CQ_Custom" ),
+                    "param_name" => "title",
+                    "description" => __( "The main heading on the block", 'CQ_Custom' )
+                ),
+                array(
+                    "type" => "textfield",
+                    "heading" => __( "Subitle", "CQ_Custom" ),
+                    "param_name" => "subtitle",
+                    "description" => __( "The subtitle of the block", 'CQ_Custom' )
+                ),
+                array(
+					"type" => "attach_image",
+					"heading" => __( "Image", "CQ_Custom" ),
+					"param_name" => "block_image",
+					"description" => __( "Select an image. Choose a smaller image with a transparent background for the Slim style block.", "CQ_Custom" )
+				),
+                array(
+                    "type" => "textfield",
+                    "heading" => __( "Extra class name", "CQ_Custom" ),
+                    "param_name" => "el_class",
+                    "description" => __( "If you wish to style particular content element differently, then use this field to add a class name and then refer to it in your css file.", 'CQ_Custom' )
+                ),
             )
 		) );
     }

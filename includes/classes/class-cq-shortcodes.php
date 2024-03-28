@@ -10,6 +10,7 @@ class cqShortcodes {
 		add_shortcode('cq_title_separator', array($self, 'cq_title_separator_shortcode'));
         add_shortcode('cq_featured_news', array($self, 'cq_featured_news_shortcode'));
         add_shortcode('cq_latest_news', array($self, 'cq_latest_news_shortcode'));
+        add_shortcode('cq_highlight_post', array($self, 'cq_highlight_post' ) );
         add_shortcode('cq_latest_digital_issues', array($self, 'cq_latest_digital_issues_shortcode'));
         add_shortcode('cq_latest_issue', array($self, 'cq_latest_issue_shortcode'));
         add_shortcode('cq_latest_post_row', array($self, 'cq_latest_post_row_shortcode') );
@@ -387,6 +388,87 @@ class cqShortcodes {
         
         return $html;
         
+    }
+    
+    public function cq_highlight_post($attributes) {
+	
+        $cq_highlight_post_atts = shortcode_atts(array(
+           'post_id' => 0,
+           'highlight_post_style' => 'img_left',
+           'label_text' => '',
+           'el_class' => ''), $attributes);
+	
+        $categories = get_the_category();
+        $first_category = $categories[0]->name;
+        $highlight_post_content = '';
+	
+        $post_info = get_post( $cq_highlight_post_atts['post_id'] );
+        $post_style = $cq_highlight_post_atts['highlight_post_style'];
+        $extra_class = $cq_highlight_post_atts['el_class'];
+        $terms = get_the_terms( $post_info->ID, 'category' );
+        $category = $terms[0]->name;
+        $term_id = $terms[0]->term_id;
+        $category_colour = get_term_meta( $term_id, '_category_color', true );
+        $category_colour_style = ($category_colour != '' && strtolower($category_colour) != 'ffffff' ? ' style="background-color: #' . $category_colour . ' !important;"' : '');
+	
+        if ($post_style == 'std') {
+            $highlight_post_content .= '<article id="post-' . $post_info->ID . '" class="' . $extra_class . '">
+                        	
+                        	<div class="highlight-image">
+								<a href="' .  get_permalink( $post_info->ID ) . '">' .
+									get_the_post_thumbnail($post_info->ID, 'featured-box-bg-image') . '<br/>
+								</a>
+							</div>
+                        	
+                        	<div class="related-text">
+                        		<a href="' . esc_url( get_category_link( $categories[0]->term_id ) ) . '">' . $first_category . '</a>
+							</div>
+							<div class="highlight-text">	
+								<h3><a href="' .  get_permalink( $post_info->ID ) . '">' . $post_info->post_title . '</a></h3>
+							</div>
+								
+						</article>';
+        } else if ($post_style == 'img_left') {
+		  
+            $excerpt = preg_replace("~(?:\[/?)[^/\]]+/?\]~s", '', $post_info->post_content);
+            $excerpt = str_replace('&nbsp;', ' ', $excerpt);
+            
+            $pick_text_html = '';
+            
+            if ($cq_highlight_post_atts['label_text'] != '') {
+                $pick_text_html = '<div class="pick-text">
+                                            <span>' . esc_html($cq_highlight_post_atts['label_text']) . '</span>
+                                        </div>';
+                
+            }
+		
+            $highlight_post_content .= '<div class="latest-wrapper highlight-post item_wrap full_width ' . $extra_class . '">
+                                        ' . $pick_text_html . '
+                                        <article id="post-' . $post_info->ID . '" class="latest-item">
+								            <div class="item-image">
+												<a href="' . esc_url(get_permalink( $post_info->ID )) . '" title="' . esc_attr($post_info->post_title) . '">
+												    <img src="' . esc_url(get_the_post_thumbnail_url( $post_info->ID, 'featured-box-bg-image' )) . '" alt="' . esc_attr($post_info->post_title) . '" />
+												</a>
+								            </div>
+											<div class="item-content">
+                                                <div class="item-category cat-link">
+                                                    <span class="material-symbols-outlined">arrow_outward</span>
+								                    <a href="' . esc_url( get_category_link( $categories[0]->term_id ) ) . '">' . esc_html($category) . '</a>
+                                                </div>
+                                                <div class="item-title">
+												    <h3><a href="' . esc_url(get_permalink( $post_info->ID )) . '" title=" . ' . esc_attr($post_info->post_title) . '">' . esc_html($post_info->post_title) . '</a></h2>
+                                                </div>
+												<p class="latest-author hidden-sm-down" style="position:static;">' . trim(wp_trim_words( $excerpt, 20, '...')) . '</p>
+                                                <div class="item-actions">
+                                                    <a href="' . esc_url(get_permalink( $post_info->ID )) . '" class="button button-category button-ghost">Read More</a>
+                                                </div>
+								            </div>
+                                        </article>
+                                        </div>';
+        }
+        
+        return $highlight_post_content;
+	
     }
     
     /*public function cq_latest_news_shortcode($attributes) {
@@ -1322,22 +1404,46 @@ class cqShortcodes {
     
     public function cq_newsletter_block_shortcode($attributes) {
         
+        $atts = shortcode_atts(
+                    array(
+                        'style' => 'standard',
+                        'title' => 'Subscribe to our newsletter',
+                        'subtitle' => 'Keep up to date with all the latest news and incentives in the Cruise Trade News Newsletter.',
+                        'block_image' => '',
+                        'el_class' => '',
+                    )
+                , $attributes);
+        
         $bg_image = get_theme_mod('newsletter_background');
+        $bg_image_url = $atts['block_image'] != '' ? wp_get_attachment_image_url($atts['block_image'], 'large') : ($bg_image != '' ? $bg_image : get_stylesheet_directory_uri() . '/images/CTN-Register-Background.jpg');
+        $content_class = '';
+        $content_style = '';
+            
+        if ($atts['style'] == 'standard') {
+            $content_style = 'background-image: url(' . esc_attr($bg_image_url) . ');';
+            $content_wrap_class = 'cq-cta-wrap text-light';
+            $content_class = 'col-md-8 offset-md-2 to-center';
+        }
         
-        $bg_image_url = $bg_image != '' ? $bg_image : get_stylesheet_directory_uri() . '/images/CTN-Register-Background.jpg';
-        
-        $html = '<div class="newsletter-block no-padding clearfix">
-                    <div class="col-md-12 rel-slider no-padding">
-                        <div class="no-padding cq-cta-wrap text-light" style="background-image: url(' . esc_attr($bg_image_url) . ');">                   
-                                <div class="cq-cta-content newsletter-content col-md-8 offset-md-2 to-center">
-                                    <h2>Subscribe to our newsletter</h2>
-                                    <p>Keep up to date with all the latest news and incentives in the Cruise Trade News Newsletter.</p>
-                                    ' . do_shortcode('[cq_newsletter_form]') . '
-                                </div>
-                                
+        if ($atts['style'] == 'split') {
+            $content_class = 'to-center';
+        }
+
+        $html = '<div class="newsletter-block ' . $atts['style'] . '">
+                    <div class="newsletter-block-image">
+                        <img src="' . $bg_image_url . '" alt="Join our newsletter" />
+                    </div>
+                    <div class="newsletter-block-content">
+                        <div class="no-padding ' . $content_wrap_class . '" style="' . $content_style . '">                   
+                            <div class="cq-cta-content newsletter-content ' . $content_class . '">
+                                <h2>' . esc_html($atts['title']) . '</h2>
+                                <p>' . esc_html($atts['subtitle']) . '</p>
+                                ' . do_shortcode('[cq_newsletter_form]') . '
+                            </div>      
                         </div>
                     </div>
                 </div>';
+            
         
         return $html;
         
