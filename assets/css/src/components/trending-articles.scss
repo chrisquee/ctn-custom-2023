@@ -1,8 +1,112 @@
 /* BOF Trending Articles */
 .trending-posts {
-    margin: 0;
+    margin: 0 0 2rem;
     padding: 0;
     list-style-type: none;
+    counter-reset: item;
+    
+    &.compact {
+        display: flex;
+        opacity: 0;
+        transition: all 0.3s ease-in-out;
+        
+        &.owl-loaded {
+            opacity: 1;
+        }
+        
+        li {
+            counter-increment: item;
+            min-height: 200px;
+            border-radius: 0.5rem;
+            
+            &:not(.cq_ad_space):after {
+                position: absolute;
+                content: counter(item);
+                bottom: 0;
+                right: 0;
+                margin: -1px 0 0 0;
+                color: $white;
+                text-align: center;
+                display: inline-block;
+                padding: 0;
+                line-height: 6rem;
+                font-size: 7rem;
+                font-weight: 900;
+                transform: rotateZ(7deg) rotateX(7deg);
+                text-shadow: 0px 0px 1px $gray-60, 15px 1px 1px $gray-20;
+                z-index: 0;
+            }
+            
+            &.item_wrap {
+                position: relative;
+                padding: 1rem;
+                border: 1px solid $gray-20;
+                background-color: $gray-05;
+                overflow: hidden;
+                
+                &.position-1 {
+                    border-color: var(--category-colour);
+                }
+                
+                > a {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    
+                    &.add-format-icon {
+                        
+                        &:after {
+                            top: 0;
+                            right: 0;
+                            transform: translate(0,0);
+                            border-top-left-radius: 0;
+                            border-bottom-right-radius: 0;
+                            font-size: 1rem;
+                            line-height: 32px;
+                            width: 32px;
+                            height: 32px;
+                            left: auto;
+                            pointer-events: all;
+                        }
+                    }
+                }
+                
+                .item_content {
+                    position: relative;
+                    z-index: 1;
+
+                    .cat-link {
+                        mix-blend-mode: multiply;
+                        background-color: transparent;
+                        max-width: calc(100% - 40px);
+                    }
+
+                    time {
+                        font-size: 0.75rem;
+                        display: flex;
+                        align-items: center;
+                        margin-bottom: 0.5rem;
+
+                        span {
+                            font-size: 0.875rem;
+                            margin-right: 0.25rem;
+                        }
+                    }
+
+                    h5 {
+                        font-size: 1.25rem;
+                        display: -webkit-box;
+                        -webkit-line-clamp: 3;
+                        -webkit-box-orient: vertical;
+                        text-overflow: ellipsis;
+                        overflow: hidden;
+                    }
+                }
+            }
+        }
+    }
     
     .cq_overlay {
         
@@ -30,6 +134,17 @@
                 transition: all 0.3s ease;
             }
             
+            &.add-format-icon {
+                
+                &::after {
+                    top: 0;
+                    left: 0;
+                    transform: translate(0, 0);
+                    border-bottom-left-radius: 0px;
+                    border-top-right-radius: 0px;
+                }
+            }
+            
             > img {
                 height: 100%;
                 width: auto;
@@ -53,7 +168,7 @@
         display: grid;
         grid-template-columns: repeat(4, 1fr);
         grid-template-rows: repeat(2, 1fr); 
-        grid-gap: 2rem;
+        grid-gap: 1rem;
         margin-bottom: 2rem;
     }
 
@@ -61,29 +176,56 @@
         min-height: 320px;
         border-radius: 1rem;
         overflow: hidden;
+        counter-increment: item;
+        position: relative;
         
         @media screen and (min-width: 768px) {
             min-height: 225px;
         }
         
-        &.trending-1 { 
-           grid-area: 1/1/span 2/span 2;
+        &:first-child {
+            grid-area: 1/1/span 2/span 2;
+            height: 100% !important;
+        }
+        
+        &:nth-child(5) { 
+           grid-area: 3/3/span 2/span 2;
            height: 100% !important;
         }
 
-        &.trending-2 { 
-            grid-area: 1/3/span 1/span 2;
+        &:nth-child(7) { 
+            grid-area: 5/1/span 2/span 2;
+            height: auto !important;
+        }
+        
+        &:nth-child(11) { 
+            grid-area: 7/3/span 2/span 2;
+            height: auto !important;
+        }
+        
+        &:nth-child(11) { 
+            grid-area: 7/3/span 2/span 2;
+            height: auto !important;
+        }
+        
+        &:nth-child(13) { 
+            grid-area: 9/1/span 2/span 2;
             height: auto !important;
         }
 
-        &.trending-3 { 
-            grid-area: 2/3/span 1/span 2;
+        &:nth-child(3n+3) { 
+            //grid-area: calc((n * 1) + 1)/3/span 1/span 2;
             height: auto !important;
         }
 
-        &.trending-4{ 
+        /*&.trending-4 { 
             grid-area: 1 / 4 / 3 / 5;
             height: 510px !important;
+        }*/
+        
+        &.cq_ad_space {
+            background-color: transparent !important;
+            padding-bottom: 2.5rem;
         }
     }
     
@@ -94,6 +236,22 @@
         background-position: center center;
         border-radius: 1rem;
         overflow: hidden;
+        
+        &:after {
+            position: absolute;
+            content: counter(item);
+            top: 0;
+            right: 0;
+            margin: -1px 0 0 0;
+            color: rgba(255,255,255,0.5);
+            text-align: center;
+            display: inline-block;
+            padding: 0;
+            line-height: 8rem;
+            font-size: 10rem;
+            font-weight: 900;
+            z-index: 0;
+        }
     }
 
     .item_content {
@@ -106,7 +264,7 @@
 
 @media screen and (max-width: 768px) {
     .trending-posts {
-        margin: 0;
+        margin: 0 0 2rem;
         padding: 0;
         list-style-type: none;
     }
