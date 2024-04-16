@@ -8,7 +8,7 @@ const {Component} = wp.element;
 
 registerBlockType('cq/title-separator', {
   title: 'Title Separator',
-  icon: 'separator',
+  icon: 'minus',
   category: 'common',
   attributes: {
     separator_title: {
@@ -33,7 +33,7 @@ registerBlockType('cq/title-separator', {
     };
   
     return (
-      <div { ...blockProps} style={{padding: "0 1rem 1rem", backgroundColor: "#f2f2f2", border: "1px solid #ccc"}}>
+      <div { ...blockProps} style={{padding: "0 1rem 1rem", backgroundColor: "#f2f2f9", border: "1px solid #ccc"}}>
           <h3>Title Separator</h3>
           <div>
           <TextControl

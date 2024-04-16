@@ -16,6 +16,8 @@ Custom functionality for Cruise Trade News
 
 == Changelog ==
 
+= 2.1.15 = Add Hotjar JS.
+
 = 2.1.14 = FIX CSS fix for interactive images.
 
 = 2.1.13 = FIX Changes to newsletter JS to accomodate F24 V3 API.

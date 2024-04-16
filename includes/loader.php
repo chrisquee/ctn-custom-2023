@@ -22,6 +22,7 @@ require_once('classes/class-cq-user-notices.php');
 require_once('classes/class-cq-vc-trending.php');
 require_once('classes/class-cq-trending.php');
 require_once('classes/class-cq-shortcodes.php');
+require_once('classes/class-cq-gutenberg.php');
 require_once('classes/class-cq-cat-landing-page.php');
 require_once('classes/class-cq-digital-issues.php');
 require_once('classes/class-cq-frontend-dashboard.php');

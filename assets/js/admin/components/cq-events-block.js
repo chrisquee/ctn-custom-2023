@@ -49,7 +49,7 @@ registerBlockType('cq/events-block', {
     };
   
     return (
-      <div { ...blockProps} style={{padding: "0 1rem 1rem", backgroundColor: "#f2f2f2", border: "1px solid #ccc"}}>
+      <div { ...blockProps} style={{padding: "0 1rem 1rem", backgroundColor: "#f2f2f9", border: "1px solid #ccc"}}>
           <h3>Events List Block</h3>
           <div>
           <SelectControl

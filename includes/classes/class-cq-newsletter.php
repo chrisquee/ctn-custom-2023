@@ -9,6 +9,7 @@ class cqNewsletter {
         //add_action( 'wp_footer', array($self, 'force24_js'), 100 );
         add_action( 'wp_head', array($self, 'setup_onesignal_overrides'), 100);
         add_action( 'wp_head', array($self, 'force24_v3_js'), 99);
+        add_action( 'wp_head', array($self, 'hotjar_js'), 99);
         add_shortcode('cq_newsletter_form', array($self, 'cq_add_newsletter_form') );
   	}
     
@@ -81,6 +82,25 @@ class cqNewsletter {
             f24('config', 'set_client_id', '98fb23b8-79f2-49ed-9b8b-5d985a8d0c18');
         </script>
         <!-- End Force24 Tracking -->
+        
+        <?php
+    }
+    
+    public function hotjar_js() {
+        ?>
+
+        <!--  Hotjar Tracking Code for Cruise Trade News -->
+        <script>
+            (function(h,o,t,j,a,r){
+                h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+                h._hjSettings={hjid:4946765,hjsv:6};
+                a=o.getElementsByTagName('head')[0];
+                r=o.createElement('script');r.async=1;
+                r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+                a.appendChild(r);
+            })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+        </script>
+        <!--  END Hotjar Tracking Code for Cruise Trade News -->
         
         <?php
     }

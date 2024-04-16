@@ -53,7 +53,7 @@ class cqShortcodes {
         //Custom gallery methods
         add_filter( 'post_gallery', array($self, 'cq_custom_gallery'), 10, 3 );
         add_action( 'admin_head-media-upload-popup', array($self, 'add_gallery_option') );
-        add_action('print_media_templates', array($self, 'add_gallery_options') );
+        add_action( 'print_media_templates', array($self, 'add_gallery_options') );
   	}
     
     public function cq_large_cta_shortcode($attributes) {
@@ -1267,7 +1267,7 @@ class cqShortcodes {
 
         $atts = shortcode_atts(array(
                 'max_events'     => '5',
-                'future_only' => '1',
+                'future_only' => '0',
                 'max_height' => '300px',
                 'border_color' => '#f2f2f2',
                 'category' => ''
@@ -1313,10 +1313,11 @@ class cqShortcodes {
         $gap_class = $atts['max_events'] == '1' ? 'no_gap' : '';
         $post_index = 0;
 
-        $html = '<div class="row latest-post-row event-container ' . $gap_class . '">';
+        $html = '';
 
         if ( $query->have_posts() ) {
-            //$html .= '<div class="container-fluid event-container" style="max-height: ' . esc_attr($attributes['max_height']) . '; border: 1px solid ' . esc_attr($attributes['border_color']) . ';">';
+            
+            $html = '<div class="row latest-post-row event-container ' . $gap_class . '">';
 
             $post_count = 0;
 
@@ -1410,14 +1411,15 @@ class cqShortcodes {
                         'title' => 'Subscribe to our newsletter',
                         'subtitle' => 'Keep up to date with all the latest news and incentives in the Cruise Trade News Newsletter.',
                         'block_image' => '',
+                        'block_image_url' => '',
                         'el_class' => '',
-                    )
-                , $attributes);
+                    ), $attributes);
         
         $bg_image = get_theme_mod('newsletter_background');
         $bg_image_url = $atts['block_image'] != '' ? wp_get_attachment_image_url($atts['block_image'], 'large') : ($bg_image != '' ? $bg_image : get_stylesheet_directory_uri() . '/images/CTN-Register-Background.jpg');
         $content_class = '';
         $content_style = '';
+        $html = '';
             
         if ($atts['style'] == 'standard') {
             $content_style = 'background-image: url(' . esc_attr($bg_image_url) . ');';
@@ -1429,7 +1431,7 @@ class cqShortcodes {
             $content_class = 'to-center';
         }
 
-        $html = '<div class="newsletter-block ' . $atts['style'] . '">
+        $html .= '<div class="newsletter-block ' . $atts['style'] . '">
                     <div class="newsletter-block-image">
                         <img src="' . $bg_image_url . '" alt="Join our newsletter" />
                     </div>
@@ -1443,7 +1445,6 @@ class cqShortcodes {
                         </div>
                     </div>
                 </div>';
-            
         
         return $html;
         

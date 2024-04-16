@@ -3,7 +3,7 @@
 Plugin Name: CQ Custom
 Plugin URI: https://www.qinternet.uk/
 Description: Custom setup and functionality for Cruise Trade News.
-Version: 2.1.14
+Version: 2.1.15
 Author: Chris Quee
 Author URI: https://www.qinternet.uk/
 License: Custom
@@ -63,9 +63,9 @@ function cq_modify_default_jwt_whitelist( $default_whitelist ) {
 }
 
 if ( ! function_exists( 'require_auth_for_all_endpoints' ) ) {
-	add_filter( 'rest_pre_dispatch', 'require_auth_for_all_endpoints', 10, 3 );
+	//add_filter( 'rest_pre_dispatch', 'require_auth_for_all_endpoints', 10, 3 );
 	function require_auth_for_all_endpoints( $result, $server, $request ) {
-		if ( ! is_user_logged_in() ) {
+		if ( !is_user_logged_in() ) {
 
 			// Only allow these endpoints: JWT Auth.
 			$allowed_endpoints = array(
