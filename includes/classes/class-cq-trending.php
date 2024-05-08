@@ -140,15 +140,15 @@ class cqTrending {
                   $bg_image = $this->style == 'full' ? get_the_post_thumbnail_url(get_the_id(), 'large') : '';
                   
                   $popular_post_html .= '<li class="' . $item_class . ' item_wrap ' . $col_class . ' ' . $fallback_class . ' trending-' . $grid_counter . ' position-' . $trend_counter . ' ' . $mobile_view . '" data-count="' . $trend_counter . '">
-                                            <a ' . $popup . ' href="' . $item_url . '" class="add-format-icon ' . $post_format . '">
-                                                ' . $this->style == 'full' ? get_the_post_thumbnail(get_the_id(), 'featured-box-bg-image') : '' . '
-                                            </a>
-                                            <div class="item_content">
-                                                <a class="cat-link" href="' . $category['cat_a_link'] . '" target="' . $category['cat_a_target'] . '" title="' . $category['cat_a_title'] . '">' . $category['category'] . '</a>
-                                                <time datetime="' . get_the_date( 'c') . '"><span class="material-symbols-outlined">schedule</span>' . get_the_date( 'j F Y' ) . '</time>
-                                                <h5><a href="' . get_the_permalink() . '">' . get_the_title() . '</a></h5>
-                                            </div>
-                                         </li>';
+                                        <a ' . $popup . ' href="' . $item_url . '" class="add-format-icon ' . $post_format . '">
+                                            ' . ($this->style == 'full' ? get_the_post_thumbnail(get_the_id(), 'featured-box-bg-image') : '') . '
+                                        </a>
+                                        <div class="item_content">
+                                            <a class="cat-link" href="' . $category['cat_a_link'] . '" target="' . $category['cat_a_target'] . '" title="' . $category['cat_a_title'] . '">' . $category['category'] . '</a>
+                                            <time datetime="' . get_the_date( 'c') . '"><span class="material-symbols-outlined">schedule</span>' . get_the_date( 'j F Y' ) . '</time>
+                                            <h5><a href="' . get_the_permalink() . '" class="' . ($this->style == 'compact' ? 'title-gradient' : '') . '">' . get_the_title() . '</a></h5>
+                                        </div>
+                                     </li>';
                   $trend_counter++;
                   $grid_counter++;
               }

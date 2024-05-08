@@ -377,7 +377,7 @@ class cqInteractive {
                         <div class="interactive-img">
                             <a href="' . get_permalink($post_id) . '" class="interactive-img-link-icon" title="View"><span class="material-symbols-outlined">expand_content</span></a>
                             <a href="' . get_permalink($post_id) . '" class="interactive-img-link" title="View">
-                            ' . get_the_post_thumbnail( $post_id, 'medium' ) . '
+                            ' . get_the_post_thumbnail( $post_id, 'main-post-image' ) . '
                             </a>
                             <a href="' . get_permalink($post_id) . '" class="interactive-img-title" title="View">' . get_the_title($post_id) . '</a>
                         </div>

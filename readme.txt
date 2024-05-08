@@ -16,6 +16,8 @@ Custom functionality for Cruise Trade News
 
 == Changelog ==
 
+= 2.1.16 = Fix for must include in popular posts not being styled correctly and use better image size for interactive image shortcode.
+
 = 2.1.15 = Add Hotjar JS.
 
 = 2.1.14 = FIX CSS fix for interactive images.
