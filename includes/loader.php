@@ -18,7 +18,6 @@ require_once('classes/class-cq-jobs.php');
 require_once('classes/class-cq-jobs-post-type.php');
 require_once('classes/class-cq-jobs-filter.php');
 require_once('classes/class-cq-job-user.php');
-require_once('classes/class-cq-user-notices.php');
 require_once('classes/class-cq-vc-trending.php');
 require_once('classes/class-cq-trending.php');
 require_once('classes/class-cq-shortcodes.php');
@@ -34,6 +33,11 @@ require_once('classes/class-account-verify.php');
 require_once('classes/class-cq-content-edit.php');
 require_once('classes/class-resend-welcome-email.php');
 require_once('classes/class-cq-newsletter.php');
+
+// Notices
+require_once('classes/notices/class-cq-notices.php');
+require_once('classes/notices/class-cq-admin-notices.php');
+
 //require_once('classes/class-wp-api.php');
 require_once('functions/template-functions.php');
 require_once('functions/user-functions.php');

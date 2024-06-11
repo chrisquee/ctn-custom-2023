@@ -258,6 +258,56 @@ class cqAuctionRegister {
         }
         return $valid;
     }
+    
+    function is_valid_captcha_response($captcha) {
+        
+        $rc_secret_key = get_option('google_recaptcha_key');
+        
+        $captcha_postdata = http_build_query( 
+            array( 
+                'secret' => $rc_secret_key, 
+                'response' => $captcha, 
+                'remoteip' => $_SERVER['REMOTE_ADDR'] 
+            ) 
+        ); 
+        
+        $captcha_opts = array( 
+            'http' => array( 
+                'method' => 'POST', 
+                'header' => 'Content-type: application/x-www-form-urlencoded', 
+                'content' => $captcha_postdata 
+            ) 
+        ); 
+    
+        $captcha_context = stream_context_create($captcha_opts); 
+        $captcha_response = json_decode(file_get_contents("https://www.google.com/recaptcha/api/siteverify", false, $captcha_context), true); 
+        
+        wp_mail( 'chris@creativetools.co.uk', 'Recaptcha Response', print_r($captcha_response, true) );
+    
+        if($captcha_response['success'] && $captcha_response['score'] > 0.7){ 
+            return true; 
+        } else { 
+            return false; 
+        } 
+    } 
+ 
+    public static function verify_google_recaptcha() {
+        
+        $recaptcha_key = get_option('google_recaptcha_key');
+        
+        if ($recaptcha_key != '' && $recaptcha_key != false) {
+        
+            $recaptcha = $_POST['g-recaptcha-response']; 
+        
+            if (empty($recaptcha)) { 
+                return false; 
+            } elseif (!$this->is_valid_captcha_response($recaptcha)) { 
+                return false;  
+            }
+        }
+        
+        return true;
+    }
 
 }
 cqAuctionRegister::init();

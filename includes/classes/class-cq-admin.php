@@ -51,7 +51,7 @@ class cqAdminEdits {
     public function suppress_vc_notice(){
 
         echo '<style>
-                #vc_license-activation-notice, #meta-box-notification {display:none;}
+                #vc_license-activation-notice, #meta-box-notification, .wpb-notice {display:none !important;}
              </style>';
 
     }

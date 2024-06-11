@@ -103,7 +103,7 @@ class cqShortcodes {
         
         $countdown_html = '';
         
-        if ($cq_cta_atts['add_countdown'] == true) {
+        if ($cq_cta_atts['add_countdown'] == 'true') {
             
             $countdown_html = '<div class="cq-cta-countdown" data-enddate="' . esc_attr($cq_cta_atts['countdown_end_date']) . '" data-endtime="' . esc_attr($cq_cta_atts['countdown_end_time']) . '" data-endmessage="' . esc_attr($cq_cta_atts['countdown_timeout_message']) . '">
                 <div class="time-wrap days-wrap">
