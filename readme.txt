@@ -16,6 +16,8 @@ Custom functionality for Cruise Trade News
 
 == Changelog ==
 
+= 2.1.18 = FIX correcting for dist.
+
 = 2.1.17 = UPDATE add in missing classes that allow the form builder to work.
 
 = 2.1.16 = Fix for must include in popular posts not being styled correctly and use better image size for interactive image shortcode.
