@@ -16,6 +16,8 @@ Custom functionality for Cruise Trade News
 
 == Changelog ==
 
+= 2.1.19 = Adjusting styling for form elements.
+
 = 2.1.18 = FIX correcting for dist.
 
 = 2.1.17 = UPDATE add in missing classes that allow the form builder to work.

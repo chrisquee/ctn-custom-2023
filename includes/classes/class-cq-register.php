@@ -56,20 +56,20 @@ class cqAuctionRegister {
                             </div>
                             <form id="cq_auction_signup_form" class="register_form" action="' . wp_registration_url() . '" method="post">  
                                 <div class="user-field-wrapper">
-                                    <label for="username">Username  
-                                    <input type="text" name="username" id="username"></label>
+                                    <label for="username">Username</label>
+                                    <input type="text" name="username" id="username">
                                 </div>
                                 <div class="user-field-wrapper">
-                                    <label for="email">Email address  
-                                    <input type="text" name="email" id="email"></label>  
+                                    <label for="email">Email address</label>   
+                                    <input type="text" name="email" id="email">
                                 </div>
                                 <div class="user-field-wrapper">
-                                   <label for="password">Password  
-                                   <input type="password" name="password" id="password"></label>
+                                   <label for="password">Password</label>  
+                                   <input type="password" name="password" id="password">
                                 </div>
                                 <div class="user-field-wrapper">
-                                    <label for="password_confirmation">Confirm Password  
-                                    <input type="password" name="password_confirmation" id="password_confirmation"></label>  
+                                    <label for="password_confirmation">Confirm Password</label>  
+                                    <input type="password" name="password_confirmation" id="password_confirmation">  
                                 </div>
                                 <div class="user-field-wrapper terms">
                                     <input name="terms" id="terms" type="checkbox" value="Yes">  

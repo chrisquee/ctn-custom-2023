@@ -126,9 +126,9 @@ form.register_form,
 form.lost_pw_form {
     
     label {
-	    display: block;
+	    /*display: block;
         font-size: 0.875rem;
-        font-weight: bold;
+        font-weight: bold;*/
     }
 }
 
@@ -140,7 +140,7 @@ form#login input#password,
 form.login_form input, 
 form.register_form input, 
 form.lost_pw_form input {
-    margin: 0.5rem 0 1.25rem 0;
+    /*margin: 0.5rem 0 1.25rem 0;*/
 }
 
 form.register_form input[type=checkbox] {

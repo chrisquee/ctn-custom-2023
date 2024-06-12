@@ -115,13 +115,18 @@ class cqCustomLogin {
                             <div class="col-md-12">
                                 <form id="cq_auction_login_form" class="login_form" action="login" method="post">
                                     <p class="status"></p>
-                                    <label for="username">Username</label>
-                                    <input id="username" type="text" name="username">
-                                    <label for="password">Password</label>
-                                    <input id="password" type="password" name="password">
+                                    <div class="user-field-wrapper">
+                                        <label for="username">Username</label>
+                                        <input id="username" type="text" name="username">
+                                    </div>
+                                    <div class="user-field-wrapper">
+                                        <label for="password">Password</label>
+                                        <input id="password" type="password" name="password">
+                                    </div>
                                     <a class="lost" href="' . wp_lostpassword_url(get_permalink()) . '">Lost your password?</a>
-                                    <input class="submit_button button button-category button-fill" type="submit" value="Login" name="submit">' .
-                                wp_nonce_field( 'ajax-login-nonce', 'security' ) . '
+                                    <div class="user-field-wrapper">
+                                    <input class="submit_button button button-category button-fill" type="submit" value="Login" name="submit">
+                                    </div>' . wp_nonce_field( 'ajax-login-nonce', 'security' ) . '
                                 </form>
                                 </div>
                                 <div class="col-md-12">
