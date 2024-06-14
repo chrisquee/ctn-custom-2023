@@ -1528,7 +1528,7 @@ class cqShortcodes {
                     if (is_int($featured_image_id)) {
                         $main_img_html .= '<div data-src="' . wp_get_attachment_url( $featured_image_id, 'landing-page-bg' ) . '"><a href="' . wp_get_attachment_url( $featured_image_id, 'landing-page-bg' ) . '" class="lightbox" data-src="' . wp_get_attachment_url( $featured_image_id, 'landing-page-bg' ) . '">' . wp_get_attachment_image( $featured_image_id, 'featured-box-bg-image', "", array( "class" => "img-responsive", "itemprop" => "image" ) ) . '</a></div>';
 
-                        $mini_img_html .= sizeof($gallery_images) > 0 ? '<div>' . wp_get_attachment_image( $featured_image_id, 'thumbnail', "", array( "class" => "img-responsive" ) ) . '</div>' : '';
+                        $mini_img_html .= is_array($gallery_images) && sizeof($gallery_images) > 0 ? '<div>' . wp_get_attachment_image( $featured_image_id, 'thumbnail', "", array( "class" => "img-responsive" ) ) . '</div>' : '';
                     }
 
                     if ($gallery_images) {

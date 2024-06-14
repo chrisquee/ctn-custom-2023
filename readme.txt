@@ -16,6 +16,9 @@ Custom functionality for Cruise Trade News
 
 == Changelog ==
 
+= 2.1.20 = FIX error in post timeline shortcode due to not checking to see if item is countable.
+           UPDATE styling fixes for post timeline to keep in line with main theme.
+
 = 2.1.19 = Adjusting styling for form elements.
 
 = 2.1.18 = FIX correcting for dist.
