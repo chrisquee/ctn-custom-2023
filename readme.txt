@@ -16,6 +16,8 @@ Custom functionality for Cruise Trade News
 
 == Changelog ==
 
+= 2.1.20 = UPDATE Remove box shadow from form labels.
+
 = 2.1.20 = FIX error in post timeline shortcode due to not checking to see if item is countable.
            UPDATE styling fixes for post timeline to keep in line with main theme.
 
