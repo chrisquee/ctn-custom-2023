@@ -28,7 +28,12 @@ class cqAuctionRegister {
 		global $wp_query;
 		
 		if ( isset($wp_query->query_vars['pagename']) && $wp_query->query_vars['pagename'] == 'register' && !is_user_logged_in()) {
-               add_filter('the_content', array( $this, 'cq_register_form'));
+            add_filter('the_content', array( $this, 'cq_register_form'));
+            
+            $recaptcha_key = get_option('google_recaptcha_key');
+            if ($recaptcha_key != false && $recaptcha_key != '') {
+                wp_enqueue_script('google-recaptcha-js', 'https://www.google.com/recaptcha/api.js?render=' . $recaptcha_key);
+            }
 		}
 	}
 	
@@ -37,14 +42,36 @@ class cqAuctionRegister {
 		
 		// Retrieve possible errors from request parameters
 		$attributes['errors'] = array();
-			$messages = '';
-			if ( isset( $_REQUEST['register-errors'] ) ) {
-    			$error_codes = explode( ',', $_REQUEST['register-errors'] );
+        $messages = '';
+        if ( isset( $_REQUEST['register-errors'] ) ) {
+            $error_codes = explode( ',', $_REQUEST['register-errors'] );
  
-    			foreach ( $error_codes as $error_code ) {
-        			$messages .= '<span class="message error alert alert-danger">' . $this->get_error_message( $error_code ) . '</span>';
-    			}
-			}
+            foreach ( $error_codes as $error_code ) {
+                $messages .= '<span class="message error alert alert-danger">' . $this->get_error_message( $error_code ) . '</span>';
+            }
+        }
+        
+        $recaptcha_js = '';
+        $recaptcha_field = '';
+        $recaptcha_key = get_option('google_recaptcha_key');
+        
+        if ($recaptcha_key != false && $recaptcha_key != '') {
+            
+            $recaptcha_field = '<input type="hidden" name="g-recaptcha-response" id="g-recaptcha-response">';
+            $recaptcha_js = "<script>
+                                    document.addEventListener('DOMContentLoaded', function() {
+                                    document.getElementById('submitbtn').onclick = function onClick(e) { 
+                                        e.preventDefault(); 
+                                        grecaptcha.ready(function() { 
+                                            grecaptcha.execute('" . $recaptcha_key . "', {action: 'submit' }).then(function(token) { 
+                                                document.getElementById('g-recaptcha-response').value = token; 
+                                                document.getElementById('cq_auction_signup_form').submit(); 
+                                            }); 
+                                        }); 
+                                    } 
+                                    });
+                                </script>";
+        }
 		
 		$content = '<div class="row register-form">
 						<div class="col-md-8 offset-md-2 form-wrap">
@@ -77,6 +104,7 @@ class cqAuctionRegister {
                                 </div>
                                 <div class="">
                                     <input type="submit" id="submitbtn" name="submit" class="submit_button button button-category button-fill" value="Sign Up" />
+                                    ' . $recaptcha_field . $recaptcha_js. '
                                 </div>
 
                             </form>
@@ -165,6 +193,10 @@ class cqAuctionRegister {
         $errors->add( 'pass_no_match', $this->get_error_message( 'pass_no_match') );
         //return $errors;
     }
+        
+    if (!$this->verify_google_recaptcha()) {
+        $errors->add( 'invalid_recaptcha', $this->get_error_message( 'invalid_recaptcha') );
+    }
  
     // Generate the password so that the subscriber will have to check email...
     //$password = wp_generate_password( 12, false );
@@ -226,6 +258,9 @@ class cqAuctionRegister {
 		
 	    case 'no_accept_terms':
 			return __( 'Please accept the terms of service', 'cq-custom' );
+            
+        case 'invalid_recaptcha':
+            return __( 'Suspected spam!', 'cq-custom' );    
        default:
             break;
     }

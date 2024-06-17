@@ -16,6 +16,8 @@ Custom functionality for Cruise Trade News
 
 == Changelog ==
 
+= 2.1.23 = UPDATE Add recaptcha to site registration, this also feeds in to the form builder to allow receaptch verification of submissions.
+
 = 2.1.22 = UPDATE Add in Recaptcha field and customizer field for email header image. Fix PHP warning on post timeline shortcode.
 
 = 2.1.21 = UPDATE Remove box shadow from form labels.
