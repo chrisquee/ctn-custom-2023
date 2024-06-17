@@ -1531,7 +1531,7 @@ class cqShortcodes {
                         $mini_img_html .= is_array($gallery_images) && sizeof($gallery_images) > 0 ? '<div>' . wp_get_attachment_image( $featured_image_id, 'thumbnail', "", array( "class" => "img-responsive" ) ) . '</div>' : '';
                     }
 
-                    if ($gallery_images) {
+                    if (is_iterable($gallery_images)) {
                       foreach ($gallery_images as $image) {
 
                           $img_src = wp_get_attachment_image_src( $image['ID'], 'landing-page-bg' );

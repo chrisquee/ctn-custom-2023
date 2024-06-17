@@ -33,6 +33,7 @@ require_once('classes/class-account-verify.php');
 require_once('classes/class-cq-content-edit.php');
 require_once('classes/class-resend-welcome-email.php');
 require_once('classes/class-cq-newsletter.php');
+require_once('classes/class-cq-options.php');
 
 // Notices
 require_once('classes/notices/class-cq-notices.php');

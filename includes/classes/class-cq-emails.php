@@ -251,6 +251,17 @@ class CqEmails {
         );
         
         add_settings_field( // Option 2
+            'admin_send_to_email', // Option ID
+            'Admin To Email', // Label
+            array($this, 'user_email_textbox_callback'), // !important - This is where the args go!
+            'general', // Page it will be displayed
+            'user_emails', // Name of our section (General Settings)
+            array( // The $args
+                'admin_send_to_email' // Should match Option ID
+            )  
+        );
+        
+        add_settings_field( // Option 2
             'user_smtp_username', // Option ID
             'SMTP User Name', // Label
             array($this, 'user_email_textbox_callback'), // !important - This is where the args go!
@@ -296,6 +307,7 @@ class CqEmails {
 
         register_setting('general','user_email_from_name', 'esc_attr');
         register_setting('general','user_email_from_email', 'esc_attr');
+        register_setting('general','admin_send_to_email', 'esc_attr');
         register_setting('general','user_smtp_username', 'esc_attr');
         register_setting('general','user_smtp_pass', 'esc_attr');
         register_setting('general','user_smtp_server', 'esc_attr');
