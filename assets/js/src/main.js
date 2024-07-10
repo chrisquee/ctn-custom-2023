@@ -17,4 +17,4 @@ import './components/dashboard';
 import './components/show-more';
 import './components/interactive';
 import './components/modals';
-import './components/web-vitals';
+//import './components/web-vitals';
