@@ -33,7 +33,6 @@ jQuery(document).ready(function($){
                           $(listingWrapper).append(html);
                           
                           listingWrapper.find('.latest-item.new-item').each( function(i) {
-                              console.log(i);
                               $(this).delay(150*i).fadeIn(600).removeClass('new-item');
                           })
                           //$('.latest-item').fadeIn('fast');
