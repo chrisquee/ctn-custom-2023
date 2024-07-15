@@ -8,6 +8,7 @@ class cqImageConversion {
         
         add_filter( 'wp_handle_upload', array( $self, 'handle_upload_convert_to_webp' ) );
         add_filter( 'upload_mimes', array( $self, 'add_svg_mime_types') );
+        add_filter( 'image_editor_output_format', array( $self, 'image_editor_formats'), 99 );
 
     }
     
@@ -77,6 +78,14 @@ class cqImageConversion {
     public function add_svg_mime_types($mimes) {
         $mimes['svg'] = 'image/svg+xml';
         return $mimes;
+    }
+    
+    public function image_editor_formats( $formats ) {
+        
+        $formats['image/jpeg'] = 'image/webp';
+        $formats['image/png'] = 'image/webp';
+
+        return $formats;
     }
     
 }

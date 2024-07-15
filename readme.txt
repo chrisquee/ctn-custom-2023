@@ -16,6 +16,8 @@ Custom functionality for Cruise Trade News
 
 == Changelog ==
 
+= 2.1.25 = UPDATE Improve ad styling add filter to do bulk WEBP conversion.
+
 = 2.1.24 = UPDATE Add image conversion to WEBP on upload.
 
 = 2.1.23 = UPDATE Add recaptcha to site registration, this also feeds in to the form builder to allow receaptch verification of submissions.
