@@ -2,6 +2,7 @@
 import {createCookie, readCookie} from './components/cookies';
 import './components/legacy';
 import './components/login';
+import './components/local-storage';
 import './components/carousels';
 import './components/countdown';
 import './components/knowledge-hub-dynamic';

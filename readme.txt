@@ -16,6 +16,8 @@ Custom functionality for Cruise Trade News
 
 == Changelog ==
 
+= 2.1.26 = UPDATE Capture UTM parameters and add to local storage.
+
 = 2.1.25 = UPDATE Improve ad styling add filter to do bulk WEBP conversion.
 
 = 2.1.24 = UPDATE Add image conversion to WEBP on upload.
