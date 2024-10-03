@@ -6,13 +6,13 @@ $feature_description = rwmb_meta('cruise_type_feature_description', ['object_typ
 
 if ( $feature_heading != '' && $feature_description != '') {
     
-    $desc_class = !empty($image) ? 'col-md-5' : 'col-md-12 no-image';
+    $desc_class = !empty($image) && isset($image['url']) ? 'col-md-5' : 'col-md-12 no-image';
 
 ?>
 <section class="destination-feature">
     <div class="row-fluid row-eq-height">
         
-        <?php if (!empty($image)) { ?>
+        <?php if (!empty($image) && isset($image['url'])) { ?>
         <div class="col-md-7 article-image">
             <div class="post-image">
                 

@@ -9,7 +9,7 @@ class cqDestinations {
         add_action( 'init', array( $self, 'create_cruise_ship_postype' ));
         add_action( 'init', array( $self, 'create_cruise_type_taxonomy'), 0 );
         add_action( 'pre_get_posts', array( $self, 'archive_item_number') );
-        add_filter( 'rwmb_meta_boxes', array( $self, 'cq_metaboxes') );
+        add_filter( 'rwmb_meta_boxes', array( $self, 'cq_metaboxes'), 99 );
         add_action( 'get_destination_data', array( $self, 'cq_destination_data') );
         add_action( 'get_ship_data', array( $self, 'cq_ship_data') );
         add_action('admin_head', array( $self, 'udg_admin_css') );

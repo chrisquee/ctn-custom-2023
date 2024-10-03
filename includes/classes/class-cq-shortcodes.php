@@ -656,10 +656,20 @@ class cqShortcodes {
                                 'latest_post_category' => '',
                                 'desktop_display' => 'full_width',
                                 'mobile_display' => 'with_image',
-                                'load_more' => false
+                                'load_more' => false,
+                                'ad_shortcode' => '',
+                                'ad_space' => false,
                             ), $attributes);
         
-        $show_posts = $atts['desktop_display'] == 'cards' ? 3 : 2;
+        $show_posts = $atts['desktop_display'] == 'cards' ? 6 : 2;
+        
+        $ad_active = false;
+        if ($atts['ad_shortcode'] != '' && $atts['ad_space'] != false) {
+            if (function_exists('placement_has_ads')) {
+                $ad_active = placement_has_ads($atts['ad_shortcode']);
+            }
+
+        }
         
         $post_list_args = array(
 			'post_type' => 'post',
@@ -681,6 +691,8 @@ class cqShortcodes {
         if ($post_list->have_posts()) {
 
             $html = '<div class="latest-wrapper ' . $desktop_class . ' ' . $mobile_class . '">';
+            
+            $post_index = 1;
             
             while($post_list->have_posts()) {
                 $post_list->the_post();
@@ -705,31 +717,41 @@ class cqShortcodes {
                 } else {
                     $category_html = '<a href="' . $primary_category_link . '">' . $primary_category_title . '</a>';
                 }
+                
+                if ($atts['desktop_display'] == 'cards' && $ad_active == true && $post_index == 6) {
+                    $ad_html = $atts['ad_space'] == true && $atts['ad_shortcode'] != '' ? do_shortcode('[the_ad_placement id="' . $atts['ad_shortcode'] . '"]') : '';
+                    $html .= '<div class="cq_ad_space">
+                                ' . $ad_html . '
+                            </div>';   
+                    
+                } else {
 
+                    $html .= '<article id="post-' . get_the_ID() . '" class="latest-item">
+                                  <div class="item-image">
+                                      <a href="' . esc_url( get_permalink() ) .'" title="' . get_the_title() . '" class="latest-img-overlay">
+                                          ' . get_the_post_thumbnail( get_the_ID(), 'featured-box-bg-image' ) . '
+                                      </a>
+                                  </div>
+                                  <div class="item-content">
+                                    <div class="item-info">
+                                        <div class="item-title">
+                                            <h3><a href="' . get_the_permalink() . '" class="title-gradient">' . get_the_title() . '</a></h3>
+                                        </div>
 
-                $html .= '<article id="post-' . get_the_ID() . '" class="latest-item">
-                              <div class="item-image">
-                                  <a href="' . esc_url( get_permalink() ) .'" title="' . get_the_title() . '" class="latest-img-overlay">
-                                      ' . get_the_post_thumbnail( get_the_ID(), 'featured-box-bg-image' ) . '
-                                  </a>
-                              </div>
-                              <div class="item-content">
-                                <div class="item-info">
-                                    <div class="item-title">
-                                        <h3><a href="' . get_the_permalink() . '" class="title-gradient">' . get_the_title() . '</a></h3>
+                                        <div class="item-category cat-link">
+                                            <span class="material-symbols-outlined">arrow_outward</span>
+                                            ' .$category_html . '
+                                        </div>
                                     </div>
-
-                                    <div class="item-category cat-link">
-                                        <span class="material-symbols-outlined">arrow_outward</span>
-                                        ' .$category_html . '
+                                    <p>' . trim(wp_trim_words( $excerpt, 40, '...')) . '</p>
+                                    <div class="item-author author-text">
+                                        ' . get_the_author() . '
                                     </div>
-                                </div>
-                                <p>' . trim(wp_trim_words( $excerpt, 40, '...')) . '</p>
-                                <div class="item-author author-text">
-                                    ' . get_the_author() . '
-                                </div>
-                              </div>
-                          </article>';
+                                  </div>
+                              </article>';
+                }
+                
+                $post_index++;
 
             }
             

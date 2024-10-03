@@ -16,6 +16,10 @@ Custom functionality for Cruise Trade News
 
 == Changelog ==
 
+= 2.1.28 = UPDATE add posibility to add adverts to latest posts cards section. 
+
+= 2.1.27 = FIX image on some regions missing causing fatal error. Metabox display on UDG.
+
 = 2.1.26 = UPDATE Capture UTM parameters and add to local storage.
 
 = 2.1.25 = UPDATE Improve ad styling add filter to do bulk WEBP conversion.

@@ -435,6 +435,17 @@ class cqVcExtend {
         
         $latest_12_new = base64_encode(serialize($latest_12_new));
         
+        $output_ad_placements = array('Select Placement' => '');
+        $placements = get_option( 'advads-ads-placements' );
+        
+        if (is_array($placements)) {
+            
+            foreach ($placements as $key => $value) {
+                $output_ad_placements[$value['name']] = $key;
+            }
+            
+        }
+        
         vc_map( array(
 			"name" => __( "CQ Latest News", "CQ_Custom" ),
 			"base" => "cq_latest_news",
@@ -496,7 +507,7 @@ class cqVcExtend {
                                      '2 top 3 bottom all standard type' => $latest_12_new
                                     ),
                 	"description" => __( "Choose the layout for this element.", 'CQ_Custom' )
-            	),
+            	),*/
 				array(
                     "type"          => "checkbox",
                     "admin_label"   => true,
@@ -507,19 +518,19 @@ class cqVcExtend {
                     "param_name"    => "ad_space",
                 ),
                 array(
-					"type" => "textfield",
+					"type" => "dropdown",
 					"class" => "",
 					"heading" => __( "Ad Content", 'CQ_Custom' ),
 					"param_name" => "ad_shortcode",
-					"value" => '',
-                    "label" => "Ad Shortcode",
+					"value" => $output_ad_placements,
+                    "label" => "Ad Placement",
                     "admin_label" => true,
-					"description" => __( "Enter the ad placement id.", 'CQ_Custom' ),
+					"description" => __( "Choose the ad placement to use.", 'CQ_Custom' ),
                     "dependency"    => array(
                         'element'   => 'ad_space',
                         'value'     => 'true'
                     ),
-				),*/
+				),
 			)
 		) );
     }
