@@ -722,9 +722,16 @@ class cqShortcodes {
                 $category_title = $category[0]->name;
                 $category_link = get_category_link($category[0]->term_id);
                 
-                $primary_category = smart_category_top_parent_id($category[0]->term_id);
+                if (function_exists('yoast_get_primary_term_id')) {
+                    $yoast_primary_category = yoast_get_primary_term_id( 'category', $post_id );
+                    $primary_category = $yoast_primary_category != false ? $yoast_primary_category : smart_category_top_parent_id($category[0]->term_id);    
+                } else {
+                   $primary_category = smart_category_top_parent_id($category[0]->term_id);
+                }
+                
                 $primary_category_title = get_category($primary_category)->name;
                 $primary_category_link = get_category_link($primary_category);
+                
                 $excerpt = preg_replace("~(?:\[/?)[^/\]]+/?\]~s", '', get_the_content());
                 $excerpt = str_replace('&nbsp;', ' ', $excerpt);
                 
