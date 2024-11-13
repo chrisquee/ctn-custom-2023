@@ -297,7 +297,14 @@ class cqShortcodes {
                 $category_title = $category[0]->name;
                 $category_link = get_category_link($category[0]->term_id);
                 
-                $primary_category = smart_category_top_parent_id($category[0]->term_id);
+                if (function_exists('yoast_get_primary_term_id')) {
+                    $yoast_primary_category = yoast_get_primary_term_id( 'category', $post_id );
+                    $primary_category = $yoast_primary_category != false ? $yoast_primary_category : smart_category_top_parent_id($category[0]->term_id);
+                    
+                } else {
+                   $primary_category = smart_category_top_parent_id($category[0]->term_id);
+                }
+                
                 $primary_category_title = get_category($primary_category)->name;
                 $primary_category_link = get_category_link($primary_category);
                 
@@ -398,14 +405,24 @@ class cqShortcodes {
            'label_text' => '',
            'el_class' => ''), $attributes);
 	
-        $categories = get_the_category();
-        $first_category = $categories[0]->name;
         $highlight_post_content = '';
 	
         $post_info = get_post( $cq_highlight_post_atts['post_id'] );
         $post_style = $cq_highlight_post_atts['highlight_post_style'];
         $extra_class = $cq_highlight_post_atts['el_class'];
-        $terms = get_the_terms( $post_info->ID, 'category' );
+        $terms = array();
+        
+        if (function_exists('yoast_get_primary_term_id')) {
+            $yoast_primary_category = yoast_get_primary_term_id( 'category', $post_info->ID );
+            if ($yoast_primary_category != false) {
+                $terms[] = get_category($yoast_primary_category);  
+            } else {
+                $terms = get_the_category( $post_info->ID );      
+            }
+        } else {
+            $terms = get_the_category( $post_info->ID );    
+        }
+        
         $category = $terms[0]->name;
         $term_id = $terms[0]->term_id;
         $category_colour = get_term_meta( $term_id, '_category_color', true );
@@ -421,7 +438,7 @@ class cqShortcodes {
 							</div>
                         	
                         	<div class="related-text">
-                        		<a href="' . esc_url( get_category_link( $categories[0]->term_id ) ) . '">' . $first_category . '</a>
+                        		<a href="' . esc_url( get_category_link( $terms[0] ) ) . '">' . $category . '</a>
 							</div>
 							<div class="highlight-text">	
 								<h3><a href="' .  get_permalink( $post_info->ID ) . '">' . $post_info->post_title . '</a></h3>
@@ -453,7 +470,7 @@ class cqShortcodes {
 											<div class="item-content">
                                                 <div class="item-category cat-link">
                                                     <span class="material-symbols-outlined">arrow_outward</span>
-								                    <a href="' . esc_url( get_category_link( $categories[0]->term_id ) ) . '">' . esc_html($category) . '</a>
+								                    <a href="' . esc_url( get_category_link( $terms[0]->term_id ) ) . '">' . esc_html($category) . '</a>
                                                 </div>
                                                 <div class="item-title">
 												    <h3><a href="' . esc_url(get_permalink( $post_info->ID )) . '" title=" . ' . esc_attr($post_info->post_title) . '">' . esc_html($post_info->post_title) . '</a></h2>

@@ -16,6 +16,8 @@ Custom functionality for Cruise Trade News
 
 == Changelog ==
 
+= 2.1.29 = UPDATE Use Yoast Primary Category if it exists. 
+
 = 2.1.28 = UPDATE add posibility to add adverts to latest posts cards section. 
 
 = 2.1.27 = FIX image on some regions missing causing fatal error. Metabox display on UDG.
