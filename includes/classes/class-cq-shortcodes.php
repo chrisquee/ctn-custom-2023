@@ -908,7 +908,7 @@ class cqShortcodes {
 			'post_type' => 'cq_digital_issue',
 			'suppress_filters' => true,
 			'post_status' => 'publish',
-			'showposts' => 1,
+			'showposts' => $items,
             'post__not_in' => $this->home_page_post_ids,
             'meta_query' => array(
                 'relation' => 'AND',
