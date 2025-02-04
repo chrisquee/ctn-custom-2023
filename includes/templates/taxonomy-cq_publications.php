@@ -68,7 +68,7 @@ if ($raw_title == 'Digital Issue') {
                                             <div class="item_content">
                                                 <div class="item_content_wrap">
                                                     <h3><a href="' . esc_url( $link ) . '" target="' . esc_attr($target) . '">' . get_the_title() . '</a></h3>
-                                                    ' . nl2br(get_the_excerpt()) . '
+                                                    <p>' . wp_trim_words(get_the_content($issue_id), 40) . '</p>
                                                     <div class="directory-header-button-container">
                                                         <a href="' . esc_url( $link ) . '" class="button button-category button-outline" target="' . esc_attr($target) . '"><span class="material-symbols-outlined">arrow_forward</span>READ NOW</a>
                                                     </div>

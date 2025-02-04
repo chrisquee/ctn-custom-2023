@@ -8,7 +8,7 @@ class cqDigitalIssuePostType {
     add_action( 'init', array( $self, 'register_cq_digital_issue_post_type' ) );
     add_action( 'init', array( $self, 'cq_publications_taxonomy' ) );
     add_action( 'pre_get_posts', array( $self, 'archive_item_number') );
-    add_filter( 'rwmb_meta_boxes', array( $self, 'cq_metaboxes') );
+    add_filter( 'rwmb_meta_boxes', array( $self, 'cq_metaboxes'), 99 );
   }
 
   public function register_cq_digital_issue_post_type() {
@@ -124,6 +124,26 @@ class cqDigitalIssuePostType {
                 ),  
             ),
         );
+
+        $meta_boxes[] = array(
+          'id' => 'issue-visibility',
+          'title' => esc_html__( 'Visibility', 'CQ_Custom' ),
+          'pages'    => array( 'cq_digital_issue' ),
+          'context'  => 'normal',
+          'priority' => 'high',
+          'fields' => array(
+              array(
+                    'id' => 'suppress_listing',
+                    'name' => 'Suppress digital issue from Listings?',
+                    'type' => 'switch',
+                    'style' => 'rounded',
+                    'on_label' => 'Yes',
+                    'off_label' => 'No',
+                    'std' => '0',
+                    'desc' => 'This will suppress the digital issue from all listings on the front end, but it will still be published and available via the URL.'
+                ),  
+          ),
+      );
       
       return $meta_boxes;
   }
@@ -131,8 +151,29 @@ class cqDigitalIssuePostType {
   public function archive_item_number( $query ) {
 
      if((is_post_type_archive( 'cq_digital_issue' ) || is_tax('cq_publications')) && !isset($_POST['page'])){ // change genre into your taxonomy or leave out for all
-       // show 20 posts
-       $query->set('posts_per_page', 13);
+        // show 20 posts
+        $query->set('posts_per_page', 13);
+
+        $meta_query = (array)$query->get('meta_query');
+         
+        $meta_query[] = array(
+              'relation' => 'AND',
+              array(
+                  'relation' => 'OR',
+                  array(
+                      'key' => 'suppress_listing',
+                      'value' => '1',
+                      'compare' => '!=',
+                  ),
+                  array(
+                      'key' => 'suppress_listing',
+                      'value' => '',
+                      'compare' => 'NOT EXISTS',
+                  ),
+              ),
+          );
+         
+        $query->set('meta_query',$meta_query);
      }
   }
 

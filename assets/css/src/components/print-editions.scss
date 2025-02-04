@@ -267,8 +267,14 @@ hr {
                 }
                 
                 .directory-header-button-container {
+                    margin-top: 2rem;
                     
-                    @media screen and (max-width: 767px) {
+                    @media screen and (max-width: 540px) {
+
+                        .button {
+                            width: 100%;
+                        }
+
                         > a:not(:last-of-type) {
                             margin-bottom: 1rem;
                         }

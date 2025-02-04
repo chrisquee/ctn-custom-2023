@@ -903,13 +903,29 @@ class cqShortcodes {
         $items = $atts['to_show'];
 		$list_count = 1;
         $digital_issue_html = '';
-		
-		$issue_list_args = array(
+
+        $issue_list_args = array(
 			'post_type' => 'cq_digital_issue',
 			'suppress_filters' => true,
 			'post_status' => 'publish',
-			'showposts' => $items,
+			'showposts' => 1,
             'post__not_in' => $this->home_page_post_ids,
+            'meta_query' => array(
+                'relation' => 'AND',
+                array(
+                    'relation' => 'OR',
+                    array(
+                        'key' => 'suppress_listing',
+                        'value' => '1',
+                        'compare' => '!=',
+                    ),
+                    array(
+                        'key' => 'suppress_listing',
+                        'value' => '',
+                        'compare' => 'NOT EXISTS',
+                    ),
+                ),
+            ),
     	);
 		
 		if ($atts['publication'] != 'All' && $atts['publication'] != '') {
@@ -1054,7 +1070,7 @@ class cqShortcodes {
                                                     <div class="item_content_wrap">
                                                         <a class="cat-link" href="' . esc_url( $link ) . '" target="' . esc_attr($target) . '" title="Latest Issue">Latest Issue</a>
                                                         <h3><a href="' . esc_url( $link ) . '" target="' . esc_attr($target) . '">' . get_the_title() . '</a></h3>
-                                                        ' . get_the_excerpt() . '
+                                                        <p>' . wp_trim_words(get_the_content($issue_id), 40) . '</p>
                                                         <div class="directory-header-button-container">
                                                             <a href="' . esc_url( $link ) . '" target="' . esc_attr($target) . '" class="button button-category button-fill">READ NOW</a>
                                                             <a href="' . esc_url( site_url('/digital-issues/') ) . '" target="' . esc_attr($target) . '" class="button button-category button-outline">ALL ISSUES</a>
