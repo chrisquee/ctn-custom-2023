@@ -750,6 +750,14 @@ class cqVcExtend {
                 	"value" => array('Compact' => 'compact', 'Large' => 'large'),
                 	"description" => __( "Choose the style for this section, compact is cover only.", 'CQ_Custom' )
             	),
+                array(
+                	"type" => "dropdown",
+                	"class" => "",
+                	"heading" => __( "Ignore Suppressed", 'CQ_Custom' ),
+                	"param_name" => "ignore_suppressed",
+                	"value" => array('No' => 'no', 'Yes' => 'yes'),
+                	"description" => __( "Choose whether issues suppressed from the listing should appear here.", 'CQ_Custom' )
+            	),
 			)
 		) );
     }

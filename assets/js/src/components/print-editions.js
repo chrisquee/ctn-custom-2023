@@ -26,6 +26,6 @@ jQuery(document).ready(function($){
             clicked_arrow.css({"rotate": "none", "transition-duration": "0.5s"});
         }
 
-
     });
 });
+

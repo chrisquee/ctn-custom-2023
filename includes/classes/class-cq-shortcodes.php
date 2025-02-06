@@ -909,7 +909,6 @@ class cqShortcodes {
 			'suppress_filters' => true,
 			'post_status' => 'publish',
 			'showposts' => $items,
-            'post__not_in' => $this->home_page_post_ids,
             'meta_query' => array(
                 'relation' => 'AND',
                 array(
@@ -1019,14 +1018,35 @@ class cqShortcodes {
                             array(
                                 'publication' => '',
                                 'style' => 'large',
+                                'ignore_suppressed' => 'no'
                             ), $attributes);
 		
 		$issue_list_args = array(
 			'post_type' => 'cq_digital_issue',
 			'suppress_filters' => true,
 			'post_status' => 'publish',
-			'showposts' => 1
+			'showposts' => 1,
+            'post__not_in' => $this->home_page_post_ids,
     	);
+
+        if ($atts['ignore_suppressed'] == 'no') {
+    	    $issue_list_args['meta_query'] = array(
+                'relation' => 'AND',
+                array(
+                    'relation' => 'OR',
+                    array(
+                        'key' => 'suppress_listing',
+                        'value' => '1',
+                        'compare' => '!=',
+                    ),
+                    array(
+                        'key' => 'suppress_listing',
+                        'value' => '',
+                        'compare' => 'NOT EXISTS',
+                    ),
+                ),
+            );
+    	}
 		
 		if ($atts['publication'] != '') {
 			$tax_query = array(

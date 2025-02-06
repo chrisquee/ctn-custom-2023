@@ -150,7 +150,7 @@ class cqDigitalIssuePostType {
     
   public function archive_item_number( $query ) {
 
-     if((is_post_type_archive( 'cq_digital_issue' ) || is_tax('cq_publications')) && !isset($_POST['page'])){ // change genre into your taxonomy or leave out for all
+     if((is_post_type_archive( 'cq_digital_issue' ) || is_tax('cq_publications')) && !isset($_GET['post_type'])){ // change genre into your taxonomy or leave out for all
         // show 20 posts
         $query->set('posts_per_page', 13);
 
