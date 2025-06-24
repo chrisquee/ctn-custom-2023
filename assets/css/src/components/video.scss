@@ -21,3 +21,14 @@
 	padding-top: 30px;
 }
 /* EOF Responsive Video */
+
+/* BOF Captivate player embed */
+.captivate-embed {
+	width: 100%;
+	
+	iframe {
+		width: 100%;
+		height: 200px;
+		border-radius: 0.5rem;
+	}
+}

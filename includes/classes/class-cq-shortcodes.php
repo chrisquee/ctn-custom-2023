@@ -2080,6 +2080,10 @@ class cqShortcodes {
         if ( false !== strpos( $url, "://youtube.com") || false !== strpos( $url, "://youtu.be" ) || false !== strpos( $url, "://www.youtube.com" ) || false !== strpos( $url, "://vimeo" ) ) {   
 	       $html = '<div class="video-embed">' . $html . '</div>';
         }
+
+        if (false !== strpos( $url, "captivate.fm")) {
+            $html = '<div class="captivate-embed">' . $html . '</div>';
+        }
         
         return $html;
     }

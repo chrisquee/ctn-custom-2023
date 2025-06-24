@@ -16,6 +16,8 @@ Custom functionality for Cruise Trade News
 
 == Changelog ==
 
+= 2.1.34 = UPDATE Added auto handling for Captivate embeds.
+
 = 2.1.33 = UPDATE allow overriding of suppressed issues on latest issue block.
 
 = 2.1.32 = FIX Only one issue showing on latest issues block.

@@ -14,7 +14,7 @@ class cqInteractive {
         add_action('wp_ajax_nopriv_get_interactive_content', array( $self, 'content_ajax_html'));
         add_action('render_cq_interactive', array( $self, 'render_cq_interactive'));
         add_action('manage_cq_interactive_item_posts_custom_column', array( $self, 'add_column_shortcode'), 10, 2); 
-        add_filter( 'rwmb_meta_boxes', array( $self, 'cq_metaboxes') );
+        add_filter( 'rwmb_meta_boxes', array( $self, 'cq_metaboxes'), 99 );
         add_filter('manage_cq_interactive_item_posts_columns', array( $self, 'add_shortcode_column') );
         add_shortcode('cq_interactive_embed', array( $self, 'cq_interactive_item_shortcode'));
     }
