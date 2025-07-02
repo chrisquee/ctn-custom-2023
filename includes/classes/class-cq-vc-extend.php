@@ -2018,7 +2018,7 @@ class cqVcExtend {
             foreach ( $post_results as $value ) {
                 $data = array();
                 $data[ 'value' ] = $value[ 'id' ];
-                $data[ 'label' ] = $value[ 'title' ] . ' - '. get_the_time('d-m-Y', $value[ 'id' ]);;
+                $data[ 'label' ] = $value[ 'title' ] . ' - '. get_the_time('d-m-Y', $value[ 'id' ]);
                 $results[] = $data;
             }
         }
@@ -2270,14 +2270,14 @@ if (!function_exists('cq_post_autocomplete_suggester')) {
     function cq_post_autocomplete_suggester( $query ) {
         global $wpdb;
         //$post_id = ( int )$query;
-        $post_results = $wpdb->get_results( $wpdb->prepare( "SELECT a.ID AS id, a.post_title AS title FROM {$wpdb->posts} AS a
+        $post_results = $wpdb->get_results( $wpdb->prepare( "SELECT a.ID AS id, a.post_title AS title, a.post_type AS post_type FROM {$wpdb->posts} AS a
     WHERE (a.post_type = 'post' OR a.post_type = 'page') AND a.post_status != 'trash' AND a.post_title LIKE '%%%s%%'", stripslashes( $query ) ), ARRAY_A );
         $results = array();
         if ( is_array( $post_results ) && !empty( $post_results ) ) {
             foreach ( $post_results as $value ) {
                 $data = array();
                 $data[ 'value' ] = $value[ 'id' ];
-                $data[ 'label' ] = $value[ 'title' ] . ' - '. get_the_time('d-m-Y', $value[ 'id' ]);;
+                $data[ 'label' ] = $value[ 'title' ] . ' - ' . get_the_time('d-m-Y', $value[ 'id' ]) . ' - <strong>' . $value[ 'post_type' ] . '</strong>';
                 $results[] = $data;
             }
         }

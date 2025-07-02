@@ -102,9 +102,13 @@
             }
             
             .item-content {
-                display: block;
+                display: flex;
                 padding: 2rem;
                 text-align: center;
+                width: 100%;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
                 
                 .item-category {
                     margin: 0 auto 2rem;
