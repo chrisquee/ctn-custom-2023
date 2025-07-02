@@ -427,7 +427,16 @@ class cqShortcodes {
         $term_id = $terms[0]->term_id;
         $category_colour = get_term_meta( $term_id, '_category_color', true );
         $category_colour_style = ($category_colour != '' && strtolower($category_colour) != 'ffffff' ? ' style="background-color: #' . $category_colour . ' !important;"' : '');
-	
+        $category_link = get_category_link( $terms[0]->term_id );
+        $category_link_html = '';
+
+        if ($category_link != '') {
+            $category_link_html = '<div class="item-category cat-link">
+                                        <span class="material-symbols-outlined">arrow_outward</span>
+                                        <a href="' . esc_url( $category_link  ) . '">' . esc_html($category) . '</a>
+                                    </div>';
+        }
+
         if ($post_style == 'std') {
             $highlight_post_content .= '<article id="post-' . $post_info->ID . '" class="' . $extra_class . '">
                         	
@@ -468,10 +477,7 @@ class cqShortcodes {
 												</a>
 								            </div>
 											<div class="item-content">
-                                                <div class="item-category cat-link">
-                                                    <span class="material-symbols-outlined">arrow_outward</span>
-								                    <a href="' . esc_url( get_category_link( $terms[0]->term_id ) ) . '">' . esc_html($category) . '</a>
-                                                </div>
+                                                ' . $category_link_html . '
                                                 <div class="item-title">
 												    <h3><a href="' . esc_url(get_permalink( $post_info->ID )) . '" title=" . ' . esc_attr($post_info->post_title) . '">' . esc_html($post_info->post_title) . '</a></h2>
                                                 </div>

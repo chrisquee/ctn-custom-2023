@@ -16,6 +16,8 @@ Custom functionality for Cruise Trade News
 
 == Changelog ==
 
+= 2.1.35 = FIX so that Highlight post works properly with page posts.
+
 = 2.1.34 = UPDATE Added auto handling for Captivate embeds.
 
 = 2.1.33 = UPDATE allow overriding of suppressed issues on latest issue block.
