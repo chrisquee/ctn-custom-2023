@@ -457,7 +457,8 @@ class cqShortcodes {
         } else if ($post_style == 'img_left') {
 		  
             $excerpt = preg_replace("~(?:\[/?)[^/\]]+/?\]~s", '', $post_info->post_content);
-            $excerpt = str_replace('&nbsp;', ' ', $excerpt);
+            
+            $excerpt = str_replace('&nbsp;', ' ', wp_strip_all_tags(strip_shortcodes($excerpt)));
             
             $pick_text_html = '';
             
