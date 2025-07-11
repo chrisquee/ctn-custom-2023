@@ -50,6 +50,10 @@
     left: 0;
     right: 0;
     padding: 1rem;
+
+    a {
+        width: 100%;
+    }
 }
 @media screen and (max-width: 767px) {
     .grid-links .grid-link-item .grid-link-item-image {
