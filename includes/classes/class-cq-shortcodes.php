@@ -681,11 +681,13 @@ class cqShortcodes {
                                 'desktop_display' => 'full_width',
                                 'mobile_display' => 'with_image',
                                 'load_more' => false,
+                                'full_width_no_image' => false,
+                                'full_width_number' => 2,
                                 'ad_shortcode' => '',
                                 'ad_space' => false,
                             ), $attributes);
         
-        $show_posts = $atts['desktop_display'] == 'cards' ? 6 : 2;
+        $show_posts = $atts['desktop_display'] == 'cards' ? 6 : $atts['full_width_number'];
         
         $ad_active = false;
         if ($atts['ad_shortcode'] != '' && $atts['ad_space'] != false) {
@@ -709,6 +711,10 @@ class cqShortcodes {
 	   
         $desktop_class = esc_attr($atts['desktop_display']);
         $mobile_class = esc_attr($atts['mobile_display']);
+
+        if ($atts['desktop_display'] == 'full_width' && $atts['full_width_no_image'] == true) {
+            $mobile_class = 'no_image';
+        }
     
 		$post_list = new WP_Query($post_list_args);
             

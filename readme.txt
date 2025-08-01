@@ -16,6 +16,8 @@ Custom functionality for Cruise Trade News
 
 == Changelog ==
 
+= 2.1.38 = UPDATE allow full width latest news cards to have no image and adjust the numbre of articles shown.
+
 = 2.1.37 = FIX for shortcodes showing in highlight post block.
 
 = 2.1.36 = FIX so that Highlight post works properly with page posts really and update CSS.

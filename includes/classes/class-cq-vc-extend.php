@@ -470,6 +470,36 @@ class cqVcExtend {
                 	"description" => __( "Choose how this element should look on desktop", 'CQ_Custom' )
             	),
                 array(
+                    "type"          => "checkbox",
+                    "admin_label"   => true,
+                    "weight"        => 10,
+                    "heading"       => __( "Hide Image", "CQ_Custom" ),
+                    "description"   => __("Makes the full width option display text only.", "CQ_Custom"),
+                    "value"         => '',
+                    "param_name"    => "full_width_no_image",
+                    "dependency"    => array(
+                        'element'   => 'desktop_display',
+                        'value'     => 'full_width'
+                    ),
+                ),
+                array(
+                	"type" => "dropdown",
+                	"class" => "",
+                	"heading" => __( "Number to Show", 'CQ_Custom' ),
+                	"param_name" => "full_width_number",
+                	"value" => array('1' => 1,
+                                     '2' => 2,
+                                     '3' => 3,
+                                     '4' => 4,
+                                     '5' => 5,
+                                     '6' => 6),
+                	"description" => __( "Choose the number of cards to display initially. Check 'Add Load More?' to have the option to load more.", 'CQ_Custom' ),
+                    "dependency"    => array(
+                        'element'   => 'desktop_display',
+                        'value'     => 'full_width'
+                    ),
+            	),
+                array(
                 	"type" => "dropdown",
                 	"class" => "",
                 	"heading" => __( "Mobile Display", 'CQ_Custom' ),

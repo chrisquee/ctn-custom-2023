@@ -16,7 +16,14 @@
             .latest-item {
                 display: flex;
             }
-        } 
+        }
+
+        &.no_image {
+           
+            .item-image {
+                display: none;
+            }
+        }
     }
     
     &.no_image {
