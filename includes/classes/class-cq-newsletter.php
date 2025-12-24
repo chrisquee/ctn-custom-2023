@@ -56,18 +56,14 @@ class cqNewsletter {
     
     public function force24_v3_js() {
         ?>
-
-        <script type="text/javascript">
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments)};
-          gtag('js', new Date());
-
-          gtag('config', 'UA-45673473-6', { 'anonymize_ip': true });
-        </script>
-
-        <!-- Google tag (gtag.js) --> 
-        <script async src=https://www.googletagmanager.com/gtag/js?id=G-SJFJXPHSQW></script>
-        <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-SJFJXPHSQW'); </script>
+        
+        <!-- Google Tag Manager -->
+        <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-TXFCM3NW');</script>
+        <!-- End Google Tag Manager -->
 
         <!-- Force24 Tracking -->
         <script>
