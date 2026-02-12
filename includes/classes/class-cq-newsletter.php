@@ -7,7 +7,7 @@ class cqNewsletter {
         add_action( 'wp_ajax_submit_cq_newsletter_signup_form', array($self, 'submit_cq_newsletter_signup_form') );
         add_action( 'wp_ajax_nopriv_submit_cq_newsletter_signup_form', array($self, 'submit_cq_newsletter_signup_form') );
         //add_action( 'wp_footer', array($self, 'force24_js'), 100 );
-        add_action( 'wp_head', array($self, 'setup_onesignal_overrides'), 100);
+        //add_action( 'wp_head', array($self, 'setup_onesignal_overrides'), 100);
         add_action( 'wp_head', array($self, 'force24_v3_js'), 99);
         add_action( 'wp_head', array($self, 'hotjar_js'), 99);
         add_shortcode('cq_newsletter_form', array($self, 'cq_add_newsletter_form') );
@@ -244,20 +244,6 @@ class cqNewsletter {
             window.OneSignal.init(window._oneSignalInitOptions);
           });
         </script>
-
-        <script>
-          var _paq = window._paq = window._paq || [];
-          _paq.push(['trackPageView']);
-          _paq.push(['enableLinkTracking']);
-          (function() {
-            var u="https://berrythompson.innocraft.cloud/";
-            _paq.push(['setTrackerUrl', u+'matomo.php']);
-            _paq.push(['setSiteId', '21']);
-            var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-            g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
-          })();
-        </script>
-        <noscript><p><img src="https://berrythompson.innocraft.cloud/matomo.php?idsite=21&amp;rec=1" style="border:0;" alt="" /></p></noscript>
 
         <?php
     }

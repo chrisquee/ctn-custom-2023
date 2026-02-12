@@ -16,6 +16,8 @@ Custom functionality for Cruise Trade News
 
 == Changelog ==
 
+= 2.1.40 = UPDATE Remove OneSignal and Matomo
+
 = 2.1.39 = UPDATE Remove Univeral Analytics and replace GA4 tag with GTM tag
 
 = 2.1.38 = UPDATE allow full width latest news cards to have no image and adjust the numbre of articles shown.
