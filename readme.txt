@@ -16,6 +16,8 @@ Custom functionality for Cruise Trade News
 
 == Changelog ==
 
+= 2.1.41 = UPDATE add microsecods to newsletter timestamps - remove F24 script tag
+
 = 2.1.41 = UPDATE Adding ability to download newsletter subscriptions
 
 = 2.1.40 = UPDATE Remove OneSignal and Matomo
