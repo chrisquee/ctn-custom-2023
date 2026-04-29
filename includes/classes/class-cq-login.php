@@ -21,6 +21,10 @@ class cqCustomLogin {
 	add_action( 'login_form_resetpass', array( $self, 'redirect_to_custom_password_reset' ) );
 	add_action( 'login_form_rp', array( $self, 'do_password_reset' ) );
 	add_action( 'login_form_resetpass', array( $self, 'do_password_reset' ) );
+    add_action( 'wp_ajax_get_login_token', array( $self, 'get_login_nonce') );
+    add_action( 'wp_ajax_nopriv_get_login_token', array( $self, 'get_login_nonce') );
+    add_action( 'wp_ajax_get_request_token', array( $self, 'get_login_nonce') );
+    add_action( 'wp_ajax_nopriv_get_request_token', array( $self, 'get_login_nonce') );
 	add_filter( 'retrieve_password_message', array( $self, 'custom_password_reset_email'), 99, 4);
 	add_filter( 'retrieve_password_title', array( $self, 'custom_password_reset_title'));
 	add_filter( 'wp_mail_content_type', array( $self, 'wp_set_html_mail_content_type') );
@@ -58,6 +62,20 @@ class cqCustomLogin {
 	}
 	  
   }
+
+  public function get_login_nonce() {
+        
+        $nonce = array();
+        
+        if ( wp_doing_ajax()) {
+            $nonce['token'] = wp_create_nonce( 'ajax-login-nonce' );
+        }
+        
+        echo json_encode($nonce);
+        
+        die;
+        
+    }
 	
   public function login_page_content($content) {
 		

@@ -23,6 +23,7 @@
     "webpack-cli": "^4.10.0"
   },
   "dependencies": {
+    "@Real-response-media/rrm-demo-plugin-frontend": "0.0.5",
     "@wordpress/core-data": "^6.32.0",
     "flipclock": "^0.10.8",
     "jquery": "^3.7.0",

@@ -11,6 +11,8 @@ class cqNewsletter {
         add_action( 'wp_head', array($self, 'force24_v3_js'), 99);
         add_action( 'wp_head', array($self, 'hotjar_js'), 99);
         add_shortcode('cq_newsletter_form', array($self, 'cq_add_newsletter_form') );
+        add_action('admin_menu', array($self, 'add_newsletter_export_page'));
+        add_action('admin_post_cq_export_newsletter_csv', array($self, 'cq_export_newsletter_csv'));
   	}
     
     public function cq_add_newsletter_form($attributes) {
@@ -34,24 +36,164 @@ class cqNewsletter {
         
         global $wpdb;
 
-        if (isset($_REQUEST)) {
-            $firstname = '';
-            $surname = '';
+        check_ajax_referer('ajax-login-nonce', 'security');
 
-            $email = $_REQUEST['data'][0]['value'];
+        $table = $wpdb->prefix . 'cq_newsletter_submissions';
+
+        $data = $_REQUEST['data'] ?? [];
+
+        if (empty($data)) {
+            echo '<p class="newsletter-message error">No data received.</p>';
+            wp_die();
+        }
+
+        $timestamp = current_time('mysql', 1); // keeps consistency
+        $form_name = 'newsletter_signup';
+
+        foreach ($data as $field) {
+
+            if (!isset($field['name'], $field['value'])) {
+                continue;
+            }
+
+            $name = sanitize_text_field($field['name']);
+            $value = sanitize_text_field($field['value']);
+
+            if ($name === 'newsletter_email') {
+                $email = $value;
+            }
+
+            $wpdb->insert(
+                $table,
+                [
+                    'submission_timestamp' => $timestamp,
+                    'form_name'           => $form_name,
+                    'field_name'          => $name,
+                    'field_value'         => $value,
+                    'file'                => null,
+                    'exported'           => 0,
+                ],
+                [
+                    '%s','%s','%s','%s','%s','%d'
+                ]
+            );
+        }
+
+        // keep your existing UI logic
+        echo '<p class="newsletter-message success">You have been successfully subscribed.</p>';
+
+        wp_die();
             
-            $subscribe = 1;
+            /* $subscribe = 1;
 
             if ($subscribe == 1) {
-                echo '<p class="newsletter-message">You have been successfully subscribed.</p>';
+                echo '<p class="newsletter-message success">You have been successfully subscribed.</p>';
             } else if ($subscribe == 2) {
-                echo '<p class="newsletter-message">Your details have been updated.</p>';
+                echo '<p class="newsletter-message success">Your details have been updated.</p>';
             } else {
-                echo '<p class="newsletter-message">An error occured please try later.</p>';
+                echo '<p class="newsletter-message error">An error occured please try later.</p>';
             }
         }
 
-        die();	
+        die();	 */
+    }
+
+    public function add_newsletter_export_page() {
+        add_menu_page(
+            'Newsletter Signups',
+            'Newsletter Signups',
+            'manage_options',
+            'cq-newsletter-export',
+            array($this, 'cq_render_newsletter_export_page'),
+            'dashicons-download',
+            25);
+    }
+
+    public function cq_render_newsletter_export_page() {
+        ?>
+        <div class="wrap">
+            <h1>Newsletter Signups Export</h1>
+
+            <p>Download all newsletter submissions as a CSV file.</p>
+
+            <a href="<?php echo admin_url('admin-post.php?action=cq_export_newsletter_csv'); ?>"
+            class="button button-primary">
+                Download CSV
+            </a>
+        </div>
+        <?php
+    }
+
+    public function cq_export_newsletter_csv() {
+
+        if (!current_user_can('manage_options')) {
+            wp_die('Unauthorized');
+        }
+
+        global $wpdb;
+
+        $table = $wpdb->prefix . 'cq_newsletter_submissions';
+
+        $rows = $wpdb->get_results("
+            SELECT *
+            FROM $table
+            ORDER BY submission_timestamp DESC, id ASC
+        ", ARRAY_A);
+
+        // group submissions
+        $grouped = [];
+
+        foreach ($rows as $row) {
+
+            $key = $row['form_name'] . '|' . $row['submission_timestamp'];
+
+            if (!isset($grouped[$key])) {
+                $grouped[$key] = [
+                    'submission_timestamp' => $row['submission_timestamp'],
+                    'form_name' => $row['form_name']
+                ];
+            }
+
+            $field = $row['field_name'];
+            $value = $row['field_value'];
+
+            $grouped[$key][$field] = $value;
+        }
+
+        // collect all possible columns dynamically
+        $columns = ['submission_timestamp', 'form_name'];
+
+        foreach ($grouped as $submission) {
+            foreach ($submission as $key => $val) {
+                if (!in_array($key, $columns)) {
+                    $columns[] = $key;
+                }
+            }
+        }
+
+        // output CSV
+        header('Content-Type: text/csv');
+        header('Content-Disposition: attachment; filename="newsletter-export.csv"');
+
+        $output = fopen('php://output', 'w');
+
+        // header row
+        fputcsv($output, $columns);
+
+        // data rows
+        foreach ($grouped as $submission) {
+
+            $row = [];
+
+            foreach ($columns as $col) {
+                $row[] = $submission[$col] ?? '';
+            }
+
+            fputcsv($output, $row);
+        }
+
+        fclose($output);
+        exit;
     }
     
     public function force24_v3_js() {

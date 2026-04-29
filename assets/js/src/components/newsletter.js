@@ -42,12 +42,16 @@ jQuery(document).ready(function($) {
         	});
 			
 
-		$(form).submit(function(e) {
+		$(form).submit(async function(e) {
 			e.preventDefault(); //STOP default action
 			$(".newsletter-loading").remove();
 			$(this).find(".cq-container").slideUp("slow");
 			if (hasError == 0) {
 			//$("#classified-form-overlay").css('display', 'block');
+
+                let requestToken = await fetch(ajax_login_object.ajaxurl+'?action=get_request_token')
+                                .then(response => { return response.json(); });
+
 				var existingHTML = $(this).find(".newsletter_submit").html();
                 $(this).find(".newsletter_submit").html(" <i class=\"fa fa-refresh fa-spin fa-fw newsletter-loading\"></i>");
                 $(this).find(".newsletter_submit").prop('disabled', true);
@@ -61,7 +65,8 @@ jQuery(document).ready(function($) {
                     url : formURL,
                     type: "POST",
                     data : postData,
-                    action : 'submit_cq_newsletter_signup_form'
+                    action : 'submit_cq_newsletter_signup_form',
+                    security: requestToken.token
                 };
                 
                 var thisRequest = jQuery.post(formURL, data, function(response){

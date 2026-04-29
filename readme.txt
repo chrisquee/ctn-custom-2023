@@ -16,6 +16,8 @@ Custom functionality for Cruise Trade News
 
 == Changelog ==
 
+= 2.1.41 = UPDATE Adding ability to download newsletter subscriptions
+
 = 2.1.40 = UPDATE Remove OneSignal and Matomo
 
 = 2.1.39 = UPDATE Remove Univeral Analytics and replace GA4 tag with GTM tag

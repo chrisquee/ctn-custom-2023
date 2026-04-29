@@ -54,6 +54,9 @@ class cqShortcodes {
         add_filter( 'post_gallery', array($self, 'cq_custom_gallery'), 10, 3 );
         add_action( 'admin_head-media-upload-popup', array($self, 'add_gallery_option') );
         add_action( 'print_media_templates', array($self, 'add_gallery_options') );
+
+        // Remove auto srcset attribute to prevent WordPress from adding srcset to images which can cause issues with image display in some cases
+        add_filter('wp_img_tag_add_auto_sizes', '__return_false');
   	}
     
     public function cq_large_cta_shortcode($attributes) {
@@ -249,7 +252,7 @@ class cqShortcodes {
         $all_posts_array = array_merge($must_include_array, $latest_post_ids);
         
         $post_list_args = array(
-			'post_type' => 'post',
+			'post_type' => array('post', 'page'),
 			'suppress_filters' => true,
 			'post_status' => 'publish',
             'post__in' => $all_posts_array,
@@ -312,7 +315,7 @@ class cqShortcodes {
                     $category_html = '<a href="' . $primary_category_link . '">' . $primary_category_title . '</a>
                                       <a href="' . $category_link . '" class="cat-hidden">/ ' . $category_title . '</a>';
                 } else {
-                    $category_html = '<a href="' . $primary_category_link . '">' . $primary_category_title . '</a>';
+                    $category_html = '<a href="' . $primary_category_link . '">' . ($primary_category_title ?? 'Featured') . '</a>';
                 }
                 
                 if ($post_index == 0) {
